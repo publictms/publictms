@@ -13,24 +13,35 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 /**
- *
- * @author Stijn
+ * Implementatie van RijbewijsgegevensDAO deze klasse zorgt voor de interactie tussen de database
+ * en de webservice. Hibernate verzorgt de communicatie tussen beide.
+ * @author Stijn Ceunen
  */
 @Repository
 public class RijbewijsgegevensDAOImpl implements RijbewijsgegevensDAO{
     
     @Autowired
     private SessionFactory sessionFactory;
-
+    /**
+     * zorgt ervoor dat sessionFactory wordt geïnitialiseerd
+     * @param sessionFactory 
+     */
     public void setSessionFactory(SessionFactory sessionFactory) {
         this.sessionFactory = sessionFactory;
     }
-
+    /**
+     * Voeg rijbewijs gegevens toe aan de hand van een Rijbewijsgegevens object.
+     * @param rijbewijsgegevens 
+     */
     @Override
     public void addRijbewijsgegevens(Rijbewijsgegevens rijbewijsgegevens) {
         sessionFactory.getCurrentSession().save(rijbewijsgegevens);
     }
-
+    /**
+     * Geeft de rijbewijs gegevens terug aan de hand van zijn index.
+     * @param id
+     * @return Rijbewijsgegevens
+     */
     @Override
     public Rijbewijsgegevens getRijbewijsgegevens(int id) {
         Session session = HibernateUtil.getSessionFactory().openSession();
@@ -38,7 +49,10 @@ public class RijbewijsgegevensDAOImpl implements RijbewijsgegevensDAO{
         query.setParameter("id", id);
         return (Rijbewijsgegevens)query.list().get(0);
     }
-
+    /**
+     * Verwijder rijbewijs gegevens aan de hand van zijn index.
+     * @param id 
+     */
     @Override
     public void deleteRijbewijsgegevens(int id) {
         Rijbewijsgegevens rijbewijsgegevens = (Rijbewijsgegevens)sessionFactory.getCurrentSession().load(Rijbewijsgegevens.class, id);
@@ -46,7 +60,10 @@ public class RijbewijsgegevensDAOImpl implements RijbewijsgegevensDAO{
             sessionFactory.getCurrentSession().delete(rijbewijsgegevens);
         }
     }
-
+    /**
+     * Bewerk de rijbewijs gegevens aan de hand van een Rijbewijsgegevens object.
+     * @param rijbewijsgegevens 
+     */
     @Override
     public void updateRijbewijsgegevens(Rijbewijsgegevens rijbewijsgegevens) {
         sessionFactory.getCurrentSession().update(rijbewijsgegevens);

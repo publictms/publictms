@@ -13,23 +13,34 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 /**
- *
- * @author 11302785
+ * Implementatie van AdresDAO deze klasse zorgt voor de interactie tussen de database
+ * en de webservice. Hibernate verzorgt de communicatie tussen beide.
+ * @author Laurens Putseys
  */
 @Repository
 public class AdresDAOImpl implements AdresDAO{
     @Autowired
     private SessionFactory sessionFactory;
-    
+    /**
+     * zorgt ervoor dat sessionFactory wordt geïnitialiseerd
+     * @param sessionFactory 
+     */
     public void setSessionFactory(SessionFactory sessionFactory) {
         this.sessionFactory = sessionFactory;
     }
-
+    /**
+     * Als paramaeter wordt er een adres object verwacht en deze zal hij opslaan in de database.
+     * @param adres 
+     */
     @Override
     public void addAdres(Adres adres) {
         sessionFactory.getCurrentSession().save(adres);
     }
-
+    /**
+     * Aan de hand van een id zal deze het bijhorend adres zoeken en terug geven als een object.
+     * @param id
+     * @return adres
+     */
     @Override
     public Adres getAdres(int id) {
         Session session = HibernateUtil.getSessionFactory().openSession();
@@ -37,7 +48,10 @@ public class AdresDAOImpl implements AdresDAO{
         query.setParameter("id", id);
         return (Adres)query.list().get(0);
     }
-
+    /**
+     * Aan de hand van een id zal deze het bijhorend adres verwijderen uit de databank
+     * @param id 
+     */
     @Override
     public void deleteAdres(int id) {
         Adres adres = (Adres)sessionFactory.getCurrentSession().load(Adres.class, id);
@@ -45,7 +59,10 @@ public class AdresDAOImpl implements AdresDAO{
             sessionFactory.getCurrentSession().delete(adres);
         }
     }
-
+    /**
+     * Parameter is een adres object, het object zal worden bijgewerkt in de databank.
+     * @param adres 
+     */
     @Override
     public void updateAdres(Adres adres) {
         sessionFactory.getCurrentSession().update(adres);

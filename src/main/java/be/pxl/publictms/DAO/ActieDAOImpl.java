@@ -14,23 +14,35 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 /**
- *
- * @author Stijn
+ * Implementatie van ActieDAO deze klasse zorgt voor de interactie tussen de database
+ * en de webservice. Hibernate verzorgt de communicatie tussen beide.
+ * @author Stijn ceunen
  */
 @Repository
 public class ActieDAOImpl implements ActieDAO{
     @Autowired
     private SessionFactory sessionFactory;
-
+    /**
+     * zorgt ervoor dat sessionFactory wordt geïnitialiseerd
+     * @param sessionFactory 
+     */
     public void setSessionFactory(SessionFactory sessionFactory) {
         this.sessionFactory = sessionFactory;
     }
-    
+    /**
+     * Een actie toevoegen.
+     * @param actie 
+     */
     @Override
     public void addActie(Actie actie) {
         sessionFactory.getCurrentSession().save(actie);
     }
-
+    /**
+     * Aan de hand van de index zal deze alle acties ophalen die bij de 
+     * bijhorende opdracht horen. Deze id is de index van een opdracht.
+     * @param id 
+     * @return List met acties 
+     */
     @Override
     public List<Actie> getActiesVanOpdracht(int id) {
         Session session = HibernateUtil.getSessionFactory().openSession();
@@ -38,7 +50,10 @@ public class ActieDAOImpl implements ActieDAO{
         query.setParameter("id", id);
         return query.list();
     }
-
+    /**
+     * Aan de hand van de index kan men een actie verwijderen
+     * @param id 
+     */
     @Override
     public void deleteActie(int id) {
         Actie actie = (Actie)sessionFactory.getCurrentSession().load(Actie.class, id);
@@ -46,7 +61,10 @@ public class ActieDAOImpl implements ActieDAO{
             sessionFactory.getCurrentSession().delete(actie);
         }
     }
-
+    /**
+     * Update een actie
+     * @param actie 
+     */
     @Override
     public void updateActie(Actie actie) {
         sessionFactory.getCurrentSession().update(actie);

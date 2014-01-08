@@ -8,12 +8,29 @@ import be.pxl.publictms.pojo.Opdracht;
 import java.util.List;
 
 /**
- *
- * @author Stijn
+ * interface die methoden voorziet om opdrachten toe te voegen, bewerken, 
+ * verwijderen of op te vragen.
+ * @author Stijn Ceunen
  */
 public interface OpdrachtDAO {
+    /**
+     * Voeg een opdracht toe.
+     * @param opdracht 
+     */
     public void addOpdracht(Opdracht opdracht);
+    /**
+     * Geeft een list met opdracht terug
+     * @return List Opdracht
+     */
     public List<Opdracht> getOpdracht();
+    /**
+     * Delete een opdracht aan de hand van zijn index.
+     * @param id 
+     */
     public void deleteOpdracht(int id);
+    /**
+     * Bewerkt een opdracht aan de hand een opdracht object
+     * @param opdracht 
+     */
     public void updateOpdracht(Opdracht opdracht);
 }

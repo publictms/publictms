@@ -14,29 +14,42 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 /**
- *
- * @author 11302785
+ * Implementatie van KlantDAO deze klasse zorgt voor de interactie tussen de database
+ * en de webservice. Hibernate verzorgt de communicatie tussen beide.
+ * @author Laurens Putseys
  */
 @Repository
 public class KlantDAOImpl implements KlantDAO{
     
     @Autowired
     private SessionFactory sessionFactory;
-    
+    /**
+     * zorgt ervoor dat sessionFactory wordt geïnitialiseerd
+     * @param sessionFactory 
+     */
     public void setSessionFactory(SessionFactory sessionFactory) {
         this.sessionFactory = sessionFactory;
     }
-
+    /**
+     * Voegt een klant toe.
+     * @param klant 
+     */
     @Override
     public void addKlant(Klant klant) {
         sessionFactory.getCurrentSession().save(klant);
     }
-
+    /**
+     * Geeft een lijst van klanten terug
+     * @return List Klanten
+     */
     @Override
     public List<Klant> getKlanten() {
         return sessionFactory.getCurrentSession().createQuery("from Klant").list();
     }
-
+    /**
+     * Delete een klant aan de hand van zijn id.
+     * @param id 
+     */
     @Override
     public void deleteKlant(int id) {
         Klant klant = (Klant)sessionFactory.getCurrentSession().load(Klant.class, id);
@@ -44,12 +57,19 @@ public class KlantDAOImpl implements KlantDAO{
             sessionFactory.getCurrentSession().delete(klant);
         }
     }
-
+    /**
+     * Bewerkt een klant aan de hand een klant object
+     * @param klant 
+     */
     @Override
     public void updateKlant(Klant klant) {
         sessionFactory.getCurrentSession().update(klant);
     }
-
+    /**
+     * Geeft een specifieke klant terug aan de hand van zijn index.
+     * @param id
+     * @return klant
+     */
     @Override
     public Klant getKlant(int id) {
         Session session = HibernateUtil.getSessionFactory().openSession();

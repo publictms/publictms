@@ -13,24 +13,35 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 /**
- *
- * @author 11302785
+ * Implementatie van LaadGegevensDAO deze klasse zorgt voor de interactie tussen de database
+ * en de webservice. Hibernate verzorgt de communicatie tussen beide.
+ * @author Laurens Putseys
  */
 @Repository
 public class LaadGegevensDAOImpl implements LaadGegevensDAO{
     
     @Autowired
     private SessionFactory sessionFactory;
-    
+    /**
+     * zorgt ervoor dat sessionFactory wordt geïnitialiseerd
+     * @param sessionFactory 
+     */
     public void setSessionFactory(SessionFactory sessionFactory) {
         this.sessionFactory = sessionFactory;
     }
-
+    /**
+     * Om laadgegevens toe te voegen.
+     * @param laadgegevens 
+     */
     @Override
     public void addLaadgegevens(Laadgegevens laadgegevens) {
         sessionFactory.getCurrentSession().save(laadgegevens);
     }
-
+    /**
+     * Geeft de laadgegevens terug aan de hand van zijn index.
+     * @param id
+     * @return 
+     */
     @Override
     public Laadgegevens getLaadgegevens(int id) {
         Session session = HibernateUtil.getSessionFactory().openSession();
@@ -38,7 +49,10 @@ public class LaadGegevensDAOImpl implements LaadGegevensDAO{
         query.setParameter("id", id);
         return (Laadgegevens)query.list().get(0);
     }
-
+    /**
+     * Verwijder laadgegevens aan de hand van zijn index.
+     * @param id 
+     */
     @Override
     public void deleteLaadgegeven(int id) {
         Laadgegevens laadGegevens = (Laadgegevens)sessionFactory.getCurrentSession().load(Laadgegevens.class, id);
@@ -46,7 +60,10 @@ public class LaadGegevensDAOImpl implements LaadGegevensDAO{
             sessionFactory.getCurrentSession().delete(laadGegevens);
         }
     }
-
+    /**
+     * Bewerk bestaand laadgegevens.
+     * @param laadgegevens 
+     */
     @Override
     public void updateLaadgegeven(Laadgegevens laadgegevens) {
         sessionFactory.getCurrentSession().update(laadgegevens);
