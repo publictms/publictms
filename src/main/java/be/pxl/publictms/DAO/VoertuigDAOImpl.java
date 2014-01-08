@@ -46,7 +46,7 @@ public class VoertuigDAOImpl implements VoertuigDAO{
 
     @Override
     public List<Voertuig> getVoertuigen() {
-        return sessionFactory.getCurrentSession().createQuery("from Voertuigen").list();
+        return sessionFactory.getCurrentSession().createQuery("from Voertuig").list();
     }
 
     @Override
