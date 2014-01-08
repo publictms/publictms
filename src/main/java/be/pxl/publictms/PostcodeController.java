@@ -16,8 +16,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
- *
- * @author 11302785
+ * 
+ * @author Laurens Putseys
  */
 @Controller
 @RequestMapping("postcode")
@@ -25,32 +25,52 @@ public class PostcodeController {
     
     @Autowired
     private PostcodeService postcodeService;
-    
+    /**
+     * Geeft postcode terug aan de hand van een id.
+     * @param id
+     * @return Postcode
+     */
     @RequestMapping(value = "gemeente/{id}",method = RequestMethod.GET)
     public @ResponseBody Postcode getGemeente(@PathVariable("id") String id){
         return postcodeService.getGemeente(id);
     }
-    
+    /**
+     * Geeft een lijst terug van alle gemeentes en bijhorende postcodes.
+     * @return List Postcode
+     */
     @RequestMapping(value = "gemeente",method = RequestMethod.GET)
     public @ResponseBody List<Postcode> getGemeente(){
         return postcodeService.getGemeente();
     }
-    
+    /**
+     * Voeg een nieuwe gemeente en postcode toe aan de databank.
+     * @param postcode 
+     */
     @RequestMapping(value = "add",method = RequestMethod.PUT)
     public @ResponseBody void addGemeente(Postcode postcode){
         postcodeService.addGemeente(postcode);
     }
-    
+    /**
+     * Verwijder een bestaande postcode.
+     * @param id 
+     */
     @RequestMapping(value = "delete",method = RequestMethod.GET)
     public @ResponseBody void deleteGemeente(@PathVariable("id") String id){
         postcodeService.deleteGemeente(id);
     }
-    
+    /**
+     * Bewerk een bestaand postcode. 
+     * @param postcode 
+     */
     @RequestMapping(value = "update",method = RequestMethod.GET)
     public @ResponseBody void updateGemeente(Postcode postcode){
         postcodeService.updateGemeente(postcode);
     }
-    
+    /**
+     * Geeft foutmeldingen terug
+     * @param ex
+     * @return String
+     */
     @ExceptionHandler(Exception.class)
     public @ResponseBody String handleUncaughtException(Exception ex){
         System.out.println(ex.toString());

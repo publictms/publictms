@@ -16,8 +16,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
- *
- * @author 11302785
+ * Controller om werknemers te verwerkene.
+ * @author Laurens Putseys
  */
 
 @Controller
@@ -25,30 +25,46 @@ import org.springframework.web.bind.annotation.ResponseBody;
 public class WerknemerController {
     @Autowired
     private WerknemerService werknemerService;
-    
+    /**
+     * Geeft een lijst met werknemers terug.
+     * @return List Werknemer
+     */
     @RequestMapping(value = "get",method = RequestMethod.GET)
     public @ResponseBody List<Werknemer> getWerknemers(){
         return werknemerService.getWerknemers();
     }
-    
+    /**
+     * Voeg een nieuwe werknemer toe aan de databank.
+     * @param werknemer 
+     */
     @RequestMapping(value = "add", method = RequestMethod.PUT)
     public @ResponseBody void addWerknemer(Werknemer werknemer){
         if(!werknemerService.getWerknemers().contains(werknemer))
         werknemerService.addWerknemer(werknemer);
     }
-    
+    /**
+     * Delete een werknemer uit de databank.
+     * @param id 
+     */
     @RequestMapping(value = "delete/{id}", method = RequestMethod.PUT)
     public @ResponseBody void deleteWerknemer(@PathVariable("id") int id){
         if(werknemerService.getWerknemers().contains(werknemerService.getWerknemers().get(id)))
         werknemerService.deleteWerknemer(id);
     }
-    
+    /**
+     * Bewerk een bestaande werknemer uit de databank.
+     * @param werknemer 
+     */
     @RequestMapping(value = "update", method = RequestMethod.PUT)
     public @ResponseBody void updateWerknemer(Werknemer werknemer){
         if(werknemerService.getWerknemers().contains(werknemer))
         werknemerService.updateWerknemer(werknemer);
     }
-
+    /**
+     * Geeft foutmeldingen terug
+     * @param ex
+     * @return String
+     */
     @ExceptionHandler(Exception.class)
     public @ResponseBody String handleUncaughtException(Exception ex){
         System.out.println(ex.toString());

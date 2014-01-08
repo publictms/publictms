@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 
 /**
  * Handles requests for the application home page.
+ * @author Laurens Putseys
  */
 @Controller
 public class HomeController {
@@ -38,12 +39,19 @@ public class HomeController {
 		
 		return "home";
 	}
-	//testyt
+	/**
+         * Test methode om te kijken als spring restFul webservice werkt.
+         * @return String
+         */
 	@RequestMapping(value = "test",method = RequestMethod.GET)
         public @ResponseBody String testMethod() {
             return "Succes!";
         }
-        
+        /**
+        * Geeft foutmeldingen terug
+        * @param ex
+        * @return String
+        */
 	@ExceptionHandler(Exception.class)
         public @ResponseBody String handleUncaughtException(Exception ex){
             System.out.println(ex.toString());

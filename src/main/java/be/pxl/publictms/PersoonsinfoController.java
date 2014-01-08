@@ -15,8 +15,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
- *
- * @author Stijn
+ * Controller die persoonelijke informatie verwerkt.
+ * @author Stijn Ceunen
  */
 @Controller
 @RequestMapping("persoonsinfo")
@@ -24,27 +24,44 @@ public class PersoonsinfoController {
     
     @Autowired
     private PersoonsinfoService persoonsinfoService;
-    
+    /**
+     * Geeft de persoonelijk informatie terug aan de hand van een index van een werknemer.
+     * @param id
+     * @return Persoonsinfo
+     */
     @RequestMapping(value = "get/{id}",method = RequestMethod.GET)
     public @ResponseBody Persoonsinfo getPersoonsinfo(@PathVariable("id") int id){
         return persoonsinfoService.getPersoonsinfo(id);
     }
-    
+    /**
+     * Voeg nieuwe persoonelijke informatie toe aan de databank.
+     * @param persoonsinfo 
+     */
     @RequestMapping(value = "add", method = RequestMethod.PUT)
     public @ResponseBody void addPersoonsinfo(Persoonsinfo persoonsinfo){
         persoonsinfoService.addPersoonsinfo(persoonsinfo);
     }
-    
+    /**
+     * Verwijder persoonelijke informatie van een werknemer
+     * @param id 
+     */
     @RequestMapping(value = "delete/{id}", method = RequestMethod.PUT)
     public @ResponseBody void deletePersoonsinfo(@PathVariable("id") int id){
         persoonsinfoService.deletePersoonsinfo(id);
     }
-    
+    /**
+     * Bewerk de persoonelijke informatie van een werknemer.
+     * @param persoonsinfo 
+     */
     @RequestMapping(value = "update", method = RequestMethod.PUT)
     public @ResponseBody void updatePersoonsinfo(Persoonsinfo persoonsinfo){
         persoonsinfoService.updatePersoonsinfo(persoonsinfo);
     }
-
+    /**
+     * Geeft foutmeldingen terug
+     * @param ex
+     * @return String
+     */
     @ExceptionHandler(Exception.class)
     public @ResponseBody String handleUncaughtException(Exception ex){
         System.out.println(ex.toString());

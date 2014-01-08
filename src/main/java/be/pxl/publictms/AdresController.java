@@ -15,8 +15,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
- *
- * @author 11302785
+ * Controller voor adressen CRUD
+ * @author Laurens Putseys
  */
 @Controller
 @RequestMapping("adres")
@@ -24,27 +24,44 @@ public class AdresController {
     
     @Autowired
     private AdresService adresService;
-    
+    /**
+     * Voegt een adres toe aan de database
+     * @param adres 
+     */
     @RequestMapping(value = "add",method = RequestMethod.PUT)
     public @ResponseBody void add(Adres adres){
         adresService.addAdres(adres);
     }
-    
+    /**
+     * Geef een adres terug aan de hand van zijn id.
+     * @param id
+     * @return Adres
+     */
     @RequestMapping(value = "get/{id}",method = RequestMethod.GET)
     public @ResponseBody Adres get(@PathVariable("id") int id){
         return adresService.getAdres(id);
     }
-    
+    /**
+     * Delete een adres uit de databank aan de hand van zijn index.
+     * @param id 
+     */
     @RequestMapping(value = "delete/{id}",method = RequestMethod.GET)
     public @ResponseBody void delete(@PathVariable("id") int id){
         adresService.deleteAdres(id);
     }
-    
+    /**
+     * Bewerkt een adres uit de databank.
+     * @param adres 
+     */
     @RequestMapping(value = "update",method = RequestMethod.PUT)
     public @ResponseBody void update(Adres adres){
         adresService.updateAdres(adres);
     }
-    
+    /**
+     * Geeft foutmeldingen terug
+     * @param ex
+     * @return String
+     */
     @ExceptionHandler(Exception.class)
     public @ResponseBody String handleUncaughtException(Exception ex){
         System.out.println(ex.toString());

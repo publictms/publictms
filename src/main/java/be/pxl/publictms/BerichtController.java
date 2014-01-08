@@ -16,8 +16,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
- *
- * @author 11302785
+ * Controller die berichten verwerkt.
+ * @author Laurens Putseys
  */
 @Controller
 @RequestMapping("bericht")
@@ -25,22 +25,37 @@ public class BerichtController {
     
     @Autowired
     private BerichtService berichtService;
-    
+    /**
+     * Verstuur berichten naar de server.
+     * @param bericht 
+     */
     @RequestMapping(value = "send",method = RequestMethod.PUT)
     public @ResponseBody void send(Bericht bericht){
         berichtService.send(bericht);
     }
-    
+    /**
+     * Geeft een list terug met alle berichten voor een specifieke ontvanger. 
+     * De parameter is de index van deze ontvanger (werknemer).
+     * @param id
+     * @return List Bericht
+     */
     @RequestMapping(value = "get/{id}",method = RequestMethod.GET)
     public @ResponseBody List<Bericht> getBericht(@PathVariable("id") int id){
         return berichtService.getBerichten(id);
     }
-    
+    /**
+     * Delete een bericht van de databank.
+     * @param id 
+     */
     @RequestMapping(value = "delete/{id}",method = RequestMethod.GET)
     public @ResponseBody void delete(@PathVariable("id") int id){
         berichtService.deleteBericht(id);
     }
-    
+    /**
+     * Geeft foutmeldingen terug
+     * @param ex
+     * @return String
+     */
     @ExceptionHandler(Exception.class)
     public @ResponseBody String handleUncaughtException(Exception ex){
         System.out.println(ex.toString());
