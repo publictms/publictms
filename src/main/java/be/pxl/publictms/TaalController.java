@@ -6,6 +6,8 @@ package be.pxl.publictms;
 
 import be.pxl.publictms.pojo.Taal;
 import be.pxl.publictms.service.TaalService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -21,6 +23,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @Controller
 @RequestMapping("taal")
 public class TaalController {
+    
+    private static final Logger logger = LoggerFactory.getLogger(TaalController.class);
     
     @Autowired
     private TaalService taalService;
