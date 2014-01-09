@@ -11,8 +11,11 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 /**
- *
- * @author 11302785
+ * Klasse die het LaadgegevensService interface implementeerd. De methodes voor
+ * het toevoegen, verwijderen, updates en ophalen van data uit de tabel "Laadgegevens"
+ * worden hier uitgewerkt.
+ * 
+ * @author Laurens
  */
 @Service
 public class LaadGegevensServiceImpl implements LaadGegevensService{

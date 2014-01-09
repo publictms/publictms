@@ -12,8 +12,11 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 /**
- *
- * @author 11302785
+ * Klasse die het OpleggerService interface implementeerd. De methodes voor
+ * het toevoegen, verwijderen, updates en ophalen van data uit de tabel "Oplegger"
+ * worden hier uitgewerkt.
+ * 
+ * @author Laurens
  */
 @Service
 public class OpleggerServiceImpl implements OpleggerService{

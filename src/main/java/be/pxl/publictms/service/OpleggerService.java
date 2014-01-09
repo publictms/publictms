@@ -8,13 +8,52 @@ import be.pxl.publictms.pojo.Oplegger;
 import java.util.List;
 
 /**
- *
- * @author 11302785
+ * Interface dat de methodes voor AdresServiceImpl declareert.
+ * Deze zijn voor het toevoegen, verwijderen, updates en ophalen
+ * van data uit de tabel "Oplegger".
+ * 
+ * @author Laurens
  */
 public interface OpleggerService {
+    
+    /**
+     * Declaratie van de methode voor het toevoegen van data aan de tabel Oplegger.
+     * 
+     * @param oplegger     POJO representatie van de data die toegevoegd wordt.
+     */
     public void addOplegger(Oplegger oplegger);
+    
+    /**
+     * Declaratie van de methode voor het ophalen van alle records uit de tabel
+     * Oplegger.
+     * 
+     * @return      Lijst van data van de tabel Oplegger. Elk record wordt
+     *              voorgesteld met POJO Oplegger.
+     */
     public List<Oplegger> getOpleggers();
+    
+    /**
+     * Declaratie van de methode voor het ophalen van een record uit de tabel
+     * Oplegger met een bepaald id.
+     * 
+     * @param id    Het opleggerid van het record dat opgehaald moet worden.
+     * @return      POJO van het opgehaalde data.
+     */
     public Oplegger getOplegger(int id);
+    
+    /**
+     * Declaratie van de methode voor het verwijderen van een record uit de
+     * tabel Oplegger.
+     * 
+     * @param id    Het opleggerid van het record dat verwijderd moet worden.
+     */
     public void deleteOpleggers(int id);
+    
+    /**
+     * Declaratie van de methode voor het updaten van een record uit de 
+     * tabel Oplegger.
+     * 
+     * @param oplegger     POJO van de geüpdate data.
+     */
     public void updateOplegger(Oplegger oplegger);
 }

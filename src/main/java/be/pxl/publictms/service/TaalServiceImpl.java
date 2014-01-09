@@ -11,7 +11,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 /**
- *
+ * Klasse die het TaalService interface implementeerd. De methodes voor
+ * het toevoegen, verwijderen, updates en ophalen van data uit de tabel "Taal"
+ * worden hier uitgewerkt.
+ * 
  * @author Stijn
  */
 @Service

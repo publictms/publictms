@@ -12,8 +12,11 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 /**
- *
- * @author 11302785
+ * Klasse die het FacturatieService interface implementeerd. De methodes voor
+ * het toevoegen, verwijderen, updates en ophalen van data uit de tabel "Facturatie"
+ * worden hier uitgewerkt.
+ * 
+ * @author Laurens
  */
 @Service
 public class FacturatieServiceImpl implements FacturatieService{
