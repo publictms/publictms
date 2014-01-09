@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
- *
+ * Controller om klanten te verwerken.
  * @author Laurens Putseys
  */
 @Controller

@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
- * 
+ * Controller om postcodes en gemeentes te verwerken.
  * @author Laurens Putseys
  */
 @Controller
