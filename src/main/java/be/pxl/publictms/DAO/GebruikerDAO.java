@@ -34,4 +34,12 @@ public interface GebruikerDAO {
      * @param gebruiker 
      */
     public void updateGebruiker(Gebruiker gebruiker);
+    /**
+     * Kijk als de user in de databank voorkomt en als het paswoord matched of 
+     * niet. Matched deze dan zal deze true terug geven anders false.
+     * @param gebruikersnaam
+     * @param paswoord
+     * @return boolean
+     */
+    public boolean checkUser(String gebruikersnaam, String paswoord);
 }

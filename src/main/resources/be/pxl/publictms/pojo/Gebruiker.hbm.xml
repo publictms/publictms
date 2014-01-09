@@ -12,7 +12,10 @@
             <column name="gebruikersnaam" length="30" not-null="true" />
         </property>
         <property name="paswoord" type="string">
-            <column name="paswoord" length="30" not-null="true" />
+            <column name="paswoord" length="60" not-null="true" />
+        </property>
+        <property name="salt" type="string">
+            <column name="salt" length="29" not-null="true" />
         </property>
         <property name="werknemerid" type="int">
             <column name="werknemerid" not-null="true" />

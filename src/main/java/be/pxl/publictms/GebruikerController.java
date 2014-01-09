@@ -10,6 +10,7 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -45,6 +46,10 @@ public class GebruikerController {
      */
     @RequestMapping(value = "get",method = RequestMethod.GET)
     public @ResponseBody List<Gebruiker> getUsers(){
+        /*if (BCrypt.checkpw("paswoord", gebruikerService.getGebruikers().get(0).getPaswoord()))
+            System.out.println("It matches");
+        else
+            System.out.println("It does not match");*/
         return gebruikerService.getGebruikers();
     }
     /**
@@ -53,8 +58,12 @@ public class GebruikerController {
      */
     @RequestMapping(value = "add", method = RequestMethod.PUT)
     public @ResponseBody void addUser(Gebruiker gebruiker){
-        if(!gebruikerService.getGebruikers().contains(gebruiker))
-        gebruikerService.addGebruiker(gebruiker);
+        if(!gebruikerService.getGebruikers().contains(gebruiker)){
+            String salt = BCrypt.gensalt();
+            gebruiker.setPaswoord(BCrypt.hashpw(gebruiker.getPaswoord(), BCrypt.gensalt()));
+            gebruiker.setSalt(salt);
+            gebruikerService.addGebruiker(gebruiker);
+        }
     }
     /**
      * Verwijder een gebruiker.
@@ -73,6 +82,10 @@ public class GebruikerController {
     public @ResponseBody void updateUser(Gebruiker gebruiker){
         if(gebruikerService.getGebruikers().contains(gebruiker))
         gebruikerService.updateGebruiker(gebruiker);
+    }
+    @RequestMapping(value = "check/{gebruikersnaam}/{paswoord}", method = RequestMethod.GET)
+    public @ResponseBody boolean checkGebruiker(@PathVariable("gebruikersnaam") String gebruikersnaam, @PathVariable("paswoord") String paswoord ){
+        return gebruikerService.checkUser(gebruikersnaam, paswoord);
     }
     /**
      * Geeft foutmeldingen terug
