@@ -14,7 +14,13 @@ import org.springframework.transaction.annotation.Transactional;
 /**
  * Klasse die het OpdrachtService interface implementeerd. De methodes voor
  * het toevoegen, verwijderen, updates en ophalen van data uit de tabel "Opdracht"
- * worden hier uitgewerkt.
+ * worden hier uitgewerkt. De methodes maken gebruik van OpdrachtDAO waar
+ * de query's, acties worden gedefiniëerd.
+ * @Service een autowire voor de service class, de class waar de businesslogica 
+ * komt. Men moet dus geen bean definities schrijven in de context xml.
+ * @Autowired annotatie wordt gebruikt om een automatische link te leggen met
+ * een bean.
+ * @Transactional staat toe een overdracht te doen met de databank.
  * 
  * @author Stijn
  */
@@ -23,17 +29,35 @@ public class OpdrachtServiceImpl implements OpdrachtService{
 
     @Autowired
     private OpdrachtDAO opdrachtDAO;
-            
+        
+    /**
+     * Declaratie van de methode voor het toevoegen van data aan de tabel Opdracht.
+     * 
+     * @param opdracht     POJO representatie van de data die toegevoegd wordt.
+     */
     @Transactional
     public void addOpdracht(Opdracht opdracht) {
         opdrachtDAO.addOpdracht(opdracht);
     }
 
+    /**
+     * Declaratie van de methode voor het ophalen van alle records uit de tabel
+     * Opdracht
+     * 
+     * @return      Lijst van data van de tabel Opdracht. Elk record wordt
+     *              voorgesteld met POJO Opdracht.
+     */
     @Transactional
     public List getOpdrachten() {
         return opdrachtDAO.getOpdrachten();
     }
 
+    /**
+     * Declaratie van de methode voor het verwijderen van een record uit de
+     * tabel Opdracht.
+     * 
+     * @param id    Het opdrachtid van het record dat verwijderd moet worden.
+     */
     @Transactional
     public void deleteOpdracht(int id) {
         opdrachtDAO.deleteOpdracht(id);
