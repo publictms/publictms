@@ -12,7 +12,7 @@ import java.util.List;
  * Deze zijn voor het toevoegen, verwijderen, updates en ophalen
  * van data uit de tabel "Opdracht".
  * 
- * @author Stijn
+ * @author Stijn Ceunen
  */
 public interface OpdrachtService {
     
@@ -21,16 +21,7 @@ public interface OpdrachtService {
      * 
      * @param opdracht     POJO representatie van de data die toegevoegd wordt.
      */
-    public void addOpdracht(Opdracht opdracht);
-    
-    /**
-     * Declaratie van de methode voor het ophalen van alle records uit de tabel
-     * Opdracht
-     * 
-     * @return      Lijst van data van de tabel Opdracht. Elk record wordt
-     *              voorgesteld met POJO Opdracht.
-     */
-    public List<Opdracht> getOpdracht();
+    public void addOpdracht(Opdracht opdracht); 
     
     /**
      * Declaratie van de methode voor het verwijderen van een record uit de
@@ -47,4 +38,14 @@ public interface OpdrachtService {
      * @param opdracht     POJO van de geüpdate data.
      */
     public void updateOpdracht(Opdracht opdracht);
+    /**
+     * Geeft een list met opdracht terug
+     * @return List Opdracht
+     */
+    public List getOpdrachten();
+    /**
+     * Geef een lijst terug met specifieke opdrachten per werknemer
+     * @return list
+     */
+    public List getOpdrachtenWerknemer(int id);
 }

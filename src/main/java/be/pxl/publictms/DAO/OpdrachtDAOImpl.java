@@ -4,8 +4,11 @@
  */
 package be.pxl.publictms.DAO;
 
+import be.pxl.publictms.hibernate.HibernateUtil;
 import be.pxl.publictms.pojo.Opdracht;
 import java.util.List;
+import org.hibernate.Query;
+import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -17,7 +20,33 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 public class OpdrachtDAOImpl implements OpdrachtDAO{
-
+    
+    final String select = "select o.opdrachtid, \n" +
+        "k.naam as \"klant naam\", k.voornaam as \"klant voornaam\", k.bedrijf, o.datum, w.naam as \"werknemer naam\", w.voornaam as \"werknemer voornaam\", v.nummerplaat as \"voertuig\", op.nummerplaat as \"oplegger\", o.opdrachtklaar, o.vrijveld\n" +
+        "from opdracht o\n" +
+        "inner join klant k\n" +
+        "on o.klantid = k.klantid\n" +
+        "inner join voertuig v\n" +
+        "on o.voertuigid = v.voertuigid\n" +
+        "inner join werknemer w\n" +
+        "on o.werknemerid = w.werknemerid\n" +
+        "inner join oplegger op\n" +
+        "on o.opleggerid = op.opleggerid";
+    
+    final String selectWerknemer ="select o.opdrachtid, \n" +
+        "k.naam as \"klant naam\", k.voornaam as \"klant voornaam\", k.bedrijf, o.datum, w.naam as \"werknemer naam\", w.voornaam as \"werknemer voornaam\", v.nummerplaat as \"voertuig\", op.nummerplaat as \"oplegger\", o.opdrachtklaar, o.vrijveld\n" +
+        "from opdracht o\n" +
+        "inner join klant k\n" +
+        "on o.klantid = k.klantid\n" +
+        "inner join voertuig v\n" +
+        "on o.voertuigid = v.voertuigid\n" +
+        "inner join werknemer w\n" +
+        "on o.werknemerid = w.werknemerid\n" +
+        "inner join oplegger op\n" +
+        "on o.opleggerid = op.opleggerid\n" +
+        "where w.werknemerid = :id";
+    
+    
     @Autowired
     private SessionFactory sessionFactory;
     /**
@@ -40,8 +69,17 @@ public class OpdrachtDAOImpl implements OpdrachtDAO{
      * @return List Opdracht
      */
     @Override
-    public List<Opdracht> getOpdracht() {
-        return sessionFactory.getCurrentSession().createQuery("from Opdracht").list();
+    public List getOpdrachten() {
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        Query query = session.createSQLQuery(select);
+        return query.list();
+    }
+    
+    @Override
+    public List getOpdrachtenWerknemer(int id){
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        Query query = session.createSQLQuery(selectWerknemer);
+        return query.setParameter("id", id).list();
     }
     /**
      * Delete een opdracht aan de hand van zijn index.

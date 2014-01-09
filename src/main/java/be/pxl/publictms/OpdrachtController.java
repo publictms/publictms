@@ -29,13 +29,23 @@ public class OpdrachtController {
     
     @Autowired
     private OpdrachtService opdrachtService;
+    
     /**
      * Geeft een lijst terug met opdrachten.
      * @return 
      */
     @RequestMapping(value = "get",method = RequestMethod.GET)
-    public @ResponseBody List<Opdracht> getOpdracht(){
-        return opdrachtService.getOpdracht();
+    public @ResponseBody List getOpdracht(){
+        return opdrachtService.getOpdrachten();
+    }
+    /**
+     * Geeft een lijst met opdrachten terug, in deze methoden zijn de indexen 
+     * veranderd met de werkelijke waarde. 
+     * @return List
+     */
+    @RequestMapping(value = "get/{id}",method = RequestMethod.GET)
+    public @ResponseBody List getOpdrachten(@PathVariable("id") int id){
+        return opdrachtService.getOpdrachtenWerknemer(id);
     }
     /**
      * Voeg een nieuwe opdracht aan de databank.

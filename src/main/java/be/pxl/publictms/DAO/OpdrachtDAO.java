@@ -19,11 +19,6 @@ public interface OpdrachtDAO {
      */
     public void addOpdracht(Opdracht opdracht);
     /**
-     * Geeft een list met opdracht terug
-     * @return List Opdracht
-     */
-    public List<Opdracht> getOpdracht();
-    /**
      * Delete een opdracht aan de hand van zijn index.
      * @param id 
      */
@@ -33,4 +28,14 @@ public interface OpdrachtDAO {
      * @param opdracht 
      */
     public void updateOpdracht(Opdracht opdracht);
+    /**
+     * Geeft een list met opdracht terug
+     * @return List Opdracht
+     */
+    public List getOpdrachten();
+    /**
+     * Geef een lijst terug met specifieke opdrachten per werknemer
+     * @return list
+     */
+    public List getOpdrachtenWerknemer(int id);
 }

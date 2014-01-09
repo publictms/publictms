@@ -30,8 +30,8 @@ public class OpdrachtServiceImpl implements OpdrachtService{
     }
 
     @Transactional
-    public List<Opdracht> getOpdracht() {
-        return opdrachtDAO.getOpdracht();
+    public List getOpdrachten() {
+        return opdrachtDAO.getOpdrachten();
     }
 
     @Transactional
@@ -42,6 +42,11 @@ public class OpdrachtServiceImpl implements OpdrachtService{
     @Transactional
     public void updateOpdracht(Opdracht opdracht) {
         opdrachtDAO.updateOpdracht(opdracht);
+    }
+    
+    @Transactional
+    public List getOpdrachtenWerknemer(int id){
+        return opdrachtDAO.getOpdrachtenWerknemer(id);
     }
     
 }
