@@ -49,4 +49,9 @@ public class OpdrachtServiceImpl implements OpdrachtService{
         return opdrachtDAO.getOpdrachtenWerknemer(id);
     }
     
+    @Transactional
+    public void setKlaar(boolean klaar, int id){
+        opdrachtDAO.setKlaar(klaar, id);
+    }
+    
 }

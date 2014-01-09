@@ -100,5 +100,16 @@ public class OpdrachtDAOImpl implements OpdrachtDAO{
     public void updateOpdracht(Opdracht opdracht) {
         sessionFactory.getCurrentSession().update(opdracht);
     }
+    /**
+     * Is de levering afgeleverd op klaar zetten. 
+     * @param klaar 
+     */
+    public void setKlaar(boolean klaar, int id){
+        Opdracht opdracht = (Opdracht)sessionFactory.getCurrentSession().load(Opdracht.class, id);
+        if(null != opdracht){
+            opdracht.setOpdrachtklaar(klaar);
+            sessionFactory.getCurrentSession().update(opdracht);
+        }
+    }
     
 }

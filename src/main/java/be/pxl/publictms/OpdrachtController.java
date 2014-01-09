@@ -71,6 +71,20 @@ public class OpdrachtController {
     public @ResponseBody void updateOpdracht(Opdracht opdracht){
         opdrachtService.updateOpdracht(opdracht);
     }
+    
+    /**
+     * Verander de status van een opdracht
+     * @param opdracht 
+     */
+    @RequestMapping(value = "updateStatus/{id}/{klaar}", method = RequestMethod.GET)
+    public @ResponseBody void updateStatus(@PathVariable("klaar") int klaar,@PathVariable("id") int id){
+        if(klaar == 1){
+            opdrachtService.setKlaar(true, id);
+        }else if(klaar == 0){
+            opdrachtService.setKlaar(false, id);
+        }
+    }
+    
     /**
      * Geeft foutmeldingen terug
      * @param ex
