@@ -12,7 +12,7 @@ import java.util.List;
  * Deze zijn voor het toevoegen, verwijderen, updates en ophalen
  * van data uit de tabel "Opdracht".
  * 
- * @author Stijn Ceunen
+ * @author Stijn Ceunen, Laurens Putseys
  */
 public interface OpdrachtService {
     

@@ -16,7 +16,7 @@ import org.springframework.stereotype.Repository;
 /**
  * Implementatie van OpdrachtDAO deze klasse zorgt voor de interactie tussen de database
  * en de webservice. Hibernate verzorgt de communicatie tussen beide.
- * @author Stijn Ceunen
+ * @author Stijn Ceunen, Laurens Putseys
  */
 @Repository
 public class OpdrachtDAOImpl implements OpdrachtDAO{

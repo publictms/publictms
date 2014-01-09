@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
  * Controller voor het verwerken van een opdracht. 
- * @author Stijn Ceunen
+ * @author Stijn Ceunen, Laurens Putseys
  */
 @Controller
 @RequestMapping("opdracht")

@@ -22,7 +22,7 @@ import org.springframework.transaction.annotation.Transactional;
  * een bean.
  * @Transactional staat toe een overdracht te doen met de databank.
  * 
- * @author Stijn
+ * @author Stijn Ceunen, Laurens Putseys
  */
 @Service
 public class OpdrachtServiceImpl implements OpdrachtService{
