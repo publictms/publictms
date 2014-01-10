@@ -6,10 +6,15 @@ package be.pxl.publictms;
 
 import be.pxl.publictms.pojo.Actie;
 import be.pxl.publictms.service.ActieService;
+import java.io.ByteArrayOutputStream;
 import java.util.List;
+import org.codehaus.jackson.map.ObjectMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -43,9 +48,20 @@ public class ActieController {
      * @return List Actie
      */
     @RequestMapping(value = "get/{id}",method = RequestMethod.GET)
-    public @ResponseBody List<Actie> get(@PathVariable("id") int id){
-        return actieService.getActiesVanOpdracht(id);
-    }
+    public ResponseEntity get(@PathVariable("id") int id){
+        //return actieService.getActiesVanOpdracht(id);
+        StringBuffer theStringBuffer = new StringBuffer();
+        theStringBuffer.append("acties");
+        theStringBuffer.append("(");
+        String theResponseString = serializeToJson(actieService.getActiesVanOpdracht(id));
+        theStringBuffer.append(theResponseString);
+	theStringBuffer.append(")");
+        return new ResponseEntity(theStringBuffer.toString(), new HttpHeaders(), HttpStatus.OK);
+    }  
+//    @RequestMapping(value = "get/{id}",method = RequestMethod.GET)
+//    public @ResponseBody List<Actie> get(@PathVariable("id") int id){
+//        return actieService.getActiesVanOpdracht(id);
+//    }
     /**
      * Delete een actie in de database aan de hand van zijn index.
      * @param id 
@@ -71,5 +87,21 @@ public class ActieController {
     public @ResponseBody String handleUncaughtException(Exception ex){
         System.out.println(ex.toString());
         return ex.toString();
+    }
+    private String serializeToJson(Object theObject) {
+
+	String theJsonString = null;
+
+	try {
+		ObjectMapper theObjectMapper = new ObjectMapper();
+		ByteArrayOutputStream theJsonOutputStream = new ByteArrayOutputStream();
+		theObjectMapper.writeValue(theJsonOutputStream, theObject);
+
+		theJsonString = theJsonOutputStream.toString("UTF-8");
+	} catch (Exception theException) {
+	        theException.printStackTrace();
+        }
+
+     return theJsonString;
     }
 }
