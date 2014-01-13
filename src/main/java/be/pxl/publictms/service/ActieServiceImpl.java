@@ -22,7 +22,7 @@ import org.springframework.transaction.annotation.Transactional;
  * een bean.
  * @Transactional staat toe een overdracht te doen met de databank.
  * 
- * @author Stijn
+ * @author Stijn, laurens
  */
 @Service
 public class ActieServiceImpl implements ActieService{
@@ -71,6 +71,24 @@ public class ActieServiceImpl implements ActieService{
     @Transactional
     public void updateActie(Actie actie) {
         actieDAO.updateActie(actie);
+    }
+    /**
+     * Geeft alle acties per opdracht zonder indexen maar als bruikbaar gegeven.
+     * @param id
+     * @return List<Actie>
+     */
+    @Transactional
+    public List<Actie> getActiesPerOpdracht(int id){
+        return actieDAO.getActiesPerOpdracht(id);
+    }
+    /**
+     * Zet de actie status op actief of niet actief
+     * @param klaar
+     * @param id 
+     */
+    @Transactional
+    public void setKlaar(boolean klaar, int id){
+        actieDAO.setKlaar(klaar, id);
     }
     
 }

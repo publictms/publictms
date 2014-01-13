@@ -6,15 +6,10 @@ package be.pxl.publictms;
 
 import be.pxl.publictms.pojo.Actie;
 import be.pxl.publictms.service.ActieService;
-import java.io.ByteArrayOutputStream;
 import java.util.List;
-import org.codehaus.jackson.map.ObjectMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -52,6 +47,15 @@ public class ActieController {
         return actieService.getActiesVanOpdracht(id);
     }
     /**
+     * Geeft alle acties per opdracht zonder indexen maar als bruikbaar gegeven.
+     * @param id
+     * @return List<Actie>
+     */
+    @RequestMapping(value = "getActies/{id}",method = RequestMethod.GET)
+    public @ResponseBody List<Actie> getActies(@PathVariable("id") int id){
+        return actieService.getActiesPerOpdracht(id);
+    }
+    /**
      * Delete een actie in de database aan de hand van zijn index.
      * @param id 
      */
@@ -66,6 +70,18 @@ public class ActieController {
     @RequestMapping(value = "update",method = RequestMethod.PUT)
     public @ResponseBody void update(Actie actie){
         actieService.updateActie(actie);
+    }
+    /**
+     * Verander de status van een actie
+     * @param opdracht 
+     */
+    @RequestMapping(value = "updateStatus/{id}/{klaar}", method = RequestMethod.GET)
+    public @ResponseBody void updateStatus(@PathVariable("klaar") int klaar,@PathVariable("id") int id){
+        if(klaar == 1){
+            actieService.setKlaar(true, id);
+        }else if(klaar == 0){
+            actieService.setKlaar(false, id);
+        }
     }
     /**
      * Geeft foutmeldingen terug

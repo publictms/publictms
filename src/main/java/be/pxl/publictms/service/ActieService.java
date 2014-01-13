@@ -48,4 +48,16 @@ public interface ActieService {
      * @param actie     POJO van de geüpdate data
      */
     public void updateActie(Actie actie);
+    /**
+     * Geeft alle acties per opdracht zonder indexen maar als bruikbaar gegeven.
+     * @param id
+     * @return List<Actie>
+     */
+    public List<Actie> getActiesPerOpdracht(int id);
+    /**
+     * Zet de actie status op actief of niet actief
+     * @param klaar
+     * @param id 
+     */
+    public void setKlaar(boolean klaar, int id);
 }

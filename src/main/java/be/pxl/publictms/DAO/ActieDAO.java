@@ -26,6 +26,12 @@ public interface ActieDAO {
      */
     public List<Actie> getActiesVanOpdracht(int id);
     /**
+     * Geeft alle acties per opdracht zonder indexen maar als bruikbaar gegeven.
+     * @param id
+     * @return List<Actie>
+     */
+    public List<Actie> getActiesPerOpdracht(int id);
+    /**
      * Aan de hand van de index kan men een actie verwijderen
      * @param id 
      */
@@ -35,4 +41,10 @@ public interface ActieDAO {
      * @param actie 
      */
     public void updateActie(Actie actie);
+    /**
+     * Zet de actie status op actief of niet actief
+     * @param klaar
+     * @param id 
+     */
+    public void setKlaar(boolean klaar, int id);
 }
