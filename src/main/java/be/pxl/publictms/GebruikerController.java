@@ -7,9 +7,15 @@ package be.pxl.publictms;
 import be.pxl.publictms.pojo.Gebruiker;
 import be.pxl.publictms.service.GebruikerService;
 import java.util.List;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -45,12 +51,19 @@ public class GebruikerController {
      * @return List Gebruiker
      */
     @RequestMapping(value = "get",method = RequestMethod.GET)
-    public @ResponseBody List<Gebruiker> getUsers(){
+    public @ResponseBody ResponseEntity<List> getUsers(HttpServletRequest request, HttpServletResponse response){
         /*if (BCrypt.checkpw("paswoord", gebruikerService.getGebruikers().get(0).getPaswoord()))
             System.out.println("It matches");
         else
             System.out.println("It does not match");*/
-        return gebruikerService.getGebruikers();
+        List<Gebruiker> json = gebruikerService.getGebruikers();
+        response.setHeader("Access-Control-Allow-Origin", "*");
+        response.setHeader("Access-Control-Allow-Methods", "POST, GET, OPTIONS, DELETE");
+	response.setHeader("Access-Control-Max-Age", "3600");
+	response.setHeader("Access-Control-Allow-Headers", "x-requested-with");
+        HttpHeaders responseHeaders = new HttpHeaders();
+        responseHeaders.setContentType(MediaType.APPLICATION_JSON);
+        return new ResponseEntity<List>(json, responseHeaders, HttpStatus.CREATED);
     }
     /**
      * Voeg een nieuwe gebruiker toe.

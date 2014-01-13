@@ -4,12 +4,19 @@
  */
 package be.pxl.publictms;
 
+import be.pxl.publictms.pojo.Transportadres;
 import be.pxl.publictms.pojo.Werknemer;
 import be.pxl.publictms.service.WerknemerService;
 import java.util.List;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -35,8 +42,15 @@ public class WerknemerController {
      * @return List Werknemer
      */
     @RequestMapping(value = "get",method = RequestMethod.GET)
-    public @ResponseBody List<Werknemer> getWerknemers(){
-        return werknemerService.getWerknemers();
+    public @ResponseBody ResponseEntity<List> getTransportadres(HttpServletRequest request, HttpServletResponse response){
+        List<Werknemer> json = werknemerService.getWerknemers();
+        response.setHeader("Access-Control-Allow-Origin", "*");
+        response.setHeader("Access-Control-Allow-Methods", "POST, GET, OPTIONS, DELETE");
+	response.setHeader("Access-Control-Max-Age", "3600");
+	response.setHeader("Access-Control-Allow-Headers", "x-requested-with");
+        HttpHeaders responseHeaders = new HttpHeaders();
+        responseHeaders.setContentType(MediaType.APPLICATION_JSON);
+        return new ResponseEntity<List>(json, responseHeaders, HttpStatus.CREATED);
     }
     /**
      * Voeg een nieuwe werknemer toe aan de databank.

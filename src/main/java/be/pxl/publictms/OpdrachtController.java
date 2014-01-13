@@ -7,9 +7,15 @@ package be.pxl.publictms;
 import be.pxl.publictms.pojo.Opdracht;
 import be.pxl.publictms.service.OpdrachtService;
 import java.util.List;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -35,8 +41,15 @@ public class OpdrachtController {
      * @return 
      */
     @RequestMapping(value = "get",method = RequestMethod.GET)
-    public @ResponseBody List getOpdracht(){
-        return opdrachtService.getOpdrachten();
+    public @ResponseBody ResponseEntity<List> getOpdrachten(HttpServletRequest request, HttpServletResponse response){
+        List<Opdracht> json = opdrachtService.getOpdrachten();
+        response.setHeader("Access-Control-Allow-Origin", "*");
+        response.setHeader("Access-Control-Allow-Methods", "POST, GET, OPTIONS, DELETE");
+	response.setHeader("Access-Control-Max-Age", "3600");
+	response.setHeader("Access-Control-Allow-Headers", "x-requested-with");
+        HttpHeaders responseHeaders = new HttpHeaders();
+        responseHeaders.setContentType(MediaType.APPLICATION_JSON);
+        return new ResponseEntity<List>(json, responseHeaders, HttpStatus.CREATED);
     }
     /**
      * Geeft een lijst met opdrachten terug, in deze methoden zijn de indexen 
@@ -44,8 +57,15 @@ public class OpdrachtController {
      * @return List
      */
     @RequestMapping(value = "get/{id}",method = RequestMethod.GET)
-    public @ResponseBody List getOpdrachten(@PathVariable("id") int id){
-        return opdrachtService.getOpdrachtenWerknemer(id);
+    public @ResponseBody ResponseEntity<List> getOpdrachtenWerkenemer(@PathVariable("id") int id, HttpServletRequest request, HttpServletResponse response){
+        List<Opdracht> json = opdrachtService.getOpdrachtenWerknemer(id);
+        response.setHeader("Access-Control-Allow-Origin", "*");
+        response.setHeader("Access-Control-Allow-Methods", "POST, GET, OPTIONS, DELETE");
+	response.setHeader("Access-Control-Max-Age", "3600");
+	response.setHeader("Access-Control-Allow-Headers", "x-requested-with");
+        HttpHeaders responseHeaders = new HttpHeaders();
+        responseHeaders.setContentType(MediaType.APPLICATION_JSON);
+        return new ResponseEntity<List>(json, responseHeaders, HttpStatus.CREATED);
     }
     /**
      * Voeg een nieuwe opdracht aan de databank.
