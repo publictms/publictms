@@ -62,17 +62,30 @@ public class OpdrachtServiceImpl implements OpdrachtService{
     public void deleteOpdracht(int id) {
         opdrachtDAO.deleteOpdracht(id);
     }
-
+    /**
+     * Declaratie van de methode voor het updaten van een record uit de 
+     * tabel Opdracht.
+     * 
+     * @param opdracht     POJO van de geüpdate data.
+     */
     @Transactional
     public void updateOpdracht(Opdracht opdracht) {
         opdrachtDAO.updateOpdracht(opdracht);
     }
-    
+    /**
+     * Geeft een list met opdracht terug
+     * @return List Opdracht
+     */
     @Transactional
     public List getOpdrachtenWerknemer(int id){
         return opdrachtDAO.getOpdrachtenWerknemer(id);
     }
-    
+    /**
+     * Is de levering afgeleverd op klaar zetten. True or false. Aan de hand van 
+     * een index die verwijst naar de opdracht.
+     * @param klaar
+     * @param id 
+     */
     @Transactional
     public void setKlaar(boolean klaar, int id){
         opdrachtDAO.setKlaar(klaar, id);

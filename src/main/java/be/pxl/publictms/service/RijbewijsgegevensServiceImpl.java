@@ -29,21 +29,47 @@ public class RijbewijsgegevensServiceImpl implements RijbewijsgegevensService{
     @Autowired
     private RijbewijsgegevensDAO rijbewijsgegevensDAO;
     
+    /**
+     * Declaratie van de methode voor het toevoegen van data aan de tabel 
+     * Rijbewijsgegevens.
+     * 
+     * @param rijbewijsgegevens     POJO representatie van de data die 
+     *                              toegevoegd wordt.
+     */
     @Transactional
     public void addRijbewijsgegevens(Rijbewijsgegevens rijbewijsgegevens) {
         rijbewijsgegevensDAO.addRijbewijsgegevens(rijbewijsgegevens);
     }
 
+    /**
+     * Declaratie van de methode voor het ophalen van een record uit de tabel
+     * Rijbewijsgegevens met een bepaald id.
+     * 
+     * @param id    Het rijbewijsgegevensid van het record dat opgehaald moet worden.
+     * @return      POJO van het opgehaalde data.
+     */
     @Transactional
     public Rijbewijsgegevens getRijbewijsgegevens(int id) {
         return rijbewijsgegevensDAO.getRijbewijsgegevens(id);
     }
 
+    /**
+     * Declaratie van de methode voor het verwijderen van een record uit de
+     * tabel Rijbewijsgegevens.
+     * 
+     * @param id    Het rijbewijsgegevensid van het record dat verwijderd moet worden.
+     */
     @Transactional
     public void deleteRijbewijsgegevens(int id) {
         rijbewijsgegevensDAO.deleteRijbewijsgegevens(id);
     }
 
+    /**
+     * Declaratie van de methode voor het updaten van een record uit de 
+     * tabel Rijbewijsgegevens.
+     * 
+     * @param rijbewijsgegevens     POJO van de geüpdate data.
+     */
     @Transactional
     public void updateRijbewijsgegevens(Rijbewijsgegevens rijbewijsgegevens) {
         rijbewijsgegevensDAO.updateRijbewijsgegevens(rijbewijsgegevens);

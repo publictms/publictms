@@ -29,21 +29,45 @@ public class PersoonsinfoServiceImpl implements PersoonsinfoService{
     @Autowired
     private PersoonsinfoDAO persoonsinfoDAO;
 
+    /**
+     * Declaratie van de methode voor het toevoegen van data aan de tabel Persoonsinfo.
+     * 
+     * @param persoonsinfo     POJO representatie van de data die toegevoegd wordt.
+     */
     @Transactional
     public void addPersoonsinfo(Persoonsinfo persoonsinfo) {
         persoonsinfoDAO.addPersoonsinfo(persoonsinfo);
     }
 
+    /**
+     * Declaratie van de methode voor het ophalen van een record uit de tabel
+     * Persoonsinfo met een bepaald id.
+     * 
+     * @param id    Het persoonsinfoid van het record dat opgehaald moet worden.
+     * @return      POJO van het opgehaalde data.
+     */
     @Transactional
     public Persoonsinfo getPersoonsinfo(int id) {
         return persoonsinfoDAO.getPersoonsinfo(id);
     }
 
+    /**
+     * Declaratie van de methode voor het verwijderen van een record uit de
+     * tabel Persoonsinfo.
+     * 
+     * @param id    Het persoonsinfoid van het record dat verwijderd moet worden.
+     */
     @Transactional
     public void deletePersoonsinfo(int id) {
         persoonsinfoDAO.deletePersoonsinfo(id);
     }
 
+    /**
+     * Declaratie van de methode voor het updaten van een record uit de 
+     * tabel Persoonsinfo.
+     * 
+     * @param persoonsinfo     POJO van de geüpdate data.
+     */
     @Transactional
     public void updatePersoonsinfo(Persoonsinfo persoonsinfo) {
         persoonsinfoDAO.updatePersoonsinfo(persoonsinfo);

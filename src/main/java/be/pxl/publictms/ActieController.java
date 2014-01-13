@@ -48,20 +48,9 @@ public class ActieController {
      * @return List Actie
      */
     @RequestMapping(value = "get/{id}",method = RequestMethod.GET)
-    public ResponseEntity get(@PathVariable("id") int id){
-        //return actieService.getActiesVanOpdracht(id);
-        StringBuffer theStringBuffer = new StringBuffer();
-        theStringBuffer.append("acties");
-        theStringBuffer.append("(");
-        String theResponseString = serializeToJson(actieService.getActiesVanOpdracht(id));
-        theStringBuffer.append(theResponseString);
-	theStringBuffer.append(")");
-        return new ResponseEntity(theStringBuffer.toString(), new HttpHeaders(), HttpStatus.OK);
-    }  
-//    @RequestMapping(value = "get/{id}",method = RequestMethod.GET)
-//    public @ResponseBody List<Actie> get(@PathVariable("id") int id){
-//        return actieService.getActiesVanOpdracht(id);
-//    }
+    public @ResponseBody List<Actie> get(@PathVariable("id") int id){
+        return actieService.getActiesVanOpdracht(id);
+    }
     /**
      * Delete een actie in de database aan de hand van zijn index.
      * @param id 
@@ -87,21 +76,5 @@ public class ActieController {
     public @ResponseBody String handleUncaughtException(Exception ex){
         System.out.println(ex.toString());
         return ex.toString();
-    }
-    private String serializeToJson(Object theObject) {
-
-	String theJsonString = null;
-
-	try {
-		ObjectMapper theObjectMapper = new ObjectMapper();
-		ByteArrayOutputStream theJsonOutputStream = new ByteArrayOutputStream();
-		theObjectMapper.writeValue(theJsonOutputStream, theObject);
-
-		theJsonString = theJsonOutputStream.toString("UTF-8");
-	} catch (Exception theException) {
-	        theException.printStackTrace();
-        }
-
-     return theJsonString;
-    }
+    }  
 }

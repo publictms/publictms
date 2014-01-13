@@ -29,21 +29,45 @@ public class TaalServiceImpl implements TaalService{
     @Autowired
     private TaalDAO taalDAO;
     
+    /**
+     * Declaratie van de methode voor het toevoegen van data aan de tabel Taal.
+     * 
+     * @param taal     POJO representatie van de data die toegevoegd wordt.
+     */
     @Transactional
     public void addTaal(Taal taal) {
         taalDAO.addTaal(taal);
     }
 
+    /**
+     * Declaratie van de methode voor het ophalen van een record uit de tabel
+     * Taal met een bepaald id.
+     * 
+     * @param id    Het taalid van het record dat opgehaald moet worden.
+     * @return      POJO van het opgehaalde data.
+     */
     @Transactional
     public Taal getTaal(int id) {
         return taalDAO.getTaal(id);
     }
 
+    /**
+     * Declaratie van de methode voor het verwijderen van een record uit de
+     * tabel Taal.
+     * 
+     * @param id    Het taalid van het record dat verwijderd moet worden.
+     */
     @Transactional
     public void deleteTaal(int id) {
         taalDAO.deleteTaal(id);
     }
 
+    /**
+     * Declaratie van de methode voor het updaten van een record uit de 
+     * tabel Taal.
+     * 
+     * @param taal     POJO van de geüpdate data.
+     */
     @Transactional
     public void updateTaal(Taal taal) {
         taalDAO.updateTaal(taal);
