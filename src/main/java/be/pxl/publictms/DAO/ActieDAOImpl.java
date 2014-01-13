@@ -113,7 +113,12 @@ public class ActieDAOImpl implements ActieDAO{
             sessionFactory.getCurrentSession().update(actie);
         }
     }
-    
+    /**
+     * mapt een hibernate list naar een object namelijk Actieview. Zo kan spring
+     * een goede json array sturen met value-pairs.
+     * @param list
+     * @return 
+     */
     public List<ActieView> mapJson(List list){
         List<ActieView> acties = new ArrayList<ActieView>();
         for(Iterator iter = list.iterator(); iter.hasNext();){

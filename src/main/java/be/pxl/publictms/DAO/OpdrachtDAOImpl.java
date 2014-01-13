@@ -114,7 +114,12 @@ public class OpdrachtDAOImpl implements OpdrachtDAO{
             sessionFactory.getCurrentSession().update(opdracht);
         }
     }
-    
+     /**
+     * mapt een hibernate list naar een object namelijk Actieview. Zo kan spring
+     * een goede json array sturen met value-pairs.
+     * @param list
+     * @return 
+     */
     public List<OpdrachtView> mapJson(List list){
         List<OpdrachtView> opdrachten = new ArrayList<OpdrachtView>();
         for(Iterator iter = list.iterator(); iter.hasNext();){
