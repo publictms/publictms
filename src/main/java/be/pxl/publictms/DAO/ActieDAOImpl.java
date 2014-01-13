@@ -6,6 +6,9 @@ package be.pxl.publictms.DAO;
 
 import be.pxl.publictms.hibernate.HibernateUtil;
 import be.pxl.publictms.pojo.Actie;
+import be.pxl.publictms.view.ActieView;
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -88,13 +91,15 @@ public class ActieDAOImpl implements ActieDAO{
     /**
      * Geeft alle acties per opdracht zonder indexen maar als bruikbaar gegeven.
      * @param id
-     * @return List<Actie>
+     * @return List
      */
     @Override
-    public List<Actie> getActiesPerOpdracht(int id){
+    public List getActiesPerOpdracht(int id){
         Session session = HibernateUtil.getSessionFactory().openSession();
         Query query = session.createSQLQuery(getActiesPerOpdracht);
-        return query.setParameter("id", id).list();
+        query.setParameter("id", id);    
+        return mapJson(query.list());
+        //return query.list();
     }
     /**
      * Zet de actie status op actief of niet actief
@@ -107,6 +112,18 @@ public class ActieDAOImpl implements ActieDAO{
             actie.setActieklaar(klaar);
             sessionFactory.getCurrentSession().update(actie);
         }
+    }
+    
+    public List<ActieView> mapJson(List list){
+        List<ActieView> acties = new ArrayList<ActieView>();
+        for(Iterator iter = list.iterator(); iter.hasNext();){
+            Object[] row = (Object[]) iter.next();
+            ActieView actieView = 
+                    new ActieView(row[0], row[1], row[2], row[3], row[4], row[5], row[6], row[7], row[8], row[9], 
+                    row[10], row[11], row[12], row[13], row[14], row[15], row[16], row[17], row[18], row[19], row[20], row[21]);
+            acties.add(actieView);
+        }
+        return acties;
     }
     
 }

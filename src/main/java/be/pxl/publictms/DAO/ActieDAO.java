@@ -28,9 +28,9 @@ public interface ActieDAO {
     /**
      * Geeft alle acties per opdracht zonder indexen maar als bruikbaar gegeven.
      * @param id
-     * @return List<Actie>
+     * @return List
      */
-    public List<Actie> getActiesPerOpdracht(int id);
+    public List getActiesPerOpdracht(int id);
     /**
      * Aan de hand van de index kan men een actie verwijderen
      * @param id 

@@ -6,6 +6,9 @@ package be.pxl.publictms.DAO;
 
 import be.pxl.publictms.hibernate.HibernateUtil;
 import be.pxl.publictms.pojo.Opdracht;
+import be.pxl.publictms.view.OpdrachtView;
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -72,14 +75,14 @@ public class OpdrachtDAOImpl implements OpdrachtDAO{
     public List getOpdrachten() {
         Session session = HibernateUtil.getSessionFactory().openSession();
         Query query = session.createSQLQuery(select);
-        return query.list();
+        return mapJson(query.list());
     }
     
     @Override
     public List getOpdrachtenWerknemer(int id){
         Session session = HibernateUtil.getSessionFactory().openSession();
         Query query = session.createSQLQuery(selectWerknemer);
-        return query.setParameter("id", id).list();
+        return mapJson(query.setParameter("id", id).list());
     }
     /**
      * Delete een opdracht aan de hand van zijn index.
@@ -110,6 +113,17 @@ public class OpdrachtDAOImpl implements OpdrachtDAO{
             opdracht.setOpdrachtklaar(klaar);
             sessionFactory.getCurrentSession().update(opdracht);
         }
+    }
+    
+    public List<OpdrachtView> mapJson(List list){
+        List<OpdrachtView> opdrachten = new ArrayList<OpdrachtView>();
+        for(Iterator iter = list.iterator(); iter.hasNext();){
+            Object[] row = (Object[]) iter.next();
+            OpdrachtView actieView = 
+                    new OpdrachtView(row[0], row[1], row[2], row[3], row[4], row[5], row[6], row[7], row[8], row[9], row[10]);
+            opdrachten.add(actieView);
+        }
+        return opdrachten;
     }
     
 }

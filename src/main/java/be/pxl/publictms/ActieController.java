@@ -6,7 +6,9 @@ package be.pxl.publictms;
 
 import be.pxl.publictms.pojo.Actie;
 import be.pxl.publictms.service.ActieService;
+import be.pxl.publictms.view.ActieView;
 import java.util.List;
+import org.json.JSONException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -52,7 +54,7 @@ public class ActieController {
      * @return List<Actie>
      */
     @RequestMapping(value = "getActies/{id}",method = RequestMethod.GET)
-    public @ResponseBody List<Actie> getActies(@PathVariable("id") int id){
+    public @ResponseBody List<ActieView> getActies(@PathVariable("id") int id) throws JSONException{
         return actieService.getActiesPerOpdracht(id);
     }
     /**

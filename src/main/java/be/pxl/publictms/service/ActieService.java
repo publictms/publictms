@@ -5,6 +5,7 @@
 package be.pxl.publictms.service;
 
 import be.pxl.publictms.pojo.Actie;
+import be.pxl.publictms.view.ActieView;
 import java.util.List;
 
 /**
@@ -51,9 +52,9 @@ public interface ActieService {
     /**
      * Geeft alle acties per opdracht zonder indexen maar als bruikbaar gegeven.
      * @param id
-     * @return List<Actie>
+     * @return List
      */
-    public List<Actie> getActiesPerOpdracht(int id);
+    public List getActiesPerOpdracht(int id);
     /**
      * Zet de actie status op actief of niet actief
      * @param klaar

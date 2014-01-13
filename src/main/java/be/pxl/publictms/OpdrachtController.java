@@ -6,6 +6,7 @@ package be.pxl.publictms;
 
 import be.pxl.publictms.pojo.Opdracht;
 import be.pxl.publictms.service.OpdrachtService;
+import be.pxl.publictms.view.OpdrachtView;
 import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -35,7 +36,7 @@ public class OpdrachtController {
      * @return 
      */
     @RequestMapping(value = "get",method = RequestMethod.GET)
-    public @ResponseBody List getOpdracht(){
+    public @ResponseBody List<OpdrachtView> getOpdracht(){
         return opdrachtService.getOpdrachten();
     }
     /**
@@ -44,7 +45,7 @@ public class OpdrachtController {
      * @return List
      */
     @RequestMapping(value = "get/{id}",method = RequestMethod.GET)
-    public @ResponseBody List getOpdrachten(@PathVariable("id") int id){
+    public @ResponseBody List<OpdrachtView> getOpdrachten(@PathVariable("id") int id){
         return opdrachtService.getOpdrachtenWerknemer(id);
     }
     /**

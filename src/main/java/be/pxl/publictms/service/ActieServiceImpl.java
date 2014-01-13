@@ -6,6 +6,7 @@ package be.pxl.publictms.service;
 
 import be.pxl.publictms.DAO.ActieDAO;
 import be.pxl.publictms.pojo.Actie;
+import be.pxl.publictms.view.ActieView;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -75,10 +76,10 @@ public class ActieServiceImpl implements ActieService{
     /**
      * Geeft alle acties per opdracht zonder indexen maar als bruikbaar gegeven.
      * @param id
-     * @return List<Actie>
+     * @return List
      */
     @Transactional
-    public List<Actie> getActiesPerOpdracht(int id){
+    public List getActiesPerOpdracht(int id){
         return actieDAO.getActiesPerOpdracht(id);
     }
     /**
