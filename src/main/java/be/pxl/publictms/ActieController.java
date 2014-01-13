@@ -6,12 +6,16 @@ package be.pxl.publictms;
 
 import be.pxl.publictms.pojo.Actie;
 import be.pxl.publictms.service.ActieService;
-import be.pxl.publictms.view.ActieView;
 import java.util.List;
-import org.json.JSONException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -45,8 +49,15 @@ public class ActieController {
      * @return List Actie
      */
     @RequestMapping(value = "get/{id}",method = RequestMethod.GET)
-    public @ResponseBody List<Actie> get(@PathVariable("id") int id){
-        return actieService.getActiesVanOpdracht(id);
+    public @ResponseBody ResponseEntity<List> getActiesVanOpdracht(@PathVariable("id") int id, HttpServletRequest request, HttpServletResponse response){
+        List<Actie> json = actieService.getActiesVanOpdracht(id);
+        response.setHeader("Access-Control-Allow-Origin", "*");
+        response.setHeader("Access-Control-Allow-Methods", "POST, GET, OPTIONS, DELETE");
+	response.setHeader("Access-Control-Max-Age", "3600");
+	response.setHeader("Access-Control-Allow-Headers", "x-requested-with");
+        HttpHeaders responseHeaders = new HttpHeaders();
+        responseHeaders.setContentType(MediaType.APPLICATION_JSON);
+        return new ResponseEntity<List>(json, responseHeaders, HttpStatus.CREATED);
     }
     /**
      * Geeft alle acties per opdracht zonder indexen maar als bruikbaar gegeven.
@@ -54,8 +65,15 @@ public class ActieController {
      * @return List<Actie>
      */
     @RequestMapping(value = "getActies/{id}",method = RequestMethod.GET)
-    public @ResponseBody List<ActieView> getActies(@PathVariable("id") int id) throws JSONException{
-        return actieService.getActiesPerOpdracht(id);
+    public @ResponseBody ResponseEntity<List> getActiesPerOpdracht(@PathVariable("id") int id, HttpServletRequest request, HttpServletResponse response){
+        List<Actie> json = actieService.getActiesPerOpdracht(id);
+        response.setHeader("Access-Control-Allow-Origin", "*");
+        response.setHeader("Access-Control-Allow-Methods", "POST, GET, OPTIONS, DELETE");
+	response.setHeader("Access-Control-Max-Age", "3600");
+	response.setHeader("Access-Control-Allow-Headers", "x-requested-with");
+        HttpHeaders responseHeaders = new HttpHeaders();
+        responseHeaders.setContentType(MediaType.APPLICATION_JSON);
+        return new ResponseEntity<List>(json, responseHeaders, HttpStatus.CREATED);
     }
     /**
      * Delete een actie in de database aan de hand van zijn index.

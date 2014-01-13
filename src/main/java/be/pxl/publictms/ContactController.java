@@ -6,9 +6,15 @@ package be.pxl.publictms;
 
 import be.pxl.publictms.pojo.Contact;
 import be.pxl.publictms.service.ContactService;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -49,9 +55,16 @@ public class ContactController {
      * @param id
      * @return Contact
      */
-    @RequestMapping(value = "get/{id}", method = RequestMethod.GET)
-    public @ResponseBody Contact get(@PathVariable("id") int id){
-        return contactService.getContact(id);
+    @RequestMapping(value = "get/{id}",method = RequestMethod.GET)
+    public @ResponseBody ResponseEntity<Contact> getContact(@PathVariable("id") int id, HttpServletRequest request, HttpServletResponse response){
+        Contact json = contactService.getContact(id);
+        response.setHeader("Access-Control-Allow-Origin", "*");
+        response.setHeader("Access-Control-Allow-Methods", "POST, GET, OPTIONS, DELETE");
+	response.setHeader("Access-Control-Max-Age", "3600");
+	response.setHeader("Access-Control-Allow-Headers", "x-requested-with");
+        HttpHeaders responseHeaders = new HttpHeaders();
+        responseHeaders.setContentType(MediaType.APPLICATION_JSON);
+        return new ResponseEntity<Contact>(json, responseHeaders, HttpStatus.CREATED);
     }
     /**
      * Delete een contact op de databank.
