@@ -5,6 +5,7 @@
 package be.pxl.publictms.DAO;
 
 import be.pxl.publictms.pojo.Transportadres;
+import java.util.List;
 
 /**
  * interface die methoden voorziet om Transportadressen toe te voegen, bewerken, 
@@ -17,6 +18,12 @@ public interface TransportadresDAO {
      * @param transportadres 
      */
     public void addTransportadres(Transportadres transportadres);
+    /**
+     * Geeft een lijst met transportadressen
+     * @param id
+     * @return List<Transportadres>
+     */
+    public List<Transportadres> getTransportadres();
     /**
      * Geef een transport adres terug aan de hand van zijn index.
      * @param id

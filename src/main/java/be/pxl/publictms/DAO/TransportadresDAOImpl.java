@@ -6,6 +6,7 @@ package be.pxl.publictms.DAO;
 
 import be.pxl.publictms.hibernate.HibernateUtil;
 import be.pxl.publictms.pojo.Transportadres;
+import java.util.List;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -36,6 +37,17 @@ public class TransportadresDAOImpl implements TransportadresDAO{
     @Override
     public void addTransportadres(Transportadres transportadres) {
         sessionFactory.getCurrentSession().save(transportadres);
+    }
+    /**
+     * Geeft een lijst met transportadressen
+     * @param id
+     * @return List<Transportadres>
+     */
+    @Override
+    public List<Transportadres> getTransportadres(){
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        Query query = session.createQuery("from Transportadres");
+        return query.list();
     }
     /**
      * Geef een transport adres terug aan de hand van zijn index.

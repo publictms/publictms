@@ -5,6 +5,7 @@
 package be.pxl.publictms.service;
 
 import be.pxl.publictms.pojo.Transportadres;
+import java.util.List;
 
 /**
  * Interface dat de methodes voor AdresServiceImpl declareert.
@@ -21,7 +22,12 @@ public interface TransportadresService {
      * @param transportadres     POJO representatie van de data die toegevoegd wordt.
      */
     public void addTransportadres(Transportadres transportadres);
-    
+    /**
+     * Geeft een lijst met transportadressen
+     * @param id
+     * @return List<Transportadres>
+     */
+    public List<Transportadres> getTransportadres();
     /**
      * Declaratie van de methode voor het ophalen van een record uit de tabel
      * Transportadres met een bepaald id.

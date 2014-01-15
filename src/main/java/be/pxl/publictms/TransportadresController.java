@@ -6,6 +6,7 @@ package be.pxl.publictms;
 
 import be.pxl.publictms.pojo.Transportadres;
 import be.pxl.publictms.service.TransportadresService;
+import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.slf4j.Logger;
@@ -35,13 +36,27 @@ public class TransportadresController {
     
     @Autowired
     private TransportadresService transportadresService;
+    
+    /**
+     * Geeft een transport adres terug aan de hand van zijn index.
+     * @param id
+     * @return Transportadres
+     */
+    @RequestMapping(value = "/",method = RequestMethod.GET)
+    public @ResponseBody ResponseEntity<List> getTransportadres(HttpServletRequest request, HttpServletResponse response){
+        List<Transportadres> json = transportadresService.getTransportadres();
+        HttpHeaders responseHeaders = new HttpHeaders();
+        responseHeaders.setContentType(MediaType.APPLICATION_JSON);
+        return new ResponseEntity<List>(json, responseHeaders, HttpStatus.CREATED);
+    }
+    
     /**
      * Geeft een transport adres terug aan de hand van zijn index.
      * @param id
      * @return Transportadres
      */
     @RequestMapping(value = "/{id}",method = RequestMethod.GET)
-    public @ResponseBody ResponseEntity<Transportadres> getTransportadres(@PathVariable("id") int id, HttpServletRequest request, HttpServletResponse response){
+    public @ResponseBody ResponseEntity<Transportadres> getTransportadressen(@PathVariable("id") int id, HttpServletRequest request, HttpServletResponse response){
         Transportadres json = transportadresService.getTransportadres(id);
         HttpHeaders responseHeaders = new HttpHeaders();
         responseHeaders.setContentType(MediaType.APPLICATION_JSON);

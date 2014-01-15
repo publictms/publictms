@@ -6,6 +6,7 @@ package be.pxl.publictms.service;
 
 import be.pxl.publictms.DAO.TransportadresDAO;
 import be.pxl.publictms.pojo.Transportadres;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -38,7 +39,15 @@ public class TransportadresServiceImpl implements TransportadresService{
     public void addTransportadres(Transportadres transportadres) {
         transportadresDAO.addTransportadres(transportadres);
     }
-
+    /**
+     * Geeft een lijst met transportadressen
+     * @param id
+     * @return List<Transportadres>
+     */
+    @Transactional
+    public List<Transportadres> getTransportadres(){
+        return transportadresDAO.getTransportadres();
+    }
     /**
      * Declaratie van de methode voor het ophalen van een record uit de tabel
      * Transportadres met een bepaald id.
