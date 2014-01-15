@@ -33,7 +33,9 @@ public class VoertuigController {
      */
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public @ResponseBody List<Voertuig> getVoertuigen() {
-        return voertuigService.getVoertuigen();
+        List<Voertuig> json = voertuigService.getVoertuigen();
+
+        return json;
     }
 
     /**
