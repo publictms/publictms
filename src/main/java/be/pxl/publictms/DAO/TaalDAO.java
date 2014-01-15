@@ -5,6 +5,7 @@
 package be.pxl.publictms.DAO;
 
 import be.pxl.publictms.pojo.Taal;
+import java.util.List;
 
 /**
  * interface die methoden voorziet om talen toe te voegen, bewerken, 
@@ -17,6 +18,11 @@ public interface TaalDAO {
      * @param taal 
      */
     public void addTaal(Taal taal);
+    /**
+     * Geeft een lijst met talen terug
+     * @return List<Taal>
+     */
+    public List<Taal> getTaal();
     /**
      * Geef een taal terug aan de hand van zijn index.
      * @param id

@@ -6,6 +6,7 @@ package be.pxl.publictms;
 
 import be.pxl.publictms.pojo.Taal;
 import be.pxl.publictms.service.TaalService;
+import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.slf4j.Logger;
@@ -35,6 +36,20 @@ public class TaalController {
     
     @Autowired
     private TaalService taalService;
+    
+    /**
+     * Geef een taal object terug die een taal bevat.
+     * @param id
+     * @return Taal
+     */
+    @RequestMapping(value = "/",method = RequestMethod.GET)
+    public @ResponseBody ResponseEntity<List> getTaal(HttpServletRequest request, HttpServletResponse response){
+        List<Taal> json = taalService.getTaal();
+        HttpHeaders responseHeaders = new HttpHeaders();
+        responseHeaders.setContentType(MediaType.APPLICATION_JSON);
+        return new ResponseEntity<List>(json, responseHeaders, HttpStatus.CREATED);
+    }
+    
     /**
      * Geef een taal object terug die een taal bevat.
      * @param id

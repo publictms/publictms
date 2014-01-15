@@ -6,6 +6,7 @@ package be.pxl.publictms.service;
 
 import be.pxl.publictms.DAO.TaalDAO;
 import be.pxl.publictms.pojo.Taal;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -38,7 +39,14 @@ public class TaalServiceImpl implements TaalService{
     public void addTaal(Taal taal) {
         taalDAO.addTaal(taal);
     }
-
+    /**
+     * Geeft een lijst met talen terug.
+     * @return List<Taal>
+     */
+    @Transactional
+    public List<Taal> getTaal(){
+        return taalDAO.getTaal();
+    }
     /**
      * Declaratie van de methode voor het ophalen van een record uit de tabel
      * Taal met een bepaald id.

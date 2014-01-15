@@ -5,6 +5,7 @@
 package be.pxl.publictms.service;
 
 import be.pxl.publictms.pojo.Taal;
+import java.util.List;
 
 /**
  * Interface dat de methodes voor AdresServiceImpl declareert.
@@ -21,7 +22,11 @@ public interface TaalService {
      * @param taal     POJO representatie van de data die toegevoegd wordt.
      */
     public void addTaal(Taal taal);
-    
+    /**
+     * Geeft een lijst met talen terug.
+     * @return List<Taal>
+     */
+    public List<Taal> getTaal();
     /**
      * Declaratie van de methode voor het ophalen van een record uit de tabel
      * Taal met een bepaald id.

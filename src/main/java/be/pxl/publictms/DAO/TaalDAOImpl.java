@@ -6,6 +6,7 @@ package be.pxl.publictms.DAO;
 
 import be.pxl.publictms.hibernate.HibernateUtil;
 import be.pxl.publictms.pojo.Taal;
+import java.util.List;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -36,6 +37,16 @@ public class TaalDAOImpl implements TaalDAO{
     @Override
     public void addTaal(Taal taal) {
         sessionFactory.getCurrentSession().save(taal);
+    }
+    /**
+     * Geeft een lijst met talen terug
+     * @return List<Taal>
+     */
+    @Override
+    public List<Taal> getTaal(){
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        Query query = session.createQuery("from Taal");
+        return query.list(); 
     }
     /**
      * Geef een taal terug aan de hand van zijn index.
