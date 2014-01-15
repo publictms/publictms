@@ -54,7 +54,7 @@ public class VoertuigDAOImpl implements VoertuigDAO{
      */
     @Override
     public void updateVoertuig(Voertuig voertuig) {
-        sessionFactory.getCurrentSession().update(voertuig);
+        sessionFactory.getCurrentSession().update(voertuig);  
     }
     /**
      * Geeft een lijst met voertuigen terug.
