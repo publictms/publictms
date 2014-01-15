@@ -42,8 +42,16 @@ public class WerknemerController {
      * @return List Werknemer
      */
     @RequestMapping(value = "/",method = RequestMethod.GET)
-    public @ResponseBody List<Werknemer> getTransportadres(HttpServletRequest request, HttpServletResponse response){
+    public @ResponseBody List<Werknemer> getWerknemers(){
         return werknemerService.getWerknemers();
+    }
+    /**
+     * Geeft een werknemers met werknemerid id.
+     * @return List Werknemer
+     */
+    @RequestMapping(value = "/{id}",method = RequestMethod.GET)
+    public @ResponseBody Werknemer getWerknemer(@PathVariable("id") int id){
+        return werknemerService.getWerknemer(id);
     }
     /**
      * Voeg een nieuwe werknemer toe aan de databank.
