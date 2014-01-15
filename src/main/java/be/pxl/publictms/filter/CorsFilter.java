@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.web.filter.OncePerRequestFilter;
 
 /**
- *
+ * Filter om de headers toe te voegen
  * @author Helsen Wout
  */
 public class CorsFilter extends OncePerRequestFilter {
