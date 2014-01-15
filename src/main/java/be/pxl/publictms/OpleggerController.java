@@ -67,9 +67,8 @@ public class OpleggerController {
      * Voeg een nieuw oplegger toe aan de databank.
      * @param oplegger 
      */
-    @RequestMapping(value = "add", method = RequestMethod.POST)
+    @RequestMapping(value = "/", method = RequestMethod.POST)
     public @ResponseBody void addOplegger(@RequestBody Oplegger oplegger){
-        if(!opleggerService.getOpleggers().contains(oplegger))
         opleggerService.addOplegger(oplegger);
     }
     /**
@@ -78,7 +77,6 @@ public class OpleggerController {
      */
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
     public @ResponseBody void deleteOplegger(@PathVariable("id") int id){
-        if(opleggerService.getOpleggers().contains(opleggerService.getOplegger(id)))
         opleggerService.deleteOpleggers(id);
     }
     /**
@@ -86,8 +84,7 @@ public class OpleggerController {
      * @param oplegger 
      */
     @RequestMapping(value = "/", method = RequestMethod.PUT)
-    public @ResponseBody void updateOplegger(@RequestBody Oplegger oplegger){
-        if(opleggerService.getOpleggers().contains(oplegger))
+    public @ResponseBody void updateVoertuig(@RequestBody Oplegger oplegger) {
         opleggerService.updateOplegger(oplegger);
     }
     
