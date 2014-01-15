@@ -45,7 +45,7 @@ public class LaadGegevensDAOImpl implements LaadGegevensDAO{
     @Override
     public Laadgegevens getLaadgegevens(int id) {
         Session session = HibernateUtil.getSessionFactory().openSession();
-        Query query = session.createQuery("from LaadGegevens where LaadId = :id");
+        Query query = session.createQuery("from Laadgegevens where laadid = :id");
         query.setParameter("id", id);
         return (Laadgegevens)query.list().get(0);
     }

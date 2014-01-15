@@ -40,7 +40,7 @@ public class LaadGegevensController {
      * @param id
      * @return 
      */
-    @RequestMapping(value = "/",method = RequestMethod.GET)
+    @RequestMapping(value = "/{id}",method = RequestMethod.GET)
     public @ResponseBody ResponseEntity<Laadgegevens> getLaadGegevens(@PathVariable("id") int id, HttpServletRequest request, HttpServletResponse response){
         Laadgegevens json = laadGegevensService.getLaadgegevens(id);
         HttpHeaders responseHeaders = new HttpHeaders();
