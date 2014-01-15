@@ -6,7 +6,7 @@
     <class name="be.pxl.publictms.pojo.Rijbewijsgegevens" table="rijbewijsgegevens" schema="public">
         <id name="rijbewijsid" type="int">
             <column name="rijbewijsid" />
-            <generator class="assigned" />
+            <generator class="increment" />
         </id>
         <property name="rijbewijsnr" type="string">
             <column name="rijbewijsnr" length="15" not-null="true" />

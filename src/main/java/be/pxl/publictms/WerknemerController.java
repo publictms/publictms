@@ -4,7 +4,6 @@
  */
 package be.pxl.publictms;
 
-import be.pxl.publictms.pojo.Transportadres;
 import be.pxl.publictms.pojo.Werknemer;
 import be.pxl.publictms.service.WerknemerService;
 import java.util.List;
@@ -20,12 +19,13 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
- * Controller om werknemers te verwerkene.
+ * Controller om werknemers te verwerken.
  * @author Laurens Putseys
  */
 
@@ -41,23 +41,16 @@ public class WerknemerController {
      * Geeft een lijst met werknemers terug.
      * @return List Werknemer
      */
-    @RequestMapping(value = "get",method = RequestMethod.GET)
-    public @ResponseBody ResponseEntity<List> getTransportadres(HttpServletRequest request, HttpServletResponse response){
-        List<Werknemer> json = werknemerService.getWerknemers();
-        response.setHeader("Access-Control-Allow-Origin", "*");
-        response.setHeader("Access-Control-Allow-Methods", "POST, GET, OPTIONS, DELETE");
-	response.setHeader("Access-Control-Max-Age", "3600");
-	response.setHeader("Access-Control-Allow-Headers", "x-requested-with");
-        HttpHeaders responseHeaders = new HttpHeaders();
-        responseHeaders.setContentType(MediaType.APPLICATION_JSON);
-        return new ResponseEntity<List>(json, responseHeaders, HttpStatus.CREATED);
+    @RequestMapping(value = "/",method = RequestMethod.GET)
+    public @ResponseBody List<Werknemer> getTransportadres(HttpServletRequest request, HttpServletResponse response){
+        return werknemerService.getWerknemers();
     }
     /**
      * Voeg een nieuwe werknemer toe aan de databank.
      * @param werknemer 
      */
-    @RequestMapping(value = "add", method = RequestMethod.PUT)
-    public @ResponseBody void addWerknemer(Werknemer werknemer){
+    @RequestMapping(value = "/", method = RequestMethod.POST)
+    public @ResponseBody void addWerknemer(@RequestBody Werknemer werknemer){
         if(!werknemerService.getWerknemers().contains(werknemer))
         werknemerService.addWerknemer(werknemer);
     }
@@ -65,7 +58,7 @@ public class WerknemerController {
      * Delete een werknemer uit de databank.
      * @param id 
      */
-    @RequestMapping(value = "delete/{id}", method = RequestMethod.PUT)
+    @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
     public @ResponseBody void deleteWerknemer(@PathVariable("id") int id){
         if(werknemerService.getWerknemers().contains(werknemerService.getWerknemers().get(id)))
         werknemerService.deleteWerknemer(id);
@@ -74,8 +67,8 @@ public class WerknemerController {
      * Bewerk een bestaande werknemer uit de databank.
      * @param werknemer 
      */
-    @RequestMapping(value = "update", method = RequestMethod.PUT)
-    public @ResponseBody void updateWerknemer(Werknemer werknemer){
+    @RequestMapping(value = "/", method = RequestMethod.PUT)
+    public @ResponseBody void updateWerknemer(@RequestBody Werknemer werknemer){
         if(werknemerService.getWerknemers().contains(werknemer))
         werknemerService.updateWerknemer(werknemer);
     }

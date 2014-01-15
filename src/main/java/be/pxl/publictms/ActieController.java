@@ -19,6 +19,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -39,8 +40,8 @@ public class ActieController {
      * Voegt een actie toe aan de database
      * @param actie 
      */
-    @RequestMapping(value = "add",method = RequestMethod.PUT)
-    public @ResponseBody void add(Actie actie){
+    @RequestMapping(value = "/",method = RequestMethod.POST)
+    public @ResponseBody void add(@RequestBody Actie actie){
         actieService.addActie(actie);
     }
     /**
@@ -48,38 +49,24 @@ public class ActieController {
      * @param id
      * @return List Actie
      */
-    @RequestMapping(value = "get/{id}",method = RequestMethod.GET)
-    public @ResponseBody ResponseEntity<List> getActiesVanOpdracht(@PathVariable("id") int id, HttpServletRequest request, HttpServletResponse response){
-        List<Actie> json = actieService.getActiesVanOpdracht(id);
-        response.setHeader("Access-Control-Allow-Origin", "*");
-        response.setHeader("Access-Control-Allow-Methods", "POST, GET, OPTIONS, DELETE");
-	response.setHeader("Access-Control-Max-Age", "3600");
-	response.setHeader("Access-Control-Allow-Headers", "x-requested-with");
-        HttpHeaders responseHeaders = new HttpHeaders();
-        responseHeaders.setContentType(MediaType.APPLICATION_JSON);
-        return new ResponseEntity<List>(json, responseHeaders, HttpStatus.CREATED);
-    }
+//    @RequestMapping(value = "/{id}",method = RequestMethod.GET)
+//    public @ResponseBody List<Actie> getActiesVanOpdracht(@PathVariable("id") int id){
+//        return actieService.getActiesVanOpdracht(id);
+//    }
     /**
      * Geeft alle acties per opdracht zonder indexen maar als bruikbaar gegeven.
      * @param id
      * @return List<Actie>
      */
-    @RequestMapping(value = "getActies/{id}",method = RequestMethod.GET)
-    public @ResponseBody ResponseEntity<List> getActiesPerOpdracht(@PathVariable("id") int id, HttpServletRequest request, HttpServletResponse response){
-        List<Actie> json = actieService.getActiesPerOpdracht(id);
-        response.setHeader("Access-Control-Allow-Origin", "*");
-        response.setHeader("Access-Control-Allow-Methods", "POST, GET, OPTIONS, DELETE");
-	response.setHeader("Access-Control-Max-Age", "3600");
-	response.setHeader("Access-Control-Allow-Headers", "x-requested-with");
-        HttpHeaders responseHeaders = new HttpHeaders();
-        responseHeaders.setContentType(MediaType.APPLICATION_JSON);
-        return new ResponseEntity<List>(json, responseHeaders, HttpStatus.CREATED);
+    @RequestMapping(value = "/{id}",method = RequestMethod.GET)
+    public @ResponseBody List getActiesPerOpdracht(@PathVariable("id") int id){
+        return actieService.getActiesPerOpdracht(id);
     }
     /**
      * Delete een actie in de database aan de hand van zijn index.
      * @param id 
      */
-    @RequestMapping(value = "delete/{id}",method = RequestMethod.GET)
+    @RequestMapping(value = "/{id}",method = RequestMethod.DELETE)
     public @ResponseBody void delete(@PathVariable("id") int id){
         actieService.deleteActie(id);
     }
@@ -87,15 +74,15 @@ public class ActieController {
      * Bewerkt een actie in de database.
      * @param actie 
      */
-    @RequestMapping(value = "update",method = RequestMethod.PUT)
-    public @ResponseBody void update(Actie actie){
+    @RequestMapping(value = "/",method = RequestMethod.PUT)
+    public @ResponseBody void update(@RequestBody Actie actie){
         actieService.updateActie(actie);
     }
     /**
      * Verander de status van een actie
      * @param opdracht 
      */
-    @RequestMapping(value = "updateStatus/{id}/{klaar}", method = RequestMethod.GET)
+    @RequestMapping(value = "/{id}/{klaar}", method = RequestMethod.GET)
     public @ResponseBody void updateStatus(@PathVariable("klaar") int klaar,@PathVariable("id") int id){
         if(klaar == 1){
             actieService.setKlaar(true, id);

@@ -4,7 +4,6 @@
  */
 package be.pxl.publictms;
 
-import be.pxl.publictms.pojo.Persoonsinfo;
 import be.pxl.publictms.pojo.Postcode;
 import be.pxl.publictms.service.PostcodeService;
 import java.util.List;
@@ -20,6 +19,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -41,13 +41,9 @@ public class PostcodeController {
      * @param id
      * @return Postcode
      */
-    @RequestMapping(value = "get/{id}",method = RequestMethod.GET)
+    @RequestMapping(value = "/{id}",method = RequestMethod.GET)
     public @ResponseBody ResponseEntity<Postcode> getGemeente(@PathVariable("id") String id, HttpServletRequest request, HttpServletResponse response){
         Postcode json = postcodeService.getGemeente(id);
-        response.setHeader("Access-Control-Allow-Origin", "*");
-        response.setHeader("Access-Control-Allow-Methods", "POST, GET, OPTIONS, DELETE");
-	response.setHeader("Access-Control-Max-Age", "3600");
-	response.setHeader("Access-Control-Allow-Headers", "x-requested-with");
         HttpHeaders responseHeaders = new HttpHeaders();
         responseHeaders.setContentType(MediaType.APPLICATION_JSON);
         return new ResponseEntity<Postcode>(json, responseHeaders, HttpStatus.CREATED);
@@ -56,13 +52,9 @@ public class PostcodeController {
      * Geeft een lijst terug van alle gemeentes en bijhorende postcodes.
      * @return List Postcode
      */
-    @RequestMapping(value = "get",method = RequestMethod.GET)
+    @RequestMapping(value = "/",method = RequestMethod.GET)
     public @ResponseBody ResponseEntity<List> getGemeente(HttpServletRequest request, HttpServletResponse response){
         List<Postcode> json = postcodeService.getGemeente();
-        response.setHeader("Access-Control-Allow-Origin", "*");
-        response.setHeader("Access-Control-Allow-Methods", "POST, GET, OPTIONS, DELETE");
-	response.setHeader("Access-Control-Max-Age", "3600");
-	response.setHeader("Access-Control-Allow-Headers", "x-requested-with");
         HttpHeaders responseHeaders = new HttpHeaders();
         responseHeaders.setContentType(MediaType.APPLICATION_JSON);
         return new ResponseEntity<List>(json, responseHeaders, HttpStatus.CREATED);
@@ -71,15 +63,15 @@ public class PostcodeController {
      * Voeg een nieuwe gemeente en postcode toe aan de databank.
      * @param postcode 
      */
-    @RequestMapping(value = "add",method = RequestMethod.PUT)
-    public @ResponseBody void addGemeente(Postcode postcode){
+    @RequestMapping(value = "/",method = RequestMethod.POST)
+    public @ResponseBody void addGemeente(@RequestBody Postcode postcode){
         postcodeService.addGemeente(postcode);
     }
     /**
      * Verwijder een bestaande postcode.
      * @param id 
      */
-    @RequestMapping(value = "delete",method = RequestMethod.GET)
+    @RequestMapping(value = "/",method = RequestMethod.DELETE)
     public @ResponseBody void deleteGemeente(@PathVariable("id") String id){
         postcodeService.deleteGemeente(id);
     }
@@ -87,8 +79,8 @@ public class PostcodeController {
      * Bewerk een bestaand postcode. 
      * @param postcode 
      */
-    @RequestMapping(value = "update",method = RequestMethod.GET)
-    public @ResponseBody void updateGemeente(Postcode postcode){
+    @RequestMapping(value = "/",method = RequestMethod.PUT)
+    public @ResponseBody void updateGemeente(@RequestBody Postcode postcode){
         postcodeService.updateGemeente(postcode);
     }
     /**

@@ -19,6 +19,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -39,8 +40,8 @@ public class BerichtController {
      * Verstuur berichten naar de server.
      * @param bericht 
      */
-    @RequestMapping(value = "send",method = RequestMethod.PUT)
-    public @ResponseBody void send(Bericht bericht){
+    @RequestMapping(value = "/",method = RequestMethod.PUT)
+    public @ResponseBody void send(@RequestBody Bericht bericht){
         berichtService.send(bericht);
     }
     /**
@@ -49,13 +50,9 @@ public class BerichtController {
      * @param id
      * @return List Bericht
      */
-    @RequestMapping(value = "get/{id}",method = RequestMethod.GET)
+    @RequestMapping(value = "/{id}",method = RequestMethod.GET)
     public @ResponseBody ResponseEntity<List> getBericht(@PathVariable("id") int id, HttpServletRequest request, HttpServletResponse response){
         List<Bericht> json = berichtService.getBerichten(id);
-        response.setHeader("Access-Control-Allow-Origin", "*");
-        response.setHeader("Access-Control-Allow-Methods", "POST, GET, OPTIONS, DELETE");
-	response.setHeader("Access-Control-Max-Age", "3600");
-	response.setHeader("Access-Control-Allow-Headers", "x-requested-with");
         HttpHeaders responseHeaders = new HttpHeaders();
         responseHeaders.setContentType(MediaType.APPLICATION_JSON);
         return new ResponseEntity<List>(json, responseHeaders, HttpStatus.CREATED);
@@ -64,7 +61,7 @@ public class BerichtController {
      * Delete een bericht van de databank.
      * @param id 
      */
-    @RequestMapping(value = "delete/{id}",method = RequestMethod.GET)
+    @RequestMapping(value = "/{id}",method = RequestMethod.DELETE)
     public @ResponseBody void delete(@PathVariable("id") int id){
         berichtService.deleteBericht(id);
     }

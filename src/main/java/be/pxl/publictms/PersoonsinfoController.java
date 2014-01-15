@@ -4,10 +4,8 @@
  */
 package be.pxl.publictms;
 
-import be.pxl.publictms.pojo.Oplegger;
 import be.pxl.publictms.pojo.Persoonsinfo;
 import be.pxl.publictms.service.PersoonsinfoService;
-import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.slf4j.Logger;
@@ -20,6 +18,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -41,13 +40,9 @@ public class PersoonsinfoController {
      * @param id
      * @return Persoonsinfo
      */
-    @RequestMapping(value = "get/{id}",method = RequestMethod.GET)
+    @RequestMapping(value = "/{id}",method = RequestMethod.GET)
     public @ResponseBody ResponseEntity<Persoonsinfo> getPersoonsinfo(@PathVariable("id") int id, HttpServletRequest request, HttpServletResponse response){
         Persoonsinfo json = persoonsinfoService.getPersoonsinfo(id);
-        response.setHeader("Access-Control-Allow-Origin", "*");
-        response.setHeader("Access-Control-Allow-Methods", "POST, GET, OPTIONS, DELETE");
-	response.setHeader("Access-Control-Max-Age", "3600");
-	response.setHeader("Access-Control-Allow-Headers", "x-requested-with");
         HttpHeaders responseHeaders = new HttpHeaders();
         responseHeaders.setContentType(MediaType.APPLICATION_JSON);
         return new ResponseEntity<Persoonsinfo>(json, responseHeaders, HttpStatus.CREATED);
@@ -56,15 +51,15 @@ public class PersoonsinfoController {
      * Voeg nieuwe persoonelijke informatie toe aan de databank.
      * @param persoonsinfo 
      */
-    @RequestMapping(value = "add", method = RequestMethod.PUT)
-    public @ResponseBody void addPersoonsinfo(Persoonsinfo persoonsinfo){
+    @RequestMapping(value = "/", method = RequestMethod.POST)
+    public @ResponseBody void addPersoonsinfo(@RequestBody Persoonsinfo persoonsinfo){
         persoonsinfoService.addPersoonsinfo(persoonsinfo);
     }
     /**
      * Verwijder persoonelijke informatie van een werknemer
      * @param id 
      */
-    @RequestMapping(value = "delete/{id}", method = RequestMethod.PUT)
+    @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
     public @ResponseBody void deletePersoonsinfo(@PathVariable("id") int id){
         persoonsinfoService.deletePersoonsinfo(id);
     }
@@ -72,8 +67,8 @@ public class PersoonsinfoController {
      * Bewerk de persoonelijke informatie van een werknemer.
      * @param persoonsinfo 
      */
-    @RequestMapping(value = "update", method = RequestMethod.PUT)
-    public @ResponseBody void updatePersoonsinfo(Persoonsinfo persoonsinfo){
+    @RequestMapping(value = "/", method = RequestMethod.PUT)
+    public @ResponseBody void updatePersoonsinfo(@RequestBody Persoonsinfo persoonsinfo){
         persoonsinfoService.updatePersoonsinfo(persoonsinfo);
     }
     /**

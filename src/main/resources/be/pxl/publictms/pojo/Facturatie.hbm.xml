@@ -6,7 +6,7 @@
     <class name="be.pxl.publictms.pojo.Facturatie" table="facturatie" schema="public">
         <id name="facturatieid" type="int">
             <column name="facturatieid" />
-            <generator class="assigned" />
+            <generator class="increment" />
         </id>
         <property name="adres" type="int">
             <column name="adresid" />

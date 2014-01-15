@@ -19,6 +19,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -44,13 +45,9 @@ public class OpleggerController {
     public @ResponseBody Oplegger getOplegger(@PathVariable("id") int id){
         return opleggerService.getOplegger(id);
     }
-    @RequestMapping(value = "get/{id}",method = RequestMethod.GET)
+    @RequestMapping(value = "/{id}",method = RequestMethod.GET)
     public @ResponseBody ResponseEntity<Oplegger> getOplegger(@PathVariable("id") int id, HttpServletRequest request, HttpServletResponse response){
         Oplegger json = opleggerService.getOplegger(id);
-        response.setHeader("Access-Control-Allow-Origin", "*");
-        response.setHeader("Access-Control-Allow-Methods", "POST, GET, OPTIONS, DELETE");
-	response.setHeader("Access-Control-Max-Age", "3600");
-	response.setHeader("Access-Control-Allow-Headers", "x-requested-with");
         HttpHeaders responseHeaders = new HttpHeaders();
         responseHeaders.setContentType(MediaType.APPLICATION_JSON);
         return new ResponseEntity<Oplegger>(json, responseHeaders, HttpStatus.CREATED);
@@ -59,13 +56,9 @@ public class OpleggerController {
      * Geeft een lijst terug met alle opleggers
      * @return Oplegger
      */
-    @RequestMapping(value = "get",method = RequestMethod.GET)
+    @RequestMapping(value = "/",method = RequestMethod.GET)
     public @ResponseBody ResponseEntity<List> getOpleggers(HttpServletRequest request, HttpServletResponse response){
         List<Oplegger> json = opleggerService.getOpleggers();
-        response.setHeader("Access-Control-Allow-Origin", "*");
-        response.setHeader("Access-Control-Allow-Methods", "POST, GET, OPTIONS, DELETE");
-	response.setHeader("Access-Control-Max-Age", "3600");
-	response.setHeader("Access-Control-Allow-Headers", "x-requested-with");
         HttpHeaders responseHeaders = new HttpHeaders();
         responseHeaders.setContentType(MediaType.APPLICATION_JSON);
         return new ResponseEntity<List>(json, responseHeaders, HttpStatus.CREATED);
@@ -74,8 +67,8 @@ public class OpleggerController {
      * Voeg een nieuw oplegger toe aan de databank.
      * @param oplegger 
      */
-    @RequestMapping(value = "add", method = RequestMethod.PUT)
-    public @ResponseBody void addOplegger(Oplegger oplegger){
+    @RequestMapping(value = "add", method = RequestMethod.POST)
+    public @ResponseBody void addOplegger(@RequestBody Oplegger oplegger){
         if(!opleggerService.getOpleggers().contains(oplegger))
         opleggerService.addOplegger(oplegger);
     }
@@ -83,7 +76,7 @@ public class OpleggerController {
      * Verwijder een bestaande oplegger.
      * @param id 
      */
-    @RequestMapping(value = "delete/{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
     public @ResponseBody void deleteOplegger(@PathVariable("id") int id){
         if(opleggerService.getOpleggers().contains(opleggerService.getOplegger(id)))
         opleggerService.deleteOpleggers(id);
@@ -92,8 +85,8 @@ public class OpleggerController {
      * Bewerk een bestaande oplegger.
      * @param oplegger 
      */
-    @RequestMapping(value = "update", method = RequestMethod.PUT)
-    public @ResponseBody void updateOplegger(Oplegger oplegger){
+    @RequestMapping(value = "/", method = RequestMethod.PUT)
+    public @ResponseBody void updateOplegger(@RequestBody Oplegger oplegger){
         if(opleggerService.getOpleggers().contains(oplegger))
         opleggerService.updateOplegger(oplegger);
     }

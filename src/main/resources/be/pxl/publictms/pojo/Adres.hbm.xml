@@ -6,7 +6,7 @@
     <class name="be.pxl.publictms.pojo.Adres" table="adres" schema="public">
         <id name="adresid" type="int">
             <column name="adresid" />
-            <generator class="assigned" />
+            <generator class="increment" />
         </id>
         <property name="postcode" type="string">
             <column name="postcode" length="10" not-null="true" />

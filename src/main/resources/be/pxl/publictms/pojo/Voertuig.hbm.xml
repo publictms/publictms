@@ -6,7 +6,7 @@
     <class name="be.pxl.publictms.pojo.Voertuig" table="voertuig" schema="public">
         <id name="voertuigid" type="int">
             <column name="voertuigid" />
-            <generator class="assigned" />
+            <generator class="increment" />
         </id>
         <property name="opleggerid" type="int">
             <column name="opleggerid" />

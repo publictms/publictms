@@ -6,7 +6,7 @@
     <class name="be.pxl.publictms.pojo.Taal" table="taal" schema="public">
         <id name="taalid" type="int">
             <column name="taalid" />
-            <generator class="assigned" />
+            <generator class="increment" />
         </id>
         <property name="taalnaam" type="string">
             <column name="taalnaam" length="20" not-null="true" />

@@ -18,6 +18,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -39,13 +40,9 @@ public class LaadGegevensController {
      * @param id
      * @return 
      */
-    @RequestMapping(value = "get",method = RequestMethod.GET)
+    @RequestMapping(value = "/",method = RequestMethod.GET)
     public @ResponseBody ResponseEntity<Laadgegevens> getLaadGegevens(@PathVariable("id") int id, HttpServletRequest request, HttpServletResponse response){
         Laadgegevens json = laadGegevensService.getLaadgegevens(id);
-        response.setHeader("Access-Control-Allow-Origin", "*");
-        response.setHeader("Access-Control-Allow-Methods", "POST, GET, OPTIONS, DELETE");
-	response.setHeader("Access-Control-Max-Age", "3600");
-	response.setHeader("Access-Control-Allow-Headers", "x-requested-with");
         HttpHeaders responseHeaders = new HttpHeaders();
         responseHeaders.setContentType(MediaType.APPLICATION_JSON);
         return new ResponseEntity<Laadgegevens>(json, responseHeaders, HttpStatus.CREATED);
@@ -54,15 +51,15 @@ public class LaadGegevensController {
      * Voeg nieuwe laadgegevens toe aan de databank.
      * @param laadgegevens 
      */
-    @RequestMapping(value = "add", method = RequestMethod.PUT)
-    public @ResponseBody void addLaadgegevens(Laadgegevens laadgegevens){
+    @RequestMapping(value = "/", method = RequestMethod.POST)
+    public @ResponseBody void addLaadgegevens(@RequestBody Laadgegevens laadgegevens){
         laadGegevensService.addLaadgegevens(laadgegevens);
     }
     /**
      * Verwijder laadgegevens uit de databank.
      * @param id 
      */
-    @RequestMapping(value = "delete/{id}", method = RequestMethod.PUT)
+    @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
     public @ResponseBody void deleteLaadGegevens(@PathVariable("id") int id){
         laadGegevensService.deleteLaadgegeven(id);
     }
@@ -70,8 +67,8 @@ public class LaadGegevensController {
      * Bewerk bestaande laadgegevens.
      * @param laadgegevens 
      */
-    @RequestMapping(value = "update", method = RequestMethod.PUT)
-    public @ResponseBody void updateLaadgegevens(Laadgegevens laadgegevens){
+    @RequestMapping(value = "/", method = RequestMethod.PUT)
+    public @ResponseBody void updateLaadgegevens(@RequestBody Laadgegevens laadgegevens){
         laadGegevensService.updateLaadgegeven(laadgegevens);
     }
     /**

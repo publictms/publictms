@@ -8,18 +8,13 @@ import be.pxl.publictms.pojo.Opdracht;
 import be.pxl.publictms.service.OpdrachtService;
 import be.pxl.publictms.view.OpdrachtView;
 import java.util.List;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -41,7 +36,7 @@ public class OpdrachtController {
      * Geeft een lijst terug met opdrachten.
      * @return 
      */
-    @RequestMapping(value = "get",method = RequestMethod.GET)
+    @RequestMapping(value = "/",method = RequestMethod.GET)
     public @ResponseBody List<OpdrachtView> getOpdracht(){
         return opdrachtService.getOpdrachten();
     }
@@ -50,7 +45,7 @@ public class OpdrachtController {
      * veranderd met de werkelijke waarde. 
      * @return List
      */
-    @RequestMapping(value = "get/{id}",method = RequestMethod.GET)
+    @RequestMapping(value = "/{id}",method = RequestMethod.GET)
     public @ResponseBody List<OpdrachtView> getOpdrachten(@PathVariable("id") int id){
         return opdrachtService.getOpdrachtenWerknemer(id);
     }
@@ -58,15 +53,15 @@ public class OpdrachtController {
      * Voeg een nieuwe opdracht aan de databank.
      * @param opdracht 
      */
-    @RequestMapping(value = "add", method = RequestMethod.PUT)
-    public @ResponseBody void addOpdracht(Opdracht opdracht){
+    @RequestMapping(value = "/", method = RequestMethod.POST)
+    public @ResponseBody void addOpdracht(@RequestBody Opdracht opdracht){
         opdrachtService.addOpdracht(opdracht);
     }
     /**
      * Verwijder een opdracht aan de hand van zijn index.
      * @param id 
      */
-    @RequestMapping(value = "delete/{id}", method = RequestMethod.PUT)
+    @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
     public @ResponseBody void deleteOpdracht(@PathVariable("id") int id){
         opdrachtService.deleteOpdracht(id);
     }
@@ -74,8 +69,8 @@ public class OpdrachtController {
      * Bewerk een bestaande opdracht.
      * @param opdracht 
      */
-    @RequestMapping(value = "update", method = RequestMethod.PUT)
-    public @ResponseBody void updateOpdracht(Opdracht opdracht){
+    @RequestMapping(value = "/", method = RequestMethod.PUT)
+    public @ResponseBody void updateOpdracht(@RequestBody Opdracht opdracht){
         opdrachtService.updateOpdracht(opdracht);
     }
     
@@ -83,7 +78,7 @@ public class OpdrachtController {
      * Verander de status van een opdracht
      * @param opdracht 
      */
-    @RequestMapping(value = "updateStatus/{id}/{klaar}", method = RequestMethod.GET)
+    @RequestMapping(value = "/{id}/{klaar}", method = RequestMethod.GET)
     public @ResponseBody void updateStatus(@PathVariable("klaar") int klaar,@PathVariable("id") int id){
         if(klaar == 1){
             opdrachtService.setKlaar(true, id);

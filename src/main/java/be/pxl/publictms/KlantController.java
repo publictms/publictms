@@ -19,6 +19,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -40,7 +41,7 @@ public class KlantController {
      * @param id
      * @return Klant
      */
-    @RequestMapping(value = "detail/{id}",method = RequestMethod.GET)
+    @RequestMapping(value = "/{id}",method = RequestMethod.GET)
     public @ResponseBody Klant getKlant(@PathVariable("id") int id){
         return klantService.getKlant(id);
     }
@@ -48,13 +49,9 @@ public class KlantController {
      * Geeft een lijst met klanten terug.
      * @return List Klant
      */
-    @RequestMapping(value = "get",method = RequestMethod.GET)
+    @RequestMapping(value = "/",method = RequestMethod.GET)
     public @ResponseBody ResponseEntity<List> getKlanten(HttpServletRequest request, HttpServletResponse response){
         List<Klant> json = klantService.getKlanten();
-        response.setHeader("Access-Control-Allow-Origin", "*");
-        response.setHeader("Access-Control-Allow-Methods", "POST, GET, OPTIONS, DELETE");
-	response.setHeader("Access-Control-Max-Age", "3600");
-	response.setHeader("Access-Control-Allow-Headers", "x-requested-with");
         HttpHeaders responseHeaders = new HttpHeaders();
         responseHeaders.setContentType(MediaType.APPLICATION_JSON);
         return new ResponseEntity<List>(json, responseHeaders, HttpStatus.CREATED);
@@ -63,8 +60,8 @@ public class KlantController {
      * Voeg een nieuwe klant toe.
      * @param klant 
      */
-    @RequestMapping(value = "add", method = RequestMethod.PUT)
-    public @ResponseBody void addKlant(Klant klant){
+    @RequestMapping(value = "/", method = RequestMethod.POST)
+    public @ResponseBody void addKlant(@RequestBody Klant klant){
         if(!klantService.getKlanten().contains(klant))
         klantService.addKlant(klant);
     }
@@ -72,7 +69,7 @@ public class KlantController {
      * Verwijder een bestaande klant.
      * @param id 
      */
-    @RequestMapping(value = "delete/{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
     public @ResponseBody void deleteKlant(@PathVariable("id") int id){
         if(klantService.getKlanten().contains(klantService.getKlant(id)))
         klantService.deleteKlant(id);
@@ -81,8 +78,8 @@ public class KlantController {
      * Bewerk een bestaande klant.
      * @param klant 
      */
-    @RequestMapping(value = "update", method = RequestMethod.PUT)
-    public @ResponseBody void updateKlant(Klant klant){
+    @RequestMapping(value = "/", method = RequestMethod.PUT)
+    public @ResponseBody void updateKlant(@RequestBody Klant klant){
         if(klantService.getKlanten().contains(klant))
         klantService.updateKlant(klant);
     }

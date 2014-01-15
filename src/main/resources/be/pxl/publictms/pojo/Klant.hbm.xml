@@ -6,7 +6,7 @@
     <class name="be.pxl.publictms.pojo.Klant" table="klant" schema="public">
         <id name="klantid" type="int">
             <column name="klantid" />
-            <generator class="assigned" />
+            <generator class="increment" />
         </id>
         <property name="taal" type="int">
             <column name="taal" not-null="false" />

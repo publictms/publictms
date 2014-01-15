@@ -6,7 +6,7 @@
     <class name="be.pxl.publictms.pojo.Contact" table="contact" schema="public">
         <id name="contactid" type="int">
             <column name="contactid" />
-            <generator class="assigned" />
+            <generator class="increment" />
         </id>
         <property name="email" type="string">
             <column name="email" length="30" />

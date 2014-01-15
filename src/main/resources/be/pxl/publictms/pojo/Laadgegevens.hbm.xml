@@ -6,7 +6,7 @@
     <class name="be.pxl.publictms.pojo.Laadgegevens" table="laadgegevens" schema="public">
         <id name="laadid" type="int">
             <column name="laadid" />
-            <generator class="assigned" />
+            <generator class="increment" />
         </id>
         <property name="tarragewicht" type="java.lang.Double">
             <column name="tarragewicht" precision="17" scale="17" />

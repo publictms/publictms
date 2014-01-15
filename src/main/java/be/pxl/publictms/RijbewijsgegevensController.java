@@ -20,6 +20,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -41,30 +42,23 @@ public class RijbewijsgegevensController {
      * @param id
      * @return Rijbewijsgegevens
      */
-    @RequestMapping(value = "get/{id}",method = RequestMethod.GET)
-    public @ResponseBody ResponseEntity<Rijbewijsgegevens> getRijbewijsgegevens(@PathVariable("id") int id, HttpServletRequest request, HttpServletResponse response){
-        Rijbewijsgegevens json = rijbewijsgegevensService.getRijbewijsgegevens(id);
-        response.setHeader("Access-Control-Allow-Origin", "*");
-        response.setHeader("Access-Control-Allow-Methods", "POST, GET, OPTIONS, DELETE");
-	response.setHeader("Access-Control-Max-Age", "3600");
-	response.setHeader("Access-Control-Allow-Headers", "x-requested-with");
-        HttpHeaders responseHeaders = new HttpHeaders();
-        responseHeaders.setContentType(MediaType.APPLICATION_JSON);
-        return new ResponseEntity<Rijbewijsgegevens>(json, responseHeaders, HttpStatus.CREATED);
+    @RequestMapping(value = "/{id}",method = RequestMethod.GET)
+    public @ResponseBody Rijbewijsgegevens getRijbewijsgegevens(@PathVariable("id") int id){
+        return rijbewijsgegevensService.getRijbewijsgegevens(id);
     }
     /**
      * Voeg nieuwe rijbewijsgegevens toe aan de databank.
      * @param rijbewijsgegevens 
      */
-    @RequestMapping(value = "add", method = RequestMethod.PUT)
-    public @ResponseBody void addRijbewijsgegevens(Rijbewijsgegevens rijbewijsgegevens){
+    @RequestMapping(value = "/", method = RequestMethod.POST)
+    public @ResponseBody void addRijbewijsgegevens(@RequestBody Rijbewijsgegevens rijbewijsgegevens){
         rijbewijsgegevensService.addRijbewijsgegevens(rijbewijsgegevens);
     }
     /**
      * Verwijder bestaande rijbewijs gegevens uit de databank.
      * @param id 
      */
-    @RequestMapping(value = "delete/{id}", method = RequestMethod.PUT)
+    @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
     public @ResponseBody void deleteRijbewijsgegevens(@PathVariable("id") int id){
         rijbewijsgegevensService.deleteRijbewijsgegevens(id);
     }
@@ -72,8 +66,8 @@ public class RijbewijsgegevensController {
      * Bewerk bestaande rijbewijsgegevens uit de databank.
      * @param rijbewijsgegevens 
      */
-    @RequestMapping(value = "update", method = RequestMethod.PUT)
-    public @ResponseBody void updateRijbewijsgegevens(Rijbewijsgegevens rijbewijsgegevens){
+    @RequestMapping(value = "/", method = RequestMethod.PUT)
+    public @ResponseBody void updateRijbewijsgegevens(@RequestBody Rijbewijsgegevens rijbewijsgegevens){
         rijbewijsgegevensService.updateRijbewijsgegevens(rijbewijsgegevens);
     }
     /**

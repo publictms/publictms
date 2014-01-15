@@ -6,7 +6,7 @@
     <class name="be.pxl.publictms.pojo.Oplegger" table="oplegger" schema="public">
         <id name="opleggerid" type="int">
             <column name="opleggerid" />
-            <generator class="assigned" />
+            <generator class="increment" />
         </id>
         <property name="laadgegevens" type="int">
             <column name="laadid" />

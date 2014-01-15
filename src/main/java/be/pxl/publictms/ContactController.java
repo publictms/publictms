@@ -18,6 +18,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -38,16 +39,16 @@ public class ContactController {
      * Voeg een contact toe aan de databank.
      * @param contact 
      */
-    @RequestMapping(value = "add",method = RequestMethod.PUT)
-    public @ResponseBody void add(Contact contact){
+    @RequestMapping(value = "/",method = RequestMethod.POST)
+    public @ResponseBody void add(@RequestBody Contact contact){
         contactService.addContact(contact);
     }
     /**
      * Bewerk een contact uit de databank.
      * @param contact 
      */
-    @RequestMapping(value = "update",method = RequestMethod.PUT)
-    public @ResponseBody void update(Contact contact){
+    @RequestMapping(value = "/",method = RequestMethod.PUT)
+    public @ResponseBody void update(@RequestBody Contact contact){
         contactService.updateContact(contact);
     }
     /**
@@ -55,13 +56,9 @@ public class ContactController {
      * @param id
      * @return Contact
      */
-    @RequestMapping(value = "get/{id}",method = RequestMethod.GET)
+    @RequestMapping(value = "/{id}",method = RequestMethod.GET)
     public @ResponseBody ResponseEntity<Contact> getContact(@PathVariable("id") int id, HttpServletRequest request, HttpServletResponse response){
         Contact json = contactService.getContact(id);
-        response.setHeader("Access-Control-Allow-Origin", "*");
-        response.setHeader("Access-Control-Allow-Methods", "POST, GET, OPTIONS, DELETE");
-	response.setHeader("Access-Control-Max-Age", "3600");
-	response.setHeader("Access-Control-Allow-Headers", "x-requested-with");
         HttpHeaders responseHeaders = new HttpHeaders();
         responseHeaders.setContentType(MediaType.APPLICATION_JSON);
         return new ResponseEntity<Contact>(json, responseHeaders, HttpStatus.CREATED);
@@ -70,7 +67,7 @@ public class ContactController {
      * Delete een contact op de databank.
      * @param id 
      */
-    @RequestMapping(value = "delete/{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
     public @ResponseBody void delete(@PathVariable("id") int id){
         contactService.deleteContact(id);
     }

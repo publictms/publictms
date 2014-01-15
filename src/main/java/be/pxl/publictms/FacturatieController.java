@@ -19,6 +19,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -39,16 +40,16 @@ public class FacturatieController {
      * Voeg een nieuw factuur toe aan de databank.
      * @param factuur 
      */
-    @RequestMapping(value = "add",method = RequestMethod.PUT)
-    public @ResponseBody void add(Facturatie factuur){
+    @RequestMapping(value = "/",method = RequestMethod.POST)
+    public @ResponseBody void add(@RequestBody Facturatie factuur){
         facturatieService.addFacturatie(factuur);
     }
     /**
      * Bewerk een bestaand factuur op de databank.
      * @param factuur 
      */
-    @RequestMapping(value = "update",method = RequestMethod.PUT)
-    public @ResponseBody void update(Facturatie factuur){
+    @RequestMapping(value = "/",method = RequestMethod.PUT)
+    public @ResponseBody void update(@RequestBody Facturatie factuur){
         facturatieService.updateFactuur(factuur);
     }
     /**
@@ -56,13 +57,9 @@ public class FacturatieController {
      * @param id
      * @return Facturatie
      */
-    @RequestMapping(value = "get/{id}",method = RequestMethod.GET)
+    @RequestMapping(value = "/{id}",method = RequestMethod.GET)
     public @ResponseBody ResponseEntity<Facturatie> getFacturatie(@PathVariable("id") int id, HttpServletRequest request, HttpServletResponse response){
         Facturatie json = facturatieService.getFacturatie(id);
-        response.setHeader("Access-Control-Allow-Origin", "*");
-        response.setHeader("Access-Control-Allow-Methods", "POST, GET, OPTIONS, DELETE");
-	response.setHeader("Access-Control-Max-Age", "3600");
-	response.setHeader("Access-Control-Allow-Headers", "x-requested-with");
         HttpHeaders responseHeaders = new HttpHeaders();
         responseHeaders.setContentType(MediaType.APPLICATION_JSON);
         return new ResponseEntity<Facturatie>(json, responseHeaders, HttpStatus.CREATED);
@@ -72,7 +69,7 @@ public class FacturatieController {
      * @param id
      * @return List Facturatie 
      */
-    @RequestMapping(value = "getfacturen/{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "factuur/{id}", method = RequestMethod.GET)
     public @ResponseBody List<Facturatie> getFacturen(@PathVariable("id") int id){
         return facturatieService.getFacturen(id);
     }
@@ -80,7 +77,7 @@ public class FacturatieController {
      * Verwijder een factuur op de databank.
      * @param id 
      */
-    @RequestMapping(value = "delete/{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
     public @ResponseBody void delete(@PathVariable("id") int id){
         facturatieService.deleteFactuur(id);
     }

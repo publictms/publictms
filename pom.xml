@@ -212,15 +212,17 @@
             <version>3.1.1.RELEASE</version>
         </dependency>
         <dependency>
+            <groupId>jta</groupId>
+            <artifactId>jta</artifactId>
+            <version>1.0.1b</version>
+            <type>pom</type>
+        </dependency>
+        <!-- spring security bcrypt -->
+        <dependency>
             <groupId>org.springframework.security</groupId>
             <artifactId>spring-security-crypto</artifactId>
             <version>3.1.0.RELEASE</version>
             <type>jar</type>
-        </dependency>
-        <dependency>
-            <groupId>org.json</groupId>
-            <artifactId>json</artifactId>
-            <version>20090211</version>
         </dependency>
     </dependencies>
 </project>
