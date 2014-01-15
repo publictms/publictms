@@ -45,7 +45,7 @@ public class TransportadresDAOImpl implements TransportadresDAO{
     @Override
     public Transportadres getTransportadres(int id) {
         Session session = HibernateUtil.getSessionFactory().openSession();
-        Query query = session.createQuery("from Transportadres where TransportadresId = :id");
+        Query query = session.createQuery("from Transportadres where transportid = :id");
         query.setParameter("id", id);
         return (Transportadres)query.list().get(0);
     }
