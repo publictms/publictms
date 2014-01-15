@@ -8,9 +8,6 @@
             <column name="voertuigid" />
             <generator class="increment" />
         </id>
-        <property name="opleggerid" type="int">
-            <column name="opleggerid" />
-        </property>
         <property name="nummerplaat" type="string">
             <column name="nummerplaat" length="9" />
         </property>

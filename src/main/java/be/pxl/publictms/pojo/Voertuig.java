@@ -12,7 +12,6 @@ public class Voertuig  implements java.io.Serializable {
 
 
      private int voertuigid;
-     private int opleggerid;
      private String nummerplaat;
      private Boolean actief;
      private String omschrijving;
@@ -33,9 +32,8 @@ public class Voertuig  implements java.io.Serializable {
     public Voertuig(int voertuigid) {
         this.voertuigid = voertuigid;
     }
-    public Voertuig(int voertuigid, int opleggerid, String nummerplaat, Boolean actief, String omschrijving, String voertuigtype, String bouwjaar, Date datumin, Date datumuit, String chassisnummer, String motornummer, Boolean vergunning, Date vergunninggeldigtot, String vrijveld) {
+    public Voertuig(int voertuigid, String nummerplaat, Boolean actief, String omschrijving, String voertuigtype, String bouwjaar, Date datumin, Date datumuit, String chassisnummer, String motornummer, Boolean vergunning, Date vergunninggeldigtot, String vrijveld) {
        this.voertuigid = voertuigid;
-       this.opleggerid = opleggerid;
        this.nummerplaat = nummerplaat;
        this.actief = actief;
        this.omschrijving = omschrijving;
@@ -56,14 +54,6 @@ public class Voertuig  implements java.io.Serializable {
     
     public void setVoertuigid(int voertuigid) {
         this.voertuigid = voertuigid;
-    }
-    
-    public int getOpleggerid() {
-        return this.opleggerid;
-    }
-    
-    public void setOpleggerid(int opleggerid) {
-        this.opleggerid = opleggerid;
     }
     
     public String getNummerplaat() {
