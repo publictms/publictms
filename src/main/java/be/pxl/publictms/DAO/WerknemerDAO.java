@@ -24,6 +24,12 @@ public interface WerknemerDAO {
      */
     public List<Werknemer> getWerknemers();
     /**
+     * Declaratie van de methode voor het ophalen 1 row van de tabel Werknemer.
+     * 
+     * @return      Het record met werknemerid id.
+     */
+    public Werknemer getWerknemer(int id);
+    /**
      * Verwijder een werknemer aan de hand van zijn index.
      * @param id 
      */
