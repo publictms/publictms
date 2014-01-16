@@ -11,6 +11,7 @@ package be.pxl.publictms.view;
  */
 public class OpdrachtView {
     private Object opdrachtid;
+    private Object klantId;
     private Object klantNaam;
     private Object klantVoorNaam;
     private Object bedrijf;
@@ -22,8 +23,9 @@ public class OpdrachtView {
     private Object opdrachtklaar;
     private Object vrijveld;
 
-    public OpdrachtView(Object opdrachtid, Object klantNaam, Object klantVoorNaam, Object bedrijf, Object datum, Object werkenemerNaam, Object werknemerVoornaam, Object voertuig, Object oplegger, Object opdrachtklaar, Object vrijveld) {
+    public OpdrachtView(Object opdrachtid,Object klantId, Object klantNaam, Object klantVoorNaam, Object bedrijf, Object datum, Object werkenemerNaam, Object werknemerVoornaam, Object voertuig, Object oplegger, Object opdrachtklaar, Object vrijveld) {
         this.opdrachtid = opdrachtid;
+        this.klantId = klantId;
         this.klantNaam = klantNaam;
         this.klantVoorNaam = klantVoorNaam;
         this.bedrijf = bedrijf;
@@ -34,6 +36,14 @@ public class OpdrachtView {
         this.oplegger = oplegger;
         this.opdrachtklaar = opdrachtklaar;
         this.vrijveld = vrijveld;
+    }
+
+    public Object getKlantId() {
+        return klantId;
+    }
+
+    public void setKlantId(Object klantId) {
+        this.klantId = klantId;
     }
 
     public Object getOpdrachtid() {

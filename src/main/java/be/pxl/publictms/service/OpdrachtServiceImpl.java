@@ -6,6 +6,7 @@ package be.pxl.publictms.service;
 
 import be.pxl.publictms.DAO.OpdrachtDAO;
 import be.pxl.publictms.pojo.Opdracht;
+import be.pxl.publictms.view.OpdrachtView;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

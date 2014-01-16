@@ -70,7 +70,7 @@ public class OpdrachtController {
      * @param opdracht 
      */
     @RequestMapping(value = "/", method = RequestMethod.PUT)
-    public @ResponseBody void updateOpdracht(@RequestBody Opdracht opdracht){
+    public @ResponseBody void updateOpdracht(@RequestBody Opdracht opdracht){  
         opdrachtService.updateOpdracht(opdracht);
     }
     

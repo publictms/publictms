@@ -5,6 +5,7 @@
 package be.pxl.publictms.DAO;
 
 import be.pxl.publictms.pojo.Opdracht;
+import be.pxl.publictms.view.OpdrachtView;
 import java.util.List;
 
 /**
