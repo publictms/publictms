@@ -67,7 +67,7 @@ public class OpleggerController {
      * Voeg een nieuw oplegger toe aan de databank.
      * @param oplegger 
      */
-    @RequestMapping(value = "/", method = RequestMethod.POST)
+    @RequestMapping(value = "/", method = RequestMethod.POST, consumes = {"application/json"})
     public @ResponseBody void addOplegger(@RequestBody Oplegger oplegger){
         opleggerService.addOplegger(oplegger);
     }
