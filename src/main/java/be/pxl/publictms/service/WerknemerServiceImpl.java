@@ -52,6 +52,11 @@ public class WerknemerServiceImpl implements WerknemerService{
         return werknemerDAO.getWerknemers();
     }
 
+    @Transactional
+    public Werknemer getWerknemer(int id) {
+        return werknemerDAO.getWerknemer(id);
+    }
+        
     /**
      * Declaratie van de methode voor het verwijderen van een record uit de
      * tabel Werknemer.

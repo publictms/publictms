@@ -4,8 +4,11 @@
  */
 package be.pxl.publictms.DAO;
 
+import be.pxl.publictms.hibernate.HibernateUtil;
 import be.pxl.publictms.pojo.Werknemer;
 import java.util.List;
+import org.hibernate.Query;
+import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -43,6 +46,18 @@ public class WerknemerDAOImpl implements WerknemerDAO{
         return sessionFactory.getCurrentSession().createQuery("from Werknemer").list();
     }
     /**
+     * Geeft het record met werknemerid id.
+     * @param id    waarde dat de kolom werknemerid moet hebben
+     * @return      de data van de record met werknemerid id.
+     */
+    @Override
+    public Werknemer getWerknemer(int id) {
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        Query query = session.createQuery("from Werknemer where werknemerid = :id");
+        query.setParameter("id", id);
+        return (Werknemer)query.list().get(0);
+    }
+    /**
      * Verwijder een werknemer aan de hand van zijn index.
      * @param id 
      */
@@ -60,8 +75,5 @@ public class WerknemerDAOImpl implements WerknemerDAO{
     @Override
     public void updateWerknemer(Werknemer werknemer) {
         sessionFactory.getCurrentSession().update(werknemer);
-    }
-    
-    
-   
+    }    
 }

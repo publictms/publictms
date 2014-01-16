@@ -33,6 +33,13 @@ public interface WerknemerService {
     public List<Werknemer> getWerknemers();
     
     /**
+     * Declaratie van de methode voor het ophalen 1 row van de tabel Werknemer.
+     * 
+     * @return      Het record met werknemerid id.
+     */
+    public Werknemer getWerknemer(int id);
+    
+    /**
      * Declaratie van de methode voor het verwijderen van een record uit de
      * tabel Werknemer.
      * 
