@@ -6,6 +6,7 @@ package be.pxl.publictms;
 
 import be.pxl.publictms.pojo.Persoonsinfo;
 import be.pxl.publictms.service.PersoonsinfoService;
+import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.slf4j.Logger;
@@ -35,6 +36,22 @@ public class PersoonsinfoController {
     
     @Autowired
     private PersoonsinfoService persoonsinfoService;
+    
+    /**
+     * Geef een lijst terug met alle persoons informatie.
+     * @param request
+     * @param response
+     * @return List
+     */
+    @RequestMapping(value = "/",method = RequestMethod.GET)
+    public @ResponseBody ResponseEntity<List> getPersoonsinfo(HttpServletRequest request, HttpServletResponse response){
+        List json = persoonsinfoService.getPersoonsinfo();
+        HttpHeaders responseHeaders = new HttpHeaders();
+        responseHeaders.setContentType(MediaType.APPLICATION_JSON);
+        return new ResponseEntity<List>(json, responseHeaders, HttpStatus.CREATED);
+    }
+    
+    
     /**
      * Geeft de persoonelijk informatie terug aan de hand van een index van een werknemer.
      * @param id

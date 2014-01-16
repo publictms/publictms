@@ -5,6 +5,7 @@
 package be.pxl.publictms.service;
 
 import be.pxl.publictms.pojo.Persoonsinfo;
+import java.util.List;
 
 /**
  * Interface dat de methodes voor AdresServiceImpl declareert.
@@ -21,7 +22,11 @@ public interface PersoonsinfoService {
      * @param persoonsinfo     POJO representatie van de data die toegevoegd wordt.
      */
     public void addPersoonsinfo(Persoonsinfo persoonsinfo);
-    
+    /**
+     * Geeft een lijst terug met persoonsinfo van iedereen.
+     * @return List<persooninfo>
+     */
+    public List getPersoonsinfo();
     /**
      * Declaratie van de methode voor het ophalen van een record uit de tabel
      * Persoonsinfo met een bepaald id.

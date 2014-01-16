@@ -6,6 +6,8 @@ package be.pxl.publictms.DAO;
 
 import be.pxl.publictms.hibernate.HibernateUtil;
 import be.pxl.publictms.pojo.Persoonsinfo;
+import java.util.Date;
+import java.util.List;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -38,14 +40,23 @@ public class PersoonsinfoDAOImpl implements PersoonsinfoDAO{
         sessionFactory.getCurrentSession().save(persoonsinfo);
     }
     /**
+     * Geeft een lijst terug met persoonsinfo van iedereen.
+     * @return List<persooninfo>
+     */
+    @Override
+    public List getPersoonsinfo(){
+        return sessionFactory.getCurrentSession().createQuery("from Persoonsinfo").list();
+    }
+    /**
      * Geeft de persoonelijke informatie terug aan de hand van een index.
      * @param id
      * @return persooninfo
      */
+    
     @Override
     public Persoonsinfo getPersoonsinfo(int id) {
         Session session = HibernateUtil.getSessionFactory().openSession();
-        Query query = session.createQuery("from Persoonsinfo where InfoId = :id");
+        Query query = session.createQuery("from Persoonsinfo where infoid = :id");
         query.setParameter("id", id);
         return (Persoonsinfo)query.list().get(0);
     }

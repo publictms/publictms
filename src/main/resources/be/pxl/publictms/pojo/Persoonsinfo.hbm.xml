@@ -1,12 +1,12 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
-<!-- Generated 19-dec-2013 20:16:02 by Hibernate Tools 3.2.1.GA -->
+<!-- Generated 16-jan-2014 9:58:38 by Hibernate Tools 3.2.1.GA -->
 <hibernate-mapping>
     <class name="be.pxl.publictms.pojo.Persoonsinfo" table="persoonsinfo" schema="public">
         <id name="infoid" type="int">
             <column name="infoid" />
-            <generator class="increment" />
+            <generator class="assigned" />
         </id>
         <property name="rijksregisternr" type="string">
             <column name="rijksregisternr" length="13" not-null="true" />
@@ -17,8 +17,8 @@
         <property name="identiteitsnr" type="string">
             <column name="identiteitsnr" length="15" not-null="true" />
         </property>
-        <property name="persioennr" type="string">
-            <column name="persioennr" length="15" not-null="true" />
+        <property name="pensioennr" type="string">
+            <column name="pensioennr" length="15" not-null="true" />
         </property>
         <property name="geboorteplaats" type="string">
             <column name="geboorteplaats" length="30" not-null="true" />
@@ -35,7 +35,7 @@
         <property name="burgerstand" type="string">
             <column name="burgerstand" length="20" />
         </property>
-        <property name="aantalkinderen" type="int">
+        <property name="aantalkinderen" type="java.lang.Integer">
             <column name="aantalkinderen" />
         </property>
     </class>

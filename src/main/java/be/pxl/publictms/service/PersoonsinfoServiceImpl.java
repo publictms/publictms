@@ -6,6 +6,7 @@ package be.pxl.publictms.service;
 
 import be.pxl.publictms.DAO.PersoonsinfoDAO;
 import be.pxl.publictms.pojo.Persoonsinfo;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -38,7 +39,14 @@ public class PersoonsinfoServiceImpl implements PersoonsinfoService{
     public void addPersoonsinfo(Persoonsinfo persoonsinfo) {
         persoonsinfoDAO.addPersoonsinfo(persoonsinfo);
     }
-
+    /**
+     * Geeft een lijst terug met persoonsinfo van iedereen.
+     * @return List<persooninfo>
+     */
+    @Transactional
+    public List getPersoonsinfo(){
+        return persoonsinfoDAO.getPersoonsinfo();
+    }
     /**
      * Declaratie van de methode voor het ophalen van een record uit de tabel
      * Persoonsinfo met een bepaald id.

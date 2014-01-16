@@ -5,6 +5,7 @@
 package be.pxl.publictms.DAO;
 
 import be.pxl.publictms.pojo.Persoonsinfo;
+import java.util.List;
 
 /**
  * interface die methoden voorziet om persoons info toe te voegen, bewerken, 
@@ -17,6 +18,11 @@ public interface PersoonsinfoDAO {
      * @param persoonsinfo 
      */
     public void addPersoonsinfo(Persoonsinfo persoonsinfo);
+    /**
+     * Geeft een lijst terug met persoonsinfo van iedereen.
+     * @return List<persooninfo>
+     */
+    public List getPersoonsinfo();
     /**
      * Geeft de persoonelijke informatie terug aan de hand van een index.
      * @param id
