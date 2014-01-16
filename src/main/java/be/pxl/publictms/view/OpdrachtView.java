@@ -16,6 +16,7 @@ public class OpdrachtView {
     private Object klantVoorNaam;
     private Object bedrijf;
     private Object datum;
+    private Object werknemerId;
     private Object werkenemerNaam;
     private Object werknemerVoornaam;
     private Object voertuig;
@@ -23,19 +24,28 @@ public class OpdrachtView {
     private Object opdrachtklaar;
     private Object vrijveld;
 
-    public OpdrachtView(Object opdrachtid,Object klantId, Object klantNaam, Object klantVoorNaam, Object bedrijf, Object datum, Object werkenemerNaam, Object werknemerVoornaam, Object voertuig, Object oplegger, Object opdrachtklaar, Object vrijveld) {
+    public OpdrachtView(Object opdrachtid,Object klantId, Object klantNaam, Object klantVoorNaam, Object bedrijf, Object datum, Object werknemerId, Object werkenemerNaam, Object werknemerVoornaam, Object voertuig, Object oplegger, Object opdrachtklaar, Object vrijveld) {
         this.opdrachtid = opdrachtid;
         this.klantId = klantId;
         this.klantNaam = klantNaam;
         this.klantVoorNaam = klantVoorNaam;
         this.bedrijf = bedrijf;
         this.datum = datum;
+        this.werknemerId = werknemerId;
         this.werkenemerNaam = werkenemerNaam;
         this.werknemerVoornaam = werknemerVoornaam;
         this.voertuig = voertuig;
         this.oplegger = oplegger;
         this.opdrachtklaar = opdrachtklaar;
         this.vrijveld = vrijveld;
+    }
+
+    public Object getWerknemerId() {
+        return werknemerId;
+    }
+
+    public void setWerknemerId(Object werknemerId) {
+        this.werknemerId = werknemerId;
     }
 
     public Object getKlantId() {

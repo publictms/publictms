@@ -27,7 +27,7 @@ import org.springframework.stereotype.Repository;
 public class OpdrachtDAOImpl implements OpdrachtDAO{
     
     final String select = "select o.opdrachtid, k.klantid as \"klant id\"\n" +
-        ",k.naam as \"klant naam\" ,k.voornaam as \"klant voornaam\", k.bedrijf, o.datum, w.naam as \"werknemer naam\", w.voornaam as \"werknemer voornaam\", v.nummerplaat as \"voertuig\", op.nummerplaat as \"oplegger\", o.opdrachtklaar, o.vrijveld\n" +
+        ",k.naam as \"klant naam\" ,k.voornaam as \"klant voornaam\", k.bedrijf, o.datum, w.werknemerid as \"werknemer id\" ,w.naam as \"werknemer naam\", w.voornaam as \"werknemer voornaam\", v.nummerplaat as \"voertuig\", op.nummerplaat as \"oplegger\", o.opdrachtklaar, o.vrijveld\n" +
         "from opdracht o\n" +
         "inner join klant k\n" +
         "on o.klantid = k.klantid\n" +
@@ -39,7 +39,7 @@ public class OpdrachtDAOImpl implements OpdrachtDAO{
         "on o.opleggerid = op.opleggerid";
     
     final String selectWerknemer ="select o.opdrachtid, k.klantid as \"klant id\"\n" +
-        ",k.naam as \"klant naam\", k.voornaam as \"klant voornaam\", k.bedrijf, o.datum, w.naam as \"werknemer naam\", w.voornaam as \"werknemer voornaam\", v.nummerplaat as \"voertuig\", op.nummerplaat as \"oplegger\", o.opdrachtklaar, o.vrijveld\n" +
+        ",k.naam as \"klant naam\", k.voornaam as \"klant voornaam\", k.bedrijf, o.datum, w.werknemerid as \"werknemer id\" ,w.naam as \"werknemer naam\", w.voornaam as \"werknemer voornaam\", v.nummerplaat as \"voertuig\", op.nummerplaat as \"oplegger\", o.opdrachtklaar, o.vrijveld\n" +
         "from opdracht o\n" +
         "inner join klant k\n" +
         "on o.klantid = k.klantid\n" +
@@ -127,7 +127,7 @@ public class OpdrachtDAOImpl implements OpdrachtDAO{
         for(Iterator iter = list.iterator(); iter.hasNext();){
             Object[] row = (Object[]) iter.next();
             OpdrachtView actieView = 
-                    new OpdrachtView(row[0], row[1], row[2], row[3], row[4], row[5], row[6], row[7], row[8], row[9], row[10], row[11]);
+                    new OpdrachtView(row[0], row[1], row[2], row[3], row[4], row[5], row[6], row[7], row[8], row[9], row[10], row[11], row[12]);
             opdrachten.add(actieView);
         }
         return opdrachten;
