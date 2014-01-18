@@ -6,6 +6,7 @@ package be.pxl.publictms;
 
 import be.pxl.publictms.pojo.Oplegger;
 import be.pxl.publictms.service.OpleggerService;
+import be.pxl.publictms.view.OpleggerView;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -41,16 +42,9 @@ public class OpleggerController {
      * @param id
      * @return Oplegger
      */
-    @RequestMapping(value = "detail/{id}",method = RequestMethod.GET)
-    public @ResponseBody Oplegger getOplegger(@PathVariable("id") int id){
-        return opleggerService.getOplegger(id);
-    }
     @RequestMapping(value = "/{id}",method = RequestMethod.GET)
-    public @ResponseBody ResponseEntity<Oplegger> getOplegger(@PathVariable("id") int id, HttpServletRequest request, HttpServletResponse response){
-        Oplegger json = opleggerService.getOplegger(id);
-        HttpHeaders responseHeaders = new HttpHeaders();
-        responseHeaders.setContentType(MediaType.APPLICATION_JSON);
-        return new ResponseEntity<Oplegger>(json, responseHeaders, HttpStatus.CREATED);
+    public @ResponseBody OpleggerView getOplegger(@PathVariable("id") int id){
+        return opleggerService.getOplegger(id);
     }
     /**
      * Geeft een lijst terug met alle opleggers
@@ -58,7 +52,7 @@ public class OpleggerController {
      */
     @RequestMapping(value = "/",method = RequestMethod.GET)
     public @ResponseBody ResponseEntity<List> getOpleggers(HttpServletRequest request, HttpServletResponse response){
-        List<Oplegger> json = opleggerService.getOpleggers();
+        List json = opleggerService.getOpleggers();
         HttpHeaders responseHeaders = new HttpHeaders();
         responseHeaders.setContentType(MediaType.APPLICATION_JSON);
         return new ResponseEntity<List>(json, responseHeaders, HttpStatus.CREATED);
@@ -84,8 +78,8 @@ public class OpleggerController {
      * @param oplegger 
      */
     @RequestMapping(value = "/", method = RequestMethod.PUT)
-    public @ResponseBody void updateVoertuig(@RequestBody Oplegger oplegger) {
-        opleggerService.updateOplegger(oplegger);
+    public @ResponseBody void updateVoertuig(@RequestBody OpleggerView opleggerView) {
+        opleggerService.updateOplegger(opleggerView);
     }
     
     /**

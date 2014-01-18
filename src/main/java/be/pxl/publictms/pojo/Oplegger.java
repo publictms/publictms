@@ -29,12 +29,9 @@ public class Oplegger  implements java.io.Serializable {
     }
 
 	
-    public Oplegger(int opleggerid) {
-        this.opleggerid = opleggerid;
-    }
     public Oplegger(int opleggerid, int laadgegevens, String nummerplaat, Boolean actief, String omschrijving, String opleggertype, String bouwjaar, Date datumingebruik, Date datumuitgebruik, String chassisnummer, Boolean vergunning, Date vergunninggeldigtot, String pvg) {
        this.opleggerid = opleggerid;
-       this.laadgegevens = laadgegevens;
+        this.laadgegevens = laadgegevens;
        this.nummerplaat = nummerplaat;
        this.actief = actief;
        this.omschrijving = omschrijving;

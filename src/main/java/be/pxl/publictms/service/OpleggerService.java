@@ -5,6 +5,7 @@
 package be.pxl.publictms.service;
 
 import be.pxl.publictms.pojo.Oplegger;
+import be.pxl.publictms.view.OpleggerView;
 import java.util.List;
 
 /**
@@ -30,7 +31,7 @@ public interface OpleggerService {
      * @return      Lijst van data van de tabel Oplegger. Elk record wordt
      *              voorgesteld met POJO Oplegger.
      */
-    public List<Oplegger> getOpleggers();
+    public List getOpleggers();
     
     /**
      * Declaratie van de methode voor het ophalen van een record uit de tabel
@@ -39,7 +40,7 @@ public interface OpleggerService {
      * @param id    Het opleggerid van het record dat opgehaald moet worden.
      * @return      POJO van het opgehaalde data.
      */
-    public Oplegger getOplegger(int id);
+    public OpleggerView getOplegger(int id);
     
     /**
      * Declaratie van de methode voor het verwijderen van een record uit de
@@ -55,5 +56,5 @@ public interface OpleggerService {
      * 
      * @param oplegger     POJO van de geüpdate data.
      */
-    public void updateOplegger(Oplegger oplegger);
+    public void updateOplegger(OpleggerView opleggerView);
 }

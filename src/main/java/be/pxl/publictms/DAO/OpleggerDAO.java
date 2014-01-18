@@ -5,6 +5,7 @@
 package be.pxl.publictms.DAO;
 
 import be.pxl.publictms.pojo.Oplegger;
+import be.pxl.publictms.view.OpleggerView;
 import java.util.List;
 
 /**
@@ -22,13 +23,13 @@ public interface OpleggerDAO {
      * Geeft een lijst terug met alle opleggers 
      * @return List Oplegger
      */
-    public List<Oplegger> getOpleggers();
+    public List getOpleggers();
     /**
      * Geeft een specifieke oplegger terug aan de hand van zijn index.
      * @param id
      * @return Oplegger
      */
-    public Oplegger getOplegger(int id);
+    public OpleggerView getOplegger(int id);
     /**
      * Delete een oplegger aan de hand van zijn index.
      * @param id 
@@ -38,5 +39,5 @@ public interface OpleggerDAO {
      * Bewerkt een oplegger aan der hand zijn oplegger object.
      * @param oplegger 
      */
-    public void updateOplegger(Oplegger oplegger);
+    public void updateOplegger(OpleggerView opleggerView);
 }
