@@ -5,6 +5,7 @@
 package be.pxl.publictms.service;
 
 import be.pxl.publictms.pojo.Bericht;
+import be.pxl.publictms.view.BerichtView;
 import java.util.List;
 
 /**
@@ -32,7 +33,7 @@ public interface BerichtService {
      * @return      Lijst van data van de tabel Bericht. Elk record wordt
      *              voorgesteld met POJO Bericht.
      */
-    public List<Bericht> getBerichten(int id);
+    public List getBerichten(int id);
     
     /**
      * Declaratie van de methode voor het verwijderen van een record uit de

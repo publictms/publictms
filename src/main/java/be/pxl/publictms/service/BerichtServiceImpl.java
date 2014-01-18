@@ -6,6 +6,7 @@ package be.pxl.publictms.service;
 
 import be.pxl.publictms.DAO.BerichtDAO;
 import be.pxl.publictms.pojo.Bericht;
+import be.pxl.publictms.view.BerichtView;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -49,7 +50,7 @@ public class BerichtServiceImpl implements BerichtService{
      *              voorgesteld met POJO Bericht.
      */
     @Transactional
-    public List<Bericht> getBerichten(int id) {
+    public List getBerichten(int id) {
         return berichtDAO.getBerichten(id);
     }
 

@@ -6,6 +6,7 @@ package be.pxl.publictms;
 
 import be.pxl.publictms.pojo.Bericht;
 import be.pxl.publictms.service.BerichtService;
+import be.pxl.publictms.view.BerichtView;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -51,11 +52,8 @@ public class BerichtController {
      * @return List Bericht
      */
     @RequestMapping(value = "/{id}",method = RequestMethod.GET)
-    public @ResponseBody ResponseEntity<List> getBericht(@PathVariable("id") int id, HttpServletRequest request, HttpServletResponse response){
-        List<Bericht> json = berichtService.getBerichten(id);
-        HttpHeaders responseHeaders = new HttpHeaders();
-        responseHeaders.setContentType(MediaType.APPLICATION_JSON);
-        return new ResponseEntity<List>(json, responseHeaders, HttpStatus.CREATED);
+    public @ResponseBody List getBerichten(@PathVariable("id") int id){
+        return berichtService.getBerichten(id);
     }
     /**
      * Delete een bericht van de databank.

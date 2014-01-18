@@ -5,7 +5,6 @@
 package be.pxl.publictms.service;
 
 import be.pxl.publictms.pojo.Actie;
-import be.pxl.publictms.view.ActieView;
 import java.util.List;
 
 /**

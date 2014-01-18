@@ -23,7 +23,7 @@ public interface BerichtDAO {
      * @param id
      * @return List berichten
      */
-    public List<Bericht> getBerichten(int id);
+    public List getBerichten(int id);
     /**
      * 
      * Verwijdert een bericht waarvan de id overeenkomt.

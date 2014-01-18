@@ -6,6 +6,12 @@ package be.pxl.publictms.DAO;
 
 import be.pxl.publictms.hibernate.HibernateUtil;
 import be.pxl.publictms.pojo.Bericht;
+import be.pxl.publictms.view.BerichtView;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.Iterator;
 import java.util.List;
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -20,6 +26,10 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 public class BerichtDAOImpl implements BerichtDAO{
+    
+    final String getBerichten ="select b.berichtid, b.berichttitel, b.bericht, b.datum, "
+            + "g.gebruikersnaam as \"verzender\", b.ontvangerid, b.gelezen \n" +
+        "from bericht b inner join gebruiker g on b.gebruikerid = g.gebruikerid where b.ontvangerid = :id";
     
     @Autowired
     private SessionFactory sessionFactory;
@@ -36,6 +46,10 @@ public class BerichtDAOImpl implements BerichtDAO{
      */
     @Override
     public void send(Bericht bericht) {
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        Date date = new Date();
+       
+        bericht.setDatum(date);
         sessionFactory.getCurrentSession().save(bericht);
     }
     /**
@@ -44,11 +58,11 @@ public class BerichtDAOImpl implements BerichtDAO{
      * @return List berichten
      */
     @Override
-    public List<Bericht> getBerichten(int id) {
+    public List getBerichten(int id) {
         Session session = HibernateUtil.getSessionFactory().openSession();
-        Query query = session.createQuery("from Bericht where OntvangerId = :id");
-        query.setParameter("id", id);
-        return query.list();
+        Query query = session.createSQLQuery(getBerichten);
+        query.setParameter("id", id);    
+        return mapJson(query.list());
     }
     /**
      * 
@@ -61,5 +75,16 @@ public class BerichtDAOImpl implements BerichtDAO{
         if(null != bericht){
             sessionFactory.getCurrentSession().delete(bericht);
         }
-    }  
+    }
+    
+    public List<BerichtView> mapJson(List list){
+        List<BerichtView> berichten = new ArrayList<BerichtView>();
+        for(Iterator iter = list.iterator(); iter.hasNext();){
+            Object[] row = (Object[]) iter.next();
+            BerichtView berichtView;
+            berichtView = new BerichtView(row[0], row[1], row[2], row[3], row[4], row[5], row[6]);
+            berichten.add(berichtView);
+        }
+        return berichten;
+    }
 }

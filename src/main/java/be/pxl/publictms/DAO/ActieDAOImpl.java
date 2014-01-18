@@ -106,6 +106,7 @@ public class ActieDAOImpl implements ActieDAO{
      * @param klaar
      * @param id 
      */
+    @Override
     public void setKlaar(boolean klaar, int id){
         Actie actie = (Actie)sessionFactory.getCurrentSession().load(Actie.class, id);
         if(null != actie){

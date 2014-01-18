@@ -6,7 +6,6 @@ package be.pxl.publictms.service;
 
 import be.pxl.publictms.DAO.ActieDAO;
 import be.pxl.publictms.pojo.Actie;
-import be.pxl.publictms.view.ActieView;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
