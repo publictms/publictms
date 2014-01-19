@@ -22,7 +22,7 @@ public interface OpleggerService {
      * 
      * @param oplegger     POJO representatie van de data die toegevoegd wordt.
      */
-    public void addOplegger(Oplegger oplegger);
+    public void addOplegger(OpleggerView opleggerView);
     
     /**
      * Declaratie van de methode voor het ophalen van alle records uit de tabel

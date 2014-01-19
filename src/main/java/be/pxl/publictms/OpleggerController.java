@@ -62,8 +62,8 @@ public class OpleggerController {
      * @param oplegger 
      */
     @RequestMapping(value = "/", method = RequestMethod.POST, consumes = {"application/json"})
-    public @ResponseBody void addOplegger(@RequestBody Oplegger oplegger){
-        opleggerService.addOplegger(oplegger);
+    public @ResponseBody void addOplegger(@RequestBody OpleggerView opleggerView){
+        opleggerService.addOplegger(opleggerView);
     }
     /**
      * Verwijder een bestaande oplegger.

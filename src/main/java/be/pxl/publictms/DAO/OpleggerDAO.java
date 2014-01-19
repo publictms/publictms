@@ -18,7 +18,7 @@ public interface OpleggerDAO {
      * Voegt een oplegger toe.
      * @param oplegger 
      */
-    public void addOplegger(Oplegger oplegger);
+    public void addOplegger(OpleggerView opleggerView);
     /**
      * Geeft een lijst terug met alle opleggers 
      * @return List Oplegger

@@ -18,14 +18,14 @@ public class Adres  implements java.io.Serializable {
     public Adres() {
     }
 
-	
-    public Adres(int adresid, String postcode, String straat, short nummer, String land) {
-        this.adresid = adresid;
-        this.postcode = postcode;
-        this.straat = straat;
-        this.nummer = nummer;
-        this.land = land;
+    public Adres(String postcode, String straat, short nummer, String bus, String land) {
+       this.postcode = postcode;
+       this.straat = straat;
+       this.nummer = nummer;
+       this.bus = bus;
+       this.land = land;
     }
+
     public Adres(int adresid, String postcode, String straat, short nummer, String bus, String land) {
        this.adresid = adresid;
        this.postcode = postcode;

@@ -6,6 +6,7 @@ package be.pxl.publictms;
 
 import be.pxl.publictms.pojo.Transportadres;
 import be.pxl.publictms.service.TransportadresService;
+import be.pxl.publictms.view.TransportView;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -44,7 +45,7 @@ public class TransportadresController {
      */
     @RequestMapping(value = "/",method = RequestMethod.GET)
     public @ResponseBody ResponseEntity<List> getTransportadres(HttpServletRequest request, HttpServletResponse response){
-        List<Transportadres> json = transportadresService.getTransportadres();
+        List json = transportadresService.getTransportadres();
         HttpHeaders responseHeaders = new HttpHeaders();
         responseHeaders.setContentType(MediaType.APPLICATION_JSON);
         return new ResponseEntity<List>(json, responseHeaders, HttpStatus.CREATED);
@@ -56,19 +57,19 @@ public class TransportadresController {
      * @return Transportadres
      */
     @RequestMapping(value = "/{id}",method = RequestMethod.GET)
-    public @ResponseBody ResponseEntity<Transportadres> getTransportadressen(@PathVariable("id") int id, HttpServletRequest request, HttpServletResponse response){
-        Transportadres json = transportadresService.getTransportadres(id);
+    public @ResponseBody ResponseEntity<TransportView> getTransportadressen(@PathVariable("id") int id, HttpServletRequest request, HttpServletResponse response){
+        TransportView json = transportadresService.getTransportadres(id);
         HttpHeaders responseHeaders = new HttpHeaders();
         responseHeaders.setContentType(MediaType.APPLICATION_JSON);
-        return new ResponseEntity<Transportadres>(json, responseHeaders, HttpStatus.CREATED);
+        return new ResponseEntity<TransportView>(json, responseHeaders, HttpStatus.CREATED);
     }
     /**
      * Voeg een nieuw transport adres toe aan de databank.
      * @param transportadres 
      */
     @RequestMapping(value = "/", method = RequestMethod.POST)
-    public @ResponseBody void addTransportadres(@RequestBody Transportadres transportadres){
-        transportadresService.addTransportadres(transportadres);
+    public @ResponseBody void addTransportadres(@RequestBody TransportView transportView){
+        transportadresService.addTransportadres(transportView);
     }
     /**
      * Verwijder een bestaand transport adres uit de databank.
@@ -83,8 +84,8 @@ public class TransportadresController {
      * @param transportadres 
      */
     @RequestMapping(value = "/", method = RequestMethod.PUT)
-    public @ResponseBody void updateTransportadres(@RequestBody Transportadres transportadres){
-        transportadresService.updateTransportadres(transportadres);
+    public @ResponseBody void updateTransportadres(@RequestBody TransportView transportView){
+        transportadresService.updateTransportadres(transportView);
     }
     /**
      * Geeft foutmeldingen terug

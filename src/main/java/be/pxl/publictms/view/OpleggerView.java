@@ -75,7 +75,7 @@ public class OpleggerView {
     public void setLaadId(Object laadId) {
         this.laadId = laadId;
     }
-    
+
     public Object getNummerplaat() {
         return nummerplaat;
     }
@@ -235,7 +235,5 @@ public class OpleggerView {
     public void setMotorNorm(Object motorNorm) {
         this.motorNorm = motorNorm;
     }
-    
-    
     
 }

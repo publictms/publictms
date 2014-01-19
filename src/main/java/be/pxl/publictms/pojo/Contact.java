@@ -10,9 +10,9 @@ public class Contact  implements java.io.Serializable {
     
      private int contactid;
      private String email;
-     private Integer telefoon;
-     private Integer gsm;
-     private Integer fax;
+     private String telefoon;
+     private String gsm;
+     private String fax;
 
     public Contact() {
     }
@@ -21,7 +21,7 @@ public class Contact  implements java.io.Serializable {
     public Contact(int contactid) {
         this.contactid = contactid;
     }
-    public Contact(int contactid, String email, Integer telefoon, Integer gsm, Integer fax) {
+    public Contact(int contactid, String email, String telefoon, String gsm, String fax) {
        this.contactid = contactid;
        this.email = email;
        this.telefoon = telefoon;
@@ -43,25 +43,25 @@ public class Contact  implements java.io.Serializable {
     public void setEmail(String email) {
         this.email = email;
     }
-    public Integer getTelefoon() {
+    public String getTelefoon() {
         return this.telefoon;
     }
     
-    public void setTelefoon(Integer telefoon) {
+    public void setTelefoon(String telefoon) {
         this.telefoon = telefoon;
     }
-    public Integer getGsm() {
+    public String getGsm() {
         return this.gsm;
     }
     
-    public void setGsm(Integer gsm) {
+    public void setGsm(String gsm) {
         this.gsm = gsm;
     }
-    public Integer getFax() {
+    public String getFax() {
         return this.fax;
     }
     
-    public void setFax(Integer fax) {
+    public void setFax(String fax) {
         this.fax = fax;
     }
 }

@@ -11,14 +11,14 @@
         <property name="email" type="string">
             <column name="email" length="30" />
         </property>
-        <property name="telefoon" type="java.lang.Integer">
-            <column name="telefoon" />
+        <property name="telefoon" type="string">
+            <column name="telefoon" length="15" />
         </property>
-        <property name="gsm" type="java.lang.Integer">
-            <column name="gsm" />
+        <property name="gsm" type="string">
+            <column name="gsm" length="15"/>
         </property>
-        <property name="fax" type="java.lang.Integer">
-            <column name="fax" />
+        <property name="fax" type="string">
+            <column name="fax" length="15"/>
         </property>
     </class>
 </hibernate-mapping>

@@ -5,6 +5,7 @@
 package be.pxl.publictms.service;
 
 import be.pxl.publictms.pojo.Transportadres;
+import be.pxl.publictms.view.TransportView;
 import java.util.List;
 
 /**
@@ -21,13 +22,13 @@ public interface TransportadresService {
      * 
      * @param transportadres     POJO representatie van de data die toegevoegd wordt.
      */
-    public void addTransportadres(Transportadres transportadres);
+    public void addTransportadres(TransportView transportView);
     /**
      * Geeft een lijst met transportadressen
      * @param id
      * @return List<Transportadres>
      */
-    public List<Transportadres> getTransportadres();
+    public List getTransportadres();
     /**
      * Declaratie van de methode voor het ophalen van een record uit de tabel
      * Transportadres met een bepaald id.
@@ -35,7 +36,7 @@ public interface TransportadresService {
      * @param id    Het transportadresid van het record dat opgehaald moet worden.
      * @return      POJO van het opgehaalde data.
      */
-    public Transportadres getTransportadres(int id);
+    public TransportView getTransportadres(int id);
     
     /**
      * Declaratie van de methode voor het verwijderen van een record uit de
@@ -51,5 +52,5 @@ public interface TransportadresService {
      * 
      * @param transportadres     POJO van de geüpdate data.
      */
-    public void updateTransportadres(Transportadres transportadres);
+    public void updateTransportadres(TransportView transportView);
 }
