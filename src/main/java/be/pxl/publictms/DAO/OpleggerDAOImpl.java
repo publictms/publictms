@@ -83,7 +83,9 @@ public class OpleggerDAOImpl implements OpleggerDAO{
                 ex.toString();
             }try{
                 uitgebruik = new SimpleDateFormat("yyyy-MM-dd").parse(opleggerView.getUitGebruik().toString());
-            
+            }catch(Exception ex){
+                ex.toString();
+            }
             Oplegger oplegger = 
                     new Oplegger(500,laadgegevens.getLaadid(), opleggerView.getNummerplaat().toString(),
                     Boolean.parseBoolean(opleggerView.getActief().toString()), opleggerView.getOmschrijving().toString(),
@@ -94,9 +96,6 @@ public class OpleggerDAOImpl implements OpleggerDAO{
             }catch (Exception ex) {
             Logger.getLogger(OpleggerDAOImpl.class.getName()).log(Level.SEVERE, null, ex);
             }
-        }catch(Exception ex){
-            ex.toString();
-        }
     }
     /**
      * Geeft een lijst terug met alle opleggers 
