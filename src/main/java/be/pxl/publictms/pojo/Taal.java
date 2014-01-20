@@ -14,6 +14,10 @@ public class Taal  implements java.io.Serializable {
     public Taal() {
     }
 	
+    public Taal(String taalnaam) {
+        this.taalnaam = taalnaam;
+    }
+    
     public Taal(int taalid, String taalnaam) {
         this.taalid = taalid;
         this.taalnaam = taalnaam;

@@ -50,6 +50,19 @@ public class Persoonsinfo  implements java.io.Serializable {
        this.burgerstand = burgerstand;
        this.aantalkinderen = aantalkinderen;
     }
+    
+    public Persoonsinfo(String rijksregisternr, String siskaart, String identiteitsnr, String pensioennr, String geboorteplaats, Date geboortedatum, String iban, String bic, String burgerstand, int aantalkinderen) {
+       this.rijksregisternr = rijksregisternr;
+       this.siskaart = siskaart;
+       this.identiteitsnr = identiteitsnr;
+       this.pensioennr = pensioennr;
+       this.geboorteplaats = geboorteplaats;
+       this.geboortedatum = geboortedatum;
+       this.iban = iban;
+       this.bic = bic;
+       this.burgerstand = burgerstand;
+       this.aantalkinderen = aantalkinderen;
+    }
    
     public int getInfoid() {
         return this.infoid;

@@ -6,6 +6,7 @@ package be.pxl.publictms.service;
 
 import be.pxl.publictms.DAO.WerknemerDAO;
 import be.pxl.publictms.pojo.Werknemer;
+import be.pxl.publictms.view.WerknemerView;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -36,8 +37,8 @@ public class WerknemerServiceImpl implements WerknemerService{
      * @param werknemer     POJO representatie van de data die toegevoegd wordt.
      */
     @Transactional
-    public void addWerknemer(Werknemer werknemer) {
-        werknemerDAO.addWerknemer(werknemer);
+    public void addWerknemer(WerknemerView werknemerView) {
+        werknemerDAO.addWerknemer(werknemerView);
     }
 
     /**
@@ -53,7 +54,7 @@ public class WerknemerServiceImpl implements WerknemerService{
     }
 
     @Transactional
-    public Werknemer getWerknemer(int id) {
+    public WerknemerView getWerknemer(int id) {
         return werknemerDAO.getWerknemer(id);
     }
         
@@ -75,7 +76,7 @@ public class WerknemerServiceImpl implements WerknemerService{
      * @param werknemer     POJO van de geüpdate data.
      */
     @Transactional
-    public void updateWerknemer(Werknemer werknemer) {
+    public void updateWerknemer(WerknemerView werknemer) {
         werknemerDAO.updateWerknemer(werknemer);
     }
     

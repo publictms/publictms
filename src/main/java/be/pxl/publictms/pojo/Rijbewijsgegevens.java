@@ -44,6 +44,17 @@ public class Rijbewijsgegevens  implements java.io.Serializable {
        this.tachograafnr = tachograafnr;
        this.tachograaftot = tachograaftot;
     }
+    
+    public Rijbewijsgegevens(String rijbewijsnr, String rijbewijscat, Date geldigtot, Boolean adrcertificaat, Boolean medischattest, String tankkaartnr, String tachograafnr, int tachograaftot) {
+       this.rijbewijsnr = rijbewijsnr;
+       this.rijbewijscat = rijbewijscat;
+       this.geldigtot = geldigtot;
+       this.adrcertificaat = adrcertificaat;
+       this.medischattest = medischattest;
+       this.tankkaartnr = tankkaartnr;
+       this.tachograafnr = tachograafnr;
+       this.tachograaftot = tachograaftot;
+    }
    
     public int getRijbewijsid() {
         return this.rijbewijsid;

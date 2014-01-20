@@ -6,16 +6,11 @@ package be.pxl.publictms;
 
 import be.pxl.publictms.pojo.Werknemer;
 import be.pxl.publictms.service.WerknemerService;
+import be.pxl.publictms.view.WerknemerView;
 import java.util.List;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -37,6 +32,7 @@ public class WerknemerController {
     
     @Autowired
     private WerknemerService werknemerService;
+
     /**
      * Geeft een lijst met werknemers terug.
      * @return List Werknemer
@@ -50,7 +46,7 @@ public class WerknemerController {
      * @return List Werknemer
      */
     @RequestMapping(value = "/{id}",method = RequestMethod.GET)
-    public @ResponseBody Werknemer getWerknemer(@PathVariable("id") int id){
+    public @ResponseBody WerknemerView getWerknemer(@PathVariable("id") int id){
         return werknemerService.getWerknemer(id);
     }
     /**
@@ -58,9 +54,8 @@ public class WerknemerController {
      * @param werknemer 
      */
     @RequestMapping(value = "/", method = RequestMethod.POST)
-    public @ResponseBody void addWerknemer(@RequestBody Werknemer werknemer){
-        if(!werknemerService.getWerknemers().contains(werknemer))
-        werknemerService.addWerknemer(werknemer);
+    public @ResponseBody void addWerknemer(@RequestBody WerknemerView werknemerView){
+        werknemerService.addWerknemer(werknemerView);
     }
     /**
      * Delete een werknemer uit de databank.
@@ -68,17 +63,20 @@ public class WerknemerController {
      */
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
     public @ResponseBody void deleteWerknemer(@PathVariable("id") int id){
-        if(werknemerService.getWerknemers().contains(werknemerService.getWerknemers().get(id)))
         werknemerService.deleteWerknemer(id);
     }
     /**
      * Bewerk een bestaande werknemer uit de databank.
      * @param werknemer 
      */
-    @RequestMapping(value = "/", method = RequestMethod.PUT)
+    /*@RequestMapping(value = "/", method = RequestMethod.PUT)
     public @ResponseBody void updateWerknemer(@RequestBody Werknemer werknemer){
         if(werknemerService.getWerknemers().contains(werknemer))
         werknemerService.updateWerknemer(werknemer);
+    }*/
+    @RequestMapping(value = "/", method = RequestMethod.PUT)
+    public @ResponseBody void updateWerknemer(@RequestBody WerknemerView werknemerView){
+        werknemerService.updateWerknemer(werknemerView);
     }
     /**
      * Geeft foutmeldingen terug
