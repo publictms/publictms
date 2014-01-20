@@ -3,7 +3,7 @@
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <!-- Generated 19-dec-2013 20:16:02 by Hibernate Tools 3.2.1.GA -->
 <hibernate-mapping>
-    <class name="be.pxl.publictms.pojo.Contact" table="contact" schema="public">
+    <class name="be.pxl.publictms.pojo.Contact" table="contact" schema="public" dynamic-update="true" dynamic-insert="true">
         <id name="contactid" type="int">
             <column name="contactid" />
             <generator class="increment" />
@@ -11,13 +11,13 @@
         <property name="email" type="string">
             <column name="email" length="30" />
         </property>
-        <property name="telefoon" type="java.lang.Integer">
+        <property name="telefoon" type="string">
             <column name="telefoon" />
         </property>
-        <property name="gsm" type="java.lang.Integer">
+        <property name="gsm" type="string">
             <column name="gsm" />
         </property>
-        <property name="fax" type="java.lang.Integer">
+        <property name="fax" type="string">
             <column name="fax" />
         </property>
     </class>

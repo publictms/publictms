@@ -77,6 +77,15 @@ public class TaalDAOImpl implements TaalDAO{
      */
     @Override
     public void updateTaal(Taal taal) {
-        sessionFactory.getCurrentSession().update(taal);
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        Query query = session.createQuery("from Taal where TaalNaam = :naam");
+        query.setParameter("naam", taal.getTaalnaam());
+        //Taal zoekTaal = (Taal)query.list().get(0);
+        if(query.list().size() != 1){
+            sessionFactory.getCurrentSession().save(taal);
+            sessionFactory.getCurrentSession().update(taal);
+        }else{
+            sessionFactory.getCurrentSession().update(taal);
+        }
     }
 }

@@ -21,6 +21,7 @@ import org.springframework.stereotype.Repository;
 public class AdresDAOImpl implements AdresDAO{
     @Autowired
     private SessionFactory sessionFactory;
+    
     /**
      * zorgt ervoor dat sessionFactory wordt geïnitialiseerd
      * @param sessionFactory 

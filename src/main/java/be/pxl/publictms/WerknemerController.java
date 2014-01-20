@@ -4,11 +4,26 @@
  */
 package be.pxl.publictms;
 
+import be.pxl.publictms.hibernate.HibernateUtil;
+import be.pxl.publictms.pojo.Adres;
+import be.pxl.publictms.pojo.Contact;
+import be.pxl.publictms.pojo.Persoonsinfo;
+import be.pxl.publictms.pojo.Rijbewijsgegevens;
+import be.pxl.publictms.pojo.Taal;
 import be.pxl.publictms.pojo.Werknemer;
+import be.pxl.publictms.service.AdresService;
+import be.pxl.publictms.service.ContactService;
+import be.pxl.publictms.service.PersoonsinfoService;
+import be.pxl.publictms.service.RijbewijsgegevensService;
+import be.pxl.publictms.service.TaalService;
 import be.pxl.publictms.service.WerknemerService;
+import be.pxl.publictms.view.WerknemerCompleet;
+import be.pxl.publictms.view.WerknemerView;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import org.hibernate.Query;
+import org.hibernate.Session;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,6 +52,16 @@ public class WerknemerController {
     
     @Autowired
     private WerknemerService werknemerService;
+    @Autowired
+    private AdresService adresService;
+    @Autowired
+    private TaalService taalService;
+    @Autowired
+    private ContactService contactService;
+    @Autowired
+    private RijbewijsgegevensService rijbewijsgegevensService;
+    @Autowired
+    private PersoonsinfoService persoonsinfoService;
     /**
      * Geeft een lijst met werknemers terug.
      * @return List Werknemer
@@ -50,7 +75,7 @@ public class WerknemerController {
      * @return List Werknemer
      */
     @RequestMapping(value = "/{id}",method = RequestMethod.GET)
-    public @ResponseBody Werknemer getWerknemer(@PathVariable("id") int id){
+    public @ResponseBody WerknemerView getWerknemer(@PathVariable("id") int id){
         return werknemerService.getWerknemer(id);
     }
     /**
@@ -58,9 +83,8 @@ public class WerknemerController {
      * @param werknemer 
      */
     @RequestMapping(value = "/", method = RequestMethod.POST)
-    public @ResponseBody void addWerknemer(@RequestBody Werknemer werknemer){
-        if(!werknemerService.getWerknemers().contains(werknemer))
-        werknemerService.addWerknemer(werknemer);
+    public @ResponseBody void addWerknemer(@RequestBody WerknemerView werknemerView){
+        werknemerService.addWerknemer(werknemerView);
     }
     /**
      * Delete een werknemer uit de databank.
@@ -68,17 +92,20 @@ public class WerknemerController {
      */
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
     public @ResponseBody void deleteWerknemer(@PathVariable("id") int id){
-        if(werknemerService.getWerknemers().contains(werknemerService.getWerknemers().get(id)))
         werknemerService.deleteWerknemer(id);
     }
     /**
      * Bewerk een bestaande werknemer uit de databank.
      * @param werknemer 
      */
-    @RequestMapping(value = "/", method = RequestMethod.PUT)
+    /*@RequestMapping(value = "/", method = RequestMethod.PUT)
     public @ResponseBody void updateWerknemer(@RequestBody Werknemer werknemer){
         if(werknemerService.getWerknemers().contains(werknemer))
         werknemerService.updateWerknemer(werknemer);
+    }*/
+    @RequestMapping(value = "/", method = RequestMethod.PUT)
+    public @ResponseBody void updateWerknemer(@RequestBody WerknemerView werknemerView){
+        werknemerService.updateWerknemer(werknemerView);
     }
     /**
      * Geeft foutmeldingen terug

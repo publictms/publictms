@@ -50,11 +50,8 @@ public class KlantController {
      * @return List Klant
      */
     @RequestMapping(value = "/",method = RequestMethod.GET)
-    public @ResponseBody ResponseEntity<List> getKlanten(HttpServletRequest request, HttpServletResponse response){
-        List<Klant> json = klantService.getKlanten();
-        HttpHeaders responseHeaders = new HttpHeaders();
-        responseHeaders.setContentType(MediaType.APPLICATION_JSON);
-        return new ResponseEntity<List>(json, responseHeaders, HttpStatus.CREATED);
+    public @ResponseBody List<Klant> getKlanten(){
+        return klantService.getKlanten();
     }
     /**
      * Voeg een nieuwe klant toe.
@@ -62,7 +59,6 @@ public class KlantController {
      */
     @RequestMapping(value = "/", method = RequestMethod.POST)
     public @ResponseBody void addKlant(@RequestBody Klant klant){
-        if(!klantService.getKlanten().contains(klant))
         klantService.addKlant(klant);
     }
     /**
@@ -71,7 +67,6 @@ public class KlantController {
      */
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
     public @ResponseBody void deleteKlant(@PathVariable("id") int id){
-        if(klantService.getKlanten().contains(klantService.getKlant(id)))
         klantService.deleteKlant(id);
     }
     /**
@@ -80,7 +75,6 @@ public class KlantController {
      */
     @RequestMapping(value = "/", method = RequestMethod.PUT)
     public @ResponseBody void updateKlant(@RequestBody Klant klant){
-        if(klantService.getKlanten().contains(klant))
         klantService.updateKlant(klant);
     }
     /**

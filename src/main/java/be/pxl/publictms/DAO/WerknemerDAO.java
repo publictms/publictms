@@ -5,6 +5,7 @@
 package be.pxl.publictms.DAO;
 
 import be.pxl.publictms.pojo.Werknemer;
+import be.pxl.publictms.view.WerknemerView;
 import java.util.List;
 
 /**
@@ -17,7 +18,7 @@ public interface WerknemerDAO {
      * Voeg een werknemer toe aan de hand van een werknemer object.
      * @param werknemer 
      */
-    public void addWerknemer(Werknemer werknemer);
+    public void addWerknemer(WerknemerView werknemerView);
     /**
      * Geef een lijst terug met alle werknemers.
      * @return List Werknemer
@@ -28,7 +29,7 @@ public interface WerknemerDAO {
      * 
      * @return      Het record met werknemerid id.
      */
-    public Werknemer getWerknemer(int id);
+    public WerknemerView getWerknemer(int id);
     /**
      * Verwijder een werknemer aan de hand van zijn index.
      * @param id 
@@ -38,5 +39,5 @@ public interface WerknemerDAO {
      * Bewerk een werknemer aan de hand van een werknmer object.
      * @param werknemer 
      */
-    public void updateWerknemer(Werknemer werknemer);
+    public void updateWerknemer(WerknemerView werknemer);
 }
