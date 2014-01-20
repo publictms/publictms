@@ -4,7 +4,8 @@
  */
 package be.pxl.publictms.DAO;
 
-import be.pxl.publictms.pojo.Facturatie;
+import be.pxl.publictms.view.FacturatieObjectView;
+import be.pxl.publictms.view.FacturatieView;
 import java.util.List;
 
 /**
@@ -17,19 +18,19 @@ public interface FacturatieDAO {
      * Voegt een factuur toe.
      * @param factuur 
      */
-    public void addFacturatie(Facturatie factuur);
+    public void addFacturatie(FacturatieView factuur);
     /**
      * Aan de hand van een id geeft deze een facturatie object terug
      * @param id
      * @return facturatie
      */
-    public Facturatie getFacturatie(int id);
+    public FacturatieObjectView getFacturatie(int id);
     /**
      * Geef een list van facturatie objecten terug aan de hand van een id. Deze index is de klant id.
      * @param klantId
      * @return List facturatie 
      */
-    public List<Facturatie> getFacturen(int klantId);
+    public List getFacturen();
     /**
      * Delete een facturatie object aan de hand van zijn index.
      * @param id 
@@ -39,5 +40,5 @@ public interface FacturatieDAO {
      * Bewerkt een factuur aan de hand van een Facturatie object.
      * @param factuur 
      */
-    public void updateFactuur(Facturatie factuur);
+    public void updateFactuur(FacturatieView factuur);
 }

@@ -9,40 +9,109 @@ public class Klant  implements java.io.Serializable {
 
 
      private int klantid;
-     private int taal;
+     private int transportadresid;
      private String naam;
      private String voornaam;
      private String bedrijf;
-     private int adresid;
      private String website;
-     private int contactid;
-     private Boolean actief;
-
+     private String betalingscondities;
+     private String munt;
+     private String btwregime;
+     private String btwnummer;
+     private String ondernemingsnummer;
+     private String iban;
+     private String bic;
+     
     public Klant() {
     }
-
-	
-    public Klant(int klantid, int taal, String naam, String voornaam, String bedrijf, int adresid, int contactid) {
-        this.klantid = klantid;
-        this.taal = taal;
+    
+    public Klant(int transportadresid, String naam, String voornaam, String bedrijf, String website, String betalingscondities, String munt, String btwregime, String btwnummer, String ondernemingsnummer, String iban, String bic) {
+        this.transportadresid = transportadresid;
         this.naam = naam;
         this.voornaam = voornaam;
         this.bedrijf = bedrijf;
-        this.adresid = adresid;
-        this.contactid = contactid;
+        this.website = website;
+        this.betalingscondities = betalingscondities;
+        this.munt = munt;
+        this.btwregime = btwregime;
+        this.btwnummer = btwnummer;
+        this.ondernemingsnummer = ondernemingsnummer;
+        this.iban = iban;
+        this.bic = bic;
     }
-    public Klant(int klantid, int taal, String naam, String voornaam, String bedrijf, int adresid, String website, int contactid, Boolean actief) {
-       this.klantid = klantid;
-       this.taal = taal;
-       this.naam = naam;
-       this.voornaam = voornaam;
-       this.bedrijf = bedrijf;
-       this.adresid = adresid;
-       this.website = website;
-       this.contactid = contactid;
-       this.actief = actief;
+
+    public Klant(int klantid, int transportadresid, String naam, String voornaam, String bedrijf, String website, String betalingscondities, String munt, String btwregime, String btwnummer, String ondernemingsnummer, String iban, String bic) {
+        this.klantid = klantid;
+        this.transportadresid = transportadresid;
+        this.naam = naam;
+        this.voornaam = voornaam;
+        this.bedrijf = bedrijf;
+        this.website = website;
+        this.betalingscondities = betalingscondities;
+        this.munt = munt;
+        this.btwregime = btwregime;
+        this.btwnummer = btwnummer;
+        this.ondernemingsnummer = ondernemingsnummer;
+        this.iban = iban;
+        this.bic = bic;
     }
-   
+
+    public String getBetalingscondities() {
+        return betalingscondities;
+    }
+
+    public void setBetalingscondities(String betalingscondities) {
+        this.betalingscondities = betalingscondities;
+    }
+
+    public String getMunt() {
+        return munt;
+    }
+
+    public void setMunt(String munt) {
+        this.munt = munt;
+    }
+
+    public String getBtwregime() {
+        return btwregime;
+    }
+
+    public void setBtwregime(String btwregime) {
+        this.btwregime = btwregime;
+    }
+
+    public String getBtwnummer() {
+        return btwnummer;
+    }
+
+    public void setBtwnummer(String btwnummer) {
+        this.btwnummer = btwnummer;
+    }
+
+    public String getOndernemingsnummer() {
+        return ondernemingsnummer;
+    }
+
+    public void setOndernemingsnummer(String ondernemingsnummer) {
+        this.ondernemingsnummer = ondernemingsnummer;
+    }
+
+    public String getIban() {
+        return iban;
+    }
+
+    public void setIban(String iban) {
+        this.iban = iban;
+    }
+
+    public String getBic() {
+        return bic;
+    }
+
+    public void setBic(String bic) {
+        this.bic = bic;
+    }
+ 
     public int getKlantid() {
         return this.klantid;
     }
@@ -50,12 +119,12 @@ public class Klant  implements java.io.Serializable {
     public void setKlantid(int klantid) {
         this.klantid = klantid;
     }
-    public int getTaal() {
-        return this.taal;
+    public int getTransportadresid() {
+        return this.transportadresid;
     }
     
-    public void setTaal(int taal) {
-        this.taal = taal;
+    public void setTransportadresid(int transportadresid) {
+        this.transportadresid = transportadresid;
     }
     public String getNaam() {
         return this.naam;
@@ -78,33 +147,12 @@ public class Klant  implements java.io.Serializable {
     public void setBedrijf(String bedrijf) {
         this.bedrijf = bedrijf;
     }
-    public int getAdresid() {
-        return this.adresid;
-    }
-    
-    public void setAdresid(int adresid) {
-        this.adresid = adresid;
-    }
     public String getWebsite() {
         return this.website;
     }
     
     public void setWebsite(String website) {
         this.website = website;
-    }
-    public int getContactid() {
-        return this.contactid;
-    }
-    
-    public void setContactid(int contactid) {
-        this.contactid = contactid;
-    }
-    public Boolean getActief() {
-        return this.actief;
-    }
-    
-    public void setActief(Boolean actief) {
-        this.actief = actief;
     }
 }
 

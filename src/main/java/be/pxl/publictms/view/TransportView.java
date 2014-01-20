@@ -13,7 +13,6 @@ public class TransportView {
     private Object adresid;
     private Object taalid;
     private Object contactid;
-    private Object naam;
     private Object soortadres;
     private Object actief;
     private Object vensteruren;
@@ -31,38 +30,28 @@ public class TransportView {
     private Object gsm;
     private Object fax;
     private Object taalNaam;
-
+    private Object klantid;
+    private Object klantnaam;
+    private Object voornaam;
+    private Object bedrijf;
+    private Object website;
+    private Object betalingscondities;
+    private Object munt;
+    private Object btwregime;
+    private Object btwnummer;
+    private Object ondernemingsnummer;
+    private Object iban;
+    private Object bic;
+    
     public TransportView(){
         
     }
-    
-    public TransportView(Object naam, Object soortadres,Object actief, Object vensteruren, Object vrachtbeperking, Object chauffeursbeperking, Object vrijveld, Object straat, Object nummer, Object bus, Object land, Object postcode, Object gemeente, Object email, Object telefoon, Object gsm, Object fax, Object taalNaam) {
-        this.naam = naam;
-        this.soortadres = soortadres;
-        this.vensteruren = vensteruren;
-        this.actief = actief;
-        this.vrachtbeperking = vrachtbeperking;
-        this.chauffeursbeperking = chauffeursbeperking;
-        this.vrijveld = vrijveld;
-        this.straat = straat;
-        this.nummer = nummer;
-        this.bus = bus;
-        this.land = land;
-        this.postcode = postcode;
-        this.gemeente = gemeente;
-        this.email = email;
-        this.telefoon = telefoon;
-        this.gsm = gsm;
-        this.fax = fax;
-        this.taalNaam = taalNaam;
-    }
-    
-    public TransportView(Object transportid,Object adresid,Object contactid,Object taalid, Object naam, Object soortadres,Object actief, Object vensteruren, Object vrachtbeperking, Object chauffeursbeperking, Object vrijveld, Object straat, Object nummer, Object bus, Object land, Object postcode, Object gemeente, Object email, Object telefoon, Object gsm, Object fax, Object taalNaam) {
+
+    public TransportView(Object transportid, Object adresid, Object taalid, Object contactid, Object soortadres, Object actief, Object vensteruren, Object vrachtbeperking, Object chauffeursbeperking, Object vrijveld, Object straat, Object nummer, Object bus, Object land, Object postcode, Object gemeente, Object email, Object telefoon, Object gsm, Object fax, Object taalNaam, Object klantid, Object klantnaam, Object voornaam, Object bedrijf, Object website, Object betalingscondities, Object munt, Object btwregime, Object btwnummer, Object ondernemingsnummer, Object iban, Object bic) {
         this.transportid = transportid;
         this.adresid = adresid;
-        this.contactid = contactid;
         this.taalid = taalid;
-        this.naam = naam;
+        this.contactid = contactid;
         this.soortadres = soortadres;
         this.actief = actief;
         this.vensteruren = vensteruren;
@@ -80,8 +69,118 @@ public class TransportView {
         this.gsm = gsm;
         this.fax = fax;
         this.taalNaam = taalNaam;
+        this.klantid = klantid;
+        this.klantnaam = klantnaam;
+        this.voornaam = voornaam;
+        this.bedrijf = bedrijf;
+        this.website = website;
+        this.betalingscondities = betalingscondities;
+        this.munt = munt;
+        this.btwregime = btwregime;
+        this.btwnummer = btwnummer;
+        this.ondernemingsnummer = ondernemingsnummer;
+        this.iban = iban;
+        this.bic = bic;
     }
 
+    public Object getBetalingscondities() {
+        return betalingscondities;
+    }
+
+    public void setBetalingscondities(Object betalingscondities) {
+        this.betalingscondities = betalingscondities;
+    }
+
+    public Object getMunt() {
+        return munt;
+    }
+
+    public void setMunt(Object munt) {
+        this.munt = munt;
+    }
+
+    public Object getBtwregime() {
+        return btwregime;
+    }
+
+    public void setBtwregime(Object btwregime) {
+        this.btwregime = btwregime;
+    }
+
+    public Object getBtwnummer() {
+        return btwnummer;
+    }
+
+    public void setBtwnummer(Object btwnummer) {
+        this.btwnummer = btwnummer;
+    }
+
+    public Object getOndernemingsnummer() {
+        return ondernemingsnummer;
+    }
+
+    public void setOndernemingsnummer(Object ondernemingsnummer) {
+        this.ondernemingsnummer = ondernemingsnummer;
+    }
+
+    public Object getIban() {
+        return iban;
+    }
+
+    public void setIban(Object iban) {
+        this.iban = iban;
+    }
+
+    public Object getBic() {
+        return bic;
+    }
+
+    public void setBic(Object bic) {
+        this.bic = bic;
+    }
+    
+    public Object getKlantid() {
+        return klantid;
+    }
+
+    public void setKlantid(Object klantid) {
+        this.klantid = klantid;
+    }
+
+    public Object getKlantnaam() {
+        return klantnaam;
+    }
+
+    public void setKlantnaam(Object klantnaam) {
+        this.klantnaam = klantnaam;
+    }
+
+    public Object getVoornaam() {
+        return voornaam;
+    }
+
+    public void setVoornaam(Object voornaam) {
+        this.voornaam = voornaam;
+    }
+
+    public Object getBedrijf() {
+        return bedrijf;
+    }
+
+    public void setBedrijf(Object bedrijf) {
+        this.bedrijf = bedrijf;
+    }
+
+    public Object getWebsite() {
+        return website;
+    }
+
+    public void setWebsite(Object website) {
+        this.website = website;
+    }
+
+    
+    
     public Object getActief() {
         return actief;
     }
@@ -122,13 +221,6 @@ public class TransportView {
         this.transportid = transportid;
     }
 
-    public Object getNaam() {
-        return naam;
-    }
-
-    public void setNaam(Object naam) {
-        this.naam = naam;
-    }
 
     public Object getSoortadres() {
         return soortadres;

@@ -3,7 +3,7 @@
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <!-- Generated 19-dec-2013 20:16:02 by Hibernate Tools 3.2.1.GA -->
 <hibernate-mapping>
-    <class name="be.pxl.publictms.pojo.Transportadres" table="transportadres" schema="public">
+    <class name="be.pxl.publictms.pojo.Transportadres" table="transportadres" schema="public" dynamic-insert="true" dynamic-update="true">
         <id name="transportid" type="int">
             <column name="transportid" />
             <generator class="increment" />
@@ -16,9 +16,6 @@
         </property>
         <property name="taal" type="int">
             <column name="taal" />
-        </property>
-        <property name="naam" type="string">
-            <column name="naam" length="30" />
         </property>
         <property name="actief" type="java.lang.Boolean">
             <column name="actief" />

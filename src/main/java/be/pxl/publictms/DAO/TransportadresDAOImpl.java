@@ -7,9 +7,11 @@ package be.pxl.publictms.DAO;
 import be.pxl.publictms.hibernate.HibernateUtil;
 import be.pxl.publictms.pojo.Adres;
 import be.pxl.publictms.pojo.Contact;
+import be.pxl.publictms.pojo.Klant;
 import be.pxl.publictms.pojo.Postcode;
 import be.pxl.publictms.pojo.Taal;
 import be.pxl.publictms.pojo.Transportadres;
+import be.pxl.publictms.view.KlantView;
 import be.pxl.publictms.view.TransportView;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -27,31 +29,39 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 public class TransportadresDAOImpl implements TransportadresDAO{
-
-    private final String qryContacten = "select t.transportid,t.adresid,t.contactid,t.taal, t.naam, t.soortadres,t.actief, t.vensteruren, t.vrachtbeperking, t.chauffeursbeperking, t.vrijveld,\n" +
-"      a.straat, a.nummer, a.bus, a.land, a.postcode, p.gemeente,c.email, c.telefoon, c.gsm, c.fax, ta.taalnaam\n" +
-"        from transportadres t\n" +
-"           inner join adres a\n" +
-"            on a.adresid = t.adresid\n" +
-"            inner join contact c\n" +
-"            on t.contactid = c.contactid\n" +
-"            inner join taal ta\n" +
-"            on t.taal = ta.taalid\n" +
-"            inner join postcode p\n" +
-"            on p.postcode = a.postcode";
+    private final String qryContacten = "select t.transportid,t.adresid,t.contactid,t.taal, t.soortadres,t.actief, t.vensteruren, "
+            + "t.vrachtbeperking, t.chauffeursbeperking, t.vrijveld,\n" +
+            "a.straat, a.nummer, a.bus, a.land, a.postcode, p.gemeente,c.email, c.telefoon, c.gsm, c.fax, ta.taalnaam, k.klantid,\n" +
+            "k.naam as \"klantnaam\", k.voornaam as \"klantvoornaam\", k.bedrijf, k.website, k.betalingscondities, k.munt,\n" +
+            "k.btwregime, k.btwnummer, k.ondernemingsnummer, k.iban, k.bic\n" +
+            "from klant k \n" +
+            "inner join transportadres t\n" +
+            "on k.transportadresid = t.transportid\n" +
+            "inner join adres a\n" +
+            "on a.adresid = t.adresid\n" +
+            "inner join postcode p\n" +
+            "on p.postcode = a.postcode\n" +
+            "inner join contact c\n" +
+            "on t.contactid = c.contactid\n" +
+            "inner join taal ta\n" +
+            "on ta.taalid = taal";
     
-    private final String qryContact = "select t.transportid,t.adresid,t.contactid,t.taal, t.naam, t.soortadres,t.actief, t.vensteruren, t.vrachtbeperking, t.chauffeursbeperking, t.vrijveld,\n" +
-"      a.straat, a.nummer, a.bus, a.land, a.postcode, p.gemeente,c.email, c.telefoon, c.gsm, c.fax, ta.taalnaam\n" +
-"        from transportadres t\n" +
-"           inner join adres a\n" +
-"            on a.adresid = t.adresid\n" +
-"            inner join contact c\n" +
-"            on t.contactid = c.contactid\n" +
-"            inner join taal ta\n" +
-"            on t.taal = ta.taalid\n" +
-"            inner join postcode p\n" +
-"            on p.postcode = a.postcode\n" +
-"            where t.transportid =:id";
+    private final String qryContact = "select t.transportid,t.adresid,t.contactid,t.taal, "
+            + "t.soortadres,t.actief, t.vensteruren, t.vrachtbeperking, t.chauffeursbeperking, t.vrijveld,\n" +
+            "a.straat, a.nummer, a.bus, a.land, a.postcode, p.gemeente,c.email, c.telefoon, c.gsm, c.fax, ta.taalnaam, k.klantid,\n" +
+            "k.naam as \"klantnaam\", k.voornaam as \"klantvoornaam\", k.bedrijf, k.website, k.betalingscondities, k.munt,\n" +
+            "k.btwregime, k.btwnummer, k.ondernemingsnummer, k.iban, k.bic\n" +
+            "from klant k \n" +
+            "inner join transportadres t\n" +
+            "on k.transportadresid = t.transportid\n" +
+            "inner join adres a\n" +
+            "on a.adresid = t.adresid\n" +
+            "inner join postcode p\n" +
+            "on p.postcode = a.postcode\n" +
+            "inner join contact c\n" +
+            "on t.contactid = c.contactid\n" +
+            "inner join taal ta\n" +
+            "on ta.taalid = taal where k.klantid = :id";
 
     @Autowired
     private SessionFactory sessionFactory;
@@ -67,23 +77,24 @@ public class TransportadresDAOImpl implements TransportadresDAO{
      * @param transportadres 
      */
     @Override
-    public void addTransportadres(TransportView transportView) {
-        Postcode postcode = new Postcode(transportView.getPostcode().toString(), transportView.getGemeente().toString());
-        Adres adres  = mapNaarAdres(transportView);
-        Contact contact = mapNaarContact(transportView);
-        Taal taal = mapNaarTaal(transportView);
-        sessionFactory.getCurrentSession().saveOrUpdate(taal);
-        sessionFactory.getCurrentSession().save(adres);
-        sessionFactory.getCurrentSession().save(contact);
+    public void addTransportadres(KlantView klant) {
+        Postcode postcode = new Postcode(klant.getPostcode(), klant.getGemeente());
+        Taal taal = new Taal(klant.getTaalid(), klant.getTaalNaam());
         sessionFactory.getCurrentSession().saveOrUpdate(postcode);
-        System.out.println(adres.getAdresid()+" "+ contact.getContactid()+" "+ taal.getTaalid());
-        Transportadres transportadres = mapNaarTransportadres(transportView, adres.getAdresid(), contact.getContactid(), taal.getTaalid());
-        //Transportadres transportadres = mapNaarTransportadres(transportView, 2, 2, 2);
         sessionFactory.getCurrentSession().saveOrUpdate(taal);
-        sessionFactory.getCurrentSession().save(adres);
-        sessionFactory.getCurrentSession().save(contact);
-        sessionFactory.getCurrentSession().saveOrUpdate(postcode);
-        sessionFactory.getCurrentSession().save(transportadres);
+        Adres adres = new Adres(klant.getPostcode(), klant.getStraat(), klant.getNummer(), klant.getBus(), klant.getLand());
+        Contact contact = new Contact(klant.getEmail(), klant.getTelefoon(), klant.getGsm(), klant.getFax());
+        sessionFactory.getCurrentSession().saveOrUpdate(adres);
+        sessionFactory.getCurrentSession().saveOrUpdate(contact);
+        Transportadres transportAdres = new Transportadres(adres.getAdresid(), 
+                contact.getContactid(), taal.getTaalid(), klant.isActief(), klant.getSoortadres(),
+                klant.getVensteruren(), klant.getVrachtbeperking(), klant.getChauffeursbeperking(),
+                klant.getVrijveld());
+        sessionFactory.getCurrentSession().save(transportAdres);
+        Klant klnt = new Klant(transportAdres.getTransportid(), klant.getKlantnaam(),
+                klant.getVoornaam(), klant.getBedrijf(), klant.getWebsite(), klant.getBetalingscondities(), 
+                klant.getMunt(), klant.getBtwregime(), klant.getBtwnummer(), klant.getOndernemingsnummer(), klant.getIban(), klant.getBic());
+        sessionFactory.getCurrentSession().save(klnt); 
     }
     /**
      * Geeft een lijst met transportadressen
@@ -114,34 +125,50 @@ public class TransportadresDAOImpl implements TransportadresDAO{
      */
     @Override
     public void deleteTransportadres(int id) {
-        Transportadres transportadres = (Transportadres)sessionFactory.getCurrentSession().load(Transportadres.class, id);
-        if(null != transportadres){
-            sessionFactory.getCurrentSession().delete(transportadres);
-            Contact contact = (Contact)sessionFactory.getCurrentSession().load(Contact.class, transportadres.getContactid());
-            Adres adres = (Adres)sessionFactory.getCurrentSession().load(Adres.class, transportadres.getAdresid());
-            sessionFactory.getCurrentSession().delete(contact);
-            sessionFactory.getCurrentSession().delete(adres);
-        }
+        Klant klant = (Klant)sessionFactory.getCurrentSession().load(Klant.class, id);
+        int transportid = klant.getTransportadresid();
+        System.out.println("id" + transportid);
+        sessionFactory.getCurrentSession().delete(klant);
+        Transportadres transportAdres = (Transportadres)sessionFactory.getCurrentSession().load(Transportadres.class, transportid);
+        int contactid = transportAdres.getAdresid(), adresid = transportAdres.getAdresid();
+        sessionFactory.getCurrentSession().delete(transportAdres);
+        System.out.println(transportAdres.getTaal() + transportAdres.getChauffeursbeperking());
+        System.out.println("ids: " +contactid +" " + adresid +" " +transportid);
+        Contact contact = (Contact)sessionFactory.getCurrentSession().load(Contact.class, contactid);
+        Adres adres = (Adres)sessionFactory.getCurrentSession().load(Adres.class, adresid);
+        sessionFactory.getCurrentSession().delete(contact);
+        sessionFactory.getCurrentSession().delete(adres);
     }
     /**
      * Bewerk een transport adres aan de hand van een Transportadres object.
      * @param transportadres 
      */
     @Override
-    public void updateTransportadres(TransportView transportView) {
-            Postcode postcode = (Postcode)sessionFactory.getCurrentSession().load(Postcode.class, transportView.getPostcode().toString());
-            postcode.setGemeente(transportView.getGemeente().toString());
-            Adres adres  = mapNaarAdres(transportView);
-            Contact contact = mapNaarContact(transportView);
-            Taal taal = mapNaarTaal(transportView);
-            Transportadres transportadres = mapNaarTransportadres(transportView, adres.getAdresid(), contact.getContactid(), taal.getTaalid());
-            sessionFactory.getCurrentSession().update(taal);
-            sessionFactory.getCurrentSession().update(adres);
-            sessionFactory.getCurrentSession().update(contact);
-            sessionFactory.getCurrentSession().update(postcode);
-            sessionFactory.getCurrentSession().update(transportadres);
+    public void updateTransportadres(KlantView klant) {
+        Adres adres = new Adres(klant.getAdresid(),klant.getPostcode(), klant.getStraat(), klant.getNummer(), klant.getBus(), klant.getLand());
+        Contact contact = new Contact(klant.getContactid(),klant.getEmail(), klant.getTelefoon(), klant.getGsm(), klant.getFax());
+        sessionFactory.getCurrentSession().update(adres);
+        sessionFactory.getCurrentSession().update(contact);
+        Transportadres transportAdres = new Transportadres(klant.getTransportid(), klant.getAdresid(), //taalid!!
+                klant.getContactid(), 1, klant.isActief(), klant.getSoortadres(),
+                klant.getVensteruren(), klant.getVrachtbeperking(), klant.getChauffeursbeperking(),
+                klant.getVrijveld());
+        System.out.println(klant.getTransportid()+" " + klant.getAdresid()+" "+klant.getContactid() +" " +klant.getTaalid());
+        System.out.println(transportAdres.getTransportid()+" " + adres.getAdresid()+" "+contact.getContactid());
+        sessionFactory.getCurrentSession().update(transportAdres);
+        Klant klnt = new Klant(klant.getKlantid(), 
+        klant.getTransportid(), klant.getKlantnaam(), 
+        klant.getVoornaam(), klant.getBedrijf(), 
+        klant.getWebsite(), klant.getBetalingscondities(), 
+        klant.getMunt(), klant.getBtwregime(), klant.getBtwnummer(), 
+        klant.getOndernemingsnummer(), klant.getIban(), klant.getBic()); 
+        sessionFactory.getCurrentSession().update(klnt);
     }
-    
+    /**
+     * Mapped een hibernate query naar een objecten klasse
+     * @param list
+     * @return List<TransportView>
+     */
     public List<TransportView> mapJson(List list){
         List<TransportView> transportViews = new ArrayList<TransportView>();
         for(Iterator iter = list.iterator(); iter.hasNext();){
@@ -150,69 +177,10 @@ public class TransportadresDAOImpl implements TransportadresDAO{
                     new TransportView(row[0],
                     row[1],row[2],row[3], row[4], row[5],row[6], row[7], row[8], 
                     row[9], row[10], row[11], row[12], row[13], 
-                    row[14], row[15],row[16], row[17], row[18], row[19], row[20], row[21]);
+                    row[14], row[15],row[16], row[17], row[18], row[19], row[20], row[21], 
+                    row[22], row[23], row[24],row[25], row[26], row[27], row[28], row[29], row[30], row[31], row[32]);
             transportViews.add(transportView);
         }
         return transportViews;
-    }
-    public Adres mapNaarAdres(TransportView transportView){
-        int adresid = 0;
-        try{
-            adresid = Integer.parseInt(transportView.getAdresid().toString());
-        }catch(Exception ex){
-            ex.toString();
-        }
-        return new Adres(adresid, 
-        transportView.getPostcode().toString(), 
-        transportView.getStraat().toString(), 
-        Short.parseShort(transportView.getNummer().toString()), 
-        transportView.getBus().toString(), 
-        transportView.getLand().toString());
-    }
-    public Contact mapNaarContact(TransportView transportView){
-        int contactId = 0;
-        try{
-            contactId = Integer.parseInt(transportView.getContactid().toString());
-        }catch(Exception ex){
-            ex.toString();
-        }
-        return new Contact(contactId, 
-        transportView.getEmail().toString(), 
-        transportView.getTelefoon().toString(), 
-        transportView.getGsm().toString(), 
-        transportView.getFax().toString());
-    }
-    public Taal mapNaarTaal(TransportView transportView){
-        int taalId = 0;
-        try{
-            taalId = Integer.parseInt(transportView.getTaalid().toString());
-        }catch(Exception ex){
-            ex.toString();
-        }
-        return new Taal(taalId, 
-                transportView.getTaalNaam().toString());
-    }
-    public Transportadres mapNaarTransportadres(TransportView transportView, int adresid, int contactid, int taalid){
-        return new Transportadres(adresid, contactid, taalid, 
-        transportView.getNaam().toString(), 
-        Boolean.parseBoolean(transportView.getActief().toString()),
-        transportView.getSoortadres().toString(), 
-        transportView.getVensteruren().toString(), 
-        transportView.getVrachtbeperking().toString(), 
-        transportView.getChauffeursbeperking().toString(), 
-        transportView.getVrijveld().toString());
-    }
-    public Transportadres mapNaarTransportadres(TransportView transportView){
-        return new Transportadres(Integer.parseInt(transportView.getTransportid().toString()), 
-        Integer.parseInt(transportView.getAdresid().toString()), 
-        Integer.parseInt(transportView.getContactid().toString()), 
-        Integer.parseInt(transportView.getTaalid().toString()), 
-        transportView.getNaam().toString(), 
-        Boolean.parseBoolean(transportView.getActief().toString()),
-        transportView.getSoortadres().toString(), 
-        transportView.getVensteruren().toString(), 
-        transportView.getVrachtbeperking().toString(), 
-        transportView.getChauffeursbeperking().toString(), 
-        transportView.getVrijveld().toString());
     }
 }

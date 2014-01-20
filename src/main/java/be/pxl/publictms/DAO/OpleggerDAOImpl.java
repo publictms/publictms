@@ -86,6 +86,7 @@ public class OpleggerDAOImpl implements OpleggerDAO{
             }catch(Exception ex){
                 ex.toString();
             }
+            
             Oplegger oplegger = 
                     new Oplegger(500,laadgegevens.getLaadid(), opleggerView.getNummerplaat().toString(),
                     Boolean.parseBoolean(opleggerView.getActief().toString()), opleggerView.getOmschrijving().toString(),
@@ -164,7 +165,6 @@ public class OpleggerDAOImpl implements OpleggerDAO{
             }catch(Exception ex){
                 ex.toString();
             }
-            
             Oplegger oplegger = 
                     new Oplegger(Integer.parseInt(opleggerView.getOpleggerid().toString()),
                     laadgegevens.getLaadid(), opleggerView.getNummerplaat().toString(),

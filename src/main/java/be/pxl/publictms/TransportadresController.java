@@ -6,6 +6,7 @@ package be.pxl.publictms;
 
 import be.pxl.publictms.pojo.Transportadres;
 import be.pxl.publictms.service.TransportadresService;
+import be.pxl.publictms.view.KlantView;
 import be.pxl.publictms.view.TransportView;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
@@ -68,8 +69,8 @@ public class TransportadresController {
      * @param transportadres 
      */
     @RequestMapping(value = "/", method = RequestMethod.POST)
-    public @ResponseBody void addTransportadres(@RequestBody TransportView transportView){
-        transportadresService.addTransportadres(transportView);
+    public @ResponseBody void addTransportadres(@RequestBody KlantView klant){
+        transportadresService.addTransportadres(klant);
     }
     /**
      * Verwijder een bestaand transport adres uit de databank.
@@ -84,8 +85,8 @@ public class TransportadresController {
      * @param transportadres 
      */
     @RequestMapping(value = "/", method = RequestMethod.PUT)
-    public @ResponseBody void updateTransportadres(@RequestBody TransportView transportView){
-        transportadresService.updateTransportadres(transportView);
+    public @ResponseBody void updateTransportadres(@RequestBody KlantView klant){
+        transportadresService.updateTransportadres(klant);
     }
     /**
      * Geeft foutmeldingen terug

@@ -11,39 +11,17 @@ public class Facturatie  implements java.io.Serializable {
 
 
      private int facturatieid;
-     private int adres;
      private int klant;
-     private String munt;
-     private String btwregime;
-     private String btwnummer;
-     private String ondernemingsnummer;
-     private String iban;
-     private String bic;
-     private String betalingscondities;
-     private String vrijveld;
+     private Double korting;
      private Double prijsgegeven;
 
     public Facturatie() {
     }
 
-	
-    public Facturatie(int facturatieid, int adres, int klant) {
-        this.facturatieid = facturatieid;
-        this.adres = adres;
-        this.klant = klant;
-    }
-    public Facturatie(int facturatieid, int adres, int klant, String munt, String btwregime, String btwnummer, String ondernemingsnummer, String iban, String bic, String betalingscondities, String vrijveld, Double prijsgegeven) {
+    public Facturatie(int facturatieid, int klant,double korting, Double prijsgegeven) {
        this.facturatieid = facturatieid;
-       this.adres = adres;
        this.klant = klant;
-       this.munt = munt;
-       this.btwregime = btwregime;
-       this.btwnummer = btwnummer;
-       this.ondernemingsnummer = ondernemingsnummer;
-       this.iban = iban;
-       this.bic = bic;
-       this.betalingscondities = betalingscondities;
-       this.vrijveld = vrijveld;
+       this.korting = korting;
        this.prijsgegeven = prijsgegeven;
     }
    
@@ -54,75 +32,12 @@ public class Facturatie  implements java.io.Serializable {
     public void setFacturatieid(int facturatieid) {
         this.facturatieid = facturatieid;
     }
-    public int getAdres() {
-        return this.adres;
-    }
-    
-    public void setAdres(int adres) {
-        this.adres = adres;
-    }
     public int getKlant() {
         return this.klant;
     }
     
     public void setKlant(int klant) {
         this.klant = klant;
-    }
-    public String getMunt() {
-        return this.munt;
-    }
-    
-    public void setMunt(String munt) {
-        this.munt = munt;
-    }
-    public String getBtwregime() {
-        return this.btwregime;
-    }
-    
-    public void setBtwregime(String btwregime) {
-        this.btwregime = btwregime;
-    }
-    public String getBtwnummer() {
-        return this.btwnummer;
-    }
-    
-    public void setBtwnummer(String btwnummer) {
-        this.btwnummer = btwnummer;
-    }
-    public String getOndernemingsnummer() {
-        return this.ondernemingsnummer;
-    }
-    
-    public void setOndernemingsnummer(String ondernemingsnummer) {
-        this.ondernemingsnummer = ondernemingsnummer;
-    }
-    public String getIban() {
-        return this.iban;
-    }
-    
-    public void setIban(String iban) {
-        this.iban = iban;
-    }
-    public String getBic() {
-        return this.bic;
-    }
-    
-    public void setBic(String bic) {
-        this.bic = bic;
-    }
-    public String getBetalingscondities() {
-        return this.betalingscondities;
-    }
-    
-    public void setBetalingscondities(String betalingscondities) {
-        this.betalingscondities = betalingscondities;
-    }
-    public String getVrijveld() {
-        return this.vrijveld;
-    }
-    
-    public void setVrijveld(String vrijveld) {
-        this.vrijveld = vrijveld;
     }
     public Double getPrijsgegeven() {
         return this.prijsgegeven;
@@ -132,9 +47,14 @@ public class Facturatie  implements java.io.Serializable {
         this.prijsgegeven = prijsgegeven;
     }
 
+    public Double getKorting() {
+        return korting;
+    }
 
-
-
+    public void setKorting(Double korting) {
+        this.korting = korting;
+    }
+    
 }
 
 

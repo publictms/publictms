@@ -30,7 +30,7 @@ public interface KlantService {
      * @return      Lijst van data van de tabel Klant. Elk record wordt
      *              voorgesteld met POJO Klant.
      */
-    public List<Klant> getKlanten();
+    public List getKlanten();
     
     /**
      * Declaratie van de methode voor het ophalen van een record uit de tabel

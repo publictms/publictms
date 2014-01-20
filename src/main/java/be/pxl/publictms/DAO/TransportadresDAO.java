@@ -4,7 +4,7 @@
  */
 package be.pxl.publictms.DAO;
 
-import be.pxl.publictms.pojo.Transportadres;
+import be.pxl.publictms.view.KlantView;
 import be.pxl.publictms.view.TransportView;
 import java.util.List;
 
@@ -18,7 +18,7 @@ public interface TransportadresDAO {
      * Voeg een nieuw transport adres toe.
      * @param transportadres 
      */
-    public void addTransportadres(TransportView transportView);
+    public void addTransportadres(KlantView transportView);
     /**
      * Geeft een lijst met transportadressen
      * @param id
@@ -40,5 +40,5 @@ public interface TransportadresDAO {
      * Bewerk een transport adres aan de hand van een Transportadres object.
      * @param transportadres 
      */
-    public void updateTransportadres(TransportView transportView);
+    public void updateTransportadres(KlantView klant);
 }

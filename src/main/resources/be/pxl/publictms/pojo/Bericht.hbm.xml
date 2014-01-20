@@ -3,7 +3,7 @@
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <!-- Generated 19-dec-2013 20:16:02 by Hibernate Tools 3.2.1.GA -->
 <hibernate-mapping>
-    <class name="be.pxl.publictms.pojo.Bericht" table="bericht" schema="public">
+    <class name="be.pxl.publictms.pojo.Bericht" table="bericht" schema="public" dynamic-insert="true" dynamic-update="true">
         <id name="berichtid" type="int">
             <column name="berichtid" />
             <generator class="increment" />

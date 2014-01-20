@@ -6,6 +6,8 @@ package be.pxl.publictms;
 
 import be.pxl.publictms.pojo.Facturatie;
 import be.pxl.publictms.service.FacturatieService;
+import be.pxl.publictms.view.FacturatieObjectView;
+import be.pxl.publictms.view.FacturatieView;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -41,7 +43,7 @@ public class FacturatieController {
      * @param factuur 
      */
     @RequestMapping(value = "/",method = RequestMethod.POST)
-    public @ResponseBody void add(@RequestBody Facturatie factuur){
+    public @ResponseBody void add(@RequestBody FacturatieView factuur){
         facturatieService.addFacturatie(factuur);
     }
     /**
@@ -49,7 +51,7 @@ public class FacturatieController {
      * @param factuur 
      */
     @RequestMapping(value = "/",method = RequestMethod.PUT)
-    public @ResponseBody void update(@RequestBody Facturatie factuur){
+    public @ResponseBody void update(@RequestBody FacturatieView factuur){
         facturatieService.updateFactuur(factuur);
     }
     /**
@@ -58,20 +60,20 @@ public class FacturatieController {
      * @return Facturatie
      */
     @RequestMapping(value = "/{id}",method = RequestMethod.GET)
-    public @ResponseBody ResponseEntity<Facturatie> getFacturatie(@PathVariable("id") int id, HttpServletRequest request, HttpServletResponse response){
-        Facturatie json = facturatieService.getFacturatie(id);
+    public @ResponseBody ResponseEntity<FacturatieObjectView> getFacturatie(@PathVariable("id") int id, HttpServletRequest request, HttpServletResponse response){
+        FacturatieObjectView json = facturatieService.getFacturatie(id);
         HttpHeaders responseHeaders = new HttpHeaders();
         responseHeaders.setContentType(MediaType.APPLICATION_JSON);
-        return new ResponseEntity<Facturatie>(json, responseHeaders, HttpStatus.CREATED);
+        return new ResponseEntity<FacturatieObjectView>(json, responseHeaders, HttpStatus.CREATED);
     }
     /**
      * Geeft een lijst facturen terug aan de hand van een klant index.
      * @param id
      * @return List Facturatie 
      */
-    @RequestMapping(value = "factuur/{id}", method = RequestMethod.GET)
-    public @ResponseBody List<Facturatie> getFacturen(@PathVariable("id") int id){
-        return facturatieService.getFacturen(id);
+    @RequestMapping(value = "/", method = RequestMethod.GET)
+    public @ResponseBody List getFacturen(){
+        return facturatieService.getFacturen();
     }
     /**
      * Verwijder een factuur op de databank.

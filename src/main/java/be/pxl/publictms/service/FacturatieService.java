@@ -5,6 +5,8 @@
 package be.pxl.publictms.service;
 
 import be.pxl.publictms.pojo.Facturatie;
+import be.pxl.publictms.view.FacturatieObjectView;
+import be.pxl.publictms.view.FacturatieView;
 import java.util.List;
 
 /**
@@ -21,7 +23,7 @@ public interface FacturatieService {
      * 
      * @param factuur     POJO representatie van de data die toegevoegd wordt.
      */
-    public void addFacturatie(Facturatie factuur);
+    public void addFacturatie(FacturatieView factuur);
     
     /**
      * Declaratie van de methode voor het ophalen van een record uit de tabel
@@ -30,7 +32,7 @@ public interface FacturatieService {
      * @param id    Het factuurid van het record dat opgehaald moet worden.
      * @return      POJO van het opgehaalde data.
      */
-    public Facturatie getFacturatie(int id);
+    public FacturatieObjectView getFacturatie(int id);
     
     /**
      * Declaratie van de methode voor het ophalen van een aantal record 
@@ -40,7 +42,7 @@ public interface FacturatieService {
      * @return      Lijst van data van de tabel Facturatie. Elk record wordt
      *              voorgesteld met POJO Facturatie.
      */
-    public List<Facturatie> getFacturen(int klantId);
+    public List getFacturen();
     
     /**
      * Declaratie van de methode voor het verwijderen van een record uit de
@@ -56,5 +58,5 @@ public interface FacturatieService {
      * 
      * @param factuur     POJO van de geüpdate data.
      */
-    public void updateFactuur(Facturatie factuur);
+    public void updateFactuur(FacturatieView factuur);
 }

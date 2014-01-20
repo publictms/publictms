@@ -5,6 +5,7 @@
 package be.pxl.publictms.service;
 
 import be.pxl.publictms.pojo.Transportadres;
+import be.pxl.publictms.view.KlantView;
 import be.pxl.publictms.view.TransportView;
 import java.util.List;
 
@@ -22,7 +23,7 @@ public interface TransportadresService {
      * 
      * @param transportadres     POJO representatie van de data die toegevoegd wordt.
      */
-    public void addTransportadres(TransportView transportView);
+    public void addTransportadres(KlantView klant);
     /**
      * Geeft een lijst met transportadressen
      * @param id
@@ -52,5 +53,5 @@ public interface TransportadresService {
      * 
      * @param transportadres     POJO van de geüpdate data.
      */
-    public void updateTransportadres(TransportView transportView);
+    public void updateTransportadres(KlantView klant);
 }

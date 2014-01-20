@@ -3,13 +3,13 @@
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <!-- Generated 19-dec-2013 20:16:02 by Hibernate Tools 3.2.1.GA -->
 <hibernate-mapping>
-    <class name="be.pxl.publictms.pojo.Klant" table="klant" schema="public">
+    <class name="be.pxl.publictms.pojo.Klant" table="klant" schema="public" dynamic-insert="true" dynamic-update="true">
         <id name="klantid" type="int">
             <column name="klantid" />
             <generator class="increment" />
         </id>
-        <property name="taal" type="int">
-            <column name="taal" not-null="false" />
+        <property name="transportadresid" type="int">
+            <column name="transportadresid" not-null="false" />
         </property>
         <property name="naam" type="string">
             <column name="naam" length="30" not-null="true" />
@@ -20,17 +20,29 @@
         <property name="bedrijf" type="string">
             <column name="bedrijf" length="30" not-null="true" />
         </property>
-        <property name="adresid" type="int">
-            <column name="adresid" not-null="true" />
-        </property>
         <property name="website" type="string">
             <column name="website" length="60" />
         </property>
-        <property name="contactid" type="int">
-            <column name="contactid" not-null="true" />
+        <property name="betalingscondities" type="string">
+            <column name="betalingscondities" length="300" />
         </property>
-        <property name="actief" type="java.lang.Boolean">
-            <column name="actief" />
+        <property name="munt" type="string">
+            <column name="munt" length="30" />
+        </property>
+        <property name="btwregime" type="string">
+            <column name="btwregime" length="300" />
+        </property>
+        <property name="btwnummer" type="string">
+            <column name="btwnummer" length="30" />
+        </property>
+        <property name="ondernemingsnummer" type="string">
+            <column name="ondernemingsnummer" length="30" />
+        </property>
+        <property name="iban" type="string">
+            <column name="iban" length="34" />
+        </property>
+        <property name="bic" type="string">
+            <column name="bic" length="30" />
         </property>
     </class>
 </hibernate-mapping>
