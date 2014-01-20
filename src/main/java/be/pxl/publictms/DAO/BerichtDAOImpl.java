@@ -46,9 +46,7 @@ public class BerichtDAOImpl implements BerichtDAO{
      */
     @Override
     public void send(Bericht bericht) {
-        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         Date date = new Date();
-       
         bericht.setDatum(date);
         sessionFactory.getCurrentSession().save(bericht);
     }

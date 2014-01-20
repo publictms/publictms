@@ -12,7 +12,6 @@ public class Transportadres  implements java.io.Serializable {
      private int adresid;
      private int contactid;
      private int taal;
-     private String naam;
      private Boolean actief;
      private String soortadres;
      private String vensteruren;
@@ -24,17 +23,22 @@ public class Transportadres  implements java.io.Serializable {
     }
 
 	
-    public Transportadres(int transportid, int adresid, int contactid) {
-        this.transportid = transportid;
-        this.adresid = adresid;
-        this.contactid = contactid;
+    public Transportadres(int adresid, int contactid, int taal, Boolean actief, String soortadres, String vensteruren, String vrachtbeperking, String chauffeursbeperking, String vrijveld) {
+       this.adresid = adresid;
+       this.contactid = contactid;
+       this.taal = taal;
+       this.actief = actief;
+       this.soortadres = soortadres;
+       this.vensteruren = vensteruren;
+       this.vrachtbeperking = vrachtbeperking;
+       this.chauffeursbeperking = chauffeursbeperking;
+       this.vrijveld = vrijveld;
     }
-    public Transportadres(int transportid, int adresid, int contactid, int taal, String naam, Boolean actief, String soortadres, String vensteruren, String vrachtbeperking, String chauffeursbeperking, String vrijveld) {
+    public Transportadres(int transportid, int adresid, int contactid, int taal, Boolean actief, String soortadres, String vensteruren, String vrachtbeperking, String chauffeursbeperking, String vrijveld) {
        this.transportid = transportid;
        this.adresid = adresid;
        this.contactid = contactid;
        this.taal = taal;
-       this.naam = naam;
        this.actief = actief;
        this.soortadres = soortadres;
        this.vensteruren = vensteruren;
@@ -69,14 +73,7 @@ public class Transportadres  implements java.io.Serializable {
     }
     
     public void setTaal(int taalid) {
-        this.taal = taal;
-    }
-    public String getNaam() {
-        return this.naam;
-    }
-    
-    public void setNaam(String naam) {
-        this.naam = naam;
+        this.taal = taalid;
     }
     public Boolean getActief() {
         return this.actief;

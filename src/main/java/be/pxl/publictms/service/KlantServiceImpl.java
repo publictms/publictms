@@ -47,7 +47,7 @@ public class KlantServiceImpl implements KlantService{
      *              voorgesteld met POJO Klant.
      */
     @Transactional
-    public List<Klant> getKlanten() {
+    public List getKlanten() {
         return klantDAO.getKlanten();
     }
 

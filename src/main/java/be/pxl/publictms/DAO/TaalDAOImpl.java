@@ -21,6 +21,8 @@ import org.springframework.stereotype.Repository;
 @Repository
 public class TaalDAOImpl implements TaalDAO{
     
+    
+    
     @Autowired
     private SessionFactory sessionFactory;
     /**

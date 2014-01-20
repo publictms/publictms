@@ -22,7 +22,19 @@ public class Laadgegevens  implements java.io.Serializable {
 
     public Laadgegevens() {
     }
-
+    
+    public Laadgegevens(Double tarragewicht, Double laadvermogen, Double laadvolume, Double laadmeters, Double lengte, Double breedte, Double hoogte, Integer aantalassen, String motornorm) {
+       this.tarragewicht = tarragewicht;
+       this.laadvermogen = laadvermogen;
+       this.laadvolume = laadvolume;
+       this.laadmeters = laadmeters;
+       this.lengte = lengte;
+       this.breedte = breedte;
+       this.hoogte = hoogte;
+       this.aantalassen = aantalassen;
+       this.motornorm = motornorm;
+    }
+    
     public Laadgegevens(int laadid, Double tarragewicht, Double laadvermogen, Double laadvolume, Double laadmeters, Double lengte, Double breedte, Double hoogte, Integer aantalassen, String motornorm) {
        this.laadid = laadid;
         this.tarragewicht = tarragewicht;

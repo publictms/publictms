@@ -6,6 +6,8 @@ package be.pxl.publictms.service;
 
 import be.pxl.publictms.DAO.TransportadresDAO;
 import be.pxl.publictms.pojo.Transportadres;
+import be.pxl.publictms.view.KlantView;
+import be.pxl.publictms.view.TransportView;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -36,8 +38,8 @@ public class TransportadresServiceImpl implements TransportadresService{
      * @param transportadres     POJO representatie van de data die toegevoegd wordt.
      */
     @Transactional
-    public void addTransportadres(Transportadres transportadres) {
-        transportadresDAO.addTransportadres(transportadres);
+    public void addTransportadres(KlantView klant) {
+        transportadresDAO.addTransportadres(klant);
     }
     /**
      * Geeft een lijst met transportadressen
@@ -45,7 +47,7 @@ public class TransportadresServiceImpl implements TransportadresService{
      * @return List<Transportadres>
      */
     @Transactional
-    public List<Transportadres> getTransportadres(){
+    public List getTransportadres(){
         return transportadresDAO.getTransportadres();
     }
     /**
@@ -56,7 +58,7 @@ public class TransportadresServiceImpl implements TransportadresService{
      * @return      POJO van het opgehaalde data.
      */
     @Transactional
-    public Transportadres getTransportadres(int id) {
+    public TransportView getTransportadres(int id) {
         return transportadresDAO.getTransportadres(id);
     }
 
@@ -78,8 +80,8 @@ public class TransportadresServiceImpl implements TransportadresService{
      * @param transportadres     POJO van de geüpdate data.
      */
     @Transactional
-    public void updateTransportadres(Transportadres transportadres) {
-        transportadresDAO.updateTransportadres(transportadres);
+    public void updateTransportadres(KlantView klant) {
+        transportadresDAO.updateTransportadres(klant);
     }
     
 }

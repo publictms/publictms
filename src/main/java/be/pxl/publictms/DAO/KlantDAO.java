@@ -22,7 +22,7 @@ public interface KlantDAO {
      * Geeft een lijst van klanten terug
      * @return List Klanten
      */
-    public List<Klant> getKlanten();
+    public List getKlanten();
     /**
      * Geeft een specifieke klant terug aan de hand van zijn index.
      * @param id

@@ -8,7 +8,9 @@ import be.pxl.publictms.hibernate.HibernateUtil;
 import be.pxl.publictms.pojo.Oplegger;
 import be.pxl.publictms.pojo.Laadgegevens;
 import be.pxl.publictms.view.OpleggerView;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 import java.util.logging.Level;
@@ -56,8 +58,45 @@ public class OpleggerDAOImpl implements OpleggerDAO{
      * @param oplegger 
      */
     @Override
-    public void addOplegger(Oplegger oplegger) {
-        sessionFactory.getCurrentSession().save(oplegger);
+    public void addOplegger(OpleggerView opleggerView) {
+        System.out.println(opleggerView.getType());
+        try {
+            Laadgegevens laadgegevens = 
+                    new Laadgegevens(
+                    Double.parseDouble(opleggerView.getTarragewicht().toString()),
+                    Double.parseDouble(opleggerView.getLaadvermogen().toString()),
+                    Double.parseDouble(opleggerView.getLaadvolume().toString()), 
+                    Double.parseDouble(opleggerView.getLaadmeters().toString()), Double.parseDouble(opleggerView.getLengte().toString()), 
+                    Double.parseDouble(opleggerView.getBreedte().toString()), Double.parseDouble(opleggerView.getHoogte().toString()), 
+                    Integer.parseInt(opleggerView.getAantalAssen().toString()), opleggerView.getMotorNorm().toString());
+            sessionFactory.getCurrentSession().save(laadgegevens);
+            
+            Date geldigTot = null,ingebruik = null, uitgebruik = null;
+            System.out.println("waarde van: " + opleggerView.getGeldigTot());
+             try{
+                geldigTot = new SimpleDateFormat("yyyy-MM-dd").parse(opleggerView.getGeldigTot().toString());
+            }catch(Exception ex){
+                ex.toString();
+            }try{
+                ingebruik = new SimpleDateFormat("yyyy-MM-dd").parse(opleggerView.getInGebruik().toString());
+            }catch(Exception ex){
+                ex.toString();
+            }try{
+                uitgebruik = new SimpleDateFormat("yyyy-MM-dd").parse(opleggerView.getUitGebruik().toString());
+            }catch(Exception ex){
+                ex.toString();
+            }
+            
+            Oplegger oplegger = 
+                    new Oplegger(500,laadgegevens.getLaadid(), opleggerView.getNummerplaat().toString(),
+                    Boolean.parseBoolean(opleggerView.getActief().toString()), opleggerView.getOmschrijving().toString(),
+                    opleggerView.getType().toString(),opleggerView.getBouwjaar().toString()
+                    ,ingebruik,uitgebruik,
+                    opleggerView.getChassisnr().toString(),Boolean.parseBoolean(opleggerView.getVergunning().toString()),geldigTot,opleggerView.getPvg().toString());
+            sessionFactory.getCurrentSession().save(oplegger);
+            }catch (Exception ex) {
+            Logger.getLogger(OpleggerDAOImpl.class.getName()).log(Level.SEVERE, null, ex);
+            }
     }
     /**
      * Geeft een lijst terug met alle opleggers 
@@ -88,9 +127,15 @@ public class OpleggerDAOImpl implements OpleggerDAO{
     @Override
     public void deleteOpleggers(int id) {
         Oplegger oplegger = (Oplegger)sessionFactory.getCurrentSession().load(Oplegger.class, id);
-        if(null != oplegger){
+        int laaadid = oplegger.getLaadgegevens();
+        Laadgegevens laadgegevens = (Laadgegevens)sessionFactory.getCurrentSession().load(Laadgegevens.class, laaadid);
+        try{
+            sessionFactory.getCurrentSession().delete(laadgegevens);
             sessionFactory.getCurrentSession().delete(oplegger);
+        }catch(Exception ex){
+            ex.toString();
         }
+        
     }
     /**
      * Bewerkt een oplegger aan der hand zijn oplegger object.
@@ -98,8 +143,6 @@ public class OpleggerDAOImpl implements OpleggerDAO{
      */
     @Override
     public void updateOplegger(OpleggerView opleggerView) {
-        System.out.println("****************************************************************");
-        System.out.println(opleggerView.getNummerplaat().toString());
         try {
             Laadgegevens laadgegevens = new Laadgegevens(Integer.parseInt(opleggerView.getLaadId().toString()),
                     Double.parseDouble(opleggerView.getTarragewicht().toString()),
@@ -108,21 +151,29 @@ public class OpleggerDAOImpl implements OpleggerDAO{
                     Double.parseDouble(opleggerView.getLaadmeters().toString()), Double.parseDouble(opleggerView.getLengte().toString()), 
                     Double.parseDouble(opleggerView.getBreedte().toString()), Double.parseDouble(opleggerView.getHoogte().toString()), 
                     Integer.parseInt(opleggerView.getAantalAssen().toString()), opleggerView.getMotorNorm().toString());
-            
-            //Date ingebruik = new SimpleDateFormat("ddMMyyyy").parse(opleggerView.getInGebruik().toString());
-            //Date uitgebruik = new SimpleDateFormat("ddMMyyyy").parse(opleggerView.getUitGebruik().toString());
-            //Date geldigTot = new SimpleDateFormat("ddMMyyyy").parse(opleggerView.getGeldigTot().toString());
-            
-            Oplegger oplegger = new Oplegger(Integer.parseInt(opleggerView.getOpleggerid().toString()),
-                    Integer.parseInt(opleggerView.getLaadId().toString()), 
-                    opleggerView.getNummerplaat().toString(),
-                    (Boolean)opleggerView.getActief(), opleggerView.getOmschrijving().toString(), opleggerView.getType().toString(),
-                    opleggerView.getBouwjaar().toString(), null, null, 
-                    opleggerView.getChassisnr().toString(), (Boolean)opleggerView.getVergunning(), null, 
-                    opleggerView.getPvg().toString());
-
-            sessionFactory.getCurrentSession().update(oplegger);
+            Date geldigTot = null,ingebruik = null, uitgebruik = null;
+            try{
+                geldigTot = new SimpleDateFormat("yyyy-MM-dd").parse(opleggerView.getGeldigTot().toString());
+            }catch(Exception ex){
+                ex.toString();
+            }try{
+                ingebruik = new SimpleDateFormat("yyyy-MM-dd").parse(opleggerView.getInGebruik().toString());
+            }catch(Exception ex){
+                ex.toString();
+            }try{
+                uitgebruik = new SimpleDateFormat("yyyy-MM-dd").parse(opleggerView.getUitGebruik().toString());
+            }catch(Exception ex){
+                ex.toString();
+            }
+            Oplegger oplegger = 
+                    new Oplegger(Integer.parseInt(opleggerView.getOpleggerid().toString()),
+                    laadgegevens.getLaadid(), opleggerView.getNummerplaat().toString(),
+                    Boolean.parseBoolean(opleggerView.getActief().toString()), opleggerView.getOmschrijving().toString(),
+                    opleggerView.getType().toString(),opleggerView.getBouwjaar().toString()
+                    ,ingebruik,uitgebruik,
+                    opleggerView.getChassisnr().toString(),Boolean.parseBoolean(opleggerView.getVergunning().toString()),geldigTot,opleggerView.getPvg().toString());
             sessionFactory.getCurrentSession().update(laadgegevens);
+            sessionFactory.getCurrentSession().update(oplegger);
         } catch (Exception ex) {
             Logger.getLogger(OpleggerDAOImpl.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -145,4 +196,5 @@ public class OpleggerDAOImpl implements OpleggerDAO{
         }
         return opleggers;
     }
+    
 }

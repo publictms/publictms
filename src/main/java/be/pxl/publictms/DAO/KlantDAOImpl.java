@@ -21,6 +21,8 @@ import org.springframework.stereotype.Repository;
 @Repository
 public class KlantDAOImpl implements KlantDAO{
     
+    
+    
     @Autowired
     private SessionFactory sessionFactory;
     /**
@@ -43,7 +45,7 @@ public class KlantDAOImpl implements KlantDAO{
      * @return List Klanten
      */
     @Override
-    public List<Klant> getKlanten() {
+    public List getKlanten() {
         return sessionFactory.getCurrentSession().createQuery("from Klant").list();
     }
     /**

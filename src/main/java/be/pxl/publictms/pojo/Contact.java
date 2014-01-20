@@ -18,8 +18,11 @@ public class Contact  implements java.io.Serializable {
     }
 
 	
-    public Contact(int contactid) {
-        this.contactid = contactid;
+    public Contact(String email, String telefoon, String gsm, String fax) {
+       this.email = email;
+       this.telefoon = telefoon;
+       this.gsm = gsm;
+       this.fax = fax;
     }
     public Contact(String email, String telefoon, String gsm, String fax) {
        this.contactid = contactid;

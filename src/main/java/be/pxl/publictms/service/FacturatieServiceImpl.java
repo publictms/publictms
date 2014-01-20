@@ -6,6 +6,8 @@ package be.pxl.publictms.service;
 
 import be.pxl.publictms.DAO.FacturatieDAO;
 import be.pxl.publictms.pojo.Facturatie;
+import be.pxl.publictms.view.FacturatieObjectView;
+import be.pxl.publictms.view.FacturatieView;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -36,7 +38,7 @@ public class FacturatieServiceImpl implements FacturatieService{
      * @param factuur     POJO representatie van de data die toegevoegd wordt.
      */
     @Transactional
-    public void addFacturatie(Facturatie factuur) {
+    public void addFacturatie(FacturatieView factuur) {
         facturatieDAO.addFacturatie(factuur);
     }
 
@@ -48,7 +50,7 @@ public class FacturatieServiceImpl implements FacturatieService{
      * @return      POJO van het opgehaalde data.
      */
     @Transactional
-    public Facturatie getFacturatie(int id) {
+    public FacturatieObjectView getFacturatie(int id) {
         return facturatieDAO.getFacturatie(id);
     }
 
@@ -61,8 +63,8 @@ public class FacturatieServiceImpl implements FacturatieService{
      *              voorgesteld met POJO Facturatie.
      */
     @Transactional
-    public List<Facturatie> getFacturen(int klantId) {
-        return facturatieDAO.getFacturen(klantId);
+    public List getFacturen() {
+        return facturatieDAO.getFacturen();
     }
 
     /**
@@ -81,7 +83,7 @@ public class FacturatieServiceImpl implements FacturatieService{
      * @param factuur     POJO van de geüpdate data.
      */
     @Transactional
-    public void updateFactuur(Facturatie factuur) {
+    public void updateFactuur(FacturatieView factuur) {
         facturatieDAO.updateFactuur(factuur);
     }       
 }

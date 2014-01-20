@@ -37,8 +37,8 @@ public class OpleggerServiceImpl implements OpleggerService{
      * @param oplegger     POJO representatie van de data die toegevoegd wordt.
      */
     @Transactional
-    public void addOplegger(Oplegger oplegger) {
-        opleggerDAO.addOplegger(oplegger);
+    public void addOplegger(OpleggerView opleggerView) {
+        opleggerDAO.addOplegger(opleggerView);
     }
 
     /**
