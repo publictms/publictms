@@ -49,6 +49,7 @@ public interface OpdrachtService {
      * @return list
      */
     public List getOpdrachtenWerknemer(int id);
+    public OpdrachtView getOpdracht(int id);
     /**
      * Is de levering afgeleverd op klaar zetten. True or false. Aan de hand van 
      * een index die verwijst naar de opdracht.

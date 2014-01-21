@@ -38,6 +38,19 @@ public class OpdrachtDAOImpl implements OpdrachtDAO{
         "inner join oplegger op\n" +
         "on o.opleggerid = op.opleggerid";
     
+    final String selectOpdracht = "select o.opdrachtid, k.klantid as \"klant id\"\n" +
+        ",k.naam as \"klant naam\" ,k.voornaam as \"klant voornaam\", k.bedrijf, o.datum, w.werknemerid as \"werknemer id\" ,w.naam as \"werknemer naam\", w.voornaam as \"werknemer voornaam\", v.nummerplaat as \"voertuig\", op.nummerplaat as \"oplegger\", o.opdrachtklaar, o.vrijveld\n" +
+        "from opdracht o\n" +
+        "inner join klant k\n" +
+        "on o.klantid = k.klantid\n" +
+        "inner join voertuig v\n" +
+        "on o.voertuigid = v.voertuigid\n" +
+        "inner join werknemer w\n" +
+        "on o.werknemerid = w.werknemerid\n" +
+        "inner join oplegger op\n" +
+        "on o.opleggerid = op.opleggerid"
+            + "where o.opdrachtid = :id";
+    
     final String selectWerknemer ="select o.opdrachtid, k.klantid as \"klant id\"\n" +
         ",k.naam as \"klant naam\", k.voornaam as \"klant voornaam\", k.bedrijf, o.datum, w.werknemerid as \"werknemer id\" ,w.naam as \"werknemer naam\", w.voornaam as \"werknemer voornaam\", v.nummerplaat as \"voertuig\", op.nummerplaat as \"oplegger\", o.opdrachtklaar, o.vrijveld\n" +
         "from opdracht o\n" +
@@ -109,12 +122,20 @@ public class OpdrachtDAOImpl implements OpdrachtDAO{
      * Is de levering afgeleverd op klaar zetten. 
      * @param klaar 
      */
+    @Override
     public void setKlaar(boolean klaar, int id){
         Opdracht opdracht = (Opdracht)sessionFactory.getCurrentSession().load(Opdracht.class, id);
         if(null != opdracht){
             opdracht.setOpdrachtklaar(klaar);
             sessionFactory.getCurrentSession().update(opdracht);
         }
+    }
+    @Override
+    public OpdrachtView getOpdracht(int id){
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        Query query = session.createSQLQuery(selectWerknemer);
+        query.setParameter("id", id);
+        return mapJson(query.list()).get(0);
     }
      /**
      * mapt een hibernate list naar een object namelijk Actieview. Zo kan spring

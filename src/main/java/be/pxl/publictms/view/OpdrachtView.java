@@ -10,42 +10,46 @@ package be.pxl.publictms.view;
  * @author Laurens Putseys
  */
 public class OpdrachtView {
-    private Object opdrachtid;
+    private Object Id;
     private Object klantId;
     private Object klantNaam;
     private Object klantVoorNaam;
     private Object bedrijf;
     private Object datum;
+    private Object start;
     private Object werknemerId;
-    private Object werkenemerNaam;
+    private Object werknemerNaam;
     private Object werknemerVoornaam;
+    private Object title;
     private Object voertuig;
     private Object oplegger;
     private Object opdrachtklaar;
     private Object vrijveld;
 
-    public OpdrachtView(Object opdrachtid,Object klantId, Object klantNaam, Object klantVoorNaam, Object bedrijf, Object datum, Object werknemerId, Object werkenemerNaam, Object werknemerVoornaam, Object voertuig, Object oplegger, Object opdrachtklaar, Object vrijveld) {
-        this.opdrachtid = opdrachtid;
+    public OpdrachtView(Object opdrachtid,Object klantId, Object klantNaam, Object klantVoorNaam, Object bedrijf, Object datum, Object werknemerId, Object werknemerNaam, Object werknemerVoornaam, Object voertuig, Object oplegger, Object opdrachtklaar, Object vrijveld) {
+        this.Id = opdrachtid;
         this.klantId = klantId;
         this.klantNaam = klantNaam;
         this.klantVoorNaam = klantVoorNaam;
         this.bedrijf = bedrijf;
         this.datum = datum;
+        this.start = datum;
         this.werknemerId = werknemerId;
-        this.werkenemerNaam = werkenemerNaam;
+        this.werknemerNaam = werknemerNaam;
         this.werknemerVoornaam = werknemerVoornaam;
         this.voertuig = voertuig;
         this.oplegger = oplegger;
         this.opdrachtklaar = opdrachtklaar;
         this.vrijveld = vrijveld;
+        this.title = werknemerNaam + " " + werknemerVoornaam;
     }
 
-    public Object getWerknemerId() {
-        return werknemerId;
+    public Object getId() {
+        return Id;
     }
 
-    public void setWerknemerId(Object werknemerId) {
-        this.werknemerId = werknemerId;
+    public void setId(Object Id) {
+        this.Id = Id;
     }
 
     public Object getKlantId() {
@@ -54,14 +58,6 @@ public class OpdrachtView {
 
     public void setKlantId(Object klantId) {
         this.klantId = klantId;
-    }
-
-    public Object getOpdrachtid() {
-        return opdrachtid;
-    }
-
-    public void setOpdrachtid(Object opdrachtid) {
-        this.opdrachtid = opdrachtid;
     }
 
     public Object getKlantNaam() {
@@ -96,12 +92,28 @@ public class OpdrachtView {
         this.datum = datum;
     }
 
-    public Object getWerkenemerNaam() {
-        return werkenemerNaam;
+    public Object getStart() {
+        return start;
     }
 
-    public void setWerkenemerNaam(Object werkenemerNaam) {
-        this.werkenemerNaam = werkenemerNaam;
+    public void setStart(Object start) {
+        this.start = start;
+    }
+
+    public Object getWerknemerId() {
+        return werknemerId;
+    }
+
+    public void setWerknemerId(Object werknemerId) {
+        this.werknemerId = werknemerId;
+    }
+
+    public Object getWerknemerNaam() {
+        return werknemerNaam;
+    }
+
+    public void setWerknemerNaam(Object werknemerNaam) {
+        this.werknemerNaam = werknemerNaam;
     }
 
     public Object getWerknemerVoornaam() {
@@ -110,6 +122,14 @@ public class OpdrachtView {
 
     public void setWerknemerVoornaam(Object werknemerVoornaam) {
         this.werknemerVoornaam = werknemerVoornaam;
+    }
+
+    public Object getTitle() {
+        return title;
+    }
+
+    public void setTitle(Object title) {
+        this.title = title;
     }
 
     public Object getVoertuig() {
@@ -142,5 +162,7 @@ public class OpdrachtView {
 
     public void setVrijveld(Object vrijveld) {
         this.vrijveld = vrijveld;
-    } 
+    }
+    
+   
 }

@@ -4,7 +4,6 @@
  */
 package be.pxl.publictms;
 
-import be.pxl.publictms.pojo.Facturatie;
 import be.pxl.publictms.service.FacturatieService;
 import be.pxl.publictms.view.FacturatieObjectView;
 import be.pxl.publictms.view.FacturatieView;
@@ -42,7 +41,7 @@ public class FacturatieController {
      * Voeg een nieuw factuur toe aan de databank.
      * @param factuur 
      */
-    @RequestMapping(value = "/",method = RequestMethod.POST)
+    @RequestMapping(value = "/",method = RequestMethod.POST, headers = MediaType.APPLICATION_JSON_VALUE)
     public @ResponseBody void add(@RequestBody FacturatieView factuur){
         facturatieService.addFacturatie(factuur);
     }

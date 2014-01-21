@@ -23,15 +23,6 @@ public interface ActieService {
      */
     public void addActie(Actie actie);
     
-    /**
-     * Declaratie van de methode voor het ophalen van een lijst van data die 
-     * zich in de tabel Actie bevindt.
-     * 
-     * @param id    Id van de opdracht waarvan de acties gezien willen worden.
-     * @return      List met data van de tabel Actie. Elke record wordt 
-     *              voorgesteld met POJO Actie.
-     */
-    public List<Actie> getActiesVanOpdracht(int id);
     
     /**
      * Declaratie van de methode voor het verwijderen van een record uit de
@@ -53,7 +44,7 @@ public interface ActieService {
      * @param id
      * @return List
      */
-    public List getActiesPerOpdracht(int id);
+    public List getActiesVanOpdracht(int id);
     /**
      * Zet de actie status op actief of niet actief
      * @param klaar
