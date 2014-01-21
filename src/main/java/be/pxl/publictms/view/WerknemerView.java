@@ -1,7 +1,6 @@
 
 package be.pxl.publictms.view;
 
-import java.util.Date;
 
 public class WerknemerView {
     
@@ -47,7 +46,6 @@ public class WerknemerView {
      private Object bic;
      private Object burgerstand;
      private Object aantalkinderen;
-     
      
      public WerknemerView(){}
      

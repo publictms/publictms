@@ -11,12 +11,7 @@ import be.pxl.publictms.pojo.Persoonsinfo;
 import be.pxl.publictms.pojo.Rijbewijsgegevens;
 import be.pxl.publictms.pojo.Taal;
 import be.pxl.publictms.pojo.Werknemer;
-import be.pxl.publictms.service.AdresService;
-import be.pxl.publictms.service.ContactService;
-import be.pxl.publictms.service.PersoonsinfoService;
-import be.pxl.publictms.service.RijbewijsgegevensService;
 import be.pxl.publictms.service.TaalService;
-import be.pxl.publictms.service.WerknemerService;
 import be.pxl.publictms.view.WerknemerView;
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -195,7 +190,7 @@ public class WerknemerDAOImpl implements WerknemerDAO {
             Persoonsinfo persoonsinfo = new Persoonsinfo(Integer.parseInt(werknemerView.getInfoid().toString()), werknemerView.getRijksregisternr().toString(), werknemerView.getSiskaart().toString(), werknemerView.getIdentiteitsnr().toString(), werknemerView.getPensioennr().toString(), werknemerView.getGeboorteplaats().toString(), datumOmzet(werknemerView.getGeboortedatum().toString()), werknemerView.getIban().toString(), werknemerView.getBic().toString(), werknemerView.getBurgerstand().toString(), Integer.parseInt(werknemerView.getAantalkinderen().toString()));
             Werknemer werknemer = new Werknemer(Integer.parseInt(werknemerView.getWerknemerid().toString()), Integer.parseInt(werknemerView.getTaalid().toString()), werknemerView.getNaam().toString(), werknemerView.getVoornaam().toString(), (Boolean) werknemerView.getActief(), Integer.parseInt(werknemerView.getAdresid().toString()), Integer.parseInt(werknemerView.getContactid().toString()), werknemerView.getGeslacht().toString().charAt(0), werknemerView.getStatuut().toString(), datumOmzet(werknemerView.getDatuminschrijving().toString()), datumOmzet(werknemerView.getDatumuitschrijving().toString()), werknemerView.getFunctie().toString(), Integer.parseInt(werknemerView.getRijbewijsid().toString()), Integer.parseInt(werknemerView.getInfoid().toString()));
             
-            
+            System.out.println(werknemerView.getTelefoon().toString());
             taalService.updateTaal(taal);
             sessionFactory.getCurrentSession().update(adres);
             sessionFactory.getCurrentSession().update(contact);

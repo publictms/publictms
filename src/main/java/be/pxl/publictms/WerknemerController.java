@@ -17,20 +17,11 @@ import be.pxl.publictms.service.PersoonsinfoService;
 import be.pxl.publictms.service.RijbewijsgegevensService;
 import be.pxl.publictms.service.TaalService;
 import be.pxl.publictms.service.WerknemerService;
-import be.pxl.publictms.view.WerknemerCompleet;
 import be.pxl.publictms.view.WerknemerView;
 import java.util.List;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import org.hibernate.Query;
-import org.hibernate.Session;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -52,16 +43,7 @@ public class WerknemerController {
     
     @Autowired
     private WerknemerService werknemerService;
-    @Autowired
-    private AdresService adresService;
-    @Autowired
-    private TaalService taalService;
-    @Autowired
-    private ContactService contactService;
-    @Autowired
-    private RijbewijsgegevensService rijbewijsgegevensService;
-    @Autowired
-    private PersoonsinfoService persoonsinfoService;
+
     /**
      * Geeft een lijst met werknemers terug.
      * @return List Werknemer

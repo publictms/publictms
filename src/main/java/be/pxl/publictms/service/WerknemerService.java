@@ -5,7 +5,6 @@
 package be.pxl.publictms.service;
 
 import be.pxl.publictms.pojo.Werknemer;
-import be.pxl.publictms.view.WerknemerCompleet;
 import be.pxl.publictms.view.WerknemerView;
 import java.util.List;
 
