@@ -5,7 +5,7 @@ import java.util.Date;
 public class WerknemerCompleet {
     
     private int werknemerid;
-     private int taal;
+     private int taalid;
      private String naam;
      private String voornaam;
      private Boolean actief;
@@ -47,9 +47,11 @@ public class WerknemerCompleet {
      private int tachograaftot;
      private String taalnaam;
 
-    public WerknemerCompleet(int werknemerid, int taal, String naam, String voornaam, Boolean actief, int adresid, int contactid, Character geslacht, String statuut, Date datuminschrijving, Date datumuitschrijving, String functie, int rijbewijsid, int infoid, String postcode, String straat, short nummer, String bus, String land, String email, String telefoon, String gsm, String fax, String rijksregisternr, String siskaart, String identiteitsnr, String pensioennr, String geboorteplaats, Date geboortedatum, String iban, String bic, String burgerstand, int aantalkinderen, String rijbewijsnr, String rijbewijscat, Date geldigtot, Boolean adrcertificaat, Boolean medischattest, String tankkaartnr, String tachograafnr, int tachograaftot, String taalnaam) {
+     public WerknemerCompleet(){};
+     
+    public WerknemerCompleet(int werknemerid, int taalid, String naam, String voornaam, Boolean actief, int adresid, int contactid, Character geslacht, String statuut, Date datuminschrijving, Date datumuitschrijving, String functie, int rijbewijsid, int infoid, String postcode, String straat, short nummer, String bus, String land, String email, String telefoon, String gsm, String fax, String rijksregisternr, String siskaart, String identiteitsnr, String pensioennr, String geboorteplaats, Date geboortedatum, String iban, String bic, String burgerstand, int aantalkinderen, String rijbewijsnr, String rijbewijscat, Date geldigtot, Boolean adrcertificaat, Boolean medischattest, String tankkaartnr, String tachograafnr, int tachograaftot, String taalnaam) {
         this.werknemerid = werknemerid;
-        this.taal = taal;
+        this.taalid = taalid;
         this.naam = naam;
         this.voornaam = voornaam;
         this.actief = actief;
@@ -141,12 +143,12 @@ public class WerknemerCompleet {
         this.werknemerid = werknemerid;
     }
 
-    public int getTaal() {
-        return taal;
+    public int getTaalid() {
+        return taalid;
     }
 
-    public void setTaal(int taal) {
-        this.taal = taal;
+    public void setTaalid(int taalid) {
+        this.taalid = taalid;
     }
 
     public String getNaam() {

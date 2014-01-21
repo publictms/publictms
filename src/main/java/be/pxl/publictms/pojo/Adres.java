@@ -34,13 +34,7 @@ public class Adres  implements java.io.Serializable {
        this.bus = bus;
        this.land = land;
     }
-   public Adres(String postcode, String straat, short nummer, String bus, String land) {
-       this.postcode = postcode;
-       this.straat = straat;
-       this.nummer = nummer;
-       this.bus = bus;
-       this.land = land;
-    }
+
     public int getAdresid() {
         return this.adresid;
     }

@@ -17,6 +17,7 @@ import be.pxl.publictms.service.PersoonsinfoService;
 import be.pxl.publictms.service.RijbewijsgegevensService;
 import be.pxl.publictms.service.TaalService;
 import be.pxl.publictms.service.WerknemerService;
+import be.pxl.publictms.view.WerknemerCompleet;
 import be.pxl.publictms.view.WerknemerView;
 import java.util.List;
 import org.slf4j.Logger;
@@ -65,8 +66,8 @@ public class WerknemerController {
      * @param werknemer 
      */
     @RequestMapping(value = "/", method = RequestMethod.POST)
-    public @ResponseBody void addWerknemer(@RequestBody WerknemerView werknemerView){
-        werknemerService.addWerknemer(werknemerView);
+    public @ResponseBody void addWerknemer(@RequestBody WerknemerCompleet werknemerCompleet){
+        werknemerService.addWerknemer(werknemerCompleet);
     }
     /**
      * Delete een werknemer uit de databank.
@@ -86,8 +87,8 @@ public class WerknemerController {
         werknemerService.updateWerknemer(werknemer);
     }*/
     @RequestMapping(value = "/", method = RequestMethod.PUT)
-    public @ResponseBody void updateWerknemer(@RequestBody WerknemerView werknemerView){
-        werknemerService.updateWerknemer(werknemerView);
+    public @ResponseBody void updateWerknemer(@RequestBody WerknemerCompleet werknemerCompleet){
+        werknemerService.updateWerknemer(werknemerCompleet);
     }
     /**
      * Geeft foutmeldingen terug

@@ -73,21 +73,6 @@ public class Werknemer  implements java.io.Serializable {
        this.rijbewijsid = rijbewijsid;
        this.infoid = infoid;
     }
-    public Werknemer(int taal, String naam, String voornaam, Boolean actief, int adresid, int contactid, Character geslacht, String statuut, Date datuminschrijving, Date datumuitschrijving, String functie, int rijbewijsid, int infoid) {
-       this.taal = taal;
-       this.naam = naam;
-       this.voornaam = voornaam;
-       this.actief = actief;
-       this.adresid = adresid;
-       this.contactid = contactid;
-       this.geslacht = geslacht;
-       this.statuut = statuut;
-       this.datuminschrijving = datuminschrijving;
-       this.datumuitschrijving = datumuitschrijving;
-       this.functie = functie;
-       this.rijbewijsid = rijbewijsid;
-       this.infoid = infoid;
-    }
    
     public int getWerknemerid() {
         return this.werknemerid;

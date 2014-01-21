@@ -12,6 +12,7 @@ import be.pxl.publictms.pojo.Rijbewijsgegevens;
 import be.pxl.publictms.pojo.Taal;
 import be.pxl.publictms.pojo.Werknemer;
 import be.pxl.publictms.service.TaalService;
+import be.pxl.publictms.view.WerknemerCompleet;
 import be.pxl.publictms.view.WerknemerView;
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -69,46 +70,23 @@ public class WerknemerDAOImpl implements WerknemerDAO {
      * @param werknemer
      */
     @Override
-    public void addWerknemer(WerknemerView werknemerView) {
-        try{
-            Date geldigTot = null,geboorteDatum = null,datumIn = null,datumUit = null;
-            try{
-                geldigTot = new SimpleDateFormat("yyyy-MM-dd").parse(werknemerView.getGeldigtot().toString());
-            }catch(Exception ex){
-                ex.toString();
-            }try{
-                geboorteDatum = new SimpleDateFormat("yyyy-MM-dd").parse(werknemerView.getGeboortedatum().toString());
-            }catch(Exception ex){
-                ex.toString();
-            }try{
-                datumIn = new SimpleDateFormat("yyyy-MM-dd").parse(werknemerView.getDatuminschrijving().toString());
-            }catch(Exception ex){
-                ex.toString();
-            }try{
-                datumUit = new SimpleDateFormat("yyyy-MM-dd").parse(werknemerView.getDatumuitschrijving().toString());
-            }catch(Exception ex){
-                ex.toString();
-            }
-            
-            Taal taal = new Taal(werknemerView.getTaalnaam().toString());
-            Adres adres = new Adres(werknemerView.getPostcode().toString(), werknemerView.getStraat().toString(), Short.parseShort(werknemerView.getNummer().toString()), werknemerView.getBus().toString(), werknemerView.getLand().toString());
-            Contact contact = new Contact(werknemerView.getEmail().toString(), werknemerView.getTelefoon().toString(), werknemerView.getGsm().toString(), werknemerView.getFax().toString());
-            Rijbewijsgegevens rijbewijs = new Rijbewijsgegevens(werknemerView.getRijbewijsnr().toString(), werknemerView.getRijbewijscat().toString(), geldigTot, (Boolean) werknemerView.getAdrcertificaat(), (Boolean) werknemerView.getMedischattest(),werknemerView.getTankkaartnr().toString(), werknemerView.getTachograafnr().toString(), Integer.parseInt(werknemerView.getTachograaftot().toString()));
-            Persoonsinfo persoonsinfo = new Persoonsinfo(werknemerView.getRijksregisternr().toString(), werknemerView.getSiskaart().toString(), werknemerView.getIdentiteitsnr().toString(), werknemerView.getPensioennr().toString(), werknemerView.getGeboorteplaats().toString(), geboorteDatum, werknemerView.getIban().toString(), werknemerView.getBic().toString(), werknemerView.getBurgerstand().toString(), Integer.parseInt(werknemerView.getAantalkinderen().toString()));
-          
+    public void addWerknemer(WerknemerCompleet werknemerCompleet) {
 
-            //taalService.updateTaal(taal);
+            Taal taal = new Taal(werknemerCompleet.getTaalnaam());
+            Adres adres = new Adres(werknemerCompleet.getPostcode(), werknemerCompleet.getStraat(), werknemerCompleet.getNummer(), werknemerCompleet.getBus(), werknemerCompleet.getLand());
+            Contact contact = new Contact(werknemerCompleet.getEmail(), werknemerCompleet.getTelefoon(), werknemerCompleet.getGsm(), werknemerCompleet.getFax());
+            Rijbewijsgegevens rijbewijs = new Rijbewijsgegevens(werknemerCompleet.getRijbewijsnr(), werknemerCompleet.getRijbewijscat(), werknemerCompleet.getGeldigtot(), werknemerCompleet.getAdrcertificaat(), werknemerCompleet.getMedischattest(), werknemerCompleet.getTankkaartnr(), werknemerCompleet.getTachograafnr(), werknemerCompleet.getTachograaftot());
+            Persoonsinfo persoonsinfo = new Persoonsinfo(werknemerCompleet.getRijksregisternr(), werknemerCompleet.getSiskaart(), werknemerCompleet.getIdentiteitsnr(), werknemerCompleet.getPensioennr(), werknemerCompleet.getGeboorteplaats(), werknemerCompleet.getGeboortedatum(), werknemerCompleet.getIban(), werknemerCompleet.getBic(), werknemerCompleet.getBurgerstand(), werknemerCompleet.getAantalkinderen());
+
             sessionFactory.getCurrentSession().saveOrUpdate(taal);
             sessionFactory.getCurrentSession().save(adres);
             sessionFactory.getCurrentSession().save(contact);
             sessionFactory.getCurrentSession().save(rijbewijs);
             sessionFactory.getCurrentSession().save(persoonsinfo);
 
-            Werknemer werknemer = new Werknemer(taal.getTaalid(), werknemerView.getNaam().toString(), werknemerView.getVoornaam().toString(), (Boolean)werknemerView.getActief(), adres.getAdresid(), contact.getContactid(), werknemerView.getGeslacht().toString().charAt(0), werknemerView.getStatuut().toString(), datumIn, datumUit, werknemerView.getFunctie().toString(), rijbewijs.getRijbewijsid(), persoonsinfo.getInfoid());
+            Werknemer werknemer = new Werknemer(taal.getTaalid(), werknemerCompleet.getNaam(), werknemerCompleet.getVoornaam(), werknemerCompleet.getActief(), adres.getAdresid(), contact.getContactid(), werknemerCompleet.getGeslacht(), werknemerCompleet.getStatuut(), werknemerCompleet.getDatuminschrijving(), werknemerCompleet.getDatumuitschrijving(), werknemerCompleet.getFunctie(), rijbewijs.getRijbewijsid(), persoonsinfo.getInfoid());
             sessionFactory.getCurrentSession().save(werknemer);
-        } catch (Exception ex) {
-            Logger.getLogger(OpleggerDAOImpl.class.getName()).log(Level.SEVERE, null, ex);
-        }
+
 
     }
     /**
@@ -162,44 +140,22 @@ public class WerknemerDAOImpl implements WerknemerDAO {
      * @param werknemer
      */
     @Override
-    public void updateWerknemer(WerknemerView werknemerView) {
+    public void updateWerknemer(WerknemerCompleet werknemerCompleet) {
 
-        try {
-            Date geldigTot = null,geboorteDatum = null,datumIn = null,datumUit = null;
-            try{
-                geldigTot = new SimpleDateFormat("yyyy-MM-dd").parse(werknemerView.getGeldigtot().toString());
-            }catch(Exception ex){
-                ex.toString();
-            }try{
-                geboorteDatum = new SimpleDateFormat("yyyy-MM-dd").parse(werknemerView.getGeboortedatum().toString());
-            }catch(Exception ex){
-                ex.toString();
-            }try{
-                datumIn = new SimpleDateFormat("yyyy-MM-dd").parse(werknemerView.getDatuminschrijving().toString());
-            }catch(Exception ex){
-                ex.toString();
-            }try{
-                datumUit = new SimpleDateFormat("yyyy-MM-dd").parse(werknemerView.getDatumuitschrijving().toString());
-            }catch(Exception ex){
-                ex.toString();
-            }
-            Taal taal = new Taal(Integer.parseInt(werknemerView.getTaalid().toString()), werknemerView.getTaalnaam().toString());
-            Adres adres = new Adres(Integer.parseInt(werknemerView.getAdresid().toString()), werknemerView.getPostcode().toString(), werknemerView.getStraat().toString(), Short.parseShort(werknemerView.getNummer().toString()), werknemerView.getBus().toString(), werknemerView.getLand().toString());
-            Contact contact = new Contact(Integer.parseInt(werknemerView.getContactid().toString()), werknemerView.getEmail().toString(), werknemerView.getTelefoon().toString(), werknemerView.getGsm().toString(), werknemerView.getFax().toString());
-            Rijbewijsgegevens rijbewijs = new Rijbewijsgegevens(Integer.parseInt(werknemerView.getRijbewijsid().toString()), werknemerView.getRijbewijsnr().toString(), werknemerView.getRijbewijscat().toString(), datumOmzet(werknemerView.getGeldigtot().toString()), (Boolean) werknemerView.getAdrcertificaat(), (Boolean) werknemerView.getMedischattest(), werknemerView.getTankkaartnr().toString(), werknemerView.getTachograafnr().toString(), Integer.parseInt(werknemerView.getTachograaftot().toString()));
-            Persoonsinfo persoonsinfo = new Persoonsinfo(Integer.parseInt(werknemerView.getInfoid().toString()), werknemerView.getRijksregisternr().toString(), werknemerView.getSiskaart().toString(), werknemerView.getIdentiteitsnr().toString(), werknemerView.getPensioennr().toString(), werknemerView.getGeboorteplaats().toString(), datumOmzet(werknemerView.getGeboortedatum().toString()), werknemerView.getIban().toString(), werknemerView.getBic().toString(), werknemerView.getBurgerstand().toString(), Integer.parseInt(werknemerView.getAantalkinderen().toString()));
-            Werknemer werknemer = new Werknemer(Integer.parseInt(werknemerView.getWerknemerid().toString()), Integer.parseInt(werknemerView.getTaalid().toString()), werknemerView.getNaam().toString(), werknemerView.getVoornaam().toString(), (Boolean) werknemerView.getActief(), Integer.parseInt(werknemerView.getAdresid().toString()), Integer.parseInt(werknemerView.getContactid().toString()), werknemerView.getGeslacht().toString().charAt(0), werknemerView.getStatuut().toString(), datumOmzet(werknemerView.getDatuminschrijving().toString()), datumOmzet(werknemerView.getDatumuitschrijving().toString()), werknemerView.getFunctie().toString(), Integer.parseInt(werknemerView.getRijbewijsid().toString()), Integer.parseInt(werknemerView.getInfoid().toString()));
+            Taal taal = new Taal(werknemerCompleet.getTaalid(), werknemerCompleet.getTaalnaam());
+            Adres adres = new Adres(werknemerCompleet.getAdresid(), werknemerCompleet.getPostcode(), werknemerCompleet.getStraat(), werknemerCompleet.getNummer(), werknemerCompleet.getBus(), werknemerCompleet.getLand());
+            Contact contact = new Contact(werknemerCompleet.getContactid(), werknemerCompleet.getEmail(), werknemerCompleet.getTelefoon(), werknemerCompleet.getGsm(), werknemerCompleet.getFax());
+            Rijbewijsgegevens rijbewijs = new Rijbewijsgegevens(werknemerCompleet.getRijbewijsid(), werknemerCompleet.getRijbewijsnr(), werknemerCompleet.getRijbewijscat(), werknemerCompleet.getGeldigtot(), werknemerCompleet.getAdrcertificaat(), werknemerCompleet.getMedischattest(), werknemerCompleet.getTankkaartnr(), werknemerCompleet.getTachograafnr(), werknemerCompleet.getTachograaftot());
+            Persoonsinfo persoonsinfo = new Persoonsinfo(werknemerCompleet.getInfoid(), werknemerCompleet.getRijksregisternr(), werknemerCompleet.getSiskaart(), werknemerCompleet.getIdentiteitsnr(), werknemerCompleet.getPensioennr(), werknemerCompleet.getGeboorteplaats(), werknemerCompleet.getGeboortedatum(), werknemerCompleet.getIban(), werknemerCompleet.getBic(), werknemerCompleet.getBurgerstand(), werknemerCompleet.getAantalkinderen());
+            Werknemer werknemer = new Werknemer(werknemerCompleet.getWerknemerid(), werknemerCompleet.getTaalid(), werknemerCompleet.getNaam(), werknemerCompleet.getVoornaam(), werknemerCompleet.getActief(), werknemerCompleet.getAdresid(), werknemerCompleet.getContactid(), werknemerCompleet.getGeslacht(), werknemerCompleet.getStatuut(), werknemerCompleet.getDatuminschrijving(), werknemerCompleet.getDatumuitschrijving(), werknemerCompleet.getFunctie(), werknemerCompleet.getRijbewijsid(), werknemerCompleet.getInfoid());
             
-            System.out.println(werknemerView.getTelefoon().toString());
-            taalService.updateTaal(taal);
+            taal = new Taal(werknemerCompleet.getTaalnaam());
+            sessionFactory.getCurrentSession().saveOrUpdate(taal);
             sessionFactory.getCurrentSession().update(adres);
             sessionFactory.getCurrentSession().update(contact);
             sessionFactory.getCurrentSession().update(rijbewijs);
             sessionFactory.getCurrentSession().update(persoonsinfo);
             sessionFactory.getCurrentSession().update(werknemer);
-        } catch (Exception ex) {
-            Logger.getLogger(OpleggerDAOImpl.class.getName()).log(Level.SEVERE, null, ex);
-        }
     }
 
     public List<WerknemerView> mapJson(List list) {
