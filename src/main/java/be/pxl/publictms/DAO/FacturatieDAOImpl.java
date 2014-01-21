@@ -70,9 +70,8 @@ public class FacturatieDAOImpl implements FacturatieDAO{
      */
     @Override
     public void addFacturatie(FacturatieView factuur) {
-        System.out.println("inorde");
-//        Facturatie facturatie = new Facturatie(factuur.getFacturatieId(), factuur.getKlantid(), factuur.getKorting(), factuur.getPrijsgegeven());
-//        sessionFactory.getCurrentSession().save(facturatie);
+        Facturatie facturatie = new Facturatie(factuur.getFacturatieId(), factuur.getKlantid(), factuur.getKorting(), factuur.getPrijsgegeven());
+        sessionFactory.getCurrentSession().save(facturatie);
     }
     /**
      * Aan de hand van een id geeft deze een facturatie object terug
