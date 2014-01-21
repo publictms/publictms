@@ -45,22 +45,13 @@ public class ActieController {
         actieService.addActie(actie);
     }
     /**
-     * Geeft een actie terug aan de hand van zijn index.
-     * @param id
-     * @return List Actie
-     */
-//    @RequestMapping(value = "/{id}",method = RequestMethod.GET)
-//    public @ResponseBody List<Actie> getActiesVanOpdracht(@PathVariable("id") int id){
-//        return actieService.getActiesVanOpdracht(id);
-//    }
-    /**
      * Geeft alle acties per opdracht zonder indexen maar als bruikbaar gegeven.
      * @param id
      * @return List<Actie>
      */
     @RequestMapping(value = "/{id}",method = RequestMethod.GET)
     public @ResponseBody List getActiesPerOpdracht(@PathVariable("id") int id){
-        return actieService.getActiesPerOpdracht(id);
+        return actieService.getActiesVanOpdracht(id);
     }
     /**
      * Delete een actie in de database aan de hand van zijn index.

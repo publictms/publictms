@@ -81,6 +81,10 @@ public class OpdrachtServiceImpl implements OpdrachtService{
     public List getOpdrachtenWerknemer(int id){
         return opdrachtDAO.getOpdrachtenWerknemer(id);
     }
+    @Transactional
+    public OpdrachtView getOpdracht(int id){
+        return opdrachtDAO.getOpdracht(id);
+    }
     /**
      * Is de levering afgeleverd op klaar zetten. True or false. Aan de hand van 
      * een index die verwijst naar de opdracht.

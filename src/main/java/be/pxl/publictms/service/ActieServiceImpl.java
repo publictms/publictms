@@ -39,19 +39,6 @@ public class ActieServiceImpl implements ActieService{
     public void addActie(Actie actie) {
         actieDAO.addActie(actie);
     }
-
-    /**
-     * Methode voor het ophalen van een lijst van data die zich in de tabel 
-     * Actie bevindt.
-     * 
-     * @param id    Id van de opdracht waarvan de acties gezien willen worden.
-     * @return      List met data van de tabel Actie. Elke record wordt 
-     *              voorgesteld met POJO Actie.
-     */
-    @Transactional
-    public List<Actie> getActiesVanOpdracht(int id) {
-        return actieDAO.getActiesVanOpdracht(id);
-    }
     
     /**
      * Methode voor het verwijderen van een record uit de tabel Actie.
@@ -78,8 +65,8 @@ public class ActieServiceImpl implements ActieService{
      * @return List
      */
     @Transactional
-    public List getActiesPerOpdracht(int id){
-        return actieDAO.getActiesPerOpdracht(id);
+    public List getActiesVanOpdracht(int id){
+        return actieDAO.getActiesVanOpdracht(id);
     }
     /**
      * Zet de actie status op actief of niet actief

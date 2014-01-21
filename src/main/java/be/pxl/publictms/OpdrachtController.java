@@ -46,8 +46,8 @@ public class OpdrachtController {
      * @return List
      */
     @RequestMapping(value = "/{id}",method = RequestMethod.GET)
-    public @ResponseBody List<OpdrachtView> getOpdrachten(@PathVariable("id") int id){
-        return opdrachtService.getOpdrachtenWerknemer(id);
+    public @ResponseBody OpdrachtView getOpdrachten(@PathVariable("id") int id){
+        return opdrachtService.getOpdracht(id);
     }
     /**
      * Voeg een nieuwe opdracht aan de databank.

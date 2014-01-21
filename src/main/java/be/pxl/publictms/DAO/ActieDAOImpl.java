@@ -24,21 +24,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public class ActieDAOImpl implements ActieDAO{
     
-    final String getActiesPerOpdracht ="select a.actieid, t.naam, ad.Straat, ad.nummer, ad.bus, ad.land, ad.postcode, \n" +
-        "c.email, c.telefoon, c.gsm, c.fax, ta.Taalnaam,t.actief, t.soortadres, t.Vensteruren,\n" +
-        "t.Vrachtbeperking, t.Chauffeursbeperking, t.VrijVeld as \"transport opmerking\",\n" +
-        "a.actieklaar, a.lading, a.vrijveld as \"actie opmerking\", a.opdrachtid \n" +
-        "from actie a\n" +
-        "inner join TransportAdres t\n" +
-        "on a.TransportId = t.TransportId\n" +
-        "inner join Adres ad\n" +
-        "on t.adresid = ad.adresid\n" +
-        "inner join contact c\n" +
-        "on t.contactid = c.contactid\n" +
-        "inner join taal ta\n" +
-        "on t.taal = ta.taalid\n" +
-        "where opdrachtid = :id";
-    
     @Autowired
     private SessionFactory sessionFactory;
     /**
@@ -88,19 +73,7 @@ public class ActieDAOImpl implements ActieDAO{
     public void updateActie(Actie actie) {
         sessionFactory.getCurrentSession().update(actie);
     }
-    /**
-     * Geeft alle acties per opdracht zonder indexen maar als bruikbaar gegeven.
-     * @param id
-     * @return List
-     */
-    @Override
-    public List getActiesPerOpdracht(int id){
-        Session session = HibernateUtil.getSessionFactory().openSession();
-        Query query = session.createSQLQuery(getActiesPerOpdracht);
-        query.setParameter("id", id);    
-        return mapJson(query.list());
-        //return query.list();
-    }
+
     /**
      * Zet de actie status op actief of niet actief
      * @param klaar
