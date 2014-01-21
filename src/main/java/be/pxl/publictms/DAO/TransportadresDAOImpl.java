@@ -12,7 +12,7 @@ import be.pxl.publictms.pojo.Postcode;
 import be.pxl.publictms.pojo.Taal;
 import be.pxl.publictms.pojo.Transportadres;
 import be.pxl.publictms.view.KlantView;
-import be.pxl.publictms.view.TransportView;
+import be.pxl.publictms.view.KlantObjectView;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -113,7 +113,7 @@ public class TransportadresDAOImpl implements TransportadresDAO{
      * @return Transportadres
      */
     @Override
-    public TransportView getTransportadres(int id) {
+    public KlantObjectView getTransportadres(int id) {
         Session session = HibernateUtil.getSessionFactory().openSession();
         Query query = session.createSQLQuery(qryContact);
         query.setParameter("id", id);    
@@ -169,12 +169,12 @@ public class TransportadresDAOImpl implements TransportadresDAO{
      * @param list
      * @return List<TransportView>
      */
-    public List<TransportView> mapJson(List list){
-        List<TransportView> transportViews = new ArrayList<TransportView>();
+    public List<KlantObjectView> mapJson(List list){
+        List<KlantObjectView> transportViews = new ArrayList<KlantObjectView>();
         for(Iterator iter = list.iterator(); iter.hasNext();){
             Object[] row = (Object[]) iter.next();
-            TransportView transportView = 
-                    new TransportView(row[0],
+            KlantObjectView transportView = 
+                    new KlantObjectView(row[0],
                     row[1],row[2],row[3], row[4], row[5],row[6], row[7], row[8], 
                     row[9], row[10], row[11], row[12], row[13], 
                     row[14], row[15],row[16], row[17], row[18], row[19], row[20], row[21], 

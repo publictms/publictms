@@ -24,13 +24,6 @@ public class Contact  implements java.io.Serializable {
        this.gsm = gsm;
        this.fax = fax;
     }
-    public Contact(String email, String telefoon, String gsm, String fax) {
-       this.contactid = contactid;
-       this.email = email;
-       this.telefoon = telefoon;
-       this.gsm = gsm;
-       this.fax = fax;
-    }
     public Contact(int contactid, String email, String telefoon, String gsm, String fax) {
        this.contactid = contactid;
        this.email = email;

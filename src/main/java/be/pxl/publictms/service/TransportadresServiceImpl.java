@@ -7,7 +7,7 @@ package be.pxl.publictms.service;
 import be.pxl.publictms.DAO.TransportadresDAO;
 import be.pxl.publictms.pojo.Transportadres;
 import be.pxl.publictms.view.KlantView;
-import be.pxl.publictms.view.TransportView;
+import be.pxl.publictms.view.KlantObjectView;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -58,7 +58,7 @@ public class TransportadresServiceImpl implements TransportadresService{
      * @return      POJO van het opgehaalde data.
      */
     @Transactional
-    public TransportView getTransportadres(int id) {
+    public KlantObjectView getTransportadres(int id) {
         return transportadresDAO.getTransportadres(id);
     }
 

@@ -6,7 +6,7 @@ package be.pxl.publictms.service;
 
 import be.pxl.publictms.pojo.Transportadres;
 import be.pxl.publictms.view.KlantView;
-import be.pxl.publictms.view.TransportView;
+import be.pxl.publictms.view.KlantObjectView;
 import java.util.List;
 
 /**
@@ -37,7 +37,7 @@ public interface TransportadresService {
      * @param id    Het transportadresid van het record dat opgehaald moet worden.
      * @return      POJO van het opgehaalde data.
      */
-    public TransportView getTransportadres(int id);
+    public KlantObjectView getTransportadres(int id);
     
     /**
      * Declaratie van de methode voor het verwijderen van een record uit de

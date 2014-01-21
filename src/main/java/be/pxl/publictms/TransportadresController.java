@@ -7,7 +7,7 @@ package be.pxl.publictms;
 import be.pxl.publictms.pojo.Transportadres;
 import be.pxl.publictms.service.TransportadresService;
 import be.pxl.publictms.view.KlantView;
-import be.pxl.publictms.view.TransportView;
+import be.pxl.publictms.view.KlantObjectView;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -58,11 +58,11 @@ public class TransportadresController {
      * @return Transportadres
      */
     @RequestMapping(value = "/{id}",method = RequestMethod.GET)
-    public @ResponseBody ResponseEntity<TransportView> getTransportadressen(@PathVariable("id") int id, HttpServletRequest request, HttpServletResponse response){
-        TransportView json = transportadresService.getTransportadres(id);
+    public @ResponseBody ResponseEntity<KlantObjectView> getTransportadressen(@PathVariable("id") int id, HttpServletRequest request, HttpServletResponse response){
+        KlantObjectView json = transportadresService.getTransportadres(id);
         HttpHeaders responseHeaders = new HttpHeaders();
         responseHeaders.setContentType(MediaType.APPLICATION_JSON);
-        return new ResponseEntity<TransportView>(json, responseHeaders, HttpStatus.CREATED);
+        return new ResponseEntity<KlantObjectView>(json, responseHeaders, HttpStatus.CREATED);
     }
     /**
      * Voeg een nieuw transport adres toe aan de databank.

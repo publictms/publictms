@@ -5,7 +5,7 @@
 package be.pxl.publictms.DAO;
 
 import be.pxl.publictms.view.KlantView;
-import be.pxl.publictms.view.TransportView;
+import be.pxl.publictms.view.KlantObjectView;
 import java.util.List;
 
 /**
@@ -30,7 +30,7 @@ public interface TransportadresDAO {
      * @param id
      * @return Transportadres
      */
-    public TransportView getTransportadres(int id);
+    public KlantObjectView getTransportadres(int id);
     /**
      * Verwijder een transport adres aan de hand zijn index.
      * @param id 
