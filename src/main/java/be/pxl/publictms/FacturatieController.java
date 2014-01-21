@@ -41,7 +41,7 @@ public class FacturatieController {
      * Voeg een nieuw factuur toe aan de databank.
      * @param factuur 
      */
-    @RequestMapping(value = "/",method = RequestMethod.POST, headers = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(value = "/",method = RequestMethod.POST)//headers = MediaType.APPLICATION_JSON_VALUE
     public @ResponseBody void add(@RequestBody FacturatieView factuur){
         facturatieService.addFacturatie(factuur);
     }
