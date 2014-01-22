@@ -13,19 +13,21 @@ public class BerichtView{
     private Object datum;
     private Object verzender;
     private Object ontvangerid;
+    private Object verstuurderid;
     private Object gelezen;
 
     public BerichtView(){
         
     }
     
-    public BerichtView(Object berichtid, Object berichttitel, Object bericht, Object datum, Object verzender, Object ontvangerid, Object gelezen) {
+    public BerichtView(Object berichtid, Object berichttitel, Object bericht, Object datum, Object verzender, Object ontvangerid, Object verstuurderid, Object gelezen) {
         this.berichtid = berichtid;
         this.berichttitel = berichttitel;
         this.bericht = bericht;
         this.datum = datum;
         this.verzender = verzender;
         this.ontvangerid = ontvangerid;
+        this.verstuurderid = verstuurderid;
         this.gelezen = gelezen;
     }
 
@@ -84,6 +86,15 @@ public class BerichtView{
     public void setGelezen(Object gelezen) {
         this.gelezen = gelezen;
     }   
+
+    public Object getVerstuurderid() {
+        return verstuurderid;
+    }
+
+    public void setVerstuurderid(Object verstuurderid) {
+        this.verstuurderid = verstuurderid;
+    }
+    
 }
 
 

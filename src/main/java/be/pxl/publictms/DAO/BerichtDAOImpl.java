@@ -28,7 +28,7 @@ import org.springframework.stereotype.Repository;
 public class BerichtDAOImpl implements BerichtDAO{
     
     final String getBerichten ="select b.berichtid, b.berichttitel, b.bericht, b.datum, "
-            + "g.gebruikersnaam as \"verzender\", b.ontvangerid, b.gelezen \n" +
+            + "g.gebruikersnaam as \"verzender\", b.ontvangerid,b.gebruikerid, b.gelezen \n" +
         "from bericht b inner join gebruiker g on b.gebruikerid = g.gebruikerid where b.ontvangerid = :id";
     
     @Autowired
@@ -80,7 +80,7 @@ public class BerichtDAOImpl implements BerichtDAO{
         for(Iterator iter = list.iterator(); iter.hasNext();){
             Object[] row = (Object[]) iter.next();
             BerichtView berichtView;
-            berichtView = new BerichtView(row[0], row[1], row[2], row[3], row[4], row[5], row[6]);
+            berichtView = new BerichtView(row[0], row[1], row[2], row[3], row[4], row[5], row[6],row[7]);
             berichten.add(berichtView);
         }
         return berichten;
