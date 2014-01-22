@@ -8,8 +8,6 @@ import be.pxl.publictms.hibernate.HibernateUtil;
 import be.pxl.publictms.pojo.Adres;
 import be.pxl.publictms.pojo.Contact;
 import be.pxl.publictms.pojo.Klant;
-import be.pxl.publictms.pojo.Postcode;
-import be.pxl.publictms.pojo.Taal;
 import be.pxl.publictms.pojo.Transportadres;
 import be.pxl.publictms.view.KlantView;
 import be.pxl.publictms.view.KlantObjectView;
@@ -29,39 +27,44 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 public class TransportadresDAOImpl implements TransportadresDAO{
-    private final String qryContacten = "select t.transportid,t.adresid,t.contactid,t.taal, t.soortadres,t.actief, t.vensteruren, "
-            + "t.vrachtbeperking, t.chauffeursbeperking, t.vrijveld,\n" +
-            "a.straat, a.nummer, a.bus, a.land, a.postcode, p.gemeente,c.email, c.telefoon, c.gsm, c.fax, ta.taalnaam, k.klantid,\n" +
-            "k.naam as \"klantnaam\", k.voornaam as \"klantvoornaam\", k.bedrijf, k.website, k.betalingscondities, k.munt,\n" +
-            "k.btwregime, k.btwnummer, k.ondernemingsnummer, k.iban, k.bic\n" +
-            "from klant k \n" +
-            "inner join transportadres t\n" +
-            "on k.transportadresid = t.transportid\n" +
-            "inner join adres a\n" +
-            "on a.adresid = t.adresid\n" +
-            "inner join postcode p\n" +
-            "on p.postcode = a.postcode\n" +
-            "inner join contact c\n" +
-            "on t.contactid = c.contactid\n" +
-            "inner join taal ta\n" +
-            "on ta.taalid = taal";
+    private final String qryKlanten = "select t.transportid,t.adresid,t.contactid,t.taal, t.soortadres,t.actief, t.vensteruren,\n" +
+"            t.vrachtbeperking, t.chauffeursbeperking, t.vrijveld,\n" +
+"            a.straat, a.nummer, a.bus, a.land, l.landnaam, a.postcode, p.gemeente,c.email, c.telefoon, c.gsm, c.fax, ta.taalnaam, k.klantid,\n" +
+"            k.naam as \"klantnaam\", k.voornaam as \"klantvoornaam\", k.bedrijf, k.website, k.betalingscondities, k.munt,\n" +
+"            k.btwregime, k.btwnummer, k.ondernemingsnummer, k.iban, k.bic\n" +
+"            from klant k \n" +
+"            inner join transportadres t\n" +
+"            on k.transportadresid = t.transportid\n" +
+"            inner join adres a\n" +
+"            on a.adresid = t.adresid\n" +
+"            inner join postcode p\n" +
+"            on p.postcode = a.postcode\n" +
+"            inner join contact c\n" +
+"            on t.contactid = c.contactid\n" +
+"            inner join taal ta\n" +
+"            on ta.taalid = taal\n" +
+"            inner join land l\n" +
+"            on l.landid = a.land";
     
-    private final String qryContact = "select t.transportid,t.adresid,t.contactid,t.taal, "
-            + "t.soortadres,t.actief, t.vensteruren, t.vrachtbeperking, t.chauffeursbeperking, t.vrijveld,\n" +
-            "a.straat, a.nummer, a.bus, a.land, a.postcode, p.gemeente,c.email, c.telefoon, c.gsm, c.fax, ta.taalnaam, k.klantid,\n" +
-            "k.naam as \"klantnaam\", k.voornaam as \"klantvoornaam\", k.bedrijf, k.website, k.betalingscondities, k.munt,\n" +
-            "k.btwregime, k.btwnummer, k.ondernemingsnummer, k.iban, k.bic\n" +
-            "from klant k \n" +
-            "inner join transportadres t\n" +
-            "on k.transportadresid = t.transportid\n" +
-            "inner join adres a\n" +
-            "on a.adresid = t.adresid\n" +
-            "inner join postcode p\n" +
-            "on p.postcode = a.postcode\n" +
-            "inner join contact c\n" +
-            "on t.contactid = c.contactid\n" +
-            "inner join taal ta\n" +
-            "on ta.taalid = taal where k.klantid = :id";
+    private final String qryKlant = "select t.transportid,t.adresid,t.contactid,t.taal, t.soortadres,t.actief, t.vensteruren,\n" +
+"            t.vrachtbeperking, t.chauffeursbeperking, t.vrijveld,\n" +
+"            a.straat, a.nummer, a.bus, a.land, l.landnaam, a.postcode, p.gemeente,c.email, c.telefoon, c.gsm, c.fax, ta.taalnaam, k.klantid,\n" +
+"            k.naam as \"klantnaam\", k.voornaam as \"klantvoornaam\", k.bedrijf, k.website, k.betalingscondities, k.munt,\n" +
+"            k.btwregime, k.btwnummer, k.ondernemingsnummer, k.iban, k.bic\n" +
+"            from klant k \n" +
+"            inner join transportadres t\n" +
+"            on k.transportadresid = t.transportid\n" +
+"            inner join adres a\n" +
+"            on a.adresid = t.adresid\n" +
+"            inner join postcode p\n" +
+"            on p.postcode = a.postcode\n" +
+"            inner join contact c\n" +
+"            on t.contactid = c.contactid\n" +
+"            inner join taal ta\n" +
+"            on ta.taalid = taal\n" +
+"            inner join land l\n" +
+"            on l.landid = a.land\n" +
+"where k.klantid = :id";
 
     @Autowired
     private SessionFactory sessionFactory;
@@ -78,7 +81,7 @@ public class TransportadresDAOImpl implements TransportadresDAO{
      */
     @Override
     public void addTransportadres(KlantView klant) {
-        Adres adres = new Adres(klant.getPostcode(), klant.getStraat(), klant.getNummer(), klant.getBus(), klant.getLand());
+        Adres adres = new Adres(klant.getPostcode(), klant.getStraat(), klant.getNummer(), klant.getBus(), klant.getLandid());//land!!!
         Contact contact = new Contact(klant.getEmail(), klant.getTelefoon(), klant.getGsm(), klant.getFax());
         sessionFactory.getCurrentSession().saveOrUpdate(adres);
         sessionFactory.getCurrentSession().saveOrUpdate(contact);
@@ -100,7 +103,8 @@ public class TransportadresDAOImpl implements TransportadresDAO{
     @Override
     public List getTransportadres(){
         Session session = HibernateUtil.getSessionFactory().openSession();
-        Query query = session.createSQLQuery(qryContacten);   
+        Query query = session.createSQLQuery(qryKlanten);   
+        //return mapJson(query.list());
         return mapJson(query.list());
     }
     /**
@@ -111,7 +115,7 @@ public class TransportadresDAOImpl implements TransportadresDAO{
     @Override
     public KlantObjectView getTransportadres(int id) {
         Session session = HibernateUtil.getSessionFactory().openSession();
-        Query query = session.createSQLQuery(qryContact);
+        Query query = session.createSQLQuery(qryKlant);
         query.setParameter("id", id);    
         return mapJson(query.list()).get(0);
     }
@@ -141,7 +145,8 @@ public class TransportadresDAOImpl implements TransportadresDAO{
      */
     @Override
     public void updateTransportadres(KlantView klant) {
-        Adres adres = new Adres(klant.getAdresid(),klant.getPostcode(), klant.getStraat(), klant.getNummer(), klant.getBus(), klant.getLand());
+        System.out.println(klant.getLandid());
+        Adres adres = new Adres(klant.getAdresid(),klant.getPostcode(), klant.getStraat(), klant.getNummer(), klant.getBus(), klant.getLandid());
         Contact contact = new Contact(klant.getContactid(),klant.getEmail(), klant.getTelefoon(), klant.getGsm(), klant.getFax());
         sessionFactory.getCurrentSession().update(adres);
         sessionFactory.getCurrentSession().update(contact);
@@ -174,7 +179,7 @@ public class TransportadresDAOImpl implements TransportadresDAO{
                     row[1],row[2],row[3], row[4], row[5],row[6], row[7], row[8], 
                     row[9], row[10], row[11], row[12], row[13], 
                     row[14], row[15],row[16], row[17], row[18], row[19], row[20], row[21], 
-                    row[22], row[23], row[24],row[25], row[26], row[27], row[28], row[29], row[30], row[31], row[32]);
+                    row[22], row[23], row[24],row[25], row[26], row[27], row[28], row[29], row[30], row[31], row[32], row[33]);
             transportViews.add(transportView);
         }
         return transportViews;

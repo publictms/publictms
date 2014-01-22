@@ -4,7 +4,6 @@
  */
 package be.pxl.publictms;
 
-import be.pxl.publictms.pojo.Transportadres;
 import be.pxl.publictms.service.TransportadresService;
 import be.pxl.publictms.view.KlantView;
 import be.pxl.publictms.view.KlantObjectView;

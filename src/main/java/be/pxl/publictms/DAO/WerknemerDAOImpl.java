@@ -11,7 +11,6 @@ import be.pxl.publictms.pojo.Persoonsinfo;
 import be.pxl.publictms.pojo.Rijbewijsgegevens;
 import be.pxl.publictms.pojo.Taal;
 import be.pxl.publictms.pojo.Werknemer;
-import be.pxl.publictms.service.TaalService;
 import be.pxl.publictms.view.WerknemerCompleet;
 import be.pxl.publictms.view.WerknemerView;
 import java.text.DateFormat;
@@ -21,8 +20,6 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -70,7 +67,7 @@ public class WerknemerDAOImpl implements WerknemerDAO {
     @Override
     public void addWerknemer(WerknemerCompleet werknemerCompleet) {
             
-            Adres adres = new Adres(werknemerCompleet.getPostcode(), werknemerCompleet.getStraat(), werknemerCompleet.getNummer(), werknemerCompleet.getBus(), werknemerCompleet.getLand());
+            Adres adres = new Adres(werknemerCompleet.getPostcode(), werknemerCompleet.getStraat(), werknemerCompleet.getNummer(), werknemerCompleet.getBus(), 1);//land!!!
             Contact contact = new Contact(werknemerCompleet.getEmail(), werknemerCompleet.getTelefoon(), werknemerCompleet.getGsm(), werknemerCompleet.getFax());
             Rijbewijsgegevens rijbewijs = new Rijbewijsgegevens(werknemerCompleet.getRijbewijsnr(), werknemerCompleet.getRijbewijscat(), werknemerCompleet.getGeldigtot(), werknemerCompleet.getAdrcertificaat(), werknemerCompleet.getMedischattest(), werknemerCompleet.getTankkaartnr(), werknemerCompleet.getTachograafnr(), werknemerCompleet.getTachograaftot());
             Persoonsinfo persoonsinfo = new Persoonsinfo(werknemerCompleet.getRijksregisternr(), werknemerCompleet.getSiskaart(), werknemerCompleet.getIdentiteitsnr(), werknemerCompleet.getPensioennr(), werknemerCompleet.getGeboorteplaats(), werknemerCompleet.getGeboortedatum(), werknemerCompleet.getIban(), werknemerCompleet.getBic(), werknemerCompleet.getBurgerstand(), werknemerCompleet.getAantalkinderen());
@@ -135,16 +132,14 @@ public class WerknemerDAOImpl implements WerknemerDAO {
      */
     @Override
     public void updateWerknemer(WerknemerCompleet werknemerCompleet) {
-
-            Taal taal = new Taal(werknemerCompleet.getTaalid(), werknemerCompleet.getTaalnaam());
-            Adres adres = new Adres(werknemerCompleet.getAdresid(), werknemerCompleet.getPostcode(), werknemerCompleet.getStraat(), werknemerCompleet.getNummer(), werknemerCompleet.getBus(), werknemerCompleet.getLand());
+            System.out.println("land: " + werknemerCompleet.getLand());
+            System.out.println("taal " + werknemerCompleet.getTaalid());
+            Adres adres = new Adres(werknemerCompleet.getAdresid(), werknemerCompleet.getPostcode(), werknemerCompleet.getStraat(), werknemerCompleet.getNummer(), werknemerCompleet.getBus(), 1);
             Contact contact = new Contact(werknemerCompleet.getContactid(), werknemerCompleet.getEmail(), werknemerCompleet.getTelefoon(), werknemerCompleet.getGsm(), werknemerCompleet.getFax());
             Rijbewijsgegevens rijbewijs = new Rijbewijsgegevens(werknemerCompleet.getRijbewijsid(), werknemerCompleet.getRijbewijsnr(), werknemerCompleet.getRijbewijscat(), werknemerCompleet.getGeldigtot(), werknemerCompleet.getAdrcertificaat(), werknemerCompleet.getMedischattest(), werknemerCompleet.getTankkaartnr(), werknemerCompleet.getTachograafnr(), werknemerCompleet.getTachograaftot());
             Persoonsinfo persoonsinfo = new Persoonsinfo(werknemerCompleet.getInfoid(), werknemerCompleet.getRijksregisternr(), werknemerCompleet.getSiskaart(), werknemerCompleet.getIdentiteitsnr(), werknemerCompleet.getPensioennr(), werknemerCompleet.getGeboorteplaats(), werknemerCompleet.getGeboortedatum(), werknemerCompleet.getIban(), werknemerCompleet.getBic(), werknemerCompleet.getBurgerstand(), werknemerCompleet.getAantalkinderen());
             Werknemer werknemer = new Werknemer(werknemerCompleet.getWerknemerid(), werknemerCompleet.getTaalid(), werknemerCompleet.getNaam(), werknemerCompleet.getVoornaam(), werknemerCompleet.getActief(), werknemerCompleet.getAdresid(), werknemerCompleet.getContactid(), werknemerCompleet.getGeslacht(), werknemerCompleet.getStatuut(), werknemerCompleet.getDatuminschrijving(), werknemerCompleet.getDatumuitschrijving(), werknemerCompleet.getFunctie(), werknemerCompleet.getRijbewijsid(), werknemerCompleet.getInfoid());
             
-            taal = new Taal(werknemerCompleet.getTaalnaam());
-            sessionFactory.getCurrentSession().saveOrUpdate(taal);
             sessionFactory.getCurrentSession().update(adres);
             sessionFactory.getCurrentSession().update(contact);
             sessionFactory.getCurrentSession().update(rijbewijs);

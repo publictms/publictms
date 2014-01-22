@@ -13,12 +13,12 @@ public class Adres  implements java.io.Serializable {
      private String straat;
      private short nummer;
      private String bus;
-     private String land;
+     private int land;
 
     public Adres() {
     }
 
-    public Adres(String postcode, String straat, short nummer, String bus, String land) {
+    public Adres(String postcode, String straat, short nummer, String bus, int land) {
        this.postcode = postcode;
        this.straat = straat;
        this.nummer = nummer;
@@ -26,7 +26,7 @@ public class Adres  implements java.io.Serializable {
        this.land = land;
     }
 
-    public Adres(int adresid, String postcode, String straat, short nummer, String bus, String land) {
+    public Adres(int adresid, String postcode, String straat, short nummer, String bus, int land) {
        this.adresid = adresid;
        this.postcode = postcode;
        this.straat = straat;
@@ -70,11 +70,11 @@ public class Adres  implements java.io.Serializable {
     public void setBus(String bus) {
         this.bus = bus;
     }
-    public String getLand() {
+    public int getLand() {
         return this.land;
     }
     
-    public void setLand(String land) {
+    public void setLand(int land) {
         this.land = land;
     }
 }

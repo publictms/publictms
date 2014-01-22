@@ -24,5 +24,6 @@
     <mapping resource="be/pxl/publictms/pojo/Opdracht.hbm.xml"/>
     <mapping resource="be/pxl/publictms/pojo/Facturatie.hbm.xml"/>
     <mapping resource="be/pxl/publictms/pojo/Gebruiker.hbm.xml"/>
+    <mapping resource="be/pxl/publictms/pojo/Land.hbm.xml"/>
   </session-factory>
 </hibernate-configuration>

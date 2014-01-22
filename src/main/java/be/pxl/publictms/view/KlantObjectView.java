@@ -22,6 +22,7 @@ public class KlantObjectView {
     private Object straat;
     private Object nummer;
     private Object bus;
+    private Object landid;
     private Object land;
     private Object postcode;
     private Object gemeente;
@@ -47,7 +48,7 @@ public class KlantObjectView {
         
     }
 
-    public KlantObjectView(Object transportid, Object adresid, Object taalid, Object contactid, Object soortadres, Object actief, Object vensteruren, Object vrachtbeperking, Object chauffeursbeperking, Object vrijveld, Object straat, Object nummer, Object bus, Object land, Object postcode, Object gemeente, Object email, Object telefoon, Object gsm, Object fax, Object taalNaam, Object klantid, Object klantnaam, Object voornaam, Object bedrijf, Object website, Object betalingscondities, Object munt, Object btwregime, Object btwnummer, Object ondernemingsnummer, Object iban, Object bic) {
+    public KlantObjectView(Object transportid, Object adresid, Object taalid, Object contactid, Object soortadres, Object actief, Object vensteruren, Object vrachtbeperking, Object chauffeursbeperking, Object vrijveld, Object straat, Object nummer, Object bus,Object landid, Object land, Object postcode, Object gemeente, Object email, Object telefoon, Object gsm, Object fax, Object taalNaam, Object klantid, Object klantnaam, Object voornaam, Object bedrijf, Object website, Object betalingscondities, Object munt, Object btwregime, Object btwnummer, Object ondernemingsnummer, Object iban, Object bic) {
         this.transportid = transportid;
         this.adresid = adresid;
         this.taalid = taalid;
@@ -62,6 +63,7 @@ public class KlantObjectView {
         this.nummer = nummer;
         this.bus = bus;
         this.land = land;
+        this.landid = landid;
         this.postcode = postcode;
         this.gemeente = gemeente;
         this.email = email;
@@ -83,6 +85,14 @@ public class KlantObjectView {
         this.bic = bic;
     }
 
+    public Object getLandid() {
+        return landid;
+    }
+
+    public void setLandid(Object landid) {
+        this.landid = landid;
+    }
+    
     public Object getBetalingscondities() {
         return betalingscondities;
     }

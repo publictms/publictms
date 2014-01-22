@@ -22,6 +22,7 @@ public class KlantView {
     private String straat;
     private short nummer;
     private String bus;
+    private int landid;
     private String land;
     private String postcode;
     private String gemeente;
@@ -47,7 +48,7 @@ public class KlantView {
         
     }
 
-    public KlantView(int transportid, int adresid, int taalid, int contactid, String soortadres, boolean actief, String vensteruren, String vrachtbeperking, String chauffeursbeperking, String vrijveld, String straat, short nummer, String bus, String land, String postcode, String gemeente, String email, String telefoon, String gsm, String fax, String taalNaam, int klantid, String klantnaam, String voornaam, String bedrijf, String website, String betalingscondities, String munt, String btwregime, String btwnummer, String ondernemingsnummer, String iban, String bic) {
+    public KlantView(int transportid, int adresid, int taalid, int contactid, String soortadres, boolean actief, String vensteruren, String vrachtbeperking, String chauffeursbeperking, String vrijveld, String straat, short nummer, String bus,int landid, String land, String postcode, String gemeente, String email, String telefoon, String gsm, String fax, String taalNaam, int klantid, String klantnaam, String voornaam, String bedrijf, String website, String betalingscondities, String munt, String btwregime, String btwnummer, String ondernemingsnummer, String iban, String bic) {
         this.transportid = transportid;
         this.adresid = adresid;
         this.taalid = taalid;
@@ -61,7 +62,9 @@ public class KlantView {
         this.straat = straat;
         this.nummer = nummer;
         this.bus = bus;
+        this.landid = landid;
         this.land = land;
+        this.landid = landid;
         this.postcode = postcode;
         this.gemeente = gemeente;
         this.email = email;
@@ -83,6 +86,14 @@ public class KlantView {
         this.bic = bic;
     }
 
+    public int getLandid() {
+        return landid;
+    }
+
+    public void setLandid(int landid) {
+        this.landid = landid;
+    }
+    
     public String getBetalingscondities() {
         return betalingscondities;
     }

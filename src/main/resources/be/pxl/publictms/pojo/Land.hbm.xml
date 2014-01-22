@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 22-jan-2014 17:53:29 by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+    <class name="be.pxl.publictms.pojo.Land" table="land" schema="public">
+        <id name="landid" type="int">
+            <column name="landid" />
+            <generator class="increment" />
+        </id>
+        <property name="landnaam" type="string">
+            <column name="landnaam" length="30" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

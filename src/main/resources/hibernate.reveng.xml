@@ -5,6 +5,7 @@
   <table-filter match-name="postcode"/>
   <table-filter match-name="oplegger"/>
   <table-filter match-name="laadgegevens"/>
+  <table-filter match-name="land"/>
   <table-filter match-name="werknemer"/>
   <table-filter match-name="rijbewijsgegevens"/>
   <table-filter match-name="actie"/>

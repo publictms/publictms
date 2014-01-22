@@ -20,8 +20,8 @@
         <property name="bus" type="string">
             <column name="bus" length="10" />
         </property>
-        <property name="land" type="string">
-            <column name="land" length="30" not-null="true" />
+        <property name="land" type="int">
+            <column name="land" not-null="true" />
         </property>
     </class>
 </hibernate-mapping>
