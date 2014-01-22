@@ -38,7 +38,7 @@ public class OpdrachtDAOImpl implements OpdrachtDAO{
         "inner join oplegger op\n" +
         "on o.opleggerid = op.opleggerid";
     
-    final String selectOpdracht = "select o.opdrachtid, k.klantid as \"klant id\"\n" +
+    final String selectOpdracht ="select o.opdrachtid, k.klantid as \"klant id\"\n" +
         ",k.naam as \"klant naam\" ,k.voornaam as \"klant voornaam\", k.bedrijf, o.datum, w.werknemerid as \"werknemer id\" ,w.naam as \"werknemer naam\", w.voornaam as \"werknemer voornaam\", v.nummerplaat as \"voertuig\", op.nummerplaat as \"oplegger\", o.opdrachtklaar, o.vrijveld\n" +
         "from opdracht o\n" +
         "inner join klant k\n" +
@@ -48,8 +48,8 @@ public class OpdrachtDAOImpl implements OpdrachtDAO{
         "inner join werknemer w\n" +
         "on o.werknemerid = w.werknemerid\n" +
         "inner join oplegger op\n" +
-        "on o.opleggerid = op.opleggerid"
-            + "where o.opdrachtid = :id";
+        "on o.opleggerid = op.opleggerid\n" +
+        "where o.opdrachtid = :id";
     
     final String selectWerknemer ="select o.opdrachtid, k.klantid as \"klant id\"\n" +
         ",k.naam as \"klant naam\", k.voornaam as \"klant voornaam\", k.bedrijf, o.datum, w.werknemerid as \"werknemer id\" ,w.naam as \"werknemer naam\", w.voornaam as \"werknemer voornaam\", v.nummerplaat as \"voertuig\", op.nummerplaat as \"oplegger\", o.opdrachtklaar, o.vrijveld\n" +
@@ -133,7 +133,7 @@ public class OpdrachtDAOImpl implements OpdrachtDAO{
     @Override
     public OpdrachtView getOpdracht(int id){
         Session session = HibernateUtil.getSessionFactory().openSession();
-        Query query = session.createSQLQuery(selectWerknemer);
+        Query query = session.createSQLQuery(selectOpdracht);
         query.setParameter("id", id);
         return mapJson(query.list()).get(0);
     }
