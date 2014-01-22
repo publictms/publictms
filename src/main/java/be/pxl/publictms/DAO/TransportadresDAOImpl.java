@@ -78,12 +78,16 @@ public class TransportadresDAOImpl implements TransportadresDAO{
      */
     @Override
     public void addTransportadres(KlantView klant) {
+        Postcode postcode = new Postcode(klant.getPostcode(), klant.getGemeente());
+        Taal taal = new Taal(klant.getTaalid(), klant.getTaalNaam());
+        sessionFactory.getCurrentSession().saveOrUpdate(postcode);
+        sessionFactory.getCurrentSession().saveOrUpdate(taal);
         Adres adres = new Adres(klant.getPostcode(), klant.getStraat(), klant.getNummer(), klant.getBus(), klant.getLand());
         Contact contact = new Contact(klant.getEmail(), klant.getTelefoon(), klant.getGsm(), klant.getFax());
         sessionFactory.getCurrentSession().saveOrUpdate(adres);
         sessionFactory.getCurrentSession().saveOrUpdate(contact);
         Transportadres transportAdres = new Transportadres(adres.getAdresid(), 
-                contact.getContactid(), klant.getTaalid(), klant.isActief(), klant.getSoortadres(),
+                contact.getContactid(), taal.getTaalid(), klant.isActief(), klant.getSoortadres(),
                 klant.getVensteruren(), klant.getVrachtbeperking(), klant.getChauffeursbeperking(),
                 klant.getVrijveld());
         sessionFactory.getCurrentSession().save(transportAdres);
@@ -146,11 +150,11 @@ public class TransportadresDAOImpl implements TransportadresDAO{
         sessionFactory.getCurrentSession().update(adres);
         sessionFactory.getCurrentSession().update(contact);
         Transportadres transportAdres = new Transportadres(klant.getTransportid(), klant.getAdresid(), //taalid!!
-                klant.getContactid(), klant.getTaalid(), klant.isActief(), klant.getSoortadres(),
+                klant.getContactid(), 1, klant.isActief(), klant.getSoortadres(),
                 klant.getVensteruren(), klant.getVrachtbeperking(), klant.getChauffeursbeperking(),
                 klant.getVrijveld());
-        //System.out.println(klant.getTransportid()+" " + klant.getAdresid()+" "+klant.getContactid() +" " +klant.getTaalid());
-        //System.out.println(transportAdres.getTransportid()+" " + adres.getAdresid()+" "+contact.getContactid());
+        System.out.println(klant.getTransportid()+" " + klant.getAdresid()+" "+klant.getContactid() +" " +klant.getTaalid());
+        System.out.println(transportAdres.getTransportid()+" " + adres.getAdresid()+" "+contact.getContactid());
         sessionFactory.getCurrentSession().update(transportAdres);
         Klant klnt = new Klant(klant.getKlantid(), 
         klant.getTransportid(), klant.getKlantnaam(), 
