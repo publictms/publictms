@@ -10,11 +10,10 @@ package be.pxl.publictms.view;
  * @author Laurens Putseys
  */
 public class OpdrachtView {
-    private Object opdrachtId;
     private Object Id;
     private Object klantId;
     private Object klantNaam;
-    private Object klantVoornaam;
+    private Object klantVoorNaam;
     private Object bedrijf;
     private Object datum;
     private Object start;
@@ -27,12 +26,11 @@ public class OpdrachtView {
     private Object opdrachtklaar;
     private Object vrijveld;
 
-    public OpdrachtView(Object opdrachtid,Object klantId, Object klantNaam, Object klantVoornaam, Object bedrijf, Object datum, Object werknemerId, Object werknemerNaam, Object werknemerVoornaam, Object voertuig, Object oplegger, Object opdrachtklaar, Object vrijveld) {
-        this.opdrachtId = opdrachtid;
+    public OpdrachtView(Object opdrachtid,Object klantId, Object klantNaam, Object klantVoorNaam, Object bedrijf, Object datum, Object werknemerId, Object werknemerNaam, Object werknemerVoornaam, Object voertuig, Object oplegger, Object opdrachtklaar, Object vrijveld) {
         this.Id = opdrachtid;
         this.klantId = klantId;
         this.klantNaam = klantNaam;
-        this.klantVoornaam = klantVoornaam;
+        this.klantVoorNaam = klantVoorNaam;
         this.bedrijf = bedrijf;
         this.datum = datum;
         this.start = datum;
@@ -46,14 +44,6 @@ public class OpdrachtView {
         this.title = werknemerNaam + " " + werknemerVoornaam;
     }
 
-    public Object getOpdrachtId() {
-        return opdrachtId;
-    }
-
-    public void setOpdrachtId(Object opdrachtId) {
-        this.opdrachtId = opdrachtId;
-    }
-    
     public Object getId() {
         return Id;
     }
@@ -78,12 +68,12 @@ public class OpdrachtView {
         this.klantNaam = klantNaam;
     }
 
-    public Object getKlantVoornaam() {
-        return klantVoornaam;
+    public Object getKlantVoorNaam() {
+        return klantVoorNaam;
     }
 
-    public void setKlantVoornaam(Object klantVoornaam) {
-        this.klantVoornaam = klantVoornaam;
+    public void setKlantVoorNaam(Object klantVoorNaam) {
+        this.klantVoorNaam = klantVoorNaam;
     }
 
     public Object getBedrijf() {
