@@ -52,8 +52,6 @@ public class WerknemerDAOImpl implements WerknemerDAO {
     @Autowired
     private SessionFactory sessionFactory;
 
-    @Autowired
-    private TaalService taalService;
 
     /**
      * zorgt ervoor dat sessionFactory wordt geïnitialiseerd
@@ -71,23 +69,19 @@ public class WerknemerDAOImpl implements WerknemerDAO {
      */
     @Override
     public void addWerknemer(WerknemerCompleet werknemerCompleet) {
-
-            Taal taal = new Taal(werknemerCompleet.getTaalnaam());
+            
             Adres adres = new Adres(werknemerCompleet.getPostcode(), werknemerCompleet.getStraat(), werknemerCompleet.getNummer(), werknemerCompleet.getBus(), werknemerCompleet.getLand());
             Contact contact = new Contact(werknemerCompleet.getEmail(), werknemerCompleet.getTelefoon(), werknemerCompleet.getGsm(), werknemerCompleet.getFax());
             Rijbewijsgegevens rijbewijs = new Rijbewijsgegevens(werknemerCompleet.getRijbewijsnr(), werknemerCompleet.getRijbewijscat(), werknemerCompleet.getGeldigtot(), werknemerCompleet.getAdrcertificaat(), werknemerCompleet.getMedischattest(), werknemerCompleet.getTankkaartnr(), werknemerCompleet.getTachograafnr(), werknemerCompleet.getTachograaftot());
             Persoonsinfo persoonsinfo = new Persoonsinfo(werknemerCompleet.getRijksregisternr(), werknemerCompleet.getSiskaart(), werknemerCompleet.getIdentiteitsnr(), werknemerCompleet.getPensioennr(), werknemerCompleet.getGeboorteplaats(), werknemerCompleet.getGeboortedatum(), werknemerCompleet.getIban(), werknemerCompleet.getBic(), werknemerCompleet.getBurgerstand(), werknemerCompleet.getAantalkinderen());
 
-            sessionFactory.getCurrentSession().saveOrUpdate(taal);
             sessionFactory.getCurrentSession().save(adres);
             sessionFactory.getCurrentSession().save(contact);
             sessionFactory.getCurrentSession().save(rijbewijs);
             sessionFactory.getCurrentSession().save(persoonsinfo);
 
-            Werknemer werknemer = new Werknemer(taal.getTaalid(), werknemerCompleet.getNaam(), werknemerCompleet.getVoornaam(), werknemerCompleet.getActief(), adres.getAdresid(), contact.getContactid(), werknemerCompleet.getGeslacht(), werknemerCompleet.getStatuut(), werknemerCompleet.getDatuminschrijving(), werknemerCompleet.getDatumuitschrijving(), werknemerCompleet.getFunctie(), rijbewijs.getRijbewijsid(), persoonsinfo.getInfoid());
+            Werknemer werknemer = new Werknemer(werknemerCompleet.getTaalid(), werknemerCompleet.getNaam(), werknemerCompleet.getVoornaam(), werknemerCompleet.getActief(), adres.getAdresid(), contact.getContactid(), werknemerCompleet.getGeslacht(), werknemerCompleet.getStatuut(), werknemerCompleet.getDatuminschrijving(), werknemerCompleet.getDatumuitschrijving(), werknemerCompleet.getFunctie(), rijbewijs.getRijbewijsid(), persoonsinfo.getInfoid());
             sessionFactory.getCurrentSession().save(werknemer);
-
-
     }
     /**
      * Geef een lijst terug met alle werknemers.
