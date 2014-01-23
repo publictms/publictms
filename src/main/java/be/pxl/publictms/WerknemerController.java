@@ -4,18 +4,7 @@
  */
 package be.pxl.publictms;
 
-import be.pxl.publictms.hibernate.HibernateUtil;
-import be.pxl.publictms.pojo.Adres;
-import be.pxl.publictms.pojo.Contact;
-import be.pxl.publictms.pojo.Persoonsinfo;
-import be.pxl.publictms.pojo.Rijbewijsgegevens;
-import be.pxl.publictms.pojo.Taal;
 import be.pxl.publictms.pojo.Werknemer;
-import be.pxl.publictms.service.AdresService;
-import be.pxl.publictms.service.ContactService;
-import be.pxl.publictms.service.PersoonsinfoService;
-import be.pxl.publictms.service.RijbewijsgegevensService;
-import be.pxl.publictms.service.TaalService;
 import be.pxl.publictms.service.WerknemerService;
 import be.pxl.publictms.view.WerknemerCompleet;
 import be.pxl.publictms.view.WerknemerView;
