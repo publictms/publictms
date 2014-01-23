@@ -46,10 +46,15 @@ public class WerknemerView {
      private Object bic;
      private Object burgerstand;
      private Object aantalkinderen;
+     private Object gebruikersid;
+     private Object gebruikersnaam;
+     private Object paswoord;
+     private Object admin;
      
      public WerknemerView(){}
      
-    public WerknemerView(Object actief, Object werknemerid, Object naam, Object voornaam, Object geslacht, Object statuut, Object datuminschrijving, Object datumuitschrijving, Object functie, Object taalid, Object taalnaam, Object adresid, Object postcode, Object straat, Object nummer, Object bus, Object land, Object contactid, Object email, Object telefoon, Object gsm, Object fax, Object rijbewijsid, Object rijbewijsnr, Object rijbewijscat, Object geldigtot, Object adrcertificaat, Object medischattest, Object tankkaartnr, Object tachograafnr, Object tachograaftot, Object infoid, Object rijksregisternr, Object siskaart, Object identiteitsnr, Object pensioennr, Object geboorteplaats, Object geboortedatum, Object iban, Object bic, Object burgerstand, Object aantalkinderen) {
+    public WerknemerView(Object actief, Object werknemerid, Object naam, Object voornaam, Object geslacht, Object statuut, Object datuminschrijving, Object datumuitschrijving, Object functie, Object taalid, Object taalnaam, Object adresid, Object postcode, Object straat, Object nummer, Object bus, Object land, Object contactid, Object email, Object telefoon, Object gsm, Object fax, Object rijbewijsid, Object rijbewijsnr, Object rijbewijscat, Object geldigtot, Object adrcertificaat, Object medischattest, Object tankkaartnr, Object tachograafnr, Object tachograaftot, Object infoid, Object rijksregisternr, Object siskaart, Object identiteitsnr, Object pensioennr, Object geboorteplaats, Object geboortedatum, Object iban, Object bic, Object burgerstand, Object aantalkinderen,
+            Object gebruikersid, Object gebruikersnaam, Object paswoord, Object admin) {
         this.actief = actief;
         this.werknemerid = werknemerid;
         this.naam = naam;
@@ -92,9 +97,14 @@ public class WerknemerView {
         this.bic = bic;
         this.burgerstand = burgerstand;
         this.aantalkinderen = aantalkinderen;
+        this.gebruikersid = gebruikersid;
+        this.gebruikersnaam = gebruikersnaam;
+        //this.paswoord = paswoord;
+        this.admin = admin;
     }
     
-    public WerknemerView(Object actief, Object naam, Object voornaam, Character geslacht, Object statuut, Object datuminschrijving, Object datumuitschrijving, Object functie, Object taalnaam, Object postcode, Object straat, Object nummer, Object bus, Object land, Object email, Object telefoon, Object gsm, Object fax, Object rijbewijsnr, Object rijbewijscat, Object geldigtot, Object adrcertificaat, Object medischattest, Object tankkaartnr, Object tachograafnr, Object tachograaftot, Object rijksregisternr, Object siskaart, Object identiteitsnr, Object pensioennr, Object geboorteplaats, Object geboortedatum, Object iban, Object bic, Object burgerstand, Object aantalkinderen) {
+    public WerknemerView(Object actief, Object naam, Object voornaam, Character geslacht, Object statuut, Object datuminschrijving, Object datumuitschrijving, Object functie, Object taalnaam, Object postcode, Object straat, Object nummer, Object bus, Object land, Object email, Object telefoon, Object gsm, Object fax, Object rijbewijsnr, Object rijbewijscat, Object geldigtot, Object adrcertificaat, Object medischattest, Object tankkaartnr, Object tachograafnr, Object tachograaftot, Object rijksregisternr, Object siskaart, Object identiteitsnr, Object pensioennr, Object geboorteplaats, Object geboortedatum, Object iban, Object bic, Object burgerstand, Object aantalkinderen,
+            Object gebruikersid, Object gebruikersnaam, Object paswoord, Object admin) {
         this.actief = actief;
         this.naam = naam;
         this.voornaam = voornaam;
@@ -131,6 +141,43 @@ public class WerknemerView {
         this.bic = bic;
         this.burgerstand = burgerstand;
         this.aantalkinderen = aantalkinderen;
+        this.gebruikersid = gebruikersid;
+        this.gebruikersnaam = gebruikersnaam;
+        //this.paswoord = paswoord;
+        this.admin = admin;
+    }
+
+    public Object getGebruikersid() {
+        return gebruikersid;
+    }
+
+    public void setGebruikersid(Object gebruikersid) {
+        this.gebruikersid = gebruikersid;
+    }
+    
+    
+    public Object getGebruikersnaam() {
+        return gebruikersnaam;
+    }
+
+    public void setGebruikersnaam(Object gebruikersnaam) {
+        this.gebruikersnaam = gebruikersnaam;
+    }
+
+    public Object getPaswoord() {
+        return paswoord;
+    }
+
+    public void setPaswoord(Object paswoord) {
+        this.paswoord = paswoord;
+    }
+
+    public Object getAdmin() {
+        return admin;
+    }
+
+    public void setAdmin(Object admin) {
+        this.admin = admin;
     }
     
     public Object getActief() {

@@ -89,7 +89,7 @@ public class GebruikerController {
         if(gebruikerService.getGebruikers().contains(gebruiker))
         gebruikerService.updateGebruiker(gebruiker);
     }
-    @RequestMapping(value = "/{gebruikersnaam}/{paswoord}", method = RequestMethod.GET)
+    @RequestMapping(value = "/{gebruikersnaam}/{paswoord}", method = RequestMethod.POST)
     public @ResponseBody boolean checkGebruiker(@PathVariable("gebruikersnaam") String gebruikersnaam, @PathVariable("paswoord") String paswoord ){
         return gebruikerService.checkUser(gebruikersnaam, paswoord);
     }

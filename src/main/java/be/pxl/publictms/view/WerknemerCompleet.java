@@ -46,10 +46,23 @@ public class WerknemerCompleet {
      private String tachograafnr;
      private int tachograaftot;
      private String taalnaam;
+     private int gebruikersid;
+     private String gebruikersnaam;
+     private String paswoord;
+     private boolean admin;
 
      public WerknemerCompleet(){};
      
-    public WerknemerCompleet(int werknemerid, int taalid, String naam, String voornaam, Boolean actief, int adresid, int contactid, Character geslacht, String statuut, Date datuminschrijving, Date datumuitschrijving, String functie, int rijbewijsid, int infoid, String postcode, String straat, short nummer, String bus, String land, String email, String telefoon, String gsm, String fax, String rijksregisternr, String siskaart, String identiteitsnr, String pensioennr, String geboorteplaats, Date geboortedatum, String iban, String bic, String burgerstand, int aantalkinderen, String rijbewijsnr, String rijbewijscat, Date geldigtot, Boolean adrcertificaat, Boolean medischattest, String tankkaartnr, String tachograafnr, int tachograaftot, String taalnaam) {
+    public WerknemerCompleet(int werknemerid, int taalid, String naam, String voornaam, 
+            Boolean actief, int adresid, int contactid, Character geslacht, String statuut, 
+            Date datuminschrijving, Date datumuitschrijving, String functie, int rijbewijsid, 
+            int infoid, String postcode, String straat, short nummer, String bus, String land, 
+            String email, String telefoon, String gsm, String fax, String rijksregisternr, 
+            String siskaart, String identiteitsnr, String pensioennr, String geboorteplaats, 
+            Date geboortedatum, String iban, String bic, String burgerstand, int aantalkinderen, 
+            String rijbewijsnr, String rijbewijscat, Date geldigtot, Boolean adrcertificaat, Boolean medischattest, 
+            String tankkaartnr, String tachograafnr, int tachograaftot, String taalnaam,
+            int gebruikersid, String gebruikersnaam, String paswoord, boolean admin) {
         this.werknemerid = werknemerid;
         this.taalid = taalid;
         this.naam = naam;
@@ -92,9 +105,21 @@ public class WerknemerCompleet {
         this.tachograafnr = tachograafnr;
         this.tachograaftot = tachograaftot;
         this.taalnaam = taalnaam;
+        this.gebruikersid = gebruikersid;
+        this.gebruikersnaam = gebruikersnaam;
+        this.paswoord = paswoord;
+        this.admin = admin;
     }
 
-    public WerknemerCompleet(String naam, String voornaam, Boolean actief, Character geslacht, String statuut, Date datuminschrijving, Date datumuitschrijving, String functie, String postcode, String straat, short nummer, String bus, String land, String email, String telefoon, String gsm, String fax, String rijksregisternr, String siskaart, String identiteitsnr, String pensioennr, String geboorteplaats, Date geboortedatum, String iban, String bic, String burgerstand, int aantalkinderen, String rijbewijsnr, String rijbewijscat, Date geldigtot, Boolean adrcertificaat, Boolean medischattest, String tankkaartnr, String tachograafnr, int tachograaftot, String taalnaam) {
+    public WerknemerCompleet(String naam, String voornaam, Boolean actief, Character geslacht, 
+            String statuut, Date datuminschrijving, Date datumuitschrijving, String functie, 
+            String postcode, String straat, short nummer, String bus, String land, String email, 
+            String telefoon, String gsm, String fax, String rijksregisternr, String siskaart, 
+            String identiteitsnr, String pensioennr, String geboorteplaats, Date geboortedatum, 
+            String iban, String bic, String burgerstand, int aantalkinderen, String rijbewijsnr, 
+            String rijbewijscat, Date geldigtot, Boolean adrcertificaat, Boolean medischattest, 
+            String tankkaartnr, String tachograafnr, int tachograaftot, String taalnaam,
+            int gebruikersid, String gebruikersnaam, String paswoord, boolean admin) {
         this.naam = naam;
         this.voornaam = voornaam;
         this.actief = actief;
@@ -131,6 +156,42 @@ public class WerknemerCompleet {
         this.tachograafnr = tachograafnr;
         this.tachograaftot = tachograaftot;
         this.taalnaam = taalnaam;
+        this.gebruikersid = gebruikersid;
+        this.gebruikersnaam = gebruikersnaam;
+        this.paswoord = paswoord;
+        this.admin = admin;
+    }
+
+    public int getGebruikersid() {
+        return gebruikersid;
+    }
+
+    public void setGebruikersid(int gebruikersid) {
+        this.gebruikersid = gebruikersid;
+    }
+    
+    public String getGebruikersnaam() {
+        return gebruikersnaam;
+    }
+
+    public void setGebruikersnaam(String gebruikersnaam) {
+        this.gebruikersnaam = gebruikersnaam;
+    }
+
+    public String getPaswoord() {
+        return paswoord;
+    }
+
+    public void setPaswoord(String paswoord) {
+        this.paswoord = paswoord;
+    }
+
+    public boolean isAdmin() {
+        return admin;
+    }
+
+    public void setAdmin(boolean admin) {
+        this.admin = admin;
     }
 
      

@@ -7,9 +7,9 @@ package be.pxl.publictms.DAO;
 import be.pxl.publictms.hibernate.HibernateUtil;
 import be.pxl.publictms.pojo.Adres;
 import be.pxl.publictms.pojo.Contact;
+import be.pxl.publictms.pojo.Gebruiker;
 import be.pxl.publictms.pojo.Persoonsinfo;
 import be.pxl.publictms.pojo.Rijbewijsgegevens;
-import be.pxl.publictms.pojo.Taal;
 import be.pxl.publictms.pojo.Werknemer;
 import be.pxl.publictms.view.WerknemerCompleet;
 import be.pxl.publictms.view.WerknemerView;
@@ -24,6 +24,7 @@ import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.stereotype.Repository;
 
 /**
@@ -35,17 +36,21 @@ import org.springframework.stereotype.Repository;
 @Repository
 public class WerknemerDAOImpl implements WerknemerDAO {
 
-    private final String qryWerknemer = "select w.actief, w.werknemerid, w.naam, w.voornaam, w.geslacht, w.statuut, w.datuminschrijving, w.datumuitschrijving, w.functie, w.taal, t.taalnaam, "
-            + "w.adresid,  a.postcode, a.straat, a.nummer, a.bus, a.land, w.contactid, c.email, c.telefoon, c.gsm, c.fax, "
-            + "w.rijbewijsid, r.rijbewijsnr, r.rijbewijscat, r.geldigtot, r.adrcertificaat, r.medischattest, r.tankkaartnr, r.tachograafnr, r.tachograaftot, "
-            + "w.infoid, p.rijksregisternr, p.siskaart, p.identiteitsnr, p.pensioennr, p.geboorteplaats, p.geboortedatum, p.iban, p.bic, p.burgerstand, p.aantalkinderen "
-            + "from werknemer w, taal t, adres a, contact c, rijbewijsgegevens r, persoonsinfo p "
-            + "where w.werknemerid = :id "
-            + "and w.taal = t.taalid "
-            + "and w.adresid = a.adresid "
-            + "and w.contactid = c.contactid "
-            + "and w.rijbewijsid = r.rijbewijsid "
-            + "and w.infoid = p.infoid";
+    private final String qryWerknemer = "select w.actief, w.werknemerid, w.naam, w.voornaam, w.geslacht, w.statuut, w.datuminschrijving, w.datumuitschrijving, w.functie, w.taal, t.taalnaam, \n" +
+        "w.adresid,  a.postcode, a.straat, a.nummer, a.bus, a.land, w.contactid, c.email, c.telefoon, c.gsm, c.fax, \n" +
+        "w.rijbewijsid, r.rijbewijsnr, r.rijbewijscat, r.geldigtot, r.adrcertificaat, r.medischattest, r.tankkaartnr, r.tachograafnr, r.tachograaftot, \n" +
+        "w.infoid, p.rijksregisternr, p.siskaart, p.identiteitsnr, p.pensioennr, p.geboorteplaats, p.geboortedatum, p.iban, p.bic, p.burgerstand, p.aantalkinderen,\n" +
+        "g.gebruikerid, g.gebruikersnaam, g.paswoord, g.administrator\n" +
+        "from werknemer w, taal t, adres a, contact c, rijbewijsgegevens r, persoonsinfo p, gebruiker g\n" +
+        "where w.werknemerid = :id\n" +
+        "and w.taal = t.taalid \n" +
+        "and w.adresid = a.adresid \n" +
+        "and w.contactid = c.contactid \n" +
+        "and w.rijbewijsid = r.rijbewijsid \n" +
+        "and w.infoid = p.infoid\n" +
+        "and w.werknemerid = g.werknemerid";
+    
+    
     @Autowired
     private SessionFactory sessionFactory;
 
@@ -67,11 +72,10 @@ public class WerknemerDAOImpl implements WerknemerDAO {
     @Override
     public void addWerknemer(WerknemerCompleet werknemerCompleet) {
             
-            Adres adres = new Adres(werknemerCompleet.getPostcode(), werknemerCompleet.getStraat(), werknemerCompleet.getNummer(), werknemerCompleet.getBus(), 1);//land!!!
+            Adres adres = new Adres(werknemerCompleet.getPostcode(), werknemerCompleet.getStraat(), werknemerCompleet.getNummer(), werknemerCompleet.getBus(), 1);
             Contact contact = new Contact(werknemerCompleet.getEmail(), werknemerCompleet.getTelefoon(), werknemerCompleet.getGsm(), werknemerCompleet.getFax());
             Rijbewijsgegevens rijbewijs = new Rijbewijsgegevens(werknemerCompleet.getRijbewijsnr(), werknemerCompleet.getRijbewijscat(), werknemerCompleet.getGeldigtot(), werknemerCompleet.getAdrcertificaat(), werknemerCompleet.getMedischattest(), werknemerCompleet.getTankkaartnr(), werknemerCompleet.getTachograafnr(), werknemerCompleet.getTachograaftot());
             Persoonsinfo persoonsinfo = new Persoonsinfo(werknemerCompleet.getRijksregisternr(), werknemerCompleet.getSiskaart(), werknemerCompleet.getIdentiteitsnr(), werknemerCompleet.getPensioennr(), werknemerCompleet.getGeboorteplaats(), werknemerCompleet.getGeboortedatum(), werknemerCompleet.getIban(), werknemerCompleet.getBic(), werknemerCompleet.getBurgerstand(), werknemerCompleet.getAantalkinderen());
-
             sessionFactory.getCurrentSession().save(adres);
             sessionFactory.getCurrentSession().save(contact);
             sessionFactory.getCurrentSession().save(rijbewijs);
@@ -79,6 +83,12 @@ public class WerknemerDAOImpl implements WerknemerDAO {
 
             Werknemer werknemer = new Werknemer(werknemerCompleet.getTaalid(), werknemerCompleet.getNaam(), werknemerCompleet.getVoornaam(), werknemerCompleet.getActief(), adres.getAdresid(), contact.getContactid(), werknemerCompleet.getGeslacht(), werknemerCompleet.getStatuut(), werknemerCompleet.getDatuminschrijving(), werknemerCompleet.getDatumuitschrijving(), werknemerCompleet.getFunctie(), rijbewijs.getRijbewijsid(), persoonsinfo.getInfoid());
             sessionFactory.getCurrentSession().save(werknemer);
+            
+            String salt = BCrypt.gensalt();
+            String paswoord = BCrypt.hashpw(werknemerCompleet.getPaswoord(), BCrypt.gensalt());
+
+            Gebruiker gebruiker = new Gebruiker(werknemerCompleet.getGebruikersnaam(),paswoord, salt, werknemer.getWerknemerid(), werknemerCompleet.isAdmin());
+            sessionFactory.getCurrentSession().save(gebruiker);
     }
     /**
      * Geef een lijst terug met alle werknemers.
@@ -111,8 +121,8 @@ public class WerknemerDAOImpl implements WerknemerDAO {
      */
     @Override
     public void deleteWerknemer(int id) {
-        
-        Werknemer werknemer = (Werknemer) sessionFactory.getCurrentSession().load(Werknemer.class, id);
+        Gebruiker gebruiker = (Gebruiker)sessionFactory.getCurrentSession().load(Gebruiker.class, id);
+        Werknemer werknemer = (Werknemer) sessionFactory.getCurrentSession().load(Werknemer.class, gebruiker.getWerknemerid());
         Adres adres = (Adres) sessionFactory.getCurrentSession().load(Adres.class, werknemer.getAdresid());
         Contact contact = (Contact) sessionFactory.getCurrentSession().load(Contact.class, werknemer.getContactid());
         Rijbewijsgegevens rijbewijs = (Rijbewijsgegevens) sessionFactory.getCurrentSession().load(Rijbewijsgegevens.class, werknemer.getRijbewijsid());
@@ -123,6 +133,7 @@ public class WerknemerDAOImpl implements WerknemerDAO {
         sessionFactory.getCurrentSession().delete(rijbewijs);
         sessionFactory.getCurrentSession().delete(persoonsinfo);
         sessionFactory.getCurrentSession().delete(werknemer); 
+        sessionFactory.getCurrentSession().delete(gebruiker); 
     }
 
     /**
@@ -140,11 +151,18 @@ public class WerknemerDAOImpl implements WerknemerDAO {
             Persoonsinfo persoonsinfo = new Persoonsinfo(werknemerCompleet.getInfoid(), werknemerCompleet.getRijksregisternr(), werknemerCompleet.getSiskaart(), werknemerCompleet.getIdentiteitsnr(), werknemerCompleet.getPensioennr(), werknemerCompleet.getGeboorteplaats(), werknemerCompleet.getGeboortedatum(), werknemerCompleet.getIban(), werknemerCompleet.getBic(), werknemerCompleet.getBurgerstand(), werknemerCompleet.getAantalkinderen());
             Werknemer werknemer = new Werknemer(werknemerCompleet.getWerknemerid(), werknemerCompleet.getTaalid(), werknemerCompleet.getNaam(), werknemerCompleet.getVoornaam(), werknemerCompleet.getActief(), werknemerCompleet.getAdresid(), werknemerCompleet.getContactid(), werknemerCompleet.getGeslacht(), werknemerCompleet.getStatuut(), werknemerCompleet.getDatuminschrijving(), werknemerCompleet.getDatumuitschrijving(), werknemerCompleet.getFunctie(), werknemerCompleet.getRijbewijsid(), werknemerCompleet.getInfoid());
             
+            String salt = BCrypt.gensalt();
+            String paswoord = BCrypt.hashpw(werknemerCompleet.getPaswoord(), BCrypt.gensalt());
+            
+            Gebruiker gebruiker = new Gebruiker(werknemerCompleet.getGebruikersid(), werknemerCompleet.getGebruikersnaam(), 
+                    paswoord, salt, werknemerCompleet.getWerknemerid(), werknemerCompleet.isAdmin());
+            
             sessionFactory.getCurrentSession().update(adres);
             sessionFactory.getCurrentSession().update(contact);
             sessionFactory.getCurrentSession().update(rijbewijs);
             sessionFactory.getCurrentSession().update(persoonsinfo);
             sessionFactory.getCurrentSession().update(werknemer);
+            sessionFactory.getCurrentSession().update(gebruiker);
     }
 
     public List<WerknemerView> mapJson(List list) {
@@ -155,7 +173,7 @@ public class WerknemerDAOImpl implements WerknemerDAO {
                     new WerknemerView(row[0], row[1], row[2], row[3], row[4], row[5], row[6], row[7], row[8], row[9],
                     row[10], row[11], row[12], row[13], row[14], row[15], row[16], row[17], row[18], row[19], row[20], row[21],
                     row[22], row[23], row[24], row[25], row[26], row[27], row[28], row[29], row[30], row[31],
-                    row[32], row[33], row[34], row[35], row[36], row[37], row[38], row[39], row[40], row[41]);
+                    row[32], row[33], row[34], row[35], row[36], row[37], row[38], row[39], row[40], row[41], row[42], row[43], row[44], row[45]);
             werknemers.add(werknemerView);
         }
         return werknemers;
