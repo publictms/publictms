@@ -6,8 +6,8 @@ package be.pxl.publictms;
 
 import be.pxl.publictms.pojo.Werknemer;
 import be.pxl.publictms.service.WerknemerService;
-import be.pxl.publictms.view.WerknemerCompleet;
 import be.pxl.publictms.view.WerknemerView;
+import be.pxl.publictms.view.WerknemerObjectView;
 import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -47,7 +47,7 @@ public class WerknemerController {
      * @return List Werknemer
      */
     @RequestMapping(value = "/{id}",method = RequestMethod.GET)
-    public @ResponseBody WerknemerView getWerknemer(@PathVariable("id") int id){
+    public @ResponseBody WerknemerObjectView getWerknemer(@PathVariable("id") int id){
         return werknemerService.getWerknemer(id);
     }
     /**
@@ -55,7 +55,7 @@ public class WerknemerController {
      * @param werknemer 
      */
     @RequestMapping(value = "/", method = RequestMethod.POST)
-    public @ResponseBody void addWerknemer(@RequestBody WerknemerCompleet werknemerCompleet){
+    public @ResponseBody void addWerknemer(@RequestBody WerknemerView werknemerCompleet){
         werknemerService.addWerknemer(werknemerCompleet);
     }
     /**
@@ -76,7 +76,7 @@ public class WerknemerController {
         werknemerService.updateWerknemer(werknemer);
     }*/
     @RequestMapping(value = "/", method = RequestMethod.PUT)
-    public @ResponseBody void updateWerknemer(@RequestBody WerknemerCompleet werknemerCompleet){
+    public @ResponseBody void updateWerknemer(@RequestBody WerknemerView werknemerCompleet){
         werknemerService.updateWerknemer(werknemerCompleet);
     }
     /**

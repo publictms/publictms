@@ -5,6 +5,7 @@
 package be.pxl.publictms.DAO;
 
 import be.pxl.publictms.pojo.Opdracht;
+import be.pxl.publictms.view.OpdrachtObjectView;
 import be.pxl.publictms.view.OpdrachtView;
 import java.util.List;
 
@@ -18,7 +19,7 @@ public interface OpdrachtDAO {
      * Voeg een opdracht toe.
      * @param opdracht 
      */
-    public void addOpdracht(Opdracht opdracht);
+    public void addOpdracht(OpdrachtView opdrachtView);
     /**
      * Delete een opdracht aan de hand van zijn index.
      * @param id 
@@ -28,7 +29,7 @@ public interface OpdrachtDAO {
      * Bewerkt een opdracht aan de hand een opdracht object
      * @param opdracht 
      */
-    public void updateOpdracht(Opdracht opdracht);
+    public void updateOpdracht(OpdrachtView opdrachtView);
     /**
      * Geeft een list met opdracht terug
      * @return List Opdracht
@@ -39,7 +40,7 @@ public interface OpdrachtDAO {
      * @return list
      */
     public List getOpdrachtenWerknemer(int id);
-    public OpdrachtView getOpdracht(int id);
+    public OpdrachtObjectView getOpdracht(int id);
     /**
      * Is de levering afgeleverd op klaar zetten. True or false. Aan de hand van 
      * een index die verwijst naar de opdracht.

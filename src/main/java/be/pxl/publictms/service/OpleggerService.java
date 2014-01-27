@@ -5,6 +5,7 @@
 package be.pxl.publictms.service;
 
 import be.pxl.publictms.pojo.Oplegger;
+import be.pxl.publictms.view.OpleggerObjectView;
 import be.pxl.publictms.view.OpleggerView;
 import java.util.List;
 
@@ -40,7 +41,7 @@ public interface OpleggerService {
      * @param id    Het opleggerid van het record dat opgehaald moet worden.
      * @return      POJO van het opgehaalde data.
      */
-    public OpleggerView getOplegger(int id);
+    public OpleggerObjectView getOplegger(int id);
     
     /**
      * Declaratie van de methode voor het verwijderen van een record uit de

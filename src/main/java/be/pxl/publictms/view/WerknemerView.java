@@ -1,119 +1,82 @@
-
 package be.pxl.publictms.view;
 
+import java.util.Date;
 
 public class WerknemerView {
     
-    private Object actief;
-    private Object werknemerid;
-     private Object naam;
-     private Object voornaam;
-     private Object geslacht;
-     private Object statuut;
-     private Object datuminschrijving;
-     private Object datumuitschrijving;
-     private Object functie;
-     private Object taalid;
-     private Object taalnaam;
-     private Object adresid;
-     private Object postcode;
-     private Object straat;
-     private Object nummer;
-     private Object bus;
-     private Object land;
-     private Object contactid;
-     private Object email;
-     private Object telefoon;
-     private Object gsm;
-     private Object fax;
-     private Object rijbewijsid;
-     private Object rijbewijsnr;
-     private Object rijbewijscat;
-     private Object geldigtot;
-     private Object adrcertificaat;
-     private Object medischattest;
-     private Object tankkaartnr;
-     private Object tachograafnr;
-     private Object tachograaftot;
-     private Object infoid;
-     private Object rijksregisternr;
-     private Object siskaart;
-     private Object identiteitsnr;
-     private Object pensioennr;
-     private Object geboorteplaats;
-     private Object geboortedatum;
-     private Object iban;
-     private Object bic;
-     private Object burgerstand;
-     private Object aantalkinderen;
-     private Object gebruikersid;
-     private Object gebruikersnaam;
-     private Object paswoord;
-     private Object admin;
+    private int werknemerid;
+     private int taalid;
+     private String naam;
+     private String voornaam;
+     private Boolean actief;
+     private int adresid;
+     private int contactid;
+     private Character geslacht;
+     private String statuut;
+     private Date datuminschrijving;
+     private Date datumuitschrijving;
+     private String functie;
+     private int rijbewijsid;
+     private int infoid;
+     private String postcode;
+     private String straat;
+     private short nummer;
+     private String bus;
+     private int land;
+     private String email;
+     private String telefoon;
+     private String gsm;
+     private String fax;
+     private String rijksregisternr;
+     private String siskaart;
+     private String identiteitsnr;
+     private String pensioennr;
+     private String geboorteplaats;
+     private Date geboortedatum;
+     private String iban;
+     private String bic;
+     private String burgerstand;
+     private int aantalkinderen;
+     private String rijbewijsnr;
+     private String rijbewijscat;
+     private Date geldigtot;
+     private Boolean adrcertificaat;
+     private Boolean medischattest;
+     private String tankkaartnr;
+     private String tachograafnr;
+     private int tachograaftot;
+     private String taalnaam;
+     private int gebruikersid;
+     private String gebruikersnaam;
+     private String paswoord;
+     private boolean admin;
+
+     public WerknemerView(){};
      
-     public WerknemerView(){}
-     
-    public WerknemerView(Object actief, Object werknemerid, Object naam, Object voornaam, Object geslacht, Object statuut, Object datuminschrijving, Object datumuitschrijving, Object functie, Object taalid, Object taalnaam, Object adresid, Object postcode, Object straat, Object nummer, Object bus, Object land, Object contactid, Object email, Object telefoon, Object gsm, Object fax, Object rijbewijsid, Object rijbewijsnr, Object rijbewijscat, Object geldigtot, Object adrcertificaat, Object medischattest, Object tankkaartnr, Object tachograafnr, Object tachograaftot, Object infoid, Object rijksregisternr, Object siskaart, Object identiteitsnr, Object pensioennr, Object geboorteplaats, Object geboortedatum, Object iban, Object bic, Object burgerstand, Object aantalkinderen,
-            Object gebruikersid, Object gebruikersnaam, Object paswoord, Object admin) {
-        this.actief = actief;
+    public WerknemerView(int werknemerid, int taalid, String naam, String voornaam, 
+            Boolean actief, int adresid, int contactid, Character geslacht, String statuut, 
+            Date datuminschrijving, Date datumuitschrijving, String functie, int rijbewijsid, 
+            int infoid, String postcode, String straat, short nummer, String bus, int land, 
+            String email, String telefoon, String gsm, String fax, String rijksregisternr, 
+            String siskaart, String identiteitsnr, String pensioennr, String geboorteplaats, 
+            Date geboortedatum, String iban, String bic, String burgerstand, int aantalkinderen, 
+            String rijbewijsnr, String rijbewijscat, Date geldigtot, Boolean adrcertificaat, Boolean medischattest, 
+            String tankkaartnr, String tachograafnr, int tachograaftot, String taalnaam,
+            int gebruikersid, String gebruikersnaam, String paswoord, boolean admin) {
         this.werknemerid = werknemerid;
-        this.naam = naam;
-        this.voornaam = voornaam;
-        this.geslacht = geslacht;
-        this.statuut = statuut;
-        this.datuminschrijving = datuminschrijving;
-        this.datumuitschrijving = datumuitschrijving;
-        this.functie = functie;
         this.taalid = taalid;
-        this.taalnaam = taalnaam;
-        this.adresid = adresid;
-        this.postcode = postcode;
-        this.straat = straat;
-        this.nummer = nummer;
-        this.bus = bus;
-        this.land = land;
-        this.contactid = contactid;
-        this.email = email;
-        this.telefoon = telefoon;
-        this.gsm = gsm;
-        this.fax = fax;
-        this.rijbewijsid = rijbewijsid;
-        this.rijbewijsnr = rijbewijsnr;
-        this.rijbewijscat = rijbewijscat;
-        this.geldigtot = geldigtot;
-        this.adrcertificaat = adrcertificaat;
-        this.medischattest = medischattest;
-        this.tankkaartnr = tankkaartnr;
-        this.tachograafnr = tachograafnr;
-        this.tachograaftot = tachograaftot;
-        this.infoid = infoid;
-        this.rijksregisternr = rijksregisternr;
-        this.siskaart = siskaart;
-        this.identiteitsnr = identiteitsnr;
-        this.pensioennr = pensioennr;
-        this.geboorteplaats = geboorteplaats;
-        this.geboortedatum = geboortedatum;
-        this.iban = iban;
-        this.bic = bic;
-        this.burgerstand = burgerstand;
-        this.aantalkinderen = aantalkinderen;
-        this.gebruikersid = gebruikersid;
-        this.gebruikersnaam = gebruikersnaam;
-        //this.paswoord = paswoord;
-        this.admin = admin;
-    }
-    
-    public WerknemerView(Object actief, Object naam, Object voornaam, Character geslacht, Object statuut, Object datuminschrijving, Object datumuitschrijving, Object functie, Object taalnaam, Object postcode, Object straat, Object nummer, Object bus, Object land, Object email, Object telefoon, Object gsm, Object fax, Object rijbewijsnr, Object rijbewijscat, Object geldigtot, Object adrcertificaat, Object medischattest, Object tankkaartnr, Object tachograafnr, Object tachograaftot, Object rijksregisternr, Object siskaart, Object identiteitsnr, Object pensioennr, Object geboorteplaats, Object geboortedatum, Object iban, Object bic, Object burgerstand, Object aantalkinderen,
-            Object gebruikersid, Object gebruikersnaam, Object paswoord, Object admin) {
-        this.actief = actief;
         this.naam = naam;
         this.voornaam = voornaam;
+        this.actief = actief;
+        this.adresid = adresid;
+        this.contactid = contactid;
         this.geslacht = geslacht;
         this.statuut = statuut;
         this.datuminschrijving = datuminschrijving;
         this.datumuitschrijving = datumuitschrijving;
         this.functie = functie;
-        this.taalnaam = taalnaam;
+        this.rijbewijsid = rijbewijsid;
+        this.infoid = infoid;
         this.postcode = postcode;
         this.straat = straat;
         this.nummer = nummer;
@@ -123,14 +86,6 @@ public class WerknemerView {
         this.telefoon = telefoon;
         this.gsm = gsm;
         this.fax = fax;
-        this.rijbewijsnr = rijbewijsnr;
-        this.rijbewijscat = rijbewijscat;
-        this.geldigtot = geldigtot;
-        this.adrcertificaat = adrcertificaat;
-        this.medischattest = medischattest;
-        this.tankkaartnr = tankkaartnr;
-        this.tachograafnr = tachograafnr;
-        this.tachograaftot = tachograaftot;
         this.rijksregisternr = rijksregisternr;
         this.siskaart = siskaart;
         this.identiteitsnr = identiteitsnr;
@@ -141,78 +96,163 @@ public class WerknemerView {
         this.bic = bic;
         this.burgerstand = burgerstand;
         this.aantalkinderen = aantalkinderen;
+        this.rijbewijsnr = rijbewijsnr;
+        this.rijbewijscat = rijbewijscat;
+        this.geldigtot = geldigtot;
+        this.adrcertificaat = adrcertificaat;
+        this.medischattest = medischattest;
+        this.tankkaartnr = tankkaartnr;
+        this.tachograafnr = tachograafnr;
+        this.tachograaftot = tachograaftot;
+        this.taalnaam = taalnaam;
         this.gebruikersid = gebruikersid;
         this.gebruikersnaam = gebruikersnaam;
-        //this.paswoord = paswoord;
+        this.paswoord = paswoord;
         this.admin = admin;
     }
 
-    public Object getGebruikersid() {
+    public WerknemerView(String naam, String voornaam, Boolean actief, Character geslacht, 
+            String statuut, Date datuminschrijving, Date datumuitschrijving, String functie, 
+            String postcode, String straat, short nummer, String bus, int land, String email, 
+            String telefoon, String gsm, String fax, String rijksregisternr, String siskaart, 
+            String identiteitsnr, String pensioennr, String geboorteplaats, Date geboortedatum, 
+            String iban, String bic, String burgerstand, int aantalkinderen, String rijbewijsnr, 
+            String rijbewijscat, Date geldigtot, Boolean adrcertificaat, Boolean medischattest, 
+            String tankkaartnr, String tachograafnr, int tachograaftot, String taalnaam,
+            int gebruikersid, String gebruikersnaam, String paswoord, boolean admin) {
+        this.naam = naam;
+        this.voornaam = voornaam;
+        this.actief = actief;
+        this.geslacht = geslacht;
+        this.statuut = statuut;
+        this.datuminschrijving = datuminschrijving;
+        this.datumuitschrijving = datumuitschrijving;
+        this.functie = functie;
+        this.postcode = postcode;
+        this.straat = straat;
+        this.nummer = nummer;
+        this.bus = bus;
+        this.land = land;
+        this.email = email;
+        this.telefoon = telefoon;
+        this.gsm = gsm;
+        this.fax = fax;
+        this.rijksregisternr = rijksregisternr;
+        this.siskaart = siskaart;
+        this.identiteitsnr = identiteitsnr;
+        this.pensioennr = pensioennr;
+        this.geboorteplaats = geboorteplaats;
+        this.geboortedatum = geboortedatum;
+        this.iban = iban;
+        this.bic = bic;
+        this.burgerstand = burgerstand;
+        this.aantalkinderen = aantalkinderen;
+        this.rijbewijsnr = rijbewijsnr;
+        this.rijbewijscat = rijbewijscat;
+        this.geldigtot = geldigtot;
+        this.adrcertificaat = adrcertificaat;
+        this.medischattest = medischattest;
+        this.tankkaartnr = tankkaartnr;
+        this.tachograafnr = tachograafnr;
+        this.tachograaftot = tachograaftot;
+        this.taalnaam = taalnaam;
+        this.gebruikersid = gebruikersid;
+        this.gebruikersnaam = gebruikersnaam;
+        this.paswoord = paswoord;
+        this.admin = admin;
+    }
+
+    public int getGebruikersid() {
         return gebruikersid;
     }
 
-    public void setGebruikersid(Object gebruikersid) {
+    public void setGebruikersid(int gebruikersid) {
         this.gebruikersid = gebruikersid;
     }
     
-    
-    public Object getGebruikersnaam() {
+    public String getGebruikersnaam() {
         return gebruikersnaam;
     }
 
-    public void setGebruikersnaam(Object gebruikersnaam) {
+    public void setGebruikersnaam(String gebruikersnaam) {
         this.gebruikersnaam = gebruikersnaam;
     }
 
-    public Object getPaswoord() {
+    public String getPaswoord() {
         return paswoord;
     }
 
-    public void setPaswoord(Object paswoord) {
+    public void setPaswoord(String paswoord) {
         this.paswoord = paswoord;
     }
 
-    public Object getAdmin() {
+    public boolean isAdmin() {
         return admin;
     }
 
-    public void setAdmin(Object admin) {
+    public void setAdmin(boolean admin) {
         this.admin = admin;
     }
-    
-    public Object getActief() {
-        return actief;
-    }
 
-    public void setActief(Object actief) {
-        this.actief = actief;
-    }
-
-    public Object getWerknemerid() {
+     
+     
+    public int getWerknemerid() {
         return werknemerid;
     }
 
-    public void setWerknemerid(Object werknemerid) {
+    public void setWerknemerid(int werknemerid) {
         this.werknemerid = werknemerid;
     }
 
-    public Object getNaam() {
+    public int getTaalid() {
+        return taalid;
+    }
+
+    public void setTaalid(int taalid) {
+        this.taalid = taalid;
+    }
+
+    public String getNaam() {
         return naam;
     }
 
-    public void setNaam(Object naam) {
+    public void setNaam(String naam) {
         this.naam = naam;
     }
 
-    public Object getVoornaam() {
+    public String getVoornaam() {
         return voornaam;
     }
 
-    public void setVoornaam(Object voornaam) {
+    public void setVoornaam(String voornaam) {
         this.voornaam = voornaam;
     }
 
-    public Object getGeslacht() {
+    public Boolean getActief() {
+        return actief;
+    }
+
+    public void setActief(Boolean actief) {
+        this.actief = actief;
+    }
+
+    public int getAdresid() {
+        return adresid;
+    }
+
+    public void setAdresid(int adresid) {
+        this.adresid = adresid;
+    }
+
+    public int getContactid() {
+        return contactid;
+    }
+
+    public void setContactid(int contactid) {
+        this.contactid = contactid;
+    }
+
+    public Character getGeslacht() {
         return geslacht;
     }
 
@@ -220,299 +260,277 @@ public class WerknemerView {
         this.geslacht = geslacht;
     }
 
-    public Object getStatuut() {
+    public String getStatuut() {
         return statuut;
     }
 
-    public void setStatuut(Object statuut) {
+    public void setStatuut(String statuut) {
         this.statuut = statuut;
     }
 
-    public Object getDatuminschrijving() {
+    public Date getDatuminschrijving() {
         return datuminschrijving;
     }
 
-    public void setDatuminschrijving(Object datuminschrijving) {
+    public void setDatuminschrijving(Date datuminschrijving) {
         this.datuminschrijving = datuminschrijving;
     }
 
-    public Object getDatumuitschrijving() {
+    public Date getDatumuitschrijving() {
         return datumuitschrijving;
     }
 
-    public void setDatumuitschrijving(Object datumuitschrijving) {
+    public void setDatumuitschrijving(Date datumuitschrijving) {
         this.datumuitschrijving = datumuitschrijving;
     }
 
-    public Object getFunctie() {
+    public String getFunctie() {
         return functie;
     }
 
-    public void setFunctie(Object functie) {
+    public void setFunctie(String functie) {
         this.functie = functie;
     }
 
-    public Object getTaalnaam() {
-        return taalnaam;
-    }
-
-    public void setTaalnaam(Object taalnaam) {
-        this.taalnaam = taalnaam;
-    }
-
-    public Object getAdresid() {
-        return adresid;
-    }
-
-    public void setAdresid(Object adresid) {
-        this.adresid = adresid;
-    }
-
-    public Object getPostcode() {
-        return postcode;
-    }
-
-    public void setPostcode(Object postcode) {
-        this.postcode = postcode;
-    }
-
-    public Object getStraat() {
-        return straat;
-    }
-
-    public void setStraat(Object straat) {
-        this.straat = straat;
-    }
-
-    public Object getNummer() {
-        return nummer;
-    }
-
-    public void setNummer(Object nummer) {
-        this.nummer = nummer;
-    }
-
-    public Object getBus() {
-        return bus;
-    }
-
-    public void setBus(Object bus) {
-        this.bus = bus;
-    }
-
-    public Object getLand() {
-        return land;
-    }
-
-    public void setLand(Object land) {
-        this.land = land;
-    }
-
-    public Object getContactid() {
-        return contactid;
-    }
-
-    public void setContactid(Object contactid) {
-        this.contactid = contactid;
-    }
-
-    public Object getEmail() {
-        return email;
-    }
-
-    public void setEmail(Object email) {
-        this.email = email;
-    }
-
-    public Object getTelefoon() {
-        return telefoon;
-    }
-
-    public void setTelefoon(Object telefoon) {
-        this.telefoon = telefoon;
-    }
-
-    public Object getGsm() {
-        return gsm;
-    }
-
-    public void setGsm(Object gsm) {
-        this.gsm = gsm;
-    }
-
-    public Object getFax() {
-        return fax;
-    }
-
-    public void setFax(Object fax) {
-        this.fax = fax;
-    }
-
-    public Object getRijbewijsid() {
+    public int getRijbewijsid() {
         return rijbewijsid;
     }
 
-    public void setRijbewijsid(Object rijbewijsid) {
+    public void setRijbewijsid(int rijbewijsid) {
         this.rijbewijsid = rijbewijsid;
     }
 
-    public Object getRijbewijsnr() {
-        return rijbewijsnr;
-    }
-
-    public void setRijbewijsnr(Object rijbewijsnr) {
-        this.rijbewijsnr = rijbewijsnr;
-    }
-
-    public Object getRijbewijscat() {
-        return rijbewijscat;
-    }
-
-    public void setRijbewijscat(Object rijbewijscat) {
-        this.rijbewijscat = rijbewijscat;
-    }
-
-    public Object getGeldigtot() {
-        return geldigtot;
-    }
-
-    public void setGeldigtot(Object geldigtot) {
-        this.geldigtot = geldigtot;
-    }
-
-    public Object getAdrcertificaat() {
-        return adrcertificaat;
-    }
-
-    public void setAdrcertificaat(Object adrcertificaat) {
-        this.adrcertificaat = adrcertificaat;
-    }
-
-    public Object getMedischattest() {
-        return medischattest;
-    }
-
-    public void setMedischattest(Object medischattest) {
-        this.medischattest = medischattest;
-    }
-
-    public Object getTankkaartnr() {
-        return tankkaartnr;
-    }
-
-    public void setTankkaartnr(Object tankkaartnr) {
-        this.tankkaartnr = tankkaartnr;
-    }
-
-    public Object getTachograafnr() {
-        return tachograafnr;
-    }
-
-    public void setTachograafnr(Object tachograafnr) {
-        this.tachograafnr = tachograafnr;
-    }
-
-    public Object getTachograaftot() {
-        return tachograaftot;
-    }
-
-    public void setTachograaftot(Object tachograaftot) {
-        this.tachograaftot = tachograaftot;
-    }
-
-    public Object getInfoid() {
+    public int getInfoid() {
         return infoid;
     }
 
-    public void setInfoid(Object infoid) {
+    public void setInfoid(int infoid) {
         this.infoid = infoid;
     }
 
-    public Object getRijksregisternr() {
+    public String getPostcode() {
+        return postcode;
+    }
+
+    public void setPostcode(String postcode) {
+        this.postcode = postcode;
+    }
+
+    public String getStraat() {
+        return straat;
+    }
+
+    public void setStraat(String straat) {
+        this.straat = straat;
+    }
+
+    public short getNummer() {
+        return nummer;
+    }
+
+    public void setNummer(short nummer) {
+        this.nummer = nummer;
+    }
+
+    public String getBus() {
+        return bus;
+    }
+
+    public void setBus(String bus) {
+        this.bus = bus;
+    }
+
+    public int getLand() {
+        return land;
+    }
+
+    public void setLand(int land) {
+        this.land = land;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getTelefoon() {
+        return telefoon;
+    }
+
+    public void setTelefoon(String telefoon) {
+        this.telefoon = telefoon;
+    }
+
+    public String getGsm() {
+        return gsm;
+    }
+
+    public void setGsm(String gsm) {
+        this.gsm = gsm;
+    }
+
+    public String getFax() {
+        return fax;
+    }
+
+    public void setFax(String fax) {
+        this.fax = fax;
+    }
+
+    public String getRijksregisternr() {
         return rijksregisternr;
     }
 
-    public void setRijksregisternr(Object rijksregisternr) {
+    public void setRijksregisternr(String rijksregisternr) {
         this.rijksregisternr = rijksregisternr;
     }
 
-    public Object getSiskaart() {
+    public String getSiskaart() {
         return siskaart;
     }
 
-    public void setSiskaart(Object siskaart) {
+    public void setSiskaart(String siskaart) {
         this.siskaart = siskaart;
     }
 
-    public Object getIdentiteitsnr() {
+    public String getIdentiteitsnr() {
         return identiteitsnr;
     }
 
-    public void setIdentiteitsnr(Object identiteitsnr) {
+    public void setIdentiteitsnr(String identiteitsnr) {
         this.identiteitsnr = identiteitsnr;
     }
 
-    public Object getPensioennr() {
+    public String getPensioennr() {
         return pensioennr;
     }
 
-    public void setPensioennr(Object pensioennr) {
+    public void setPensioennr(String pensioennr) {
         this.pensioennr = pensioennr;
     }
 
-    public Object getGeboorteplaats() {
+    public String getGeboorteplaats() {
         return geboorteplaats;
     }
 
-    public void setGeboorteplaats(Object geboorteplaats) {
+    public void setGeboorteplaats(String geboorteplaats) {
         this.geboorteplaats = geboorteplaats;
     }
 
-    public Object getGeboortedatum() {
+    public Date getGeboortedatum() {
         return geboortedatum;
     }
 
-    public void setGeboortedatum(Object geboortedatum) {
+    public void setGeboortedatum(Date geboortedatum) {
         this.geboortedatum = geboortedatum;
     }
 
-    public Object getIban() {
+    public String getIban() {
         return iban;
     }
 
-    public void setIban(Object iban) {
+    public void setIban(String iban) {
         this.iban = iban;
     }
 
-    public Object getBic() {
+    public String getBic() {
         return bic;
     }
 
-    public void setBic(Object bic) {
+    public void setBic(String bic) {
         this.bic = bic;
     }
 
-    public Object getBurgerstand() {
+    public String getBurgerstand() {
         return burgerstand;
     }
 
-    public void setBurgerstand(Object burgerstand) {
+    public void setBurgerstand(String burgerstand) {
         this.burgerstand = burgerstand;
     }
 
-    public Object getAantalkinderen() {
+    public int getAantalkinderen() {
         return aantalkinderen;
     }
 
-    public void setAantalkinderen(Object aantalkinderen) {
+    public void setAantalkinderen(int aantalkinderen) {
         this.aantalkinderen = aantalkinderen;
     }
-    
-    public Object getTaalid() {
-        return taalid;
+
+    public String getRijbewijsnr() {
+        return rijbewijsnr;
     }
 
-    public void setTaalid(Object taalid) {
-        this.taalid = taalid;
+    public void setRijbewijsnr(String rijbewijsnr) {
+        this.rijbewijsnr = rijbewijsnr;
     }
+
+    public String getRijbewijscat() {
+        return rijbewijscat;
+    }
+
+    public void setRijbewijscat(String rijbewijscat) {
+        this.rijbewijscat = rijbewijscat;
+    }
+
+    public Date getGeldigtot() {
+        return geldigtot;
+    }
+
+    public void setGeldigtot(Date geldigtot) {
+        this.geldigtot = geldigtot;
+    }
+
+    public Boolean getAdrcertificaat() {
+        return adrcertificaat;
+    }
+
+    public void setAdrcertificaat(Boolean adrcertificaat) {
+        this.adrcertificaat = adrcertificaat;
+    }
+
+    public Boolean getMedischattest() {
+        return medischattest;
+    }
+
+    public void setMedischattest(Boolean medischattest) {
+        this.medischattest = medischattest;
+    }
+
+    public String getTankkaartnr() {
+        return tankkaartnr;
+    }
+
+    public void setTankkaartnr(String tankkaartnr) {
+        this.tankkaartnr = tankkaartnr;
+    }
+
+    public String getTachograafnr() {
+        return tachograafnr;
+    }
+
+    public void setTachograafnr(String tachograafnr) {
+        this.tachograafnr = tachograafnr;
+    }
+
+    public int getTachograaftot() {
+        return tachograaftot;
+    }
+
+    public void setTachograaftot(int tachograaftot) {
+        this.tachograaftot = tachograaftot;
+    }
+
+    public String getTaalnaam() {
+        return taalnaam;
+    }
+
+    public void setTaalnaam(String taalnaam) {
+        this.taalnaam = taalnaam;
+    }
+     
+     
 }

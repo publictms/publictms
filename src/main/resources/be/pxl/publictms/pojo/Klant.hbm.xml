@@ -9,16 +9,16 @@
             <generator class="increment" />
         </id>
         <property name="transportadresid" type="int">
-            <column name="transportadresid" not-null="false" />
+            <column name="transportadresid" not-null="true" />
         </property>
         <property name="naam" type="string">
             <column name="naam" length="30" not-null="true" />
         </property>
         <property name="voornaam" type="string">
-            <column name="voornaam" length="30" not-null="true" />
+            <column name="voornaam" length="30" not-null="false" />
         </property>
         <property name="bedrijf" type="string">
-            <column name="bedrijf" length="30" not-null="true" />
+            <column name="bedrijf" length="30" not-null="false" />
         </property>
         <property name="website" type="string">
             <column name="website" length="60" />

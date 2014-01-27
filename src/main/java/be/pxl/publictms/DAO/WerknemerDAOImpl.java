@@ -11,8 +11,8 @@ import be.pxl.publictms.pojo.Gebruiker;
 import be.pxl.publictms.pojo.Persoonsinfo;
 import be.pxl.publictms.pojo.Rijbewijsgegevens;
 import be.pxl.publictms.pojo.Werknemer;
-import be.pxl.publictms.view.WerknemerCompleet;
 import be.pxl.publictms.view.WerknemerView;
+import be.pxl.publictms.view.WerknemerObjectView;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -70,7 +70,7 @@ public class WerknemerDAOImpl implements WerknemerDAO {
      * @param werknemer
      */
     @Override
-    public void addWerknemer(WerknemerCompleet werknemerCompleet) {
+    public void addWerknemer(WerknemerView werknemerCompleet) {
             
             Adres adres = new Adres(werknemerCompleet.getPostcode(), werknemerCompleet.getStraat(), werknemerCompleet.getNummer(), werknemerCompleet.getBus(), 1);
             Contact contact = new Contact(werknemerCompleet.getEmail(), werknemerCompleet.getTelefoon(), werknemerCompleet.getGsm(), werknemerCompleet.getFax());
@@ -107,7 +107,7 @@ public class WerknemerDAOImpl implements WerknemerDAO {
      * @return de data van de record met werknemerid id.
      */
     @Override
-    public WerknemerView getWerknemer(int id) {
+    public WerknemerObjectView getWerknemer(int id) {
         Session session = HibernateUtil.getSessionFactory().openSession();
         Query query = session.createSQLQuery(qryWerknemer);
         query.setParameter("id", id);
@@ -121,19 +121,27 @@ public class WerknemerDAOImpl implements WerknemerDAO {
      */
     @Override
     public void deleteWerknemer(int id) {
-        Gebruiker gebruiker = (Gebruiker)sessionFactory.getCurrentSession().load(Gebruiker.class, id);
-        Werknemer werknemer = (Werknemer) sessionFactory.getCurrentSession().load(Werknemer.class, gebruiker.getWerknemerid());
+        
+        Werknemer werknemer = (Werknemer) sessionFactory.getCurrentSession().load(Werknemer.class, id);
         Adres adres = (Adres) sessionFactory.getCurrentSession().load(Adres.class, werknemer.getAdresid());
         Contact contact = (Contact) sessionFactory.getCurrentSession().load(Contact.class, werknemer.getContactid());
         Rijbewijsgegevens rijbewijs = (Rijbewijsgegevens) sessionFactory.getCurrentSession().load(Rijbewijsgegevens.class, werknemer.getRijbewijsid());
         Persoonsinfo persoonsinfo = (Persoonsinfo) sessionFactory.getCurrentSession().load(Persoonsinfo.class, werknemer.getInfoid());
         
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        Query query = session.createQuery("from Gebruiker where WerknemerId = :id");
+        query.setParameter("id", id);
+        Gebruiker gebruiker = (Gebruiker) query.list().get(0);
+        session.close();
+        gebruiker = (Gebruiker) sessionFactory.getCurrentSession().load(Gebruiker.class, gebruiker.getGebruikerid());
+
+        sessionFactory.getCurrentSession().delete(gebruiker);
         sessionFactory.getCurrentSession().delete(adres);
         sessionFactory.getCurrentSession().delete(contact);
         sessionFactory.getCurrentSession().delete(rijbewijs);
         sessionFactory.getCurrentSession().delete(persoonsinfo);
         sessionFactory.getCurrentSession().delete(werknemer); 
-        sessionFactory.getCurrentSession().delete(gebruiker); 
+ 
     }
 
     /**
@@ -142,9 +150,7 @@ public class WerknemerDAOImpl implements WerknemerDAO {
      * @param werknemer
      */
     @Override
-    public void updateWerknemer(WerknemerCompleet werknemerCompleet) {
-            System.out.println("land: " + werknemerCompleet.getLand());
-            System.out.println("taal " + werknemerCompleet.getTaalid());
+    public void updateWerknemer(WerknemerView werknemerCompleet) {
             Adres adres = new Adres(werknemerCompleet.getAdresid(), werknemerCompleet.getPostcode(), werknemerCompleet.getStraat(), werknemerCompleet.getNummer(), werknemerCompleet.getBus(), 1);
             Contact contact = new Contact(werknemerCompleet.getContactid(), werknemerCompleet.getEmail(), werknemerCompleet.getTelefoon(), werknemerCompleet.getGsm(), werknemerCompleet.getFax());
             Rijbewijsgegevens rijbewijs = new Rijbewijsgegevens(werknemerCompleet.getRijbewijsid(), werknemerCompleet.getRijbewijsnr(), werknemerCompleet.getRijbewijscat(), werknemerCompleet.getGeldigtot(), werknemerCompleet.getAdrcertificaat(), werknemerCompleet.getMedischattest(), werknemerCompleet.getTankkaartnr(), werknemerCompleet.getTachograafnr(), werknemerCompleet.getTachograaftot());
@@ -165,30 +171,18 @@ public class WerknemerDAOImpl implements WerknemerDAO {
             sessionFactory.getCurrentSession().update(gebruiker);
     }
 
-    public List<WerknemerView> mapJson(List list) {
-        List<WerknemerView> werknemers = new ArrayList<WerknemerView>();
+    public List<WerknemerObjectView> mapJson(List list) {
+        List<WerknemerObjectView> werknemers = new ArrayList<WerknemerObjectView>();
         for (Iterator iter = list.iterator(); iter.hasNext();) {
             Object[] row = (Object[]) iter.next();
-            WerknemerView werknemerView =
-                    new WerknemerView(row[0], row[1], row[2], row[3], row[4], row[5], row[6], row[7], row[8], row[9],
+            WerknemerObjectView werknemerView =
+                    new WerknemerObjectView(row[0], row[1], row[2], row[3], row[4], row[5], row[6], row[7], row[8], row[9],
                     row[10], row[11], row[12], row[13], row[14], row[15], row[16], row[17], row[18], row[19], row[20], row[21],
                     row[22], row[23], row[24], row[25], row[26], row[27], row[28], row[29], row[30], row[31],
                     row[32], row[33], row[34], row[35], row[36], row[37], row[38], row[39], row[40], row[41], row[42], row[43], row[44], row[45]);
             werknemers.add(werknemerView);
         }
         return werknemers;
-    }
-
-    public Date datumOmzet(String datumString) {
-        Date datum = null;
-        try {
-            DateFormat formatter;
-            formatter = new SimpleDateFormat("yyyy-mm-dd");
-            datum = (Date) formatter.parse(datumString);
-        } catch (ParseException e) {
-            System.out.println("Exception :" + e);
-        }
-        return datum;
     }
 }
 

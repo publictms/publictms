@@ -17,6 +17,8 @@ public class Opdracht  implements java.io.Serializable {
      private int opleggerid;
      private int klantid;
      private Date datum;
+     private Date starttijd;
+     private Date eindtijd;
      private Boolean opdrachtklaar;
      private String vrijveld;
 
@@ -28,15 +30,33 @@ public class Opdracht  implements java.io.Serializable {
         this.opdrachtid = opdrachtid;
         this.klantid = klantid;
     }
-    public Opdracht(int opdrachtid, int voertuigid, int werknemerid, int opleggerid, int klantid, Date datum, Boolean opdrachtklaar, String vrijveld) {
+    public Opdracht(int opdrachtid, int voertuigid, int werknemerid, int opleggerid, int klantid, Date datum,Date starttijd, Date eindtijd, Boolean opdrachtklaar, String vrijveld) {
        this.opdrachtid = opdrachtid;
        this.voertuigid = voertuigid;
        this.werknemerid = werknemerid;
        this.opleggerid = opleggerid;
        this.klantid = klantid;
        this.datum = datum;
+       this.starttijd = starttijd;
+       this.eindtijd = eindtijd;
        this.opdrachtklaar = opdrachtklaar;
        this.vrijveld = vrijveld;
+    }
+
+    public Date getStarttijd() {
+        return starttijd;
+    }
+
+    public void setStarttijd(Date starttijd) {
+        this.starttijd = starttijd;
+    }
+
+    public Date getEindtijd() {
+        return eindtijd;
+    }
+
+    public void setEindtijd(Date eindtijd) {
+        this.eindtijd = eindtijd;
     }
    
     public int getOpdrachtid() {

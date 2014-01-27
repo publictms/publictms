@@ -64,7 +64,6 @@ public class KlantView {
         this.bus = bus;
         this.landid = landid;
         this.land = land;
-        this.landid = landid;
         this.postcode = postcode;
         this.gemeente = gemeente;
         this.email = email;
@@ -73,6 +72,36 @@ public class KlantView {
         this.fax = fax;
         this.taalNaam = taalNaam;
         this.klantid = klantid;
+        this.klantnaam = klantnaam;
+        this.voornaam = voornaam;
+        this.bedrijf = bedrijf;
+        this.website = website;
+        this.betalingscondities = betalingscondities;
+        this.munt = munt;
+        this.btwregime = btwregime;
+        this.btwnummer = btwnummer;
+        this.ondernemingsnummer = ondernemingsnummer;
+        this.iban = iban;
+        this.bic = bic;
+    }
+    
+    public KlantView(int taalid, String soortadres, boolean actief, String vensteruren, String vrachtbeperking, String chauffeursbeperking, String vrijveld, String straat, short nummer, String bus,int landid, String postcode, String email, String telefoon, String gsm, String fax, String klantnaam, String voornaam, String bedrijf, String website, String betalingscondities, String munt, String btwregime, String btwnummer, String ondernemingsnummer, String iban, String bic) {
+        this.taalid = taalid;
+        this.soortadres = soortadres;
+        this.actief = actief;
+        this.vensteruren = vensteruren;
+        this.vrachtbeperking = vrachtbeperking;
+        this.chauffeursbeperking = chauffeursbeperking;
+        this.vrijveld = vrijveld;
+        this.straat = straat;
+        this.nummer = nummer;
+        this.bus = bus;
+        this.landid = landid;
+        this.postcode = postcode;
+        this.email = email;
+        this.telefoon = telefoon;
+        this.gsm = gsm;
+        this.fax = fax;
         this.klantnaam = klantnaam;
         this.voornaam = voornaam;
         this.bedrijf = bedrijf;

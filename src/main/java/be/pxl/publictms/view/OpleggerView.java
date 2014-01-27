@@ -4,38 +4,40 @@
  */
 package be.pxl.publictms.view;
 
+import java.util.Date;
+
 /**
  *
  * @author 11302785
  */
 public class OpleggerView {
     
-    private Object opleggerid;
-    private Object laadId;
-    private Object nummerplaat;
-    private Object actief;
-    private Object omschrijving;
-    private Object type;
-    private Object bouwjaar;
-    private Object inGebruik;
-    private Object uitGebruik;
-    private Object chassisnr;
-    private Object vergunning;
-    private Object geldigTot;
-    private Object pvg;
-    private Object tarragewicht;
-    private Object laadvermogen;
-    private Object laadvolume;
-    private Object laadmeters;
-    private Object lengte;
-    private Object breedte;
-    private Object hoogte;
-    private Object aantalAssen;
-    private Object motorNorm;
+    private int opleggerid;
+    private int laadId;
+    private String nummerplaat;
+    private Boolean actief;
+    private String omschrijving;
+    private String type;
+    private String bouwjaar;
+    private Date inGebruik;
+    private Date uitGebruik;
+    private String chassisnr;
+    private Boolean vergunning;
+    private Date geldigTot;
+    private String pvg;
+    private Double tarragewicht;
+    private Double laadvermogen;
+    private Double laadvolume;
+    private Double laadmeters;
+    private Double lengte;
+    private Double breedte;
+    private Double hoogte;
+    private int aantalAssen;
+    private String motorNorm;
 
     public OpleggerView(){}
     
-    public OpleggerView(Object opleggerid, Object laadId, Object nummerplaat, Object actief, Object omschrijving, Object type, Object bouwjaar, Object inGebruik, Object uitGebruik, Object chassisnr, Object vergunning, Object geldigTot, Object pvg, Object tarragewicht, Object laadvermogen, Object laadvolume, Object laadmeters, Object lengte, Object breedte, Object hoogte, Object aantalAssen, Object motorNorm) {
+    public OpleggerView(int opleggerid, int laadId, String nummerplaat, Boolean actief, String omschrijving, String type, String bouwjaar, Date inGebruik, Date uitGebruik, String chassisnr, Boolean vergunning, Date geldigTot, String pvg, Double tarragewicht, Double laadvermogen, Double laadvolume, Double laadmeters, Double lengte, Double breedte, Double hoogte, int aantalAssen, String motorNorm) {
         this.opleggerid = opleggerid;
         this.laadId = laadId;
         this.nummerplaat = nummerplaat;
@@ -59,181 +61,206 @@ public class OpleggerView {
         this.aantalAssen = aantalAssen;
         this.motorNorm = motorNorm;
     }
+    
+    public OpleggerView(int laadId, String nummerplaat, Boolean actief, String omschrijving, String type, String bouwjaar, Date inGebruik, Date uitGebruik, String chassisnr, Boolean vergunning, Date geldigTot, String pvg, Double tarragewicht, Double laadvermogen, Double laadvolume, Double laadmeters, Double lengte, Double breedte, Double hoogte, int aantalAssen, String motorNorm) {
+        this.laadId = laadId;
+        this.nummerplaat = nummerplaat;
+        this.actief = actief;
+        this.omschrijving = omschrijving;
+        this.type = type;
+        this.bouwjaar = bouwjaar;
+        this.inGebruik = inGebruik;
+        this.uitGebruik = uitGebruik;
+        this.chassisnr = chassisnr;
+        this.vergunning = vergunning;
+        this.geldigTot = geldigTot;
+        this.pvg = pvg;
+        this.tarragewicht = tarragewicht;
+        this.laadvermogen = laadvermogen;
+        this.laadvolume = laadvolume;
+        this.laadmeters = laadmeters;
+        this.lengte = lengte;
+        this.breedte = breedte;
+        this.hoogte = hoogte;
+        this.aantalAssen = aantalAssen;
+        this.motorNorm = motorNorm;
+    }
 
-    public Object getOpleggerid() {
+    public int getOpleggerid() {
         return opleggerid;
     }
 
-    public void setOpleggerid(Object opleggerid) {
+    public void setOpleggerid(int opleggerid) {
         this.opleggerid = opleggerid;
     }
 
-    public Object getLaadId() {
+    public int getLaadId() {
         return laadId;
     }
 
-    public void setLaadId(Object laadId) {
+    public void setLaadId(int laadId) {
         this.laadId = laadId;
     }
 
-    public Object getNummerplaat() {
+    public String getNummerplaat() {
         return nummerplaat;
     }
 
-    public void setNummerplaat(Object nummerplaat) {
+    public void setNummerplaat(String nummerplaat) {
         this.nummerplaat = nummerplaat;
     }
 
-    public Object getActief() {
+    public Boolean getActief() {
         return actief;
     }
 
-    public void setActief(Object actief) {
+    public void setActief(Boolean actief) {
         this.actief = actief;
     }
 
-    public Object getOmschrijving() {
+    public String getOmschrijving() {
         return omschrijving;
     }
 
-    public void setOmschrijving(Object omschrijving) {
+    public void setOmschrijving(String omschrijving) {
         this.omschrijving = omschrijving;
     }
 
-    public Object getType() {
+    public String getType() {
         return type;
     }
 
-    public void setType(Object type) {
+    public void setType(String type) {
         this.type = type;
     }
 
-    public Object getBouwjaar() {
+    public String getBouwjaar() {
         return bouwjaar;
     }
 
-    public void setBouwjaar(Object bouwjaar) {
+    public void setBouwjaar(String bouwjaar) {
         this.bouwjaar = bouwjaar;
     }
 
-    public Object getInGebruik() {
+    public Date getInGebruik() {
         return inGebruik;
     }
 
-    public void setInGebruik(Object inGebruik) {
+    public void setInGebruik(Date inGebruik) {
         this.inGebruik = inGebruik;
     }
 
-    public Object getUitGebruik() {
+    public Date getUitGebruik() {
         return uitGebruik;
     }
 
-    public void setUitGebruik(Object uitGebruik) {
+    public void setUitGebruik(Date uitGebruik) {
         this.uitGebruik = uitGebruik;
     }
 
-    public Object getChassisnr() {
+    public String getChassisnr() {
         return chassisnr;
     }
 
-    public void setChassisnr(Object chassisnr) {
+    public void setChassisnr(String chassisnr) {
         this.chassisnr = chassisnr;
     }
 
-    public Object getVergunning() {
+    public Boolean getVergunning() {
         return vergunning;
     }
 
-    public void setVergunning(Object vergunning) {
+    public void setVergunning(Boolean vergunning) {
         this.vergunning = vergunning;
     }
 
-    public Object getGeldigTot() {
+    public Date getGeldigTot() {
         return geldigTot;
     }
 
-    public void setGeldigTot(Object geldigTot) {
+    public void setGeldigTot(Date geldigTot) {
         this.geldigTot = geldigTot;
     }
 
-    public Object getPvg() {
+    public String getPvg() {
         return pvg;
     }
 
-    public void setPvg(Object pvg) {
+    public void setPvg(String pvg) {
         this.pvg = pvg;
     }
 
-    public Object getTarragewicht() {
+    public Double getTarragewicht() {
         return tarragewicht;
     }
 
-    public void setTarragewicht(Object tarragewicht) {
+    public void setTarragewicht(Double tarragewicht) {
         this.tarragewicht = tarragewicht;
     }
 
-    public Object getLaadvermogen() {
+    public Double getLaadvermogen() {
         return laadvermogen;
     }
 
-    public void setLaadvermogen(Object laadvermogen) {
+    public void setLaadvermogen(Double laadvermogen) {
         this.laadvermogen = laadvermogen;
     }
 
-    public Object getLaadvolume() {
+    public Double getLaadvolume() {
         return laadvolume;
     }
 
-    public void setLaadvolume(Object laadvolume) {
+    public void setLaadvolume(Double laadvolume) {
         this.laadvolume = laadvolume;
     }
 
-    public Object getLaadmeters() {
+    public Double getLaadmeters() {
         return laadmeters;
     }
 
-    public void setLaadmeters(Object laadmeters) {
+    public void setLaadmeters(Double laadmeters) {
         this.laadmeters = laadmeters;
     }
 
-    public Object getLengte() {
+    public Double getLengte() {
         return lengte;
     }
 
-    public void setLengte(Object lengte) {
+    public void setLengte(Double lengte) {
         this.lengte = lengte;
     }
 
-    public Object getBreedte() {
+    public Double getBreedte() {
         return breedte;
     }
 
-    public void setBreedte(Object breedte) {
+    public void setBreedte(Double breedte) {
         this.breedte = breedte;
     }
 
-    public Object getHoogte() {
+    public Double getHoogte() {
         return hoogte;
     }
 
-    public void setHoogte(Object hoogte) {
+    public void setHoogte(Double hoogte) {
         this.hoogte = hoogte;
     }
 
-    public Object getAantalAssen() {
+    public int getAantalAssen() {
         return aantalAssen;
     }
 
-    public void setAantalAssen(Object aantalAssen) {
+    public void setAantalAssen(int aantalAssen) {
         this.aantalAssen = aantalAssen;
     }
 
-    public Object getMotorNorm() {
+    public String getMotorNorm() {
         return motorNorm;
     }
 
-    public void setMotorNorm(Object motorNorm) {
+    public void setMotorNorm(String motorNorm) {
         this.motorNorm = motorNorm;
     }
+    
     
 }

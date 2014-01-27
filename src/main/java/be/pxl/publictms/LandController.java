@@ -72,7 +72,7 @@ public class LandController {
      * Verwijder een bestaande postcode.
      * @param id 
      */
-    @RequestMapping(value = "/",method = RequestMethod.DELETE)
+    @RequestMapping(value = "/{id}",method = RequestMethod.DELETE)
     public @ResponseBody void deleteGemeente(@PathVariable("id") int id){
         landService.deleteLand(id);
     }

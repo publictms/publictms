@@ -71,7 +71,7 @@ public class PostcodeController {
      * Verwijder een bestaande postcode.
      * @param id 
      */
-    @RequestMapping(value = "/",method = RequestMethod.DELETE)
+    @RequestMapping(value = "/{id}",method = RequestMethod.DELETE)
     public @ResponseBody void deleteGemeente(@PathVariable("id") String id){
         postcodeService.deleteGemeente(id);
     }

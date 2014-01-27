@@ -5,6 +5,7 @@
 package be.pxl.publictms.service;
 
 import be.pxl.publictms.pojo.Opdracht;
+import be.pxl.publictms.view.OpdrachtObjectView;
 import be.pxl.publictms.view.OpdrachtView;
 import java.util.List;
 
@@ -22,7 +23,7 @@ public interface OpdrachtService {
      * 
      * @param opdracht     POJO representatie van de data die toegevoegd wordt.
      */
-    public void addOpdracht(Opdracht opdracht); 
+    public void addOpdracht(OpdrachtView opdrachtView); 
     
     /**
      * Declaratie van de methode voor het verwijderen van een record uit de
@@ -38,7 +39,7 @@ public interface OpdrachtService {
      * 
      * @param opdracht     POJO van de geüpdate data.
      */
-    public void updateOpdracht(Opdracht opdracht);
+    public void updateOpdracht(OpdrachtView opdrachtView);
     /**
      * Geeft een list met opdracht terug
      * @return List Opdracht
@@ -49,7 +50,7 @@ public interface OpdrachtService {
      * @return list
      */
     public List getOpdrachtenWerknemer(int id);
-    public OpdrachtView getOpdracht(int id);
+    public OpdrachtObjectView getOpdracht(int id);
     /**
      * Is de levering afgeleverd op klaar zetten. True or false. Aan de hand van 
      * een index die verwijst naar de opdracht.

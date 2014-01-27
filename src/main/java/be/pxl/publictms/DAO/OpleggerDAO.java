@@ -5,6 +5,7 @@
 package be.pxl.publictms.DAO;
 
 import be.pxl.publictms.pojo.Oplegger;
+import be.pxl.publictms.view.OpleggerObjectView;
 import be.pxl.publictms.view.OpleggerView;
 import java.util.List;
 
@@ -29,7 +30,7 @@ public interface OpleggerDAO {
      * @param id
      * @return Oplegger
      */
-    public OpleggerView getOplegger(int id);
+    public OpleggerObjectView getOplegger(int id);
     /**
      * Delete een oplegger aan de hand van zijn index.
      * @param id 

@@ -7,6 +7,7 @@ package be.pxl.publictms.DAO;
 import be.pxl.publictms.hibernate.HibernateUtil;
 import be.pxl.publictms.pojo.Klant;
 import be.pxl.publictms.pojo.Opdracht;
+import be.pxl.publictms.view.OpdrachtObjectView;
 import be.pxl.publictms.view.OpdrachtView;
 import java.util.ArrayList;
 import java.util.Date;
@@ -27,42 +28,42 @@ import org.springframework.stereotype.Repository;
 public class OpdrachtDAOImpl implements OpdrachtDAO{
     
     final String select = "select o.opdrachtid, k.klantid as \"klant id\"\n" +
-        ",k.naam as \"klant naam\" ,k.voornaam as \"klant voornaam\", k.bedrijf, o.datum, w.werknemerid as \"werknemer id\" ,w.naam as \"werknemer naam\", w.voornaam as \"werknemer voornaam\", v.nummerplaat as \"voertuig\", op.nummerplaat as \"oplegger\", o.opdrachtklaar, o.vrijveld\n" +
-        "from opdracht o\n" +
-        "inner join klant k\n" +
-        "on o.klantid = k.klantid\n" +
-        "inner join voertuig v\n" +
-        "on o.voertuigid = v.voertuigid\n" +
-        "inner join werknemer w\n" +
-        "on o.werknemerid = w.werknemerid\n" +
-        "inner join oplegger op\n" +
-        "on o.opleggerid = op.opleggerid";
+"        ,k.naam as \"klant naam\" ,k.voornaam as \"klant voornaam\", k.bedrijf, o.datum,o.starttijd, o.eindtijd, w.werknemerid as \"werknemer id\" ,w.naam as \"werknemer naam\", w.voornaam as \"werknemer voornaam\", v.nummerplaat as \"voertuig\", op.nummerplaat as \"oplegger\", o.opdrachtklaar, o.vrijveld\n" +
+"        from opdracht o\n" +
+"        inner join klant k\n" +
+"        on o.klantid = k.klantid\n" +
+"        inner join voertuig v\n" +
+"        on o.voertuigid = v.voertuigid\n" +
+"        inner join werknemer w\n" +
+"        on o.werknemerid = w.werknemerid\n" +
+"        inner join oplegger op\n" +
+"        on o.opleggerid = op.opleggerid";
     
     final String selectOpdracht = "select o.opdrachtid, k.klantid as \"klant id\"\n" +
-        ",k.naam as \"klant naam\" ,k.voornaam as \"klant voornaam\", k.bedrijf, o.datum, w.werknemerid as \"werknemer id\" ,w.naam as \"werknemer naam\", w.voornaam as \"werknemer voornaam\", v.nummerplaat as \"voertuig\", op.nummerplaat as \"oplegger\", o.opdrachtklaar, o.vrijveld\n" +
-        "from opdracht o\n" +
-        "inner join klant k\n" +
-        "on o.klantid = k.klantid\n" +
-        "inner join voertuig v\n" +
-        "on o.voertuigid = v.voertuigid\n" +
-        "inner join werknemer w\n" +
-        "on o.werknemerid = w.werknemerid\n" +
-        "inner join oplegger op\n" +
-        "on o.opleggerid = op.opleggerid"
-            + "where o.opdrachtid = :id";
+"        ,k.naam as \"klant naam\" ,k.voornaam as \"klant voornaam\", k.bedrijf, o.datum,o.starttijd, o.eindtijd, w.werknemerid as \"werknemer id\" ,w.naam as \"werknemer naam\", w.voornaam as \"werknemer voornaam\", v.nummerplaat as \"voertuig\", op.nummerplaat as \"oplegger\", o.opdrachtklaar, o.vrijveld\n" +
+"        from opdracht o\n" +
+"        inner join klant k\n" +
+"        on o.klantid = k.klantid\n" +
+"        inner join voertuig v\n" +
+"        on o.voertuigid = v.voertuigid\n" +
+"        inner join werknemer w\n" +
+"        on o.werknemerid = w.werknemerid\n" +
+"        inner join oplegger op\n" +
+"        on o.opleggerid = op.opleggerid\n" +
+"        where o.opdrachtid = 1";
     
     final String selectWerknemer ="select o.opdrachtid, k.klantid as \"klant id\"\n" +
-        ",k.naam as \"klant naam\", k.voornaam as \"klant voornaam\", k.bedrijf, o.datum, w.werknemerid as \"werknemer id\" ,w.naam as \"werknemer naam\", w.voornaam as \"werknemer voornaam\", v.nummerplaat as \"voertuig\", op.nummerplaat as \"oplegger\", o.opdrachtklaar, o.vrijveld\n" +
-        "from opdracht o\n" +
-        "inner join klant k\n" +
-        "on o.klantid = k.klantid\n" +
-        "inner join voertuig v\n" +
-        "on o.voertuigid = v.voertuigid\n" +
-        "inner join werknemer w\n" +
-        "on o.werknemerid = w.werknemerid\n" +
-        "inner join oplegger op\n" +
-        "on o.opleggerid = op.opleggerid\n" +
-        "where w.werknemerid = :id";
+"        ,k.naam as \"klant naam\", k.voornaam as \"klant voornaam\", k.bedrijf, o.datum,o.starttijd, o.eindtijd, w.werknemerid as \"werknemer id\" ,w.naam as \"werknemer naam\", w.voornaam as \"werknemer voornaam\", v.nummerplaat as \"voertuig\", op.nummerplaat as \"oplegger\", o.opdrachtklaar, o.vrijveld\n" +
+"        from opdracht o\n" +
+"        inner join klant k\n" +
+"        on o.klantid = k.klantid\n" +
+"        inner join voertuig v\n" +
+"        on o.voertuigid = v.voertuigid\n" +
+"        inner join werknemer w\n" +
+"        on o.werknemerid = w.werknemerid\n" +
+"        inner join oplegger op\n" +
+"        on o.opleggerid = op.opleggerid\n" +
+"        where w.werknemerid = :id";
     
     
     @Autowired
@@ -79,8 +80,8 @@ public class OpdrachtDAOImpl implements OpdrachtDAO{
      * @param opdracht 
      */
     @Override
-    public void addOpdracht(Opdracht opdracht) {
-        sessionFactory.getCurrentSession().save(opdracht);
+    public void addOpdracht(OpdrachtView opdrachtView) {
+        //sessionFactory.getCurrentSession().save(opdrachtView);
     }
     /**
      * Geeft een list met opdracht terug
@@ -115,8 +116,8 @@ public class OpdrachtDAOImpl implements OpdrachtDAO{
      * @param opdracht 
      */
     @Override
-    public void updateOpdracht(Opdracht opdracht) {
-        sessionFactory.getCurrentSession().update(opdracht);
+    public void updateOpdracht(OpdrachtView opdrachtView) {
+        //sessionFactory.getCurrentSession().update(opdracht);
     }
     /**
      * Is de levering afgeleverd op klaar zetten. 
@@ -131,7 +132,7 @@ public class OpdrachtDAOImpl implements OpdrachtDAO{
         }
     }
     @Override
-    public OpdrachtView getOpdracht(int id){
+    public OpdrachtObjectView getOpdracht(int id){
         Session session = HibernateUtil.getSessionFactory().openSession();
         Query query = session.createSQLQuery(selectWerknemer);
         query.setParameter("id", id);
@@ -143,12 +144,12 @@ public class OpdrachtDAOImpl implements OpdrachtDAO{
      * @param list
      * @return 
      */
-    public List<OpdrachtView> mapJson(List list){
-        List<OpdrachtView> opdrachten = new ArrayList<OpdrachtView>();
+    public List<OpdrachtObjectView> mapJson(List list){
+        List<OpdrachtObjectView> opdrachten = new ArrayList<OpdrachtObjectView>();
         for(Iterator iter = list.iterator(); iter.hasNext();){
             Object[] row = (Object[]) iter.next();
-            OpdrachtView actieView = 
-                    new OpdrachtView(row[0], row[1], row[2], row[3], row[4], row[5], row[6], row[7], row[8], row[9], row[10], row[11], row[12]);
+            OpdrachtObjectView actieView = 
+                    new OpdrachtObjectView(row[0], row[1], row[2], row[3], row[4], row[5], row[6], row[7], row[8], row[9], row[10], row[11], row[12], row[13], row[14]);
             opdrachten.add(actieView);
         }
         return opdrachten;

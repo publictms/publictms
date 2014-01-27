@@ -4,8 +4,8 @@
  */
 package be.pxl.publictms;
 
-import be.pxl.publictms.pojo.Opdracht;
 import be.pxl.publictms.service.OpdrachtService;
+import be.pxl.publictms.view.OpdrachtObjectView;
 import be.pxl.publictms.view.OpdrachtView;
 import java.util.List;
 import org.slf4j.Logger;
@@ -37,7 +37,7 @@ public class OpdrachtController {
      * @return 
      */
     @RequestMapping(value = "/",method = RequestMethod.GET)
-    public @ResponseBody List<OpdrachtView> getOpdracht(){
+    public @ResponseBody List<OpdrachtObjectView> getOpdrachten(){
         return opdrachtService.getOpdrachten();
     }
     /**
@@ -46,7 +46,7 @@ public class OpdrachtController {
      * @return List
      */
     @RequestMapping(value = "/{id}",method = RequestMethod.GET)
-    public @ResponseBody OpdrachtView getOpdrachten(@PathVariable("id") int id){
+    public @ResponseBody OpdrachtObjectView getOpdracht(@PathVariable("id") int id){
         return opdrachtService.getOpdracht(id);
     }
     /**
@@ -54,8 +54,8 @@ public class OpdrachtController {
      * @param opdracht 
      */
     @RequestMapping(value = "/", method = RequestMethod.POST)
-    public @ResponseBody void addOpdracht(@RequestBody Opdracht opdracht){
-        opdrachtService.addOpdracht(opdracht);
+    public @ResponseBody void addOpdracht(@RequestBody OpdrachtView opdrachtView){
+        opdrachtService.addOpdracht(opdrachtView);
     }
     /**
      * Verwijder een opdracht aan de hand van zijn index.
@@ -70,8 +70,8 @@ public class OpdrachtController {
      * @param opdracht 
      */
     @RequestMapping(value = "/", method = RequestMethod.PUT)
-    public @ResponseBody void updateOpdracht(@RequestBody Opdracht opdracht){  
-        opdrachtService.updateOpdracht(opdracht);
+    public @ResponseBody void updateOpdracht(@RequestBody OpdrachtView opdrachtView){  
+        opdrachtService.updateOpdracht(opdrachtView);
     }
     
     /**

@@ -46,7 +46,7 @@ public class TransportadresDAOImpl implements TransportadresDAO{
 "            inner join land l\n" +
 "            on l.landid = a.land";
     
-    private final String qryKlant = "select t.transportid,t.adresid,t.contactid,t.taal, t.soortadres,t.actief, t.vensteruren,\n" +
+    private final String qryKlant = "select t.transportid,t.adresid,t.taal,t.contactid, t.soortadres,t.actief, t.vensteruren,\n" +
 "            t.vrachtbeperking, t.chauffeursbeperking, t.vrijveld,\n" +
 "            a.straat, a.nummer, a.bus, a.land, l.landnaam, a.postcode, p.gemeente,c.email, c.telefoon, c.gsm, c.fax, ta.taalnaam, k.klantid,\n" +
 "            k.naam as \"klantnaam\", k.voornaam as \"klantvoornaam\", k.bedrijf, k.website, k.betalingscondities, k.munt,\n" +
@@ -83,17 +83,22 @@ public class TransportadresDAOImpl implements TransportadresDAO{
     public void addTransportadres(KlantView klant) {
         Adres adres = new Adres(klant.getPostcode(), klant.getStraat(), klant.getNummer(), klant.getBus(), klant.getLandid());//land!!!
         Contact contact = new Contact(klant.getEmail(), klant.getTelefoon(), klant.getGsm(), klant.getFax());
-        sessionFactory.getCurrentSession().saveOrUpdate(adres);
-        sessionFactory.getCurrentSession().saveOrUpdate(contact);
+        sessionFactory.getCurrentSession().save(adres);
+        sessionFactory.getCurrentSession().save(contact);
+        
+        System.out.println(klant.getTaalid());
         Transportadres transportAdres = new Transportadres(adres.getAdresid(), 
                 contact.getContactid(), klant.getTaalid(), klant.isActief(), klant.getSoortadres(),
                 klant.getVensteruren(), klant.getVrachtbeperking(), klant.getChauffeursbeperking(),
                 klant.getVrijveld());
         sessionFactory.getCurrentSession().save(transportAdres);
+       
+        System.out.println(transportAdres.getTaal());
         Klant klnt = new Klant(transportAdres.getTransportid(), klant.getKlantnaam(),
                 klant.getVoornaam(), klant.getBedrijf(), klant.getWebsite(), klant.getBetalingscondities(), 
                 klant.getMunt(), klant.getBtwregime(), klant.getBtwnummer(), klant.getOndernemingsnummer(), klant.getIban(), klant.getBic());
         sessionFactory.getCurrentSession().save(klnt); 
+       
     }
     /**
      * Geeft een lijst met transportadressen
@@ -145,24 +150,26 @@ public class TransportadresDAOImpl implements TransportadresDAO{
      */
     @Override
     public void updateTransportadres(KlantView klant) {
-        System.out.println(klant.getLandid());
+        System.out.println(klant.getLandid() + " " + klant.getPostcode() + " " + klant.getTaalid() + " " + klant.getTaalNaam() + " " + klant.getContactid() + " " + klant.getTransportid());
+        
         Adres adres = new Adres(klant.getAdresid(),klant.getPostcode(), klant.getStraat(), klant.getNummer(), klant.getBus(), klant.getLandid());
         Contact contact = new Contact(klant.getContactid(),klant.getEmail(), klant.getTelefoon(), klant.getGsm(), klant.getFax());
+        
         sessionFactory.getCurrentSession().update(adres);
         sessionFactory.getCurrentSession().update(contact);
-        Transportadres transportAdres = new Transportadres(klant.getTransportid(), klant.getAdresid(), //taalid!!
+        
+        Transportadres transportAdres = new Transportadres(klant.getTransportid(), klant.getAdresid(),
                 klant.getContactid(), klant.getTaalid(), klant.isActief(), klant.getSoortadres(),
                 klant.getVensteruren(), klant.getVrachtbeperking(), klant.getChauffeursbeperking(),
                 klant.getVrijveld());
-        //System.out.println(klant.getTransportid()+" " + klant.getAdresid()+" "+klant.getContactid() +" " +klant.getTaalid());
-        //System.out.println(transportAdres.getTransportid()+" " + adres.getAdresid()+" "+contact.getContactid());
+
         sessionFactory.getCurrentSession().update(transportAdres);
         Klant klnt = new Klant(klant.getKlantid(), 
-        klant.getTransportid(), klant.getKlantnaam(), 
-        klant.getVoornaam(), klant.getBedrijf(), 
-        klant.getWebsite(), klant.getBetalingscondities(), 
-        klant.getMunt(), klant.getBtwregime(), klant.getBtwnummer(), 
-        klant.getOndernemingsnummer(), klant.getIban(), klant.getBic()); 
+            klant.getTransportid(), klant.getKlantnaam(), 
+            klant.getVoornaam(), klant.getBedrijf(), 
+            klant.getWebsite(), klant.getBetalingscondities(), 
+            klant.getMunt(), klant.getBtwregime(), klant.getBtwnummer(), 
+            klant.getOndernemingsnummer(), klant.getIban(), klant.getBic()); 
         sessionFactory.getCurrentSession().update(klnt);
     }
     /**

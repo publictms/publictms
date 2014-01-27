@@ -6,6 +6,7 @@ package be.pxl.publictms.service;
 
 import be.pxl.publictms.DAO.OpleggerDAO;
 import be.pxl.publictms.pojo.Oplegger;
+import be.pxl.publictms.view.OpleggerObjectView;
 import be.pxl.publictms.view.OpleggerView;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -61,7 +62,7 @@ public class OpleggerServiceImpl implements OpleggerService{
      * @return      POJO van het opgehaalde data.
      */
     @Transactional
-    public OpleggerView getOplegger(int id) {
+    public OpleggerObjectView getOplegger(int id) {
         return opleggerDAO.getOplegger(id);
     }
 

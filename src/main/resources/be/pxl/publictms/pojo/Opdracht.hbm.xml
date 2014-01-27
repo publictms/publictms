@@ -23,6 +23,12 @@
         <property name="datum" type="date">
             <column name="datum" length="13" />
         </property>
+        <property name="starttijd" type="time">
+            <column name="starttijd" length="15" />
+        </property>
+        <property name="eindtijd" type="time">
+            <column name="eindtijd" length="15" />
+        </property>
         <property name="opdrachtklaar" type="java.lang.Boolean">
             <column name="opdrachtklaar" />
         </property>

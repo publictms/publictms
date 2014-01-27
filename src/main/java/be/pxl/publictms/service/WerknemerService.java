@@ -5,8 +5,8 @@
 package be.pxl.publictms.service;
 
 import be.pxl.publictms.pojo.Werknemer;
-import be.pxl.publictms.view.WerknemerCompleet;
 import be.pxl.publictms.view.WerknemerView;
+import be.pxl.publictms.view.WerknemerObjectView;
 import java.util.List;
 
 /**
@@ -23,7 +23,7 @@ public interface WerknemerService {
      * 
      * @param werknemer     POJO representatie van de data die toegevoegd wordt.
      */
-    public void addWerknemer(WerknemerCompleet werknemerCompleet);
+    public void addWerknemer(WerknemerView werknemerCompleet);
     
     /**
      * Declaratie van de methode voor het ophalen van alle records uit de tabel
@@ -39,7 +39,7 @@ public interface WerknemerService {
      * 
      * @return      Het record met werknemerid id.
      */
-    public WerknemerView getWerknemer(int id);
+    public WerknemerObjectView getWerknemer(int id);
     
     /**
      * Declaratie van de methode voor het verwijderen van een record uit de
@@ -55,6 +55,6 @@ public interface WerknemerService {
      * 
      * @param werknemer     POJO van de geüpdate data.
      */
-    public void updateWerknemer(WerknemerCompleet werknemerCompleet);
+    public void updateWerknemer(WerknemerView werknemerCompleet);
     
 }

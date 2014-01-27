@@ -12,10 +12,10 @@
             <column name="postcode" length="10" not-null="true" />
         </property>
         <property name="straat" type="string">
-            <column name="straat" length="50" not-null="true" />
+            <column name="straat" length="50" not-null="false" />
         </property>
         <property name="nummer" type="short">
-            <column name="nummer" precision="4" scale="0" not-null="true" />
+            <column name="nummer" precision="4" scale="0"/>
         </property>
         <property name="bus" type="string">
             <column name="bus" length="10" />

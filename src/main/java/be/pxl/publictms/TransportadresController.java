@@ -5,18 +5,12 @@
 package be.pxl.publictms;
 
 import be.pxl.publictms.service.TransportadresService;
-import be.pxl.publictms.view.KlantView;
 import be.pxl.publictms.view.KlantObjectView;
+import be.pxl.publictms.view.KlantView;
 import java.util.List;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -44,11 +38,8 @@ public class TransportadresController {
      * @return Transportadres
      */
     @RequestMapping(value = "/",method = RequestMethod.GET)
-    public @ResponseBody ResponseEntity<List> getTransportadres(HttpServletRequest request, HttpServletResponse response){
-        List json = transportadresService.getTransportadres();
-        HttpHeaders responseHeaders = new HttpHeaders();
-        responseHeaders.setContentType(MediaType.APPLICATION_JSON);
-        return new ResponseEntity<List>(json, responseHeaders, HttpStatus.CREATED);
+    public @ResponseBody List<KlantView> getTransportadressen(){
+        return transportadresService.getTransportadres();
     }
     
     /**
@@ -57,11 +48,8 @@ public class TransportadresController {
      * @return Transportadres
      */
     @RequestMapping(value = "/{id}",method = RequestMethod.GET)
-    public @ResponseBody ResponseEntity<KlantObjectView> getTransportadressen(@PathVariable("id") int id, HttpServletRequest request, HttpServletResponse response){
-        KlantObjectView json = transportadresService.getTransportadres(id);
-        HttpHeaders responseHeaders = new HttpHeaders();
-        responseHeaders.setContentType(MediaType.APPLICATION_JSON);
-        return new ResponseEntity<KlantObjectView>(json, responseHeaders, HttpStatus.CREATED);
+    public @ResponseBody KlantObjectView getTransportadres(@PathVariable("id") int id){
+        return transportadresService.getTransportadres(id);
     }
     /**
      * Voeg een nieuw transport adres toe aan de databank.

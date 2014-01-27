@@ -5,7 +5,7 @@
 package be.pxl.publictms.service;
 
 import be.pxl.publictms.DAO.OpdrachtDAO;
-import be.pxl.publictms.pojo.Opdracht;
+import be.pxl.publictms.view.OpdrachtObjectView;
 import be.pxl.publictms.view.OpdrachtView;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,8 +37,8 @@ public class OpdrachtServiceImpl implements OpdrachtService{
      * @param opdracht     POJO representatie van de data die toegevoegd wordt.
      */
     @Transactional
-    public void addOpdracht(Opdracht opdracht) {
-        opdrachtDAO.addOpdracht(opdracht);
+    public void addOpdracht(OpdrachtView opdrachtView) {
+        opdrachtDAO.addOpdracht(opdrachtView);
     }
 
     /**
@@ -70,8 +70,8 @@ public class OpdrachtServiceImpl implements OpdrachtService{
      * @param opdracht     POJO van de geüpdate data.
      */
     @Transactional
-    public void updateOpdracht(Opdracht opdracht) {
-        opdrachtDAO.updateOpdracht(opdracht);
+    public void updateOpdracht(OpdrachtView opdrachtView) {
+        opdrachtDAO.updateOpdracht(opdrachtView);
     }
     /**
      * Geeft een list met opdracht terug
@@ -82,7 +82,7 @@ public class OpdrachtServiceImpl implements OpdrachtService{
         return opdrachtDAO.getOpdrachtenWerknemer(id);
     }
     @Transactional
-    public OpdrachtView getOpdracht(int id){
+    public OpdrachtObjectView getOpdracht(int id){
         return opdrachtDAO.getOpdracht(id);
     }
     /**

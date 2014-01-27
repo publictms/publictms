@@ -6,6 +6,7 @@ package be.pxl.publictms;
 
 import be.pxl.publictms.pojo.Oplegger;
 import be.pxl.publictms.service.OpleggerService;
+import be.pxl.publictms.view.OpleggerObjectView;
 import be.pxl.publictms.view.OpleggerView;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
@@ -43,7 +44,7 @@ public class OpleggerController {
      * @return Oplegger
      */
     @RequestMapping(value = "/{id}",method = RequestMethod.GET)
-    public @ResponseBody OpleggerView getOplegger(@PathVariable("id") int id){
+    public @ResponseBody OpleggerObjectView getOplegger(@PathVariable("id") int id){
         return opleggerService.getOplegger(id);
     }
     /**
