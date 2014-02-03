@@ -77,8 +77,8 @@ public class GebruikerDAOImpl implements GebruikerDAO{
      * @param paswoord
      * @return boolean
      */
-    @Override   //momenteel is deze nog GET om te testen
-    public boolean checkUser(String gebruikersnaam, String paswoord){
+    @Override
+    public Gebruiker checkUser(String gebruikersnaam, String paswoord) throws Exception {
         Session session = HibernateUtil.getSessionFactory().openSession();
         Query query = session.createSQLQuery(getGebruiker).addEntity(Gebruiker.class);
         query.setParameter("gebruikersnaam", gebruikersnaam);
@@ -86,13 +86,13 @@ public class GebruikerDAOImpl implements GebruikerDAO{
             Gebruiker gebruiker = (Gebruiker) query.list().get(0);
             if(gebruiker != null){
                 if (BCrypt.checkpw(paswoord, gebruiker.getPaswoord()))
-                    return true;
+                    return gebruiker;
                 else 
-                    return false;
+                    throw new Exception("Gebruikersnaam of paswoord is onjuist");
             }
-            return false;
+            throw new Exception("Gebruikersnaam of paswoord is onjuist");
         }else{
-            return false;
+            throw new Exception("Gebruikersnaam of paswoord is onjuist");
         }
     }
 }

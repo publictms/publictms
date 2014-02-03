@@ -50,7 +50,7 @@ public class WerknemerServiceImpl implements WerknemerService{
      *              voorgesteld met POJO Werknemer.
      */
     @Transactional
-    public List<Werknemer> getWerknemers() {
+    public List<WerknemerObjectView> getWerknemers() {
         return werknemerDAO.getWerknemers();
     }
 

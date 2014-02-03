@@ -49,8 +49,11 @@ public class WerknemerView {
      private int gebruikersid;
      private String gebruikersnaam;
      private String paswoord;
+     private String paswoord2;
      private boolean admin;
-
+     private String name;
+     private int id;
+     
      public WerknemerView(){};
      
     public WerknemerView(int werknemerid, int taalid, String naam, String voornaam, 
@@ -62,7 +65,7 @@ public class WerknemerView {
             Date geboortedatum, String iban, String bic, String burgerstand, int aantalkinderen, 
             String rijbewijsnr, String rijbewijscat, Date geldigtot, Boolean adrcertificaat, Boolean medischattest, 
             String tankkaartnr, String tachograafnr, int tachograaftot, String taalnaam,
-            int gebruikersid, String gebruikersnaam, String paswoord, boolean admin) {
+            int gebruikersid, String gebruikersnaam, String paswoord, String paswoord2, boolean admin) {
         this.werknemerid = werknemerid;
         this.taalid = taalid;
         this.naam = naam;
@@ -108,7 +111,10 @@ public class WerknemerView {
         this.gebruikersid = gebruikersid;
         this.gebruikersnaam = gebruikersnaam;
         this.paswoord = paswoord;
+        this.paswoord2 = paswoord2;
         this.admin = admin;
+        this.name = voornaam;
+        this.id = werknemerid;
     }
 
     public WerknemerView(String naam, String voornaam, Boolean actief, Character geslacht, 
@@ -119,7 +125,7 @@ public class WerknemerView {
             String iban, String bic, String burgerstand, int aantalkinderen, String rijbewijsnr, 
             String rijbewijscat, Date geldigtot, Boolean adrcertificaat, Boolean medischattest, 
             String tankkaartnr, String tachograafnr, int tachograaftot, String taalnaam,
-            int gebruikersid, String gebruikersnaam, String paswoord, boolean admin) {
+            int gebruikersid, String gebruikersnaam, String paswoord, String paswoord2, boolean admin) {
         this.naam = naam;
         this.voornaam = voornaam;
         this.actief = actief;
@@ -159,9 +165,28 @@ public class WerknemerView {
         this.gebruikersid = gebruikersid;
         this.gebruikersnaam = gebruikersnaam;
         this.paswoord = paswoord;
+        this.paswoord2 = paswoord2;
         this.admin = admin;
+        this.name = voornaam;
+        this.id = werknemerid;
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+    
     public int getGebruikersid() {
         return gebruikersid;
     }
@@ -530,6 +555,14 @@ public class WerknemerView {
 
     public void setTaalnaam(String taalnaam) {
         this.taalnaam = taalnaam;
+    }
+
+    public String getPaswoord2() {
+        return paswoord2;
+    }
+
+    public void setPaswoord2(String paswoord2) {
+        this.paswoord2 = paswoord2;
     }
      
      

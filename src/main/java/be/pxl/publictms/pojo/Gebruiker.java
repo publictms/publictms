@@ -42,6 +42,13 @@ public class Gebruiker implements java.io.Serializable {
         this.werknemerid = werknemerid;
         this.administrator = administrator;
     }
+    
+    public Gebruiker(int gebruikerid, String gebruikersnaam, int werknemerid, boolean administrator) {
+        this.gebruikerid = gebruikerid;
+        this.gebruikersnaam = gebruikersnaam;
+        this.werknemerid = werknemerid;
+        this.administrator = administrator;
+    }
    
     public int getGebruikerid() {
         return this.gebruikerid;

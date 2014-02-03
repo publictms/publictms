@@ -4,235 +4,185 @@
  */
 package be.pxl.publictms.view;
 
+import java.util.Date;
 
 /**
- * Een model van acties zodat men een mooi overzicht krijgt zonder dat men een 
- * hoop indexen ziet maar de werkelijke waarde ervan alsook extra's.
- * @author Laurens Putseys
+ *
+ * @author 11302785
  */
 public class ActieView {
-    private Object actieid;
-    private Object naam;
-    private Object straat;
-    private Object nummer;
-    private Object bus;
-    private Object land;
-    private Object postcode;
-    private Object email;
-    private Object telefoon;
-    private Object gsm;
-    private Object fax;
-    private Object taalNaam;
-    private Object transportStatus;
-    private Object soortAdres;
-    private Object vensterUren;
-    private Object vrachtBeperking;
-    private Object chauffeurBeperking;
-    private Object transportOpmerking;
-    private Object actieklaar;
-    private Object lading;
-    private Object actieOpmerking;
-    private Object opdrachtid;
+    private int actieid;
+    private boolean actieklaar;
+    private String start;
+    private String end;
+    private String soortactie;
+    private String lading;
+    private String vrijveld;
+    private int opdrachtid;
+    private String adres;
+    private int klantid;
+    private int resource;
+    private int voertuigid;
+    private int opleggerid;
+    private String title;
+    private boolean allDay;
 
-    public ActieView(Object actieid, Object naam, Object straat, Object nummer, Object bus, Object land, Object postcode, Object email, Object telefoon, Object gsm, Object fax, Object taalNaam, Object transportStatus, Object soortAdres, Object vensterUren, Object vrachtBeperking, Object chauffeurBeperking, Object transportOpmerking, Object actieklaar, Object lading, Object actieOpmerking, Object opdrachtid) {
+    public ActieView() {
+        
+    }
+    
+    public ActieView(int actieid, boolean actieklaar, String start, String end, String soortactie, String lading, String vrijveld, int opdrachtid, String adres, int klantid, int resource, int voertuigid, int opleggerid, String title, boolean allDay) {
         this.actieid = actieid;
-        this.naam = naam;
-        this.straat = straat;
-        this.nummer = nummer;
-        this.bus = bus;
-        this.land = land;
-        this.postcode = postcode;
-        this.email = email;
-        this.telefoon = telefoon;
-        this.gsm = gsm;
-        this.fax = fax;
-        this.taalNaam = taalNaam;
-        this.transportStatus = transportStatus;
-        this.soortAdres = soortAdres;
-        this.vensterUren = vensterUren;
-        this.vrachtBeperking = vrachtBeperking;
-        this.chauffeurBeperking = chauffeurBeperking;
-        this.transportOpmerking = transportOpmerking;
         this.actieklaar = actieklaar;
+        this.start = start;
+        this.end = end;
+        this.soortactie = soortactie;
         this.lading = lading;
-        this.actieOpmerking = actieOpmerking;
+        this.vrijveld = vrijveld;
         this.opdrachtid = opdrachtid;
+        this.adres = adres;
+        this.klantid = klantid;
+        this.resource = resource;
+        this.voertuigid = voertuigid;
+        this.opleggerid = opleggerid;
+        this.title = title;
+        this.allDay = allDay;
+    }
+    
+    public ActieView(int actieid, boolean actieklaar, String start, String end, String soortactie, String lading, String vrijveld, int opdrachtid, String adres, boolean allDay) {
+        this.actieid = actieid;
+        this.actieklaar = actieklaar;
+        this.start = start;
+        this.end = end;
+        this.soortactie = soortactie;
+        this.lading = lading;
+        this.vrijveld = vrijveld;
+        this.opdrachtid = opdrachtid;
+        this.adres = adres;
+        this.allDay = allDay;
     }
 
-    public Object getActieid() {
+    public boolean isAllDay() {
+        return allDay;
+    }
+
+    public void setAllDay(boolean allDay) {
+        this.allDay = allDay;
+    }
+
+    public int getActieid() {
         return actieid;
     }
 
-    public void setActieid(Object actieid) {
+    public void setActieid(int actieid) {
         this.actieid = actieid;
     }
 
-    public Object getNaam() {
-        return naam;
-    }
-
-    public void setNaam(Object naam) {
-        this.naam = naam;
-    }
-
-    public Object getStraat() {
-        return straat;
-    }
-
-    public void setStraat(Object straat) {
-        this.straat = straat;
-    }
-
-    public Object getNummer() {
-        return nummer;
-    }
-
-    public void setNummer(Object nummer) {
-        this.nummer = nummer;
-    }
-
-    public Object getBus() {
-        return bus;
-    }
-
-    public void setBus(Object bus) {
-        this.bus = bus;
-    }
-
-    public Object getLand() {
-        return land;
-    }
-
-    public void setLand(Object land) {
-        this.land = land;
-    }
-
-    public Object getPostcode() {
-        return postcode;
-    }
-
-    public void setPostcode(Object postcode) {
-        this.postcode = postcode;
-    }
-
-    public Object getEmail() {
-        return email;
-    }
-
-    public void setEmail(Object email) {
-        this.email = email;
-    }
-
-    public Object getTelefoon() {
-        return telefoon;
-    }
-
-    public void setTelefoon(Object telefoon) {
-        this.telefoon = telefoon;
-    }
-
-    public Object getGsm() {
-        return gsm;
-    }
-
-    public void setGsm(Object gsm) {
-        this.gsm = gsm;
-    }
-
-    public Object getFax() {
-        return fax;
-    }
-
-    public void setFax(Object fax) {
-        this.fax = fax;
-    }
-
-    public Object getTaalNaam() {
-        return taalNaam;
-    }
-
-    public void setTaalNaam(Object taalNaam) {
-        this.taalNaam = taalNaam;
-    }
-
-    public Object getTransportStatus() {
-        return transportStatus;
-    }
-
-    public void setTransportStatus(Object transportStatus) {
-        this.transportStatus = transportStatus;
-    }
-
-    public Object getSoortAdres() {
-        return soortAdres;
-    }
-
-    public void setSoortAdres(Object soortAdres) {
-        this.soortAdres = soortAdres;
-    }
-
-    public Object getVensterUren() {
-        return vensterUren;
-    }
-
-    public void setVensterUren(Object vensterUren) {
-        this.vensterUren = vensterUren;
-    }
-
-    public Object getVrachtBeperking() {
-        return vrachtBeperking;
-    }
-
-    public void setVrachtBeperking(Object vrachtBeperking) {
-        this.vrachtBeperking = vrachtBeperking;
-    }
-
-    public Object getChauffeurBeperking() {
-        return chauffeurBeperking;
-    }
-
-    public void setChauffeurBeperking(Object chauffeurBeperking) {
-        this.chauffeurBeperking = chauffeurBeperking;
-    }
-
-    public Object getTransportOpmerking() {
-        return transportOpmerking;
-    }
-
-    public void setTransportOpmerking(Object transportOpmerking) {
-        this.transportOpmerking = transportOpmerking;
-    }
-
-    public Object getActieklaar() {
+    public boolean isActieklaar() {
         return actieklaar;
     }
 
-    public void setActieklaar(Object actieklaar) {
+    public void setActieklaar(boolean actieklaar) {
         this.actieklaar = actieklaar;
     }
 
-    public Object getLading() {
+    public String getStart() {
+        return start;
+    }
+
+    public void setStart(String start) {
+        this.start = start;
+    }
+
+    public String getEnd() {
+        return end;
+    }
+
+    public void setEnd(String end) {
+        this.end = end;
+    }
+
+    public String getSoortactie() {
+        return soortactie;
+    }
+
+    public void setSoortactie(String soortactie) {
+        this.soortactie = soortactie;
+    }
+
+    public String getLading() {
         return lading;
     }
 
-    public void setLading(Object lading) {
+    public void setLading(String lading) {
         this.lading = lading;
     }
 
-    public Object getActieOpmerking() {
-        return actieOpmerking;
+    public String getVrijveld() {
+        return vrijveld;
     }
 
-    public void setActieOpmerking(Object actieOpmerking) {
-        this.actieOpmerking = actieOpmerking;
+    public void setVrijveld(String vrijveld) {
+        this.vrijveld = vrijveld;
     }
 
-    public Object getOpdrachtid() {
+    public int getOpdrachtid() {
         return opdrachtid;
     }
 
-    public void setOpdrachtid(Object opdrachtid) {
+    public void setOpdrachtid(int opdrachtid) {
         this.opdrachtid = opdrachtid;
     }
+
+    public String getAdres() {
+        return adres;
+    }
+
+    public void setAdres(String adres) {
+        this.adres = adres;
+    }
+
+    public int getKlantid() {
+        return klantid;
+    }
+
+    public void setKlantid(int klantid) {
+        this.klantid = klantid;
+    }
+
+    public int getResource() {
+        return resource;
+    }
+
+    public void setResource(int resource) {
+        this.resource = resource;
+    }
+
+    public int getVoertuigid() {
+        return voertuigid;
+    }
+
+    public void setVoertuigid(int voertuigid) {
+        this.voertuigid = voertuigid;
+    }
+
+    public int getOpleggerid() {
+        return opleggerid;
+    }
+
+    public void setOpleggerid(int opleggerid) {
+        this.opleggerid = opleggerid;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
     
+    
+   
 }

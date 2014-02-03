@@ -11,11 +11,14 @@
         <property name="klant" type="int">
             <column name="klantid" />
         </property>
+        <property name="eenheidsprijs" type="java.lang.Double">
+            <column name="eenheidsprijs" precision="17" scale="17" />
+        </property>
         <property name="korting" type="java.lang.Double">
             <column name="korting" precision="17" scale="17" />
         </property>
-        <property name="prijsgegeven" type="java.lang.Double">
-            <column name="prijsgegeven" precision="17" scale="17" />
+        <property name="aantalkilometer" type="java.lang.Double">
+            <column name="aantalkilometer" precision="17" scale="17" />
         </property>
     </class>
 </hibernate-mapping>

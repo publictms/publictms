@@ -6,6 +6,7 @@ package be.pxl.publictms;
 
 import be.pxl.publictms.pojo.Gebruiker;
 import be.pxl.publictms.service.GebruikerService;
+import java.io.IOException;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -66,7 +67,7 @@ public class GebruikerController {
     public @ResponseBody void addUser(@RequestBody Gebruiker gebruiker){
         if(!gebruikerService.getGebruikers().contains(gebruiker)){
             String salt = BCrypt.gensalt();
-            gebruiker.setPaswoord(BCrypt.hashpw(gebruiker.getPaswoord(), BCrypt.gensalt()));
+            gebruiker.setPaswoord(BCrypt.hashpw(gebruiker.getPaswoord(), salt));
             gebruiker.setSalt(salt);
             gebruikerService.addGebruiker(gebruiker);
         }
@@ -90,7 +91,7 @@ public class GebruikerController {
         gebruikerService.updateGebruiker(gebruiker);
     }
     @RequestMapping(value = "/{gebruikersnaam}/{paswoord}", method = RequestMethod.POST)
-    public @ResponseBody boolean checkGebruiker(@PathVariable("gebruikersnaam") String gebruikersnaam, @PathVariable("paswoord") String paswoord ){
+    public @ResponseBody Gebruiker checkGebruiker(@PathVariable("gebruikersnaam") String gebruikersnaam, @PathVariable("paswoord") String paswoord ) throws Exception {
         return gebruikerService.checkUser(gebruikersnaam, paswoord);
     }
     /**
@@ -99,8 +100,9 @@ public class GebruikerController {
      * @return String
      */
     @ExceptionHandler(Exception.class)
-    public @ResponseBody String handleUncaughtException(Exception ex){
+    public @ResponseBody String handleUncaughtException(Exception ex, HttpServletResponse response) throws IOException{
         System.out.println(ex.toString());
-        return ex.toString();
+        response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, ex.getMessage());
+        return null;
     }
 }

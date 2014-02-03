@@ -70,7 +70,7 @@ public class FacturatieDAOImpl implements FacturatieDAO{
      */
     @Override
     public void addFacturatie(FacturatieView factuur) {
-        Facturatie facturatie = new Facturatie(factuur.getFacturatieId(), factuur.getKlantid(), factuur.getKorting(), factuur.getPrijsgegeven());
+        Facturatie facturatie = new Facturatie(factuur.getFacturatieId(), factuur.getKlantid(), factuur.getEenheidsprijs(), factuur.getKorting(), factuur.getAantalkilometer());
         sessionFactory.getCurrentSession().save(facturatie);
     }
     /**
@@ -113,7 +113,7 @@ public class FacturatieDAOImpl implements FacturatieDAO{
      */
     @Override
     public void updateFactuur(FacturatieView factuur) {
-        Facturatie facturatie = new Facturatie(factuur.getFacturatieId(), factuur.getKlantid(), factuur.getKorting(), factuur.getPrijsgegeven());
+        Facturatie facturatie = new Facturatie(factuur.getFacturatieId(), factuur.getKlantid(), factuur.getEenheidsprijs(), factuur.getKorting(), factuur.getAantalkilometer());
         sessionFactory.getCurrentSession().update(facturatie);
     }
     
@@ -130,7 +130,7 @@ public class FacturatieDAOImpl implements FacturatieDAO{
                     new FacturatieObjectView(row[0],
                     row[1],row[2],row[3], row[4], row[5],row[6], row[7], row[8], 
                     row[9], row[10], row[11], row[12], row[13], 
-                    row[14], row[15],row[16], row[17], row[18], row[19], row[20], row[21], row[22], row[23], row[24]);
+                    row[14], row[15],row[16], row[17], row[18], row[19], row[20], row[21], row[22], row[23], row[24], row[25]);
             facturatieObjectView.add(transportView);
         }
         return facturatieObjectView;

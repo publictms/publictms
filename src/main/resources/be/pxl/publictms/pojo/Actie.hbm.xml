@@ -8,9 +8,6 @@
             <column name="actieid" />
             <generator class="increment" />
         </id>
-        <property name="transportid" type="int">
-            <column name="transportid" not-null="true" />
-        </property>
         <property name="opdrachtid" type="int">
             <column name="opdrachtid" not-null="true" />
         </property>
@@ -20,8 +17,20 @@
         <property name="lading" type="string">
             <column name="lading" length="200" />
         </property>
+        <property name="starttijd" type="timestamp">
+            <column name="starttijd" length="29" />
+        </property>
+        <property name="eindtijd" type="timestamp">
+            <column name="eindtijd" length="29" />
+        </property>
+        <property name="soortActie" type="string">
+            <column name="soortActie" length="10" />
+        </property>
         <property name="vrijveld" type="string">
             <column name="vrijveld" length="300" />
+        </property>
+        <property name="adres" type="string">
+            <column name="adres" />
         </property>
     </class>
 </hibernate-mapping>

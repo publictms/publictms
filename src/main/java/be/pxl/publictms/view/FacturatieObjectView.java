@@ -11,8 +11,9 @@ package be.pxl.publictms.view;
 public class FacturatieObjectView {
     private Object facturatieId;
     private Object klantid;
+    private Object eenheidsprijs;
     private Object korting;
-    private Object prijsgegeven;
+    private Object aantalkilometer;
     private Object naam;
     private Object voornaam;
     private Object bedrijf;
@@ -39,15 +40,16 @@ public class FacturatieObjectView {
         
     }
 
-    public FacturatieObjectView(Object facturatieId, Object klantid, Object korting, Object prijsgegeven, 
+    public FacturatieObjectView(Object facturatieId, Object klantid, Object eenheidsprijs, Object korting, Object aantalkilometer, 
             Object naam, Object voornaam, Object bedrijf, Object website, Object munt, Object btwregime, 
             Object btwnummer, Object ondernemingsnummer, Object iban, Object bic, Object adresid, Object straat, 
             Object nummer, Object bus, Object land, Object postcode, Object gemeente,
             Object email, Object telefoon, Object gsm, Object fax) {
         this.facturatieId = facturatieId;
         this.klantid = klantid;
+        this.eenheidsprijs = eenheidsprijs;
         this.korting = korting;
-        this.prijsgegeven = prijsgegeven;
+        this.aantalkilometer = aantalkilometer;
         this.naam = naam;
         this.voornaam = voornaam;
         this.bedrijf = bedrijf;
@@ -127,12 +129,12 @@ public class FacturatieObjectView {
         this.korting = korting;
     }
 
-    public Object getPrijsgegeven() {
-        return prijsgegeven;
+    public Object getAantalkilometer() {
+        return aantalkilometer;
     }
 
-    public void setPrijsgegeven(Object prijsgegeven) {
-        this.prijsgegeven = prijsgegeven;
+    public void setAantalkilometer(Object aantalkilometer) {
+        this.aantalkilometer = aantalkilometer;
     }
 
     public Object getNaam() {
@@ -270,4 +272,13 @@ public class FacturatieObjectView {
     public void setGemeente(Object gemeente) {
         this.gemeente = gemeente;
     }
+
+    public Object getEenheidsprijs() {
+        return eenheidsprijs;
+    }
+
+    public void setEenheidsprijs(Object eenheidsprijs) {
+        this.eenheidsprijs = eenheidsprijs;
+    }
+    
 }

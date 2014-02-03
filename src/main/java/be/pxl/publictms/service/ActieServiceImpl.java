@@ -6,6 +6,8 @@ package be.pxl.publictms.service;
 
 import be.pxl.publictms.DAO.ActieDAO;
 import be.pxl.publictms.pojo.Actie;
+import be.pxl.publictms.view.ActieObjectView;
+import be.pxl.publictms.view.ActieView;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -36,8 +38,8 @@ public class ActieServiceImpl implements ActieService{
      * @param actie POJO representatie van de data die toegevoegd wordt.
      */
     @Transactional
-    public void addActie(Actie actie) {
-        actieDAO.addActie(actie);
+    public void addActie(ActieView actieView) {
+        actieDAO.addActie(actieView);
     }
     
     /**
@@ -56,8 +58,16 @@ public class ActieServiceImpl implements ActieService{
      * @param actie     POJO van de geüpdate data
      */
     @Transactional
-    public void updateActie(Actie actie) {
-        actieDAO.updateActie(actie);
+    public void updateActie(ActieView actieView) {
+        actieDAO.updateActie(actieView);
+    }
+    /**
+     * Geeft één actie terug.
+     * @param id
+     * @return Actie
+     */
+    public ActieObjectView getActie(int id){
+        return actieDAO.getActie(id);
     }
     /**
      * Geeft alle acties per opdracht zonder indexen maar als bruikbaar gegeven.
@@ -65,8 +75,17 @@ public class ActieServiceImpl implements ActieService{
      * @return List
      */
     @Transactional
-    public List getActiesVanOpdracht(int id){
-        return actieDAO.getActiesVanOpdracht(id);
+    public List<ActieObjectView> getActiesWerknemer(int id){
+        return actieDAO.getActiesWerknemer(id);
+    }
+    /**
+     * Geeft alle acties per opdracht zonder indexen maar als bruikbaar gegeven.
+     * @param id
+     * @return List
+     */
+    @Transactional
+    public List<ActieObjectView> getActiesOpdracht(int id){
+        return actieDAO.getActiesOpdracht(id);
     }
     /**
      * Zet de actie status op actief of niet actief
@@ -76,6 +95,11 @@ public class ActieServiceImpl implements ActieService{
     @Transactional
     public void setKlaar(boolean klaar, int id){
         actieDAO.setKlaar(klaar, id);
+    }
+    
+    @Transactional
+    public List<ActieObjectView> getActies(){
+        return actieDAO.getActies();
     }
     
 }

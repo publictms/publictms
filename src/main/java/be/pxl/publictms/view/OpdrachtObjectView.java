@@ -13,53 +13,49 @@ public class OpdrachtObjectView {
     private Object Id;
     private Object klantId;
     private Object klantNaam;
-    private Object klantVoorNaam;
+    private Object klantVoornaam;
     private Object bedrijf;
-    private Object datum;
-    private Object starttijd;
-    private Object eindtijd;
     private Object werknemerId;
     private Object werknemerNaam;
     private Object werknemerVoornaam;
-    private Object title;
+    private Object voertuigid;
     private Object voertuig;
+    private Object opleggerid;
     private Object oplegger;
     private Object opdrachtklaar;
     private Object vrijveld;
 
-    public OpdrachtObjectView(Object opdrachtid,Object klantId, Object klantNaam, Object klantVoorNaam, Object bedrijf, Object datum, Object starttijd, Object eindtijd, Object werknemerId, Object werknemerNaam, Object werknemerVoornaam, Object voertuig, Object oplegger, Object opdrachtklaar, Object vrijveld) {
+    public OpdrachtObjectView(Object opdrachtid,Object klantId, Object klantNaam, Object klantVoornaam, Object bedrijf, Object werknemerId, Object werknemerNaam, Object werknemerVoornaam,Object voertuigid, Object voertuig,Object opleggerid, Object oplegger, Object opdrachtklaar, Object vrijveld) {
         this.Id = opdrachtid;
         this.klantId = klantId;
         this.klantNaam = klantNaam;
-        this.klantVoorNaam = klantVoorNaam;
+        this.klantVoornaam = klantVoornaam;
         this.bedrijf = bedrijf;
-        this.datum = datum;
-        this.starttijd = starttijd;
-        this.eindtijd = eindtijd;
         this.werknemerId = werknemerId;
         this.werknemerNaam = werknemerNaam;
         this.werknemerVoornaam = werknemerVoornaam;
+        this.voertuigid = voertuigid;
         this.voertuig = voertuig;
+        this.opleggerid = opleggerid;
         this.oplegger = oplegger;
         this.opdrachtklaar = opdrachtklaar;
         this.vrijveld = vrijveld;
-        this.title = werknemerNaam + " " + werknemerVoornaam;
     }
 
-    public Object getStarttijd() {
-        return starttijd;
+    public Object getVoertuigid() {
+        return voertuigid;
     }
 
-    public void setStarttijd(Object starttijd) {
-        this.starttijd = starttijd;
+    public void setVoertuigid(Object voertuigid) {
+        this.voertuigid = voertuigid;
     }
 
-    public Object getEindtijd() {
-        return eindtijd;
+    public Object getOpleggerid() {
+        return opleggerid;
     }
 
-    public void setEindtijd(Object eindtijd) {
-        this.eindtijd = eindtijd;
+    public void setOpleggerid(Object opleggerid) {
+        this.opleggerid = opleggerid;
     }
     
     public Object getId() {
@@ -86,12 +82,12 @@ public class OpdrachtObjectView {
         this.klantNaam = klantNaam;
     }
 
-    public Object getKlantVoorNaam() {
-        return klantVoorNaam;
+    public Object getKlantVoornaam() {
+        return klantVoornaam;
     }
 
-    public void setKlantVoorNaam(Object klantVoorNaam) {
-        this.klantVoorNaam = klantVoorNaam;
+    public void setKlantVoornaam(Object klantVoornaam) {
+        this.klantVoornaam = klantVoornaam;
     }
 
     public Object getBedrijf() {
@@ -102,13 +98,24 @@ public class OpdrachtObjectView {
         this.bedrijf = bedrijf;
     }
 
-    public Object getDatum() {
-        return datum;
+    /*public Object getStart() {
+        SimpleDateFormat  DATE_FORMAT = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+        return DATE_FORMAT.format(this.start);
+        //return start;
     }
 
-    public void setDatum(Object datum) {
-        this.datum = datum;
+    public void setStart(Object start) {
+        this.start = start;
     }
+
+    public Object getEnd() {
+        SimpleDateFormat  DATE_FORMAT = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+        return DATE_FORMAT.format(this.end);
+    }
+
+    public void setEnd(Object end) {
+        this.end = end;
+    }*/
 
     public Object getWerknemerId() {
         return werknemerId;
@@ -132,14 +139,6 @@ public class OpdrachtObjectView {
 
     public void setWerknemerVoornaam(Object werknemerVoornaam) {
         this.werknemerVoornaam = werknemerVoornaam;
-    }
-
-    public Object getTitle() {
-        return title;
-    }
-
-    public void setTitle(Object title) {
-        this.title = title;
     }
 
     public Object getVoertuig() {
@@ -173,6 +172,4 @@ public class OpdrachtObjectView {
     public void setVrijveld(Object vrijveld) {
         this.vrijveld = vrijveld;
     }
-    
-   
 }

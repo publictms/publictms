@@ -83,7 +83,7 @@ public class GebruikerServiceImpl implements GebruikerService{
      * @return boolean
      */
     @Transactional
-    public boolean checkUser(String gebruikersnaam, String paswoord){
+    public Gebruiker checkUser(String gebruikersnaam, String paswoord) throws Exception{
         return gebruikerDao.checkUser(gebruikersnaam, paswoord);
     }
 }

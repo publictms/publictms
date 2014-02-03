@@ -39,7 +39,7 @@ public class WerknemerController {
      * @return List Werknemer
      */
     @RequestMapping(value = "/",method = RequestMethod.GET)
-    public @ResponseBody List<Werknemer> getWerknemers(){
+    public @ResponseBody List<WerknemerObjectView> getWerknemers(){
         return werknemerService.getWerknemers();
     }
     /**

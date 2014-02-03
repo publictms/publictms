@@ -24,7 +24,7 @@ public interface WerknemerDAO {
      * Geef een lijst terug met alle werknemers.
      * @return List Werknemer
      */
-    public List<Werknemer> getWerknemers();
+    public List<WerknemerObjectView> getWerknemers();
     /**
      * Declaratie van de methode voor het ophalen 1 row van de tabel Werknemer.
      * 

@@ -12,17 +12,20 @@ public class Facturatie  implements java.io.Serializable {
 
      private int facturatieid;
      private int klant;
+     private Double eenheidsprijs;
      private Double korting;
-     private Double prijsgegeven;
+     private Double aantalkilometer;
+     
 
     public Facturatie() {
     }
 
-    public Facturatie(int facturatieid, int klant,double korting, Double prijsgegeven) {
+    public Facturatie(int facturatieid, int klant, Double eenheidsprijs, double korting, Double aantalkilometer) {
        this.facturatieid = facturatieid;
        this.klant = klant;
+       this.eenheidsprijs = eenheidsprijs;
        this.korting = korting;
-       this.prijsgegeven = prijsgegeven;
+       this.aantalkilometer = aantalkilometer;
     }
    
     public int getFacturatieid() {
@@ -32,6 +35,7 @@ public class Facturatie  implements java.io.Serializable {
     public void setFacturatieid(int facturatieid) {
         this.facturatieid = facturatieid;
     }
+    
     public int getKlant() {
         return this.klant;
     }
@@ -39,12 +43,12 @@ public class Facturatie  implements java.io.Serializable {
     public void setKlant(int klant) {
         this.klant = klant;
     }
-    public Double getPrijsgegeven() {
-        return this.prijsgegeven;
+    public Double getAantalkilometer() {
+        return this.aantalkilometer;
     }
     
-    public void setPrijsgegeven(Double prijsgegeven) {
-        this.prijsgegeven = prijsgegeven;
+    public void setAantalkilometer(Double aantalkilometer) {
+        this.aantalkilometer = aantalkilometer;
     }
 
     public Double getKorting() {
@@ -54,6 +58,15 @@ public class Facturatie  implements java.io.Serializable {
     public void setKorting(Double korting) {
         this.korting = korting;
     }
+    
+    public Double getEenheidsprijs() {
+        return eenheidsprijs;
+    }
+
+    public void setEenheidsprijs(Double eenheidsprijs) {
+        this.eenheidsprijs = eenheidsprijs;
+    }
+    
     
 }
 

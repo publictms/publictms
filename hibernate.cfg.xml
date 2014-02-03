@@ -7,7 +7,7 @@
         <property name="hibernate.dialect">org.hibernate.dialect.PostgreSQLDialect</property>
 	    <property name="hibernate.connection.driver_class">org.postgresql.Driver</property>
 	    <property name="hibernate.connection.url">jdbc:postgresql://localhost:5432/tms</property>
-	    <property name="hibernate.connection.username">postgres</property>
-	    <property name="hibernate.connection.password">paswoord</property>
+	    <property name="hibernate.connection.username">aon</property>
+	    <property name="hibernate.connection.password">PublicTMS1234</property>
     </session-factory>
 </hibernate-configuration>

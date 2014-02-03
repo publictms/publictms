@@ -13,11 +13,7 @@ import be.pxl.publictms.pojo.Rijbewijsgegevens;
 import be.pxl.publictms.pojo.Werknemer;
 import be.pxl.publictms.view.WerknemerView;
 import be.pxl.publictms.view.WerknemerObjectView;
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 import org.hibernate.Query;
@@ -50,7 +46,18 @@ public class WerknemerDAOImpl implements WerknemerDAO {
         "and w.infoid = p.infoid\n" +
         "and w.werknemerid = g.werknemerid";
     
-    
+        private final String qryWerknemers = "select w.actief, w.werknemerid, w.naam, w.voornaam, w.geslacht, w.statuut, w.datuminschrijving, w.datumuitschrijving, w.functie, w.taal, t.taalnaam, \n" +
+                "w.adresid,  a.postcode, a.straat, a.nummer, a.bus, a.land, w.contactid, c.email, c.telefoon, c.gsm, c.fax, \n" +
+                "w.rijbewijsid, r.rijbewijsnr, r.rijbewijscat, r.geldigtot, r.adrcertificaat, r.medischattest, r.tankkaartnr, r.tachograafnr, r.tachograaftot, \n" +
+                "w.infoid, p.rijksregisternr, p.siskaart, p.identiteitsnr, p.pensioennr, p.geboorteplaats, p.geboortedatum, p.iban, p.bic, p.burgerstand, p.aantalkinderen,\n" +
+                "g.gebruikerid, g.gebruikersnaam, g.paswoord, g.administrator\n" +
+                "from werknemer w, taal t, adres a, contact c, rijbewijsgegevens r, persoonsinfo p, gebruiker g\n" +
+                "where w.taal = t.taalid \n" +
+                "and w.adresid = a.adresid \n" +
+                "and w.contactid = c.contactid \n" +
+                "and w.rijbewijsid = r.rijbewijsid \n" +
+                "and w.infoid = p.infoid\n" +
+                "and w.werknemerid = g.werknemerid";
     @Autowired
     private SessionFactory sessionFactory;
 
@@ -96,8 +103,11 @@ public class WerknemerDAOImpl implements WerknemerDAO {
      * @return List Werknemer
      */
     @Override
-    public List<Werknemer> getWerknemers() {
-        return sessionFactory.getCurrentSession().createQuery("from Werknemer").list();
+    public List<WerknemerObjectView> getWerknemers() {
+        //return sessionFactory.getCurrentSession().createQuery("from Werknemer").list();
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        Query query = session.createSQLQuery(qryWerknemers);
+        return mapJson(query.list());
     }
 
     /**
@@ -159,10 +169,19 @@ public class WerknemerDAOImpl implements WerknemerDAO {
             
             String salt = BCrypt.gensalt();
             String paswoord = BCrypt.hashpw(werknemerCompleet.getPaswoord(), BCrypt.gensalt());
+            Gebruiker gebruiker;
             
-            Gebruiker gebruiker = new Gebruiker(werknemerCompleet.getGebruikersid(), werknemerCompleet.getGebruikersnaam(), 
-                    paswoord, salt, werknemerCompleet.getWerknemerid(), werknemerCompleet.isAdmin());
-            
+            if(werknemerCompleet.getPaswoord() == null){
+                Session session = HibernateUtil.getSessionFactory().openSession();
+                Query query = session.createSQLQuery("select * from gebruiker where Gebruikersnaam = :gebruikersnaam").addEntity(Gebruiker.class);
+                query.setParameter("gebruikersnaam", werknemerCompleet.getGebruikersnaam());
+                Gebruiker gebruikercheck = (Gebruiker) query.list().get(0);
+                gebruiker = new Gebruiker(werknemerCompleet.getGebruikersid(), werknemerCompleet.getGebruikersnaam(), gebruikercheck.getPaswoord(), gebruikercheck.getSalt(), werknemerCompleet.getWerknemerid(), werknemerCompleet.isAdmin());
+            }else{
+                gebruiker = new Gebruiker(werknemerCompleet.getGebruikersid(), werknemerCompleet.getGebruikersnaam(), paswoord, salt, werknemerCompleet.getWerknemerid(), werknemerCompleet.isAdmin());
+            }
+                  
+
             sessionFactory.getCurrentSession().update(adres);
             sessionFactory.getCurrentSession().update(contact);
             sessionFactory.getCurrentSession().update(rijbewijs);

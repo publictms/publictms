@@ -11,8 +11,9 @@ package be.pxl.publictms.view;
 public class FacturatieView {
     private int facturatieId;
     private int klantid;
+    private double eenheidsprijs;
     private double korting;
-    private double prijsgegeven;
+    private double aantalkilometer;
     private String naam;
     private String voornaam;
     private String bedrijf;
@@ -27,7 +28,7 @@ public class FacturatieView {
     private String straat;
     private short nummer;
     private String bus;
-    private String land;
+    private int land;
     private String postcode;
     private String gemeente;
     private String email;
@@ -39,14 +40,15 @@ public class FacturatieView {
         
     }
     
-    public FacturatieView(int facturatieId, int klantid, double korting, double prijsgegeven, String naam, String voornaam, 
+    public FacturatieView(int facturatieId, int klantid, double eenheidsprijs, double korting, double aantalkilometer, String naam, String voornaam, 
             String bedrijf, String website, String munt, String btwregime, String btwnummer, String ondernemingsnummer, 
-            String iban, String bic, int adresid, String straat, short nummer, String bus, String land, String postcode, String gemeente,
+            String iban, String bic, int adresid, String straat, short nummer, String bus, int land, String postcode, String gemeente,
             String email, String telefoon, String gsm, String fax) {
         this.facturatieId = facturatieId;
         this.klantid = klantid;
+        this.eenheidsprijs = eenheidsprijs;
         this.korting = korting;
-        this.prijsgegeven = prijsgegeven;
+        this.aantalkilometer = aantalkilometer;
         this.naam = naam;
         this.voornaam = voornaam;
         this.bedrijf = bedrijf;
@@ -126,12 +128,12 @@ public class FacturatieView {
         this.korting = korting;
     }
 
-    public double getPrijsgegeven() {
-        return prijsgegeven;
+    public double getAantalkilometer() {
+        return aantalkilometer;
     }
 
-    public void setPrijsgegeven(double prijsgegeven) {
-        this.prijsgegeven = prijsgegeven;
+    public void setAantalkilometer(double aantalkilometer) {
+        this.aantalkilometer = aantalkilometer;
     }
 
     public String getNaam() {
@@ -246,11 +248,11 @@ public class FacturatieView {
         this.bus = bus;
     }
 
-    public String getLand() {
+    public int getLand() {
         return land;
     }
 
-    public void setLand(String land) {
+    public void setLand(int land) {
         this.land = land;
     }
 
@@ -269,4 +271,13 @@ public class FacturatieView {
     public void setGemeente(String gemeente) {
         this.gemeente = gemeente;
     }
+
+    public double getEenheidsprijs() {
+        return eenheidsprijs;
+    }
+
+    public void setEenheidsprijs(double eenheidsprijs) {
+        this.eenheidsprijs = eenheidsprijs;
+    }
+    
 }

@@ -32,7 +32,7 @@ public interface WerknemerService {
      * @return      Lijst van data van de tabel Werknemer. Elk record wordt
      *              voorgesteld met POJO Werknemer.
      */
-    public List<Werknemer> getWerknemers();
+    public List<WerknemerObjectView> getWerknemers();
     
     /**
      * Declaratie van de methode voor het ophalen 1 row van de tabel Werknemer.

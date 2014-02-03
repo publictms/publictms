@@ -5,6 +5,8 @@
 package be.pxl.publictms.service;
 
 import be.pxl.publictms.pojo.Actie;
+import be.pxl.publictms.view.ActieObjectView;
+import be.pxl.publictms.view.ActieView;
 import java.util.List;
 
 /**
@@ -21,7 +23,7 @@ public interface ActieService {
      * 
      * @param actie     POJO representatie van de data die toegevoegd wordt.
      */
-    public void addActie(Actie actie);
+    public void addActie(ActieView actieView);
     
     
     /**
@@ -38,17 +40,30 @@ public interface ActieService {
      * 
      * @param actie     POJO van de geüpdate data
      */
-    public void updateActie(Actie actie);
+    public void updateActie(ActieView actieView);
+    /**
+     * Geeft één actie terug.
+     * @param id
+     * @return Actie
+     */
+    public ActieObjectView getActie(int id);
     /**
      * Geeft alle acties per opdracht zonder indexen maar als bruikbaar gegeven.
      * @param id
      * @return List
      */
-    public List getActiesVanOpdracht(int id);
+    public List<ActieObjectView> getActiesWerknemer(int id);
+    /**
+     * Geeft alle acties per opdracht zonder indexen maar als bruikbaar gegeven.
+     * @param id
+     * @return List
+     */
+    public List<ActieObjectView> getActiesOpdracht(int id);
     /**
      * Zet de actie status op actief of niet actief
      * @param klaar
      * @param id 
      */
     public void setKlaar(boolean klaar, int id);
+    public List<ActieObjectView> getActies();
 }

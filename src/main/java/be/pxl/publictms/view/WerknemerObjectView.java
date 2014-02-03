@@ -50,6 +50,8 @@ public class WerknemerObjectView {
      private Object gebruikersnaam;
      private Object paswoord;
      private Object admin;
+     private Object name;
+     private Object id;
      
      public WerknemerObjectView(){}
      
@@ -101,6 +103,8 @@ public class WerknemerObjectView {
         this.gebruikersnaam = gebruikersnaam;
         //this.paswoord = paswoord;
         this.admin = admin;
+        this.name = voornaam;
+        this.id = werknemerid;
     }
     
     public WerknemerObjectView(Object actief, Object naam, Object voornaam, Character geslacht, Object statuut, Object datuminschrijving, Object datumuitschrijving, Object functie, Object taalnaam, Object postcode, Object straat, Object nummer, Object bus, Object land, Object email, Object telefoon, Object gsm, Object fax, Object rijbewijsnr, Object rijbewijscat, Object geldigtot, Object adrcertificaat, Object medischattest, Object tankkaartnr, Object tachograafnr, Object tachograaftot, Object rijksregisternr, Object siskaart, Object identiteitsnr, Object pensioennr, Object geboorteplaats, Object geboortedatum, Object iban, Object bic, Object burgerstand, Object aantalkinderen,
@@ -145,6 +149,24 @@ public class WerknemerObjectView {
         this.gebruikersnaam = gebruikersnaam;
         //this.paswoord = paswoord;
         this.admin = admin;
+        this.name = voornaam;
+        this.id = werknemerid;
+    }
+
+    public Object getName() {
+        return name;
+    }
+
+    public void setName(Object name) {
+        this.name = name;
+    }
+
+    public Object getId() {
+        return id;
+    }
+
+    public void setId(Object id) {
+        this.id = id;
     }
 
     public Object getGebruikersid() {

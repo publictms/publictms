@@ -6,6 +6,8 @@ package be.pxl.publictms;
 
 import be.pxl.publictms.pojo.Actie;
 import be.pxl.publictms.service.ActieService;
+import be.pxl.publictms.view.ActieObjectView;
+import be.pxl.publictms.view.ActieView;
 import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -30,13 +32,29 @@ public class ActieController {
     
     @Autowired
     private ActieService actieService;
+    
     /**
      * Voegt een actie toe aan de database
      * @param actie 
      */
     @RequestMapping(value = "/",method = RequestMethod.POST)
-    public @ResponseBody void add(@RequestBody Actie actie){
-        actieService.addActie(actie);
+    public @ResponseBody void add(@RequestBody ActieView actieView){
+        actieService.addActie(actieView);
+    }
+    
+    @RequestMapping(value = "/",method = RequestMethod.GET)
+    public @ResponseBody List<ActieObjectView> getActies(){
+        return actieService.getActies();
+    }
+    
+    /**
+     * Geeft alle acties per opdracht zonder indexen maar als bruikbaar gegeven.
+     * @param id
+     * @return List<Actie>
+     */
+    @RequestMapping(value = "/actie/{id}",method = RequestMethod.GET)
+    public @ResponseBody ActieObjectView getActie(@PathVariable("id") int id){
+        return actieService.getActie(id);
     }
     /**
      * Geeft alle acties per opdracht zonder indexen maar als bruikbaar gegeven.
@@ -44,8 +62,17 @@ public class ActieController {
      * @return List<Actie>
      */
     @RequestMapping(value = "/{id}",method = RequestMethod.GET)
-    public @ResponseBody List getActiesPerOpdracht(@PathVariable("id") int id){
-        return actieService.getActiesVanOpdracht(id);
+    public @ResponseBody List<ActieObjectView> getActiesWerknemer(@PathVariable("id") int id){
+        return actieService.getActiesWerknemer(id);
+    }
+     /**
+     * Geeft alle acties per opdracht zonder indexen maar als bruikbaar gegeven.
+     * @param id
+     * @return List<Actie>
+     */
+    @RequestMapping(value = "/opdracht/{id}",method = RequestMethod.GET)
+    public @ResponseBody List<ActieObjectView> getActiesOpdracht(@PathVariable("id") int id){
+        return actieService.getActiesOpdracht(id);
     }
     /**
      * Delete een actie in de database aan de hand van zijn index.
@@ -60,8 +87,8 @@ public class ActieController {
      * @param actie 
      */
     @RequestMapping(value = "/",method = RequestMethod.PUT)
-    public @ResponseBody void update(@RequestBody Actie actie){
-        actieService.updateActie(actie);
+    public @ResponseBody void update(@RequestBody ActieView actieView){
+        actieService.updateActie(actieView);
     }
     /**
      * Verander de status van een actie

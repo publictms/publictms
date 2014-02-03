@@ -4,7 +4,6 @@
  */
 package be.pxl.publictms.view;
 
-import java.util.Date;
 
 /**
  *
@@ -14,66 +13,61 @@ public class OpdrachtView {
     private int Id;
     private int klantId;
     private String klantNaam;
-    private String klantVoorNaam;
+    private String klantVoornaam;
     private String bedrijf;
-    private Date datum;
-    private Date starttijd;
-    private Date eindtijd;
     private int werknemerId;
     private String werknemerNaam;
     private String werknemerVoornaam;
-    private String title;
+    private int voertuigid;
     private String voertuig;
+    private int opleggerid;
     private String oplegger;
     private boolean opdrachtklaar;
     private String vrijveld;
 
     public OpdrachtView(){}
-    
-    public OpdrachtView(int klantId, String klantNaam, String klantVoorNaam, String bedrijf, Date datum, Date starttijd, Date eindtijd, int werknemerId, String werknemerNaam, String werknemerVoornaam, String title, String voertuig, String oplegger, boolean opdrachtklaar, String vrijveld) {
-        this.klantId = klantId;
-        this.klantNaam = klantNaam;
-        this.klantVoorNaam = klantVoorNaam;
-        this.bedrijf = bedrijf;
-        this.datum = datum;
-        this.starttijd = starttijd;
-        this.eindtijd = eindtijd;
-        this.werknemerId = werknemerId;
-        this.werknemerNaam = werknemerNaam;
-        this.werknemerVoornaam = werknemerVoornaam;
-        this.title = title;
-        this.voertuig = voertuig;
-        this.oplegger = oplegger;
-        this.opdrachtklaar = opdrachtklaar;
-        this.vrijveld = vrijveld;
-    }
-    
-    public OpdrachtView(int Id, int klantId, String klantNaam, String klantVoorNaam, String bedrijf, Date datum, Date starttijd, Date eindtijd, int werknemerId, String werknemerNaam, String werknemerVoornaam, String title, String voertuig, String oplegger, boolean opdrachtklaar, String vrijveld) {
-        this.Id = Id;
-        this.klantId = klantId;
-        this.klantNaam = klantNaam;
-        this.klantVoorNaam = klantVoorNaam;
-        this.bedrijf = bedrijf;
-        this.datum = datum;
-        this.starttijd = starttijd;
-        this.eindtijd = eindtijd;
-        this.werknemerId = werknemerId;
-        this.werknemerNaam = werknemerNaam;
-        this.werknemerVoornaam = werknemerVoornaam;
-        this.title = title;
-        this.voertuig = voertuig;
-        this.oplegger = oplegger;
-        this.opdrachtklaar = opdrachtklaar;
-        this.vrijveld = vrijveld;
-    }
 
-    public int getId() {
-        return Id;
+    public OpdrachtView(int klantId, String klantNaam, String klantVoornaam, String bedrijf, int werknemerId, String werknemerNaam, String werknemerVoornaam, int voertuigid, String voertuig, int opleggerid, String oplegger, boolean opdrachtklaar, String vrijveld, int resource) {
+        this.klantId = klantId;
+        this.klantNaam = klantNaam;
+        this.klantVoornaam = klantVoornaam;
+        this.bedrijf = bedrijf;
+        this.werknemerId = werknemerId;
+        this.werknemerNaam = werknemerNaam;
+        this.werknemerVoornaam = werknemerVoornaam;
+        this.voertuigid = voertuigid;
+        this.voertuig = voertuig;
+        this.opleggerid = opleggerid;
+        this.oplegger = oplegger;
+        this.opdrachtklaar = opdrachtklaar;
+        this.vrijveld = vrijveld;
+    }
+    
+    public OpdrachtView(int opdrachtid, int klantId, String klantNaam, String klantVoornaam, String bedrijf, int werknemerId, String werknemerNaam, String werknemerVoornaam, int voertuigid, String voertuig, int opleggerid, String oplegger, boolean opdrachtklaar, String vrijveld) {
+        this.Id = opdrachtid;
+        this.klantId = klantId;
+        this.klantNaam = klantNaam;
+        this.klantVoornaam = klantVoornaam;
+        this.bedrijf = bedrijf;
+        this.werknemerId = werknemerId;
+        this.werknemerNaam = werknemerNaam;
+        this.werknemerVoornaam = werknemerVoornaam;
+        this.voertuigid = voertuigid;
+        this.voertuig = voertuig;
+        this.opleggerid = opleggerid;
+        this.oplegger = oplegger;
+        this.opdrachtklaar = opdrachtklaar;
+        this.vrijveld = vrijveld;
     }
 
     public void setId(int Id) {
         this.Id = Id;
     }
+
+    public int getId() {
+        return Id;
+    }
+    
 
     public int getKlantId() {
         return klantId;
@@ -91,12 +85,12 @@ public class OpdrachtView {
         this.klantNaam = klantNaam;
     }
 
-    public String getKlantVoorNaam() {
-        return klantVoorNaam;
+    public String getKlantVoornaam() {
+        return klantVoornaam;
     }
 
-    public void setKlantVoorNaam(String klantVoorNaam) {
-        this.klantVoorNaam = klantVoorNaam;
+    public void setKlantVoornaam(String klantVoornaam) {
+        this.klantVoornaam = klantVoornaam;
     }
 
     public String getBedrijf() {
@@ -105,30 +99,6 @@ public class OpdrachtView {
 
     public void setBedrijf(String bedrijf) {
         this.bedrijf = bedrijf;
-    }
-
-    public Date getDatum() {
-        return datum;
-    }
-
-    public void setDatum(Date datum) {
-        this.datum = datum;
-    }
-
-    public Date getStarttijd() {
-        return starttijd;
-    }
-
-    public void setStarttijd(Date starttijd) {
-        this.starttijd = starttijd;
-    }
-
-    public Date getEindtijd() {
-        return eindtijd;
-    }
-
-    public void setEindtijd(Date eindtijd) {
-        this.eindtijd = eindtijd;
     }
 
     public int getWerknemerId() {
@@ -155,12 +125,12 @@ public class OpdrachtView {
         this.werknemerVoornaam = werknemerVoornaam;
     }
 
-    public String getTitle() {
-        return title;
+    public int getVoertuigid() {
+        return voertuigid;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
+    public void setVoertuigid(int voertuigid) {
+        this.voertuigid = voertuigid;
     }
 
     public String getVoertuig() {
@@ -169,6 +139,14 @@ public class OpdrachtView {
 
     public void setVoertuig(String voertuig) {
         this.voertuig = voertuig;
+    }
+
+    public int getOpleggerid() {
+        return opleggerid;
+    }
+
+    public void setOpleggerid(int opleggerid) {
+        this.opleggerid = opleggerid;
     }
 
     public String getOplegger() {
@@ -193,5 +171,5 @@ public class OpdrachtView {
 
     public void setVrijveld(String vrijveld) {
         this.vrijveld = vrijveld;
-    }
+    }  
 }

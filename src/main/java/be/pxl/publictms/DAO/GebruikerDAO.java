@@ -41,5 +41,5 @@ public interface GebruikerDAO {
      * @param paswoord
      * @return boolean
      */
-    public boolean checkUser(String gebruikersnaam, String paswoord);
+    public Gebruiker checkUser(String gebruikersnaam, String paswoord) throws Exception;
 }
